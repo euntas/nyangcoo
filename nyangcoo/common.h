@@ -3,6 +3,7 @@
 enum EScene {
 	eScene_Start,
 	eScene_Game,
+	eScene_Exit,
 	eScene_Cnt
 };
 

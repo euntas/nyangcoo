@@ -19,6 +19,7 @@
 #include "GameScene.h"
 #include "LoginScene.h"
 #include "SceneManager.h"
+#include "GameManager.h"
 
 using namespace Gdiplus;
 #pragma comment (lib, "gdiplus.lib")

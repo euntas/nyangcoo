@@ -13,12 +13,12 @@ LoginScene::LoginScene() : Scene()
 	Image* cm = new Image(TEXT("Asset\\ed.jpg"));
 
 	Btn* StartBtn = new Btn();
-	StartBtn->ID = 0;
+	StartBtn->ID = eScene_Game;
 	StartBtn->Img = cm;
 	StartBtn->rc = Rect(100, 100, 200, 150);
 
 	Btn* ExitBtn = new Btn();
-	ExitBtn->ID = 1;
+	ExitBtn->ID = eScene_Exit;
 	ExitBtn->Img = cm;
 	ExitBtn->rc = Rect(100, 300, 200, 350);
 
