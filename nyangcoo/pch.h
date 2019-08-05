@@ -11,13 +11,21 @@
 #include "framework.h"
 #include <gdiplus.h>
 #include <vector>
+
 #include "common.h"
+
 #include "Object.h"
+#include "Scene.h"
+
+#include "Player.h"
+#include "Enemy.h"
+
 #include "Btn.h"
 #include "StaticObject.h"
-#include "Scene.h"
+
 #include "GameScene.h"
 #include "LoginScene.h"
+
 #include "SceneManager.h"
 #include "GameManager.h"
 
