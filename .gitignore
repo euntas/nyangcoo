@@ -34,8 +34,8 @@
 # Directory
 .vs/
 Debug/
-nyangcoo/.vs/
-nyangcoo/Debug/
+**/nyangcoo/.vs/
+**/nyangcoo/Debug/
 
 #etc
 *.log
