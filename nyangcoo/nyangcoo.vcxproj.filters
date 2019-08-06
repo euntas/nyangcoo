@@ -43,6 +43,18 @@
     <Filter Include="헤더 파일\Scene">
       <UniqueIdentifier>{d71cf4c9-8cc5-4c94-8840-9f095cdd0242}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Component">
+      <UniqueIdentifier>{776ccd74-d568-4cce-b1fa-f6e46e7e1c58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Component">
+      <UniqueIdentifier>{07a1d7fb-ac09-4879-bea4-c65b8e34c81b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Unit">
+      <UniqueIdentifier>{83d3d541-f556-4b9a-b3e6-44d18a31c535}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Unit">
+      <UniqueIdentifier>{34911b1e-46c3-4d03-928e-183f06df4cd8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -93,6 +105,21 @@
     <ClInclude Include="GameManager.h">
       <Filter>헤더 파일\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="AssetManager.h">
+      <Filter>헤더 파일\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsComponent.h">
+      <Filter>헤더 파일\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="InputComponent.h">
+      <Filter>헤더 파일\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>헤더 파일\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>헤더 파일\Unit</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainFrm.cpp">
@@ -130,6 +157,21 @@
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>소스 파일\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetManager.cpp">
+      <Filter>소스 파일\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsComponent.cpp">
+      <Filter>소스 파일\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="InputComponent.cpp">
+      <Filter>소스 파일\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>소스 파일\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>소스 파일\Unit</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
