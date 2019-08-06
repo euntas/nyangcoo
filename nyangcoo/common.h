@@ -15,6 +15,7 @@ enum EObjectType
 	eObjectType_Player,
 	eObjectType_Bullet,
 	eObjectType_Enemy,
+	eObjectType_BGImage,
 	eObjectType_Cnt
 };
 

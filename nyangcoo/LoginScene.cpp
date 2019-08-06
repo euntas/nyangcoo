@@ -6,6 +6,7 @@ LoginScene::LoginScene() : Scene()
 	Name = "Scene_Start";
 
 	bg = new StaticObject();
+	bg->Objtype = eObjectType_BGImage;
 	bg->AssetFileName = TEXT("bg.png");
 	bg->rc = Rect(0, 0, 1080, 1920);
 
@@ -19,6 +20,7 @@ LoginScene::LoginScene() : Scene()
 	ExitBtn->AssetFileName = TEXT("ed.jpg");
 	ExitBtn->rc = Rect(100, 300, 200, 350);
 
+	infoStaticObj.emplace_back(bg);
 	infoStaticObj.emplace_back(StartBtn);
 	infoStaticObj.emplace_back(ExitBtn);
 }
