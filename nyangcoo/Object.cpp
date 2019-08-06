@@ -14,3 +14,20 @@ Object::Object(EObjectType InType)
 {
 
 }
+
+void Object::Init(InputComponent* input, GraphicsComponent* graphics)
+{
+	input_ = input;
+	graphics_ = graphics;
+}
+
+void Object::Update(Graphics& graphics, float Delta)
+{
+	input_->update(*this);
+	graphics_->update(*this, graphics, Delta);
+}
+
+void Object::Release() 
+{
+
+}

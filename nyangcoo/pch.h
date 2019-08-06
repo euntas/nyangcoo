@@ -17,16 +17,17 @@
 #include "common.h"
 
 #include "Object.h"
+#include "StaticObject.h"
 #include "Scene.h"
 
 #include "InputComponent.h"
 #include "GraphicsComponent.h"
+#include "PlayerGraphicsComponent.h"
 
 #include "Player.h"
 #include "Enemy.h"
 
 #include "Btn.h"
-#include "StaticObject.h"
 
 #include "GameScene.h"
 #include "LoginScene.h"

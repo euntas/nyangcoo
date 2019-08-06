@@ -78,9 +78,6 @@
     <ClInclude Include="Scene.h">
       <Filter>헤더 파일\Base</Filter>
     </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>헤더 파일\Base</Filter>
-    </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>헤더 파일\Manager</Filter>
     </ClInclude>
@@ -88,9 +85,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Btn.h">
-      <Filter>헤더 파일\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="StaticObject.h">
       <Filter>헤더 파일\UI</Filter>
     </ClInclude>
     <ClInclude Include="nyangcoo.h">
@@ -120,6 +114,15 @@
     <ClInclude Include="Player.h">
       <Filter>헤더 파일\Unit</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerGraphicsComponent.h">
+      <Filter>헤더 파일\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>헤더 파일\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticObject.h">
+      <Filter>헤더 파일\Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainFrm.cpp">
@@ -141,9 +144,6 @@
       <Filter>소스 파일\Manager</Filter>
     </ClCompile>
     <ClCompile Include="Btn.cpp">
-      <Filter>소스 파일\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="StaticObject.cpp">
       <Filter>소스 파일\UI</Filter>
     </ClCompile>
     <ClCompile Include="nyangcoo.cpp">
@@ -172,6 +172,12 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>소스 파일\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerGraphicsComponent.cpp">
+      <Filter>소스 파일\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticObject.cpp">
+      <Filter>소스 파일\Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

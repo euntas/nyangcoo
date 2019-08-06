@@ -1,5 +1,4 @@
 #pragma once
-#include "framework.h"
 
 using namespace std;
 
@@ -11,6 +10,7 @@ public:
 	void End();
 	bool bLoop;
 	CString Name;
-	vector<Object*> info;
+	vector<Object*> infoObj;
+	vector<StaticObject*> infoStaticObj;
 };
 

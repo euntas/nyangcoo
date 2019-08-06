@@ -2,7 +2,15 @@
 #include "StaticObject.h"
 
 StaticObject::StaticObject()
-	: Object(EObjectType::eObjectType_Static)
+	: Objtype(eObjectType_None)
+	, Enable(true)
+{
+
+}
+
+StaticObject::StaticObject(EObjectType InType)
+	: Objtype(InType)
+	, Enable(true)
 {
 
 }

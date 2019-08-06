@@ -2,7 +2,7 @@
 #include "Btn.h"
 
 Btn::Btn()
-	: Object(EObjectType::eObjectType_Btn)
+	: StaticObject(EObjectType::eObjectType_Btn)
 {
 
 }

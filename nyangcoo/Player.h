@@ -3,5 +3,12 @@
 class Player :
 	public Object
 {
+public:
+	int x, y;
+
+	Player() {}
+
+private:
+
 };
 

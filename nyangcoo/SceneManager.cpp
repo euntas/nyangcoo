@@ -56,7 +56,7 @@ void SceneManager::RenderScene(Graphics* pGraphics)
 			nullptr, 0, nullptr);
 	}
 
-	for (auto& it : CurScene->info)
+	for (auto& it : CurScene->infoStaticObj)
 	{
 		if (it == nullptr) continue;
 		if (it->Enable == false) continue;
@@ -76,7 +76,7 @@ void SceneManager::SendLButtonDown(UINT nFlags, CPoint point)
 {
 	if (CurScene == nullptr) return;
 
-	for (auto& it : CurScene->info)
+	for (auto& it : CurScene->infoStaticObj)
 	{
 		if (it->Objtype == eObjectType_Btn && it->rc.Contains(point.x, point.y))
 		{

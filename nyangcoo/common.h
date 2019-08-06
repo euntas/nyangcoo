@@ -17,3 +17,7 @@ enum EObjectType
 	eObjectType_Enemy,
 	eObjectType_Cnt
 };
+
+class InputComponent;
+class Object;
+class GraphicsComponent;

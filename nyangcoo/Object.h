@@ -1,5 +1,4 @@
 #pragma once
-#include "framework.h"
 
 class Object
 {
@@ -7,15 +6,17 @@ public:
 	Object();
 	Object(EObjectType InType);
 
-	virtual void Begin() {}
-	virtual void Update(float Delta) {}
-	virtual void End() {}
+	virtual void Init(InputComponent* input, GraphicsComponent* graphics);
+	virtual void Update(Gdiplus::Graphics& graphics, float Delta);
+	virtual void Release();
 
-	/*Gdiplus::Image* ParentImg;
-	Gdiplus::Image* Img;*/
 	std::wstring AssetFileName;
 	Gdiplus::Rect rc;
 	EObjectType Objtype;
 	bool Enable;
+
+private:
+	InputComponent* input_;
+	GraphicsComponent* graphics_;
 };
 

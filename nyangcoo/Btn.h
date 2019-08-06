@@ -1,6 +1,6 @@
 #pragma once
-#include "Object.h"
-class Btn : public Object
+#include "StaticObject.h"
+class Btn : public StaticObject
 {
 public:
 	Btn();

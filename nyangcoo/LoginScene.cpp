@@ -19,7 +19,7 @@ LoginScene::LoginScene() : Scene()
 	ExitBtn->AssetFileName = TEXT("ed.jpg");
 	ExitBtn->rc = Rect(100, 300, 200, 350);
 
-	info.emplace_back(StartBtn);
-	info.emplace_back(ExitBtn);
+	infoStaticObj.emplace_back(StartBtn);
+	infoStaticObj.emplace_back(ExitBtn);
 }
 
