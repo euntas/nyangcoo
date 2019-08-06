@@ -11,6 +11,8 @@
 #include "framework.h"
 #include <gdiplus.h>
 #include <vector>
+#include <memory>
+#include <unordered_map>
 
 #include "common.h"
 
@@ -29,6 +31,7 @@
 #include "GameScene.h"
 #include "LoginScene.h"
 
+#include "AssetManager.h"
 #include "SceneManager.h"
 #include "GameManager.h"
 
