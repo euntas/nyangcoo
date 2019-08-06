@@ -34,3 +34,10 @@
 # Directory
 .vs/
 Debug/
+
+#etc
+*.log
+*.tlog
+*.idb
+*.pdb
+*.vcxproj
