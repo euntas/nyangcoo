@@ -17,6 +17,9 @@
 #include "Object.h"
 #include "Scene.h"
 
+#include "InputComponent.h"
+#include "GraphicsComponent.h"
+
 #include "Player.h"
 #include "Enemy.h"
 
