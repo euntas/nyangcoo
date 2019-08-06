@@ -37,8 +37,8 @@ Debug/
 nyangcoo/Debug/*
 
 #etc
-*.log
-*.tlog
-*.idb
-*.pdb
-*.vcxproj
+**/*.log
+**/*.tlog
+**/*.idb
+**/*.pdb
+**/*.vcxproj
