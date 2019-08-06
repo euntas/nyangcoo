@@ -6,20 +6,17 @@ LoginScene::LoginScene() : Scene()
 	Name = "Scene_Start";
 
 	bg = new StaticObject();
-	Image* bgImg = new Image(TEXT("Asset\\bg.png"));
-	bg->Img = bgImg;
+	bg->AssetFileName = TEXT("bg.png");
 	bg->rc = Rect(0, 0, 1080, 1920);
-
-	Image* cm = new Image(TEXT("Asset\\ed.jpg"));
 
 	Btn* StartBtn = new Btn();
 	StartBtn->ID = eScene_Game;
-	StartBtn->Img = cm;
+	StartBtn->AssetFileName = TEXT("ed.jpg");
 	StartBtn->rc = Rect(100, 100, 200, 150);
 
 	Btn* ExitBtn = new Btn();
 	ExitBtn->ID = eScene_Exit;
-	ExitBtn->Img = cm;
+	ExitBtn->AssetFileName = TEXT("ed.jpg");
 	ExitBtn->rc = Rect(100, 300, 200, 350);
 
 	info.emplace_back(StartBtn);
