@@ -35,6 +35,11 @@
 .vs/
 Debug/
 nyangcoo/Debug/*
+nyangcoo/Debug/*.log
+nyangcoo/Debug/*.tlog
+nyangcoo/Debug/*.idb
+nyangcoo/Debug/*.pdb
+nyangcoo/Debug/*.vcxproj
 
 #etc
 **/*.log
