@@ -7,7 +7,7 @@ public:
 	Object(EObjectType InType);
 
 	virtual void Init(InputComponent* input, GraphicsComponent* graphics);
-	virtual void Update(Gdiplus::Graphics& graphics, float Delta);
+	virtual void Update(Gdiplus::Graphics* graphics, float Delta);
 	virtual void Release();
 
 	std::wstring AssetFileName;

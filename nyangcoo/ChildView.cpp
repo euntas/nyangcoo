@@ -72,6 +72,7 @@ void CChildView::OnPaint()
 	DWORD delta = GetTickCount() - theApp.PrevTick;
 	DWORD value = delta == 0 ? 0 : 1000 / delta;
 
+	SceneManager::GetInstance().ViewRC = rc2;
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	SceneManager::GetInstance().RenderScene(&MemG);
 	

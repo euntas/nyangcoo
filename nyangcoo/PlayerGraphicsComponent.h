@@ -3,6 +3,6 @@
 class PlayerGraphicsComponent : public GraphicsComponent
 {
 public:
-	virtual void update(Object& obj, Gdiplus::Graphics& graphics, float Delta);
+	virtual void update(Object* obj, Gdiplus::Graphics* graphics, float Delta);
 };
 

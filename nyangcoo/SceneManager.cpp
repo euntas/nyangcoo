@@ -45,8 +45,7 @@ void SceneManager::RenderScene(Graphics* pGraphics)
 
 		if (it->Objtype == eObjectType_BGImage) // 배경 그림
 		{
-			Rect Dst(0, 0, GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CXSCREEN));
-			pGraphics->DrawImage(pImg.get(), Dst, it->rc.X, it->rc.Y, it->rc.Width, it->rc.Height, Gdiplus::Unit::UnitPixel,
+			pGraphics->DrawImage(pImg.get(), ViewRC, it->rc.X, it->rc.Y, it->rc.Width, it->rc.Height, Gdiplus::Unit::UnitPixel,
 				nullptr, 0, nullptr);
 		}
 		else // 그 외 그림

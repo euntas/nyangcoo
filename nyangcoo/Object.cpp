@@ -21,10 +21,10 @@ void Object::Init(InputComponent* input, GraphicsComponent* graphics)
 	graphics_ = graphics;
 }
 
-void Object::Update(Graphics& graphics, float Delta)
+void Object::Update(Gdiplus::Graphics* graphics, float Delta)
 {
-	input_->update(*this);
-	graphics_->update(*this, graphics, Delta);
+	input_->update(this);
+	graphics_->update(this, graphics, Delta);
 }
 
 void Object::Release() 

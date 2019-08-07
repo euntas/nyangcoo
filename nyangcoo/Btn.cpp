@@ -11,7 +11,7 @@ void Btn::SendLButtonDown()
 {
 	switch (ID)
 	{
-	case eScene_Game:
+	case eScene_Game: 
 		SceneManager::GetInstance().LoadScene(CString("Scene_Game"));
 		break;
 	case eScene_Exit:
