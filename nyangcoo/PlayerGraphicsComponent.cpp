@@ -16,8 +16,18 @@ void PlayerGraphicsComponent::update(Object* obj, float Delta)
 
 void PlayerGraphicsComponent::render(Object* obj, Gdiplus::Graphics* pGraphics)
 {
+	//프레임 확인용 코드. 출력 원하지 않을 경우 pch에서 define 부분을 주석처리.
+#if defined FRAME_DEBUG
+	SolidBrush br(Color(255, 0, 0, 0));
+	CString temp;
+	temp.Format(TEXT("%d"), (int)PlayerDeltaA);
+	Gdiplus::Font font(&FontFamily(L"Arial"), 12);
+	pGraphics->DrawString(temp, -1, &font, PointF(0, 100), &br);
+#endif
+
 	auto pImg = (AssetManager::GetInstance().GetImage(obj->AssetFileName)).lock();
 
+	// TODO. xml에서 읽어온 값으로 바꾸어야 함
 	Rect Dst(50, 400, AniUnitWidth, AniUnitHeight);
 
 	pGraphics->DrawImage(pImg.get(), Dst, AniUnits[AniFrameCnt].X, AniUnits[AniFrameCnt].Y, AniUnits[AniFrameCnt].Width, AniUnits[AniFrameCnt].Height, Gdiplus::Unit::UnitPixel,
@@ -43,6 +53,8 @@ void PlayerGraphicsComponent::setAniDelta(float delta)
 // TODO. 추후 xml 파일을 읽어서 초기화해주도록 바꾸어야 함
 void PlayerGraphicsComponent::Init(float width, float height, int frameNum, float delta)
 {
+	PlayerDeltaA = 0;
+
 	setAniUnitSize(width, height);
 	setAniFrameCnt(frameNum);
 	setAniDelta(delta);
@@ -58,8 +70,7 @@ void PlayerGraphicsComponent::InitAniUnits()
 		{
 			int x = j * AniUnitWidth;
 			int y = i * AniUnitHeight;
-			/*if (i == 3 && j == 5)
-				break;*/
+
 			AniUnits.emplace_back(Rect(x, y, AniUnitWidth, AniUnitHeight));
 		}
 	}

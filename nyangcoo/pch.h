@@ -39,4 +39,6 @@
 using namespace Gdiplus;
 #pragma comment (lib, "gdiplus.lib")
 
-#endif //PCH_H
+#define FRAME_DEBUG // 프레임 확인용 디파인 . 출력 필요없으면 주석처리하기.
+
+#endif PCH_H

@@ -27,7 +27,6 @@ public:
 
 // 구현입니다.
 	static DWORD PrevTick;
-	static bool bRender;
 	static Gdiplus::Graphics* MemoryGraphics;
 
 public:

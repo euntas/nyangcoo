@@ -51,8 +51,6 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 
 void CChildView::OnPaint() 
 {
-	CnyangcooApp::bRender = true;
-
 	CPaintDC dc(this); // 그리기를 위한 디바이스 컨텍스트입니다.
 
 	Graphics MainG(dc);
@@ -69,25 +67,14 @@ void CChildView::OnPaint()
 
 	MemG.FillRectangle(&WhiteBrush, rc2);
 
-	DWORD delta = GetTickCount() - theApp.PrevTick;
-	DWORD value = delta == 0 ? 0 : 1000 / delta;
-
 	SceneManager::GetInstance().ViewRC = rc2;
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	SceneManager::GetInstance().RenderScene(&MemG);
 	
 	// 그리기 메시지에 대해서는 CWnd::OnPaint()를 호출하지 마십시오.
 
-	// 화면 좌상단에 프레임 표시 위함 
-	CString temp;
-	temp.Format(TEXT("%d"), value);
-	Gdiplus::Font font(&FontFamily(L"Arial"), 12);
-	MemG.DrawString(temp, -1, &font, PointF(0, 0), &br);
-
 	// 실제 화면에 그려준다
 	MainG.DrawImage(&BackBuffer, 0, 0, rc.Width(), rc.Height());
-
-	CnyangcooApp::bRender = false;
 }
 
 

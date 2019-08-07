@@ -20,9 +20,9 @@ private:
 
 	int AniFrameCnt = 0;		// (애니메이션 용) 현재 애니메이션 스프라이트 프레임 번호
 
-	float AniDelta = 0;			// 애니메이션 한 프레임당 시간
+	float AniDelta;			// 애니메이션 한 프레임당 시간
 
-	float PlayerDeltaA = 0;		// 전체 계산용 델타 변수
+	float PlayerDeltaA;		// 전체 계산용 델타 변수
 
 	std::vector<Gdiplus::Rect> AniUnits;
 };
