@@ -4,6 +4,7 @@ class GraphicsComponent
 {
 public:
 	virtual ~GraphicsComponent() {}
-	virtual void update(Object* obj, Gdiplus::Graphics* graphics, float Delta) = 0;
+	virtual void update(Object* obj, float Delta) = 0;
+	virtual void render(Object* obj, Gdiplus::Graphics* pGraphics) = 0;
 };
 

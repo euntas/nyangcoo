@@ -7,7 +7,8 @@ public:
 	Object(EObjectType InType);
 
 	virtual void Init(InputComponent* input, GraphicsComponent* graphics);
-	virtual void Update(Gdiplus::Graphics* graphics, float Delta);
+	virtual void Update(float Delta);
+	virtual void Render(Gdiplus::Graphics* pGraphics);
 	virtual void Release();
 
 	std::wstring AssetFileName;
@@ -15,7 +16,7 @@ public:
 	EObjectType Objtype;
 	bool Enable;
 
-private:
+protected:
 	InputComponent* input_;
 	GraphicsComponent* graphics_;
 };

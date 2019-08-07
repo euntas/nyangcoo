@@ -25,3 +25,41 @@ LoginScene::LoginScene() : Scene()
 	infoStaticObj.emplace_back(ExitBtn);
 }
 
+void LoginScene::Init()
+{
+
+}
+
+void LoginScene::Update(float Delta)
+{
+	for (auto& it : infoObj)
+	{
+		if (it == nullptr) continue;
+
+		// 플레이어일 경우
+		if (it->Objtype == eObjectType_Player)
+		{
+			it->Update(Delta);
+		}
+	}
+}
+
+void LoginScene::Render(Graphics* pGraphics)
+{
+	for (auto& it : infoObj)
+	{
+		if (it == nullptr) continue;
+
+		// 플레이어일 경우
+		if (it->Objtype == eObjectType_Player)
+		{
+			it->Render(pGraphics);
+		}
+	}
+}
+
+void LoginScene::Release()
+{
+
+}
+

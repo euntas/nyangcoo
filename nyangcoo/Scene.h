@@ -5,9 +5,10 @@ using namespace std;
 class Scene
 {
 public:
-	void Start();
-	void Loop(float Delta);
-	void End();
+	virtual void Init();
+	virtual void Update(float Delta);
+	virtual void Render(Gdiplus::Graphics* pGraphics);
+	virtual void Release();
 	bool bLoop;
 	CString Name;
 	vector<Object*> infoObj;

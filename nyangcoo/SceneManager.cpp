@@ -35,7 +35,7 @@ void SceneManager::RenderScene(Graphics* pGraphics)
 	if (CurScene == nullptr) return;
 	if (pGraphics == nullptr) return;
 
-	// UI 그림 출력
+	// UI 그림 출력 . TODO. Scene 안의 render로 옮겨야 함
 	for (auto& it : CurScene->infoStaticObj)
 	{
 		if (it == nullptr) continue;
@@ -54,6 +54,8 @@ void SceneManager::RenderScene(Graphics* pGraphics)
 				nullptr, 0, nullptr);
 		}
 	}
+
+	CurScene->Render(pGraphics);
 }
 
 Scene* SceneManager::GetCurScene()
@@ -79,4 +81,5 @@ void SceneManager::Update(float Delta)
 {
 	if (CurScene == nullptr) return;
 
+	CurScene->Update(Delta);
 }

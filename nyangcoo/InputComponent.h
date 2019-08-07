@@ -4,6 +4,6 @@ class InputComponent
 {
 public:
 	virtual ~InputComponent() {}
-	virtual void update(Object* obj) = 0;
+	// virtual void update(Object* obj) = 0;
 };
 

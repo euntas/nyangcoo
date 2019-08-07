@@ -12,4 +12,58 @@ GameScene::GameScene() : Scene()
 	bg->rc = Rect(0, 0, 900, 468);
 
 	infoStaticObj.emplace_back(bg);
+
+	// 플레이어 생성
+	Player* samplePlayer = new Player();
+	samplePlayer->AssetFileName = TEXT("player\\player_rabbit_run.png");
+	samplePlayer->Init(new InputComponent(), new PlayerGraphicsComponent());
+
+	infoObj.emplace_back(samplePlayer);
+}
+
+void GameScene::Init()
+{
+	for (auto& it : infoObj)
+	{
+		if (it == nullptr) continue;
+
+		// 플레이어일 경우
+		if (it->Objtype == eObjectType_Player)
+		{
+			
+		}
+	}
+}
+
+void GameScene::Update(float Delta)
+{
+	for (auto& it : infoObj)
+	{
+		if (it == nullptr) continue;
+
+		// 플레이어일 경우
+		if (it->Objtype == eObjectType_Player)
+		{
+			it->Update(Delta);
+		}
+	}
+}
+
+void GameScene::Render(Graphics* pGraphics)
+{
+	for (auto& it : infoObj)
+	{
+		if (it == nullptr) continue;
+
+		// 플레이어일 경우
+		if (it->Objtype == eObjectType_Player)
+		{
+			it->Render(pGraphics);
+		}
+	}
+}
+
+void GameScene::Release()
+{
+
 }

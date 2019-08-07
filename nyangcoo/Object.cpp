@@ -21,10 +21,15 @@ void Object::Init(InputComponent* input, GraphicsComponent* graphics)
 	graphics_ = graphics;
 }
 
-void Object::Update(Gdiplus::Graphics* graphics, float Delta)
+void Object::Update(float Delta)
 {
-	input_->update(this);
-	graphics_->update(this, graphics, Delta);
+	//input_->update(this);
+	graphics_->update(this, Delta);
+}
+
+void Object::Render(Gdiplus::Graphics* pGraphics)
+{
+	graphics_->render(this, pGraphics);
 }
 
 void Object::Release() 
