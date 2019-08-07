@@ -55,6 +55,12 @@
     <Filter Include="헤더 파일\Unit">
       <UniqueIdentifier>{34911b1e-46c3-4d03-928e-183f06df4cd8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Util">
+      <UniqueIdentifier>{58a731b5-ae51-42e5-999b-e864ba27b58d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Util">
+      <UniqueIdentifier>{39e25433-9afa-4aed-abd0-758f5f28bc10}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">

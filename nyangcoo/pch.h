@@ -9,6 +9,7 @@
 
 // 여기에 미리 컴파일하려는 헤더 추가
 #include "framework.h"
+#include <tinyxml2.h>
 #include <gdiplus.h>
 #include <vector>
 #include <memory>
@@ -36,6 +37,7 @@
 #include "SceneManager.h"
 #include "GameManager.h"
 
+using namespace tinyxml2;
 using namespace Gdiplus;
 #pragma comment (lib, "gdiplus.lib")
 
