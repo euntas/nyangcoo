@@ -20,6 +20,15 @@ GameScene::GameScene() : Scene()
 	samplePlayer->Init(new InputComponent(), new PlayerGraphicsComponent());
 
 	infoObj.emplace_back(samplePlayer);
+
+	Btn* BackTitleBtn = new Btn();
+	BackTitleBtn->ID = eScene_Start;
+	BackTitleBtn->AssetFileName = TEXT("back_btn.png");
+	BackTitleBtn->rc = Rect(0, 0, 200, 60);
+	BackTitleBtn->x = 630;
+	BackTitleBtn->y = 10;
+
+	infoStaticObj.emplace_back(BackTitleBtn);
 }
 
 void GameScene::Init()
