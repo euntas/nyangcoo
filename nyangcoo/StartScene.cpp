@@ -1,7 +1,7 @@
 #include "pch.h"
-#include "LoginScene.h"
+#include "StartScene.h"
 
-LoginScene::LoginScene() : Scene()
+StartScene::StartScene() : Scene()
 {
 	Name = "Scene_Start";
 
@@ -24,12 +24,12 @@ LoginScene::LoginScene() : Scene()
 	ContinueBtn->x = 600;
 	ContinueBtn->y = 290;
 
-	Btn* LoadBtn = new Btn();
-	LoadBtn->ID = eScene_Load;
-	LoadBtn->AssetFileName = TEXT("title_btn_02.png");
-	LoadBtn->rc = Rect(0, 0, 236, 72);
-	LoadBtn->x = 600;
-	LoadBtn->y = 380;
+	Btn* LoadGameBtn = new Btn();
+	LoadGameBtn->ID = eScene_LoadGame;
+	LoadGameBtn->AssetFileName = TEXT("title_btn_02.png");
+	LoadGameBtn->rc = Rect(0, 0, 236, 72);
+	LoadGameBtn->x = 600;
+	LoadGameBtn->y = 380;
 
 	Btn* ChallengeBtn = new Btn();
 	ChallengeBtn->ID = eScene_Challenge;
@@ -48,17 +48,17 @@ LoginScene::LoginScene() : Scene()
 	infoStaticObj.emplace_back(bg);
 	infoStaticObj.emplace_back(StartBtn);
 	infoStaticObj.emplace_back(ContinueBtn);
-	infoStaticObj.emplace_back(LoadBtn);
+	infoStaticObj.emplace_back(LoadGameBtn);
 	infoStaticObj.emplace_back(ChallengeBtn);
 	infoStaticObj.emplace_back(ExitBtn);
 }
 
-void LoginScene::Init()
+void StartScene::Init()
 {
 
 }
 
-void LoginScene::Update(float Delta)
+void StartScene::Update(float Delta)
 {
 	for (auto& it : infoObj)
 	{
@@ -72,7 +72,7 @@ void LoginScene::Update(float Delta)
 	}
 }
 
-void LoginScene::Render(Graphics* pGraphics)
+void StartScene::Render(Graphics* pGraphics)
 {
 	for (auto& it : infoObj)
 	{
@@ -86,7 +86,7 @@ void LoginScene::Render(Graphics* pGraphics)
 	}
 }
 
-void LoginScene::Release()
+void StartScene::Release()
 {
 
 }

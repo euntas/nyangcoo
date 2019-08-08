@@ -204,7 +204,7 @@
     <ClInclude Include="GraphicsComponent.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="LoadGameScene.h" />
-    <ClInclude Include="LoginScene.h" />
+    <ClInclude Include="StartScene.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="nyangcoo.h" />
     <ClInclude Include="Object.h" />
@@ -228,7 +228,7 @@
     <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="LoadGameScene.cpp" />
-    <ClCompile Include="LoginScene.cpp" />
+    <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="nyangcoo.cpp" />
     <ClCompile Include="Object.cpp" />
