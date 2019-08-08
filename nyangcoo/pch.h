@@ -31,7 +31,7 @@
 #include "Btn.h"
 
 #include "GameScene.h"
-#include "LoginScene.h"
+#include "StartScene.h"
 #include "LoadGameScene.h"
 
 #include "AssetManager.h"

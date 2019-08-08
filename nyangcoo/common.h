@@ -5,9 +5,10 @@ enum EScene {
 	eScene_Game,
 	eScene_Exit,
 	eScene_Continue,
-	eScene_Load,
+	eScene_LoadGame,
 	eScene_Challenge,
-	eScene_DeleteGame
+	eScene_DeleteGame,
+	eScene_Cnt
 };
 
 enum EObjectType

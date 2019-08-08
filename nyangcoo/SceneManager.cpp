@@ -10,8 +10,8 @@ SceneManager& SceneManager::GetInstance()
 SceneManager::SceneManager()
 	: CurScene(nullptr)
 {
-	LoginScene* loginScene = new LoginScene();
-	mScene.emplace_back(loginScene);
+	StartScene* startScene = new StartScene();
+	mScene.emplace_back(startScene);
 	
 	GameScene* gameScene = new GameScene();
 	mScene.emplace_back(gameScene);

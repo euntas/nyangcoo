@@ -1,11 +1,11 @@
 #pragma once
 #include "Scene.h"
 
-class LoginScene :
+class StartScene :
 	public Scene
 {
 public:
-	LoginScene();
+	StartScene();
 
 	virtual void Init();
 	virtual void Update(float Delta);

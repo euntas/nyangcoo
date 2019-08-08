@@ -14,7 +14,7 @@ void Btn::SendLButtonDown()
 	case eScene_Game: 
 		SceneManager::GetInstance().LoadScene(CString("Scene_Game"));
 		break;
-	case eScene_Load:
+	case eScene_LoadGame:
 		SceneManager::GetInstance().LoadScene(CString("Scene_LoadGame"));
 		break;
 	case eScene_Start:

@@ -99,9 +99,6 @@
     <ClInclude Include="GameScene.h">
       <Filter>헤더 파일\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="LoginScene.h">
-      <Filter>헤더 파일\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="GameManager.h">
       <Filter>헤더 파일\Manager</Filter>
     </ClInclude>
@@ -130,6 +127,9 @@
       <Filter>헤더 파일\Base</Filter>
     </ClInclude>
     <ClInclude Include="LoadGameScene.h">
+      <Filter>헤더 파일\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="StartScene.h">
       <Filter>헤더 파일\Scene</Filter>
     </ClInclude>
   </ItemGroup>
@@ -161,9 +161,6 @@
     <ClCompile Include="GameScene.cpp">
       <Filter>소스 파일\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="LoginScene.cpp">
-      <Filter>소스 파일\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>소스 파일\Manager</Filter>
     </ClCompile>
@@ -189,6 +186,9 @@
       <Filter>소스 파일\Base</Filter>
     </ClCompile>
     <ClCompile Include="LoadGameScene.cpp">
+      <Filter>소스 파일\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="StartScene.cpp">
       <Filter>소스 파일\Scene</Filter>
     </ClCompile>
   </ItemGroup>
