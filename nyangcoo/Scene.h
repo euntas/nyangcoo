@@ -9,6 +9,7 @@ public:
 	virtual void Update(float Delta);
 	virtual void Render(Gdiplus::Graphics* pGraphics);
 	virtual void Release();
+
 	bool bLoop;
 	CString Name;
 	vector<Object*> infoObj;
