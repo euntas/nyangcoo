@@ -35,6 +35,7 @@ void SceneManager::RenderScene(Graphics* pGraphics)
 	if (CurScene == nullptr) return;
 	if (pGraphics == nullptr) return;
 
+	
 	// UI 그림 출력 . TODO. Scene 안의 render로 옮겨야 함
 	for (auto& it : CurScene->infoStaticObj)
 	{
@@ -50,7 +51,8 @@ void SceneManager::RenderScene(Graphics* pGraphics)
 		}
 		else // 그 외 그림
 		{
-			pGraphics->DrawImage(pImg.get(), it->rc, it->rc.X, it->rc.Y, it->rc.Width, it->rc.Height, Gdiplus::Unit::UnitPixel,
+			Rect tempRC(it->x, it->y, it->rc.Width, it->rc.Height);
+			pGraphics->DrawImage(pImg.get(), tempRC, it->rc.X, it->rc.Y, it->rc.Width, it->rc.Height, Gdiplus::Unit::UnitPixel,
 				nullptr, 0, nullptr);
 		}
 	}
@@ -69,7 +71,8 @@ void SceneManager::SendLButtonDown(UINT nFlags, CPoint point)
 
 	for (auto& it : CurScene->infoStaticObj)
 	{
-		if (it->Objtype == eObjectType_Btn && it->rc.Contains(point.x, point.y))
+		Rect tempRC(it->x, it->y, it->rc.Width, it->rc.Height);
+		if (it->Objtype == eObjectType_Btn && tempRC.Contains(point.x, point.y))
 		{
 			Btn* o = reinterpret_cast<Btn*>(it);
 			o->SendLButtonDown();

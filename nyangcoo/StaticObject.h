@@ -14,5 +14,7 @@ public:
 	Gdiplus::Rect rc;
 	EObjectType Objtype;
 	bool Enable;
+
+	int x, y;
 };
 
