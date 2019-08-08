@@ -15,9 +15,8 @@ GameScene::GameScene() : Scene()
 
 	// 플레이어 생성
 	Player* samplePlayer = new Player();
-	samplePlayer->PlayerAssetFileName[eState_Run] = TEXT("player\\player_brave_walk.png");
-	samplePlayer->PlayerAssetFileName[eState_Damage] = TEXT("player\\player_brave_dmg_jump.png");
-	samplePlayer->PlayerAssetFileName[eState_Dead] = TEXT("player\\player_brave_end.png");
+	samplePlayer->PlayerXmlFileName = "Asset\\player\\player_brave.xml";
+	XmlManager::GetInstance().ParsePlayerData(*samplePlayer);
 	samplePlayer->Init(new InputComponent(), new PlayerGraphicsComponent());
 
 	infoObj.emplace_back(samplePlayer);

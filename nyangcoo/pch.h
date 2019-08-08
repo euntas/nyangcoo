@@ -13,6 +13,7 @@
 #include <gdiplus.h>
 #include <vector>
 #include <memory>
+#include <string>
 #include <unordered_map>
 
 #include "common.h"
@@ -34,6 +35,7 @@
 #include "LoginScene.h"
 #include "LoadGameScene.h"
 
+#include "XmlManager.h"
 #include "AssetManager.h"
 #include "SceneManager.h"
 #include "GameManager.h"

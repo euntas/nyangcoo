@@ -25,14 +25,14 @@ void Player::Init(InputComponent* input, PlayerGraphicsComponent* graphics)
 	frameNum[eState_Run] = 4;
 	frameDelta[eState_Run] = 150.0f;*/
 
-	frameWidth[eState_Run] = 170;
+	/*frameWidth[eState_Run] = 170;
 	frameHeight[eState_Run] = 170;
 	frameNum[eState_Run] = 4;
 	frameDelta[eState_Run] = 150.0f;
 	spriteRowNum[eState_Run] = 1;
-	imgNumPerLine[eState_Run] = 4;
+	imgNumPerLine[eState_Run] = 4;*/
 
-	frameWidth[eState_Damage] = 170;
+	/*frameWidth[eState_Damage] = 170;
 	frameHeight[eState_Damage] = 170;
 	frameNum[eState_Damage] = 8;
 	frameDelta[eState_Damage] = 150.0f;
@@ -44,7 +44,7 @@ void Player::Init(InputComponent* input, PlayerGraphicsComponent* graphics)
 	frameNum[eState_Dead] = 5;
 	frameDelta[eState_Dead] = 150.0f;
 	spriteRowNum[eState_Dead] = 1;
-	imgNumPerLine[eState_Dead] = 5;
+	imgNumPerLine[eState_Dead] = 5;*/
 
 	AssetFileName = PlayerAssetFileName[curState];
 

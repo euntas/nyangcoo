@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+	<TextureAtlas imagePath="player\\player_brave_walk.png" width="1024" height="256" frameNum="4" delta="150" rowNum="1" imgNumPerLine="4" state="0">
+		<sprite n="ginger_walk_00.png" x="0" y="0" w="170" h="170"/>
+		<sprite n="ginger_walk_01.png" x="170" y="0" w="170" h="170"/>
+		<sprite n="ginger_walk_02.png" x="340" y="0" w="170" h="170"/>
+		<sprite n="ginger_walk_03.png" x="510" y="0" w="170" h="170"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_brave_dmg_jump.png" width="512" height="512" frameNum="8" delta="150" rowNum="3" imgNumPerLine="3" state="1">
+		<sprite n="ginger_dmg_jump_00.png" x="0" y="0" w="170" h="170"/>
+		<sprite n="ginger_dmg_jump_01.png" x="170" y="0" w="170" h="170"/>
+		<sprite n="ginger_dmg_jump_02.png" x="340" y="0" w="170" h="170"/>
+		<sprite n="ginger_dmg_jump_03.png" x="0" y="170" w="170" h="170"/>
+		<sprite n="ginger_dmg_jump_04.png" x="170" y="170" w="170" h="170"/>
+		<sprite n="ginger_dmg_jump_05.png" x="340" y="170" w="170" h="170"/>
+		<sprite n="ginger_dmg_jump_06.png" x="0" y="340" w="170" h="170"/>
+		<sprite n="ginger_dmg_jump_07.png" x="170" y="340" w="170" h="170"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_brave_dmg_jump.png" width="512" height="512" frameNum="8" delta="150" rowNum="3" imgNumPerLine="3" state="2">
+		<sprite n="ginger_dmg_jump_00.png" x="0" y="0" w="170" h="170"/>
+		<sprite n="ginger_dmg_jump_01.png" x="170" y="0" w="170" h="170"/>
+		<sprite n="ginger_dmg_jump_02.png" x="340" y="0" w="170" h="170"/>
+		<sprite n="ginger_dmg_jump_03.png" x="0" y="170" w="170" h="170"/>
+		<sprite n="ginger_dmg_jump_04.png" x="170" y="170" w="170" h="170"/>
+		<sprite n="ginger_dmg_jump_05.png" x="340" y="170" w="170" h="170"/>
+		<sprite n="ginger_dmg_jump_06.png" x="0" y="340" w="170" h="170"/>
+		<sprite n="ginger_dmg_jump_07.png" x="170" y="340" w="170" h="170"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_brave_end.png" width="1024" height="256" frameNum="5" delta="150" rowNum="1" imgNumPerLine="5" state="3">
+		<sprite n="ginger_end_00.png" x="0" y="0" w="170" h="170"/>
+		<sprite n="ginger_end_01.png" x="170" y="0" w="170" h="170"/>
+		<sprite n="ginger_end_02.png" x="340" y="0" w="170" h="170"/>
+		<sprite n="ginger_end_03.png" x="510" y="0" w="170" h="170"/>
+		<sprite n="ginger_end_04.png" x="680" y="0" w="170" h="170"/>
+	</TextureAtlas>
+    
+</Root>
