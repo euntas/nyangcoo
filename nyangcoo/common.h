@@ -21,6 +21,14 @@ enum EObjectType
 	eObjectType_Cnt
 };
 
+enum EState {
+	eState_Run,
+	eState_Hit,
+	eState_Damage,
+	eState_Dead,
+	eState_Cnt
+};
+
 class InputComponent;
 class Object;
 class GraphicsComponent;

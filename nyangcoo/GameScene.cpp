@@ -15,7 +15,8 @@ GameScene::GameScene() : Scene()
 
 	// 플레이어 생성
 	Player* samplePlayer = new Player();
-	samplePlayer->AssetFileName = TEXT("player\\player_rabbit_run.png");
+	samplePlayer->PlayerAssetFileName[eState_Run] = TEXT("player\\player_brave_walk.png");
+	samplePlayer->PlayerAssetFileName[eState_Dead] = TEXT("player\\player_brave_end.png");
 	samplePlayer->Init(new InputComponent(), new PlayerGraphicsComponent());
 
 	infoObj.emplace_back(samplePlayer);

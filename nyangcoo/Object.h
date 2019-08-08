@@ -7,6 +7,7 @@ public:
 	Object(EObjectType InType);
 
 	virtual void Init(InputComponent* input, GraphicsComponent* graphics);
+
 	virtual void Update(float Delta);
 	virtual void Render(Gdiplus::Graphics* pGraphics);
 	virtual void Release();
@@ -15,6 +16,8 @@ public:
 	Gdiplus::Rect rc;
 	EObjectType Objtype;
 	bool Enable;
+
+	int x, y;
 
 protected:
 	InputComponent* input_;
