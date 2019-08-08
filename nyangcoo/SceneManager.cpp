@@ -15,6 +15,9 @@ SceneManager::SceneManager()
 	
 	GameScene* gameScene = new GameScene();
 	mScene.emplace_back(gameScene);
+
+	LoadGameScene* loadgameScene = new LoadGameScene();
+	mScene.emplace_back(loadgameScene);
 }
 
 void SceneManager::LoadScene(CString& pName)

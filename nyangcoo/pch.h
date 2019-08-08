@@ -32,6 +32,7 @@
 
 #include "GameScene.h"
 #include "LoginScene.h"
+#include "LoadGameScene.h"
 
 #include "AssetManager.h"
 #include "SceneManager.h"

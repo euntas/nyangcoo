@@ -129,6 +129,9 @@
     <ClInclude Include="StaticObject.h">
       <Filter>헤더 파일\Base</Filter>
     </ClInclude>
+    <ClInclude Include="LoadGameScene.h">
+      <Filter>헤더 파일\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainFrm.cpp">
@@ -184,6 +187,9 @@
     </ClCompile>
     <ClCompile Include="StaticObject.cpp">
       <Filter>소스 파일\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadGameScene.cpp">
+      <Filter>소스 파일\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
