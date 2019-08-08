@@ -51,7 +51,7 @@ void PlayerGraphicsComponent::setAniDelta(float delta)
 }
 
 // TODO. 추후 xml 파일을 읽어서 초기화해주도록 바꾸어야 함
-void PlayerGraphicsComponent::Init(float width, float height, int frameNum, float delta)
+void PlayerGraphicsComponent::Init(float width, float height, int frameNum, float delta, int rownum, int imgNumPerLine)
 {
 	PlayerDeltaA = 0;
 
@@ -59,19 +59,23 @@ void PlayerGraphicsComponent::Init(float width, float height, int frameNum, floa
 	setAniFrameCnt(frameNum);
 	setAniDelta(delta);
 
-	InitAniUnits();
+	InitAniUnits(rownum, imgNumPerLine);
 }
 
-void PlayerGraphicsComponent::InitAniUnits()
+void PlayerGraphicsComponent::InitAniUnits(int rownum, int imgNumPerLine)
 {
-	for (int i = 0; i < 1; ++i)
+	int cnt = 0;
+	for (int i = 0; i < rownum; ++i)
 	{
-		for (int j = 0; j < AniFrameSize; ++j)
+		for (int j = 0; j < imgNumPerLine; ++j)
 		{
+			if (cnt >= AniFrameSize) return;
+
 			int x = j * AniUnitWidth;
 			int y = i * AniUnitHeight;
 
 			AniUnits.emplace_back(Rect(x, y, AniUnitWidth, AniUnitHeight));
+			cnt++;
 		}
 	}
 }
