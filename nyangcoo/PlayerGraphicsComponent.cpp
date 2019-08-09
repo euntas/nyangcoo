@@ -27,8 +27,10 @@ void PlayerGraphicsComponent::render(Object* obj, Gdiplus::Graphics* pGraphics)
 
 	auto pImg = (AssetManager::GetInstance().GetImage(obj->AssetFileName)).lock();
 
-	// TODO. xml에서 읽어온 값으로 바꾸어야 함
-	Rect Dst(obj->x, obj->y, AniUnitWidth, AniUnitHeight);
+	int displayX = obj->x - AniUnitWidth / 2;
+	int displayY = obj->y - AniUnitHeight;
+
+	Rect Dst(displayX, displayY, AniUnitWidth, AniUnitHeight);
 
 	pGraphics->DrawImage(pImg.get(), Dst, AniUnits[AniFrameCnt].X, AniUnits[AniFrameCnt].Y, AniUnits[AniFrameCnt].Width, AniUnits[AniFrameCnt].Height, Gdiplus::Unit::UnitPixel,
 		nullptr, 0, nullptr);

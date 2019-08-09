@@ -4,7 +4,7 @@ class AssetManager
 public:
 	std::weak_ptr<Gdiplus::Image> GetImage(std::wstring str);
 	static AssetManager& GetInstance();
-
+	~AssetManager();
 private:
 	std::weak_ptr<Gdiplus::Image> MyLoadImage(std::wstring str);
 

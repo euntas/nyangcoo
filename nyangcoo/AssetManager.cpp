@@ -7,6 +7,15 @@ AssetManager& AssetManager::GetInstance()
 	return mgr;
 }
 
+AssetManager::~AssetManager()
+{
+	for (auto& it : imgDic)
+	{
+		it.second.reset();
+	}
+	imgDic.clear();
+}
+
 std::weak_ptr<Gdiplus::Image> AssetManager::GetImage(std::wstring str)
 {
 	std::hash<std::wstring> a;

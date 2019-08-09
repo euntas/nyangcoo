@@ -21,6 +21,15 @@ GameScene::GameScene() : Scene()
 
 	infoObj.emplace_back(samplePlayer);
 
+	Player* samplePlayer2 = new Player();
+	samplePlayer2->PlayerXmlFileName = "Asset\\player\\player_muscle.xml";
+	XmlManager::GetInstance().ParsePlayerData(*samplePlayer2);
+	samplePlayer2->Init(new InputComponent(), new PlayerGraphicsComponent());
+
+	samplePlayer2->x += 150; // samplePlayer보다 앞서 가게 하기 위해
+
+	infoObj.emplace_back(samplePlayer2);
+
 	Btn* BackTitleBtn = new Btn();
 	BackTitleBtn->ID = eScene_Start;
 	BackTitleBtn->AssetFileName = TEXT("back_btn.png");
