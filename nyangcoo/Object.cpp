@@ -24,7 +24,11 @@ void Object::Init(InputComponent* input, GraphicsComponent* graphics)
 void Object::Update(float Delta)
 {
 	//input_->update(this);
-	graphics_->update(this, Delta);
+	// 플레이어일 경우
+	if (Objtype == eObjectType_Player)
+	{
+		graphics_->update(this, Delta);
+	}
 }
 
 void Object::Render(Gdiplus::Graphics* pGraphics)

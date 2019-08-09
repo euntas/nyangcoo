@@ -6,9 +6,10 @@ public:
 	StaticObject();
 	StaticObject(EObjectType InType);
 
-	virtual void Init() {};
-	virtual void Update(float Delta) {};
-	virtual void Release() {};
+	virtual void Init();
+	virtual void Update(float Delta);
+	virtual void Render(Gdiplus::Graphics* pGraphics);
+	virtual void Release();
 
 	std::wstring AssetFileName;
 	Gdiplus::Rect rc;
