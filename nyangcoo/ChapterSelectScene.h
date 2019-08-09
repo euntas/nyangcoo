@@ -1,11 +1,11 @@
 #pragma once
 #include "Scene.h"
 
-class GameScene :
+class ChapterSelectScene :
 	public Scene
 {
 public:
-	GameScene();
+	ChapterSelectScene();
 
 	virtual void Init();
 	virtual void Update(float Delta);
@@ -14,4 +14,3 @@ public:
 
 	StaticObject* bg;
 };
-
