@@ -12,6 +12,8 @@ public:
 	virtual void Render(Gdiplus::Graphics* pGraphics);
 	virtual void Release();
 
+	void setEnable(bool flag);
+
 	std::wstring AssetFileName;
 	Gdiplus::Rect rc;
 	EObjectType Objtype;

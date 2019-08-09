@@ -64,3 +64,10 @@ void SceneManager::Update(float Delta)
 
 	CurScene->Update(Delta);
 }
+
+void SceneManager::Init()
+{
+	if (CurScene == nullptr) return;
+
+	CurScene->Init();
+}

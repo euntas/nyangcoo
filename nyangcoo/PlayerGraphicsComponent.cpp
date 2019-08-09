@@ -52,7 +52,6 @@ void PlayerGraphicsComponent::setAniDelta(float delta)
 	AniDelta = delta;
 }
 
-// TODO. 추후 xml 파일을 읽어서 초기화해주도록 바꾸어야 함
 void PlayerGraphicsComponent::Init(float width, float height, int frameNum, float delta, int rownum, int imgNumPerLine)
 {
 	PlayerDeltaA = 0;

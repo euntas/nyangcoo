@@ -3,7 +3,16 @@
 
 void Scene::Init()
 {
+	for (auto& it : infoObj)
+	{
+		if (it == nullptr) continue;
 
+		// 이펙트일 경우 애니메이션이 실행되도록 초기화
+		if (it->Objtype == eObjectType_Effect)
+		{
+			it->setEnable(true);
+		}
+	}
 }
 
 void Scene::Update(float Delta)
@@ -14,6 +23,10 @@ void Scene::Update(float Delta)
 
 		// 플레이어일 경우
 		if (it->Objtype == eObjectType_Player)
+		{
+			it->Update(Delta);
+		}
+		else
 		{
 			it->Update(Delta);
 		}

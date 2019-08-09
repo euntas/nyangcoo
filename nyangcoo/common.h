@@ -20,6 +20,7 @@ enum EObjectType
 	eObjectType_Bullet,
 	eObjectType_Enemy,
 	eObjectType_BGImage,
+	eObjectType_Effect,
 	eObjectType_Cnt
 };
 
@@ -29,6 +30,11 @@ enum EState {
 	eState_Damage,
 	eState_Dead,
 	eState_Cnt
+};
+
+enum EEffect {
+	eEffect_fox_Hit,
+	eEffect_Cnt
 };
 
 class InputComponent;

@@ -13,12 +13,15 @@ void Btn::SendLButtonDown()
 	{
 	case eScene_Game: 
 		SceneManager::GetInstance().LoadScene(CString("Scene_Game"));
+		SceneManager::GetInstance().Init();
 		break;
 	case eScene_LoadGame:
 		SceneManager::GetInstance().LoadScene(CString("Scene_LoadGame"));
+		SceneManager::GetInstance().Init();
 		break;
 	case eScene_Start:
 		SceneManager::GetInstance().LoadScene(CString("Scene_Start"));
+		SceneManager::GetInstance().Init();
 		break;
 	case eScene_Exit:
 		//PostQuitMessage(0);

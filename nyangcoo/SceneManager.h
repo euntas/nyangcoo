@@ -10,6 +10,8 @@ public:
 	Scene* GetCurScene();
 	static SceneManager& GetInstance();
 	void SendLButtonDown(UINT nFlags, CPoint point);
+	
+	void Init();
 	void Update(float Delta);
 
 	Gdiplus::Rect ViewRC;			// 뷰 화면 전체 크기

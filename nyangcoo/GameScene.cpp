@@ -30,6 +30,14 @@ GameScene::GameScene() : Scene()
 
 	infoObj.emplace_back(samplePlayer2);
 
+	// 테스트용 이펙트
+	Effect* ef = new Effect();
+	ef->EffectXmlFileName = "Asset\\effect\\effect_fox_hit.xml";
+	XmlManager::GetInstance().ParseEffectData(*ef);
+	ef->Init(new EffectGraphicsComponent());
+
+	infoObj.emplace_back(ef);
+
 	Btn* BackTitleBtn = new Btn();
 	BackTitleBtn->ID = eScene_Start;
 	BackTitleBtn->AssetFileName = TEXT("back_btn.png");
@@ -50,6 +58,14 @@ void GameScene::Init()
 		if (it->Objtype == eObjectType_Player)
 		{
 			
+		}
+		else if (it->Objtype == eObjectType_Effect) // 이펙트일 경우
+		{
+			it->Enable = true;
+		}
+		else
+		{
+
 		}
 	}
 }

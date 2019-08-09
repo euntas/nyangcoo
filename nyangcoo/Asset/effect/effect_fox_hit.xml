@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+	<TextureAtlas imagePath="effect\\effect_fox_hit.png" width="1024" height="256" frameNum="4" delta="150" rowNum="1" imgNumPerLine="4" effectId="0">
+		<sprite n="eff_fox_00.png" x="0" y="0" w="130" h="130"/>
+		<sprite n="eff_fox_01.png" x="130" y="0" w="130" h="130"/>
+		<sprite n="eff_fox_02.png" x="260" y="0" w="130" h="130"/>
+		<sprite n="eff_fox_03.png" x="390" y="0" w="130" h="130"/>
+	</TextureAtlas>
+</Root>
