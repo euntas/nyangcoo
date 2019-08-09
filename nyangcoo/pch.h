@@ -36,6 +36,7 @@
 #include "GameScene.h"
 #include "StartScene.h"
 #include "LoadGameScene.h"
+#include "ChapterSelectScene.h"
 
 #include "XmlManager.h"
 #include "AssetManager.h"
