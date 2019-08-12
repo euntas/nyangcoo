@@ -18,6 +18,9 @@ SceneManager::SceneManager()
 
 	LoadGameScene* loadgameScene = new LoadGameScene();
 	mScene.emplace_back(loadgameScene);
+
+	ChapterSelectScene* chapterselectScene = new ChapterSelectScene();
+	mScene.emplace_back(chapterselectScene);
 }
 
 void SceneManager::LoadScene(CString& pName)

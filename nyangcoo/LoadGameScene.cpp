@@ -11,7 +11,7 @@ LoadGameScene::LoadGameScene() : Scene()
 	bg->rc = Rect(0, 0, 1420, 672);
 
 	Btn* LoadGameBtn = new Btn();
-	LoadGameBtn->ID = eScene_Game;
+	LoadGameBtn->ID = eScene_ChapterSelect;
 	LoadGameBtn->AssetFileName = TEXT("load_btn.png");
 	LoadGameBtn->rc = Rect(0, 0, 200, 60);
 	LoadGameBtn->x = 1200;

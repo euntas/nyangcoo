@@ -23,6 +23,10 @@ void Btn::SendLButtonDown()
 		SceneManager::GetInstance().LoadScene(CString("Scene_Start"));
 		SceneManager::GetInstance().Init();
 		break;
+	case eScene_ChapterSelect:
+		SceneManager::GetInstance().LoadScene(CString("Scene_ChapterSelect"));
+		SceneManager::GetInstance().Init();
+		break;
 	case eScene_Exit:
 		//PostQuitMessage(0);
 		//TODO. 추후 종료 확인 창을 띄우는 작업을 해야함.

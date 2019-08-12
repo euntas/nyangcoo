@@ -8,6 +8,7 @@ enum EScene {
 	eScene_LoadGame,
 	eScene_Challenge,
 	eScene_DeleteGame,
+	eScene_ChapterSelect,
 	eScene_Cnt
 };
 

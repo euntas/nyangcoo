@@ -11,7 +11,7 @@ StartScene::StartScene() : Scene()
 	bg->rc = Rect(0, 0, 1420, 672);
 
 	Btn* StartBtn = new Btn();
-	StartBtn->ID = eScene_Game;
+	StartBtn->ID = eScene_ChapterSelect;
 	StartBtn->AssetFileName = TEXT("title_btn_00.png");
 	StartBtn->rc = Rect(0,0, 236, 72);
 	StartBtn->x = 600;
