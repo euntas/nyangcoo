@@ -31,9 +31,17 @@ void PlayerGraphicsComponent::render(Object* obj, Gdiplus::Graphics* pGraphics)
 	int displayY = obj->y - AniUnitHeight;
 
 	Rect Dst(displayX, displayY, AniUnitWidth, AniUnitHeight);
+	Rect unitDst(0, 0, AniUnitWidth, AniUnitHeight);
 
-	pGraphics->DrawImage(pImg.get(), Dst, AniUnits[AniFrameCnt].X, AniUnits[AniFrameCnt].Y, AniUnits[AniFrameCnt].Width, AniUnits[AniFrameCnt].Height, Gdiplus::Unit::UnitPixel,
+	Bitmap bm(AniUnits[AniFrameCnt].Width, AniUnits[AniFrameCnt].Height, PixelFormat32bppARGB);
+	Graphics test(&bm);
+	test.DrawImage(pImg.get(), unitDst, AniUnits[AniFrameCnt].X, AniUnits[AniFrameCnt].Y, AniUnits[AniFrameCnt].Width, AniUnits[AniFrameCnt].Height, Gdiplus::Unit::UnitPixel,
 		nullptr, 0, nullptr);
+
+	if (obj->bleft == false)
+		bm.RotateFlip(Rotate180FlipY);
+
+	pGraphics->DrawImage(&bm, Dst);
 }
 
 void PlayerGraphicsComponent::setAniUnitSize(float width, float height)
