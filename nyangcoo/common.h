@@ -23,6 +23,7 @@ enum EObjectType
 	eObjectType_Enemy,
 	eObjectType_BGImage,
 	eObjectType_Effect,
+	eObjectType_PopUp,
 	eObjectType_Cnt
 };
 
@@ -37,6 +38,11 @@ enum EState {
 enum EEffect {
 	eEffect_fox_Hit,
 	eEffect_Cnt
+};
+
+enum EPopup {
+	ePopup_close,
+	ePopup_Cnt
 };
 
 class InputComponent;

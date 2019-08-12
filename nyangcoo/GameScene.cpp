@@ -1,15 +1,14 @@
 #include "pch.h"
 #include "GameScene.h"
 
-
 GameScene::GameScene() : Scene()
 {
 	Name = "Scene_Game";
 
 	bg = new StaticObject();
 	bg->Objtype = eObjectType_BGImage;
-	bg->AssetFileName = TEXT("testbg.png");
-	bg->rc = Rect(0, 0, 900, 468);
+	bg->AssetFileName = TEXT("testbg2.png");
+	bg->rc = Rect(0, 0, 1800, 468);
 
 	infoStaticObj.emplace_back(bg);
 
@@ -46,6 +45,16 @@ GameScene::GameScene() : Scene()
 	BackTitleBtn->y = 10;
 
 	infoStaticObj.emplace_back(BackTitleBtn);
+
+	PopUp* popUp = new PopUp();
+
+	//PopUp = new StaticObject();
+	//popUp->Objtype = eObjectType_PopUp;
+	popUp->AssetFileName = TEXT("sm_good.png");
+	popUp->rc = Rect(0, 0, 250, 155);
+
+	infoStaticObj.emplace_back(popUp);
+
 }
 
 void GameScene::Init()
