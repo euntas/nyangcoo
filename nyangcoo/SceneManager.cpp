@@ -21,6 +21,9 @@ SceneManager::SceneManager()
 
 	ChapterSelectScene* chapterselectScene = new ChapterSelectScene();
 	mScene.emplace_back(chapterselectScene);
+
+	CookieSelectScene* cookieselectScene = new CookieSelectScene();
+	mScene.emplace_back(cookieselectScene);
 }
 
 void SceneManager::LoadScene(CString& pName)

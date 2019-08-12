@@ -9,6 +9,7 @@ enum EScene {
 	eScene_Challenge,
 	eScene_DeleteGame,
 	eScene_ChapterSelect,
+	eScene_CookieSelect,
 	eScene_Cnt
 };
 

@@ -37,6 +37,7 @@
 #include "StartScene.h"
 #include "LoadGameScene.h"
 #include "ChapterSelectScene.h"
+#include "CookieSelectScene.h"
 
 #include "XmlManager.h"
 #include "AssetManager.h"

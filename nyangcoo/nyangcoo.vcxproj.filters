@@ -144,6 +144,9 @@
     <ClInclude Include="ChapterSelectScene.h">
       <Filter>헤더 파일\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="CookieSelectScene.h">
+      <Filter>헤더 파일\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainFrm.cpp">
@@ -213,6 +216,9 @@
       <Filter>소스 파일\Util</Filter>
     </ClCompile>
     <ClCompile Include="ChapterSelectScene.cpp">
+      <Filter>소스 파일\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CookieSelectScene.cpp">
       <Filter>소스 파일\Scene</Filter>
     </ClCompile>
   </ItemGroup>

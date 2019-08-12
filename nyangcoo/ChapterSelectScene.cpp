@@ -18,7 +18,7 @@ ChapterSelectScene::ChapterSelectScene() : Scene()
 	GameStartBtn->y = 500;
 
 	Btn* CookieSelectBtn = new Btn();
-	CookieSelectBtn->ID = eScene_Start;
+	CookieSelectBtn->ID = eScene_CookieSelect;
 	CookieSelectBtn->AssetFileName = TEXT("CookieSelect_btn.png");
 	CookieSelectBtn->rc = Rect(0, 0, 326, 132);
 	CookieSelectBtn->x = 50;

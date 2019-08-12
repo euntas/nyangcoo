@@ -198,6 +198,7 @@
     <ClInclude Include="ChapterSelectScene.h" />
     <ClInclude Include="ChildView.h" />
     <ClInclude Include="common.h" />
+    <ClInclude Include="CookieSelectScene.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectGraphicsComponent.h" />
     <ClInclude Include="Enemy.h" />
@@ -226,6 +227,7 @@
     <ClCompile Include="Btn.cpp" />
     <ClCompile Include="ChapterSelectScene.cpp" />
     <ClCompile Include="ChildView.cpp" />
+    <ClCompile Include="CookieSelectScene.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectGraphicsComponent.cpp" />
     <ClCompile Include="Enemy.cpp" />
