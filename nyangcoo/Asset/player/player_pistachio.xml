@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root name="pistachio" hp="300" gold="50" speed="30" atk="10" atkSpeed="250.0" atkDist="0.0">
+	<TextureAtlas imagePath="player\\player_pistachio_cookie_run.png" width="2048" height="512" frameNum="4" delta="150" rowNum="1" imgNumPerLine="4" state="0">
+		<sprite n="player_muscle_walk_00.png" x="0" y="0" w="177" h="167"/>
+		<sprite n="player_muscle_walk_01.png" x="270" y="0" w="177" h="167"/>
+		<sprite n="player_muscle_walk_02.png" x="540" y="0" w="177" h="167"/>
+		<sprite n="player_muscle_walk_03.png" x="810" y="0" w="177" h="167"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_pistachio_cookie_hit.png" width="2048" height="512" frameNum="8" delta="150" rowNum="3" imgNumPerLine="3" state="1">
+		<sprite n="player_muscle_jump_00.png" x="0" y="0" w="327" h="156"/>
+		<sprite n="player_muscle_jump_01.png" x="270" y="0" w="327" h="156"/>
+		<sprite n="player_muscle_jump_02.png" x="540" y="0" w="327" h="156"/>
+		<sprite n="player_muscle_jump_03.png" x="810" y="0" w="327" h="156"/>
+		<sprite n="player_muscle_jump_04.png" x="1080" y="0" w="327" h="156"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_pistachio_cookie_damage.png" width="2048" height="512" frameNum="2" delta="150" rowNum="1" imgNumPerLine="2" state="2">
+		<sprite n="player_muscle_dmg_00.png" x="0" y="0" w="175" h="201"/>
+		<sprite n="player_muscle_dmg_01.png" x="270" y="0" w="175" h="201"/>
+		<sprite n="player_muscle_dmg_02.png" x="540" y="0" w="175" h="201"/>
+		<sprite n="player_muscle_dmg_03.png" x="810" y="0" w="175" h="201"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_pistachio_cookie_death.png" width="2048" height="512" frameNum="6" delta="150" rowNum="1" imgNumPerLine="6" state="3">
+		<sprite n="player_muscle_end_00.png" x="0" y="0" w="154" h="201"/>
+		<sprite n="player_muscle_end_01.png" x="270" y="0" w="154" h="201"/>
+		<sprite n="player_muscle_end_02.png" x="540" y="0" w="154" h="201"/>
+		<sprite n="player_muscle_end_03.png" x="810" y="0" w="154" h="201"/>
+		<sprite n="player_muscle_end_04.png" x="1080" y="0" w="154" h="201"/>
+		<sprite n="player_muscle_end_05.png" x="1350" y="0" w="154" h="201"/>
+	</TextureAtlas>
+	
+</Root>

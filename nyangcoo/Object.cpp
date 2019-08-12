@@ -4,6 +4,7 @@
 Object::Object()
 	: Objtype(eObjectType_None)
 	, Enable(true)
+	, bleft(true)
 {
 
 }
@@ -11,6 +12,7 @@ Object::Object()
 Object::Object(EObjectType InType)
 	: Objtype(InType)
 	, Enable(true)
+	, bleft(true)
 {
 
 }

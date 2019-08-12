@@ -6,14 +6,29 @@ class Player :
 public:
 	Player();
 
+	virtual void Init();
 	virtual void Init(InputComponent* input, PlayerGraphicsComponent* graphics);
 	virtual void Update(float Delta);
 	virtual void Render(Gdiplus::Graphics* pGraphics);
 	virtual void Release();
 
 	void setPlayerPos(int x, int y);		// 캐릭터 위치 설정
+	void changeState(EState state);
 
 	int curState;
+
+	string name;
+
+	float speed;
+
+	float DeltaA;
+
+	int atk;
+	float atkSpeed;
+	float atkDist;
+
+	int hp;
+	int gold;
 
 	std::wstring PlayerAssetFileName[eState_Cnt];
 	std::string PlayerXmlFileName;

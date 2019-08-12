@@ -18,6 +18,7 @@ public:
 	Gdiplus::Rect rc;
 	EObjectType Objtype;
 	bool Enable;
+	bool bleft;
 
 	int x, y;
 
