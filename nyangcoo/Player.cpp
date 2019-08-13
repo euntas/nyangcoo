@@ -16,8 +16,6 @@ void Player::Init()
 	XmlManager::GetInstance().ParsePlayerInitData(*this);
 
 	curState = eState_Run;
-	//curState = eState_Damage;
-	//curState = eState_Dead;
 
 	AssetFileName = PlayerAssetFileName[curState];
 
@@ -48,20 +46,27 @@ void Player::Update(float Delta)
 		if (it->Objtype == eObjectType_Enemy)
 		{
 			Enemy* e = reinterpret_cast<Enemy*>(it);
-			float dist = pow(x - it->x, 2) + pow(y - it->y, 2);
+			float dist = pow(x - it->x - 2, 2) + pow(y - it->y - 2, 2);
 			float rad = pow((frameWidth[eState_Run] / 2 + e->frameWidth[eState_Run] / 2), 2);
 
 			// 적과 충돌
 			if (dist <= rad)
 			{
-				changeState(eState_Hit);
 				colEnemy.emplace_back(e);
+				//changeState(eState_Hit);
 				
 				break;
 			}
 		}
 	}
 
+	// 저장된 적이 있다면 hit으로 상태변화
+	if (colEnemy.size() > 0)
+	{
+		changeState(eState_Hit);
+	}
+
+	// 실제 상태별 업데이트
 	DeltaA += Delta;
 	if (curState == eState_Run)
 	{
@@ -91,12 +96,17 @@ void Player::Update(float Delta)
 void Player::Render(Gdiplus::Graphics* pGraphics)
 {
 	playerGraphics_ = reinterpret_cast<PlayerGraphicsComponent*>(graphics_);
+	
 	playerGraphics_->render(this, pGraphics);
 }
 
 void Player::Release()
 {
-
+	if (hp <= 0)
+	{
+		//delete this;
+		//this->Enable = false;
+	}
 }
 
 void Player::setPlayerPos(int x, int y)
@@ -107,11 +117,12 @@ void Player::setPlayerPos(int x, int y)
 
 void Player::changeState(EState state)
 {
-	DeltaA = 0;
-
 	if (curState == eState_Dead)
 		return;
 
 	curState = state;
 	AssetFileName = PlayerAssetFileName[curState];
+
+	// 현재 state에 맞게 바꿔준다.
+	playerGraphics_->InitParams(frameWidth[curState], frameHeight[curState], frameNum[curState], frameDelta[curState], spriteRowNum[curState], imgNumPerLine[curState]);
 }

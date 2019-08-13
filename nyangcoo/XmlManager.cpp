@@ -49,7 +49,7 @@ void XmlManager::ParsePlayerData(Player& player)
 		XMLElement* SpriteNode = Node->FirstChildElement("sprite");
 
 		float width = atof(SpriteNode->Attribute("w"));
-		float height = atof(SpriteNode->Attribute("w"));
+		float height = atof(SpriteNode->Attribute("h"));
 
 		player.PlayerAssetFileName[state] = imagePath;
 		player.frameNum[state] = frameNum;
@@ -127,7 +127,7 @@ void XmlManager::ParseEnemyData(Enemy& enemy)
 		XMLElement* SpriteNode = Node->FirstChildElement("sprite");
 
 		float width = atof(SpriteNode->Attribute("w"));
-		float height = atof(SpriteNode->Attribute("w"));
+		float height = atof(SpriteNode->Attribute("h"));
 
 		enemy.EnemyAssetFileName[state] = imagePath;
 		enemy.frameNum[state] = frameNum;
@@ -188,7 +188,7 @@ void XmlManager::ParseEffectData(Effect& effect)
 		XMLElement* SpriteNode = Node->FirstChildElement("sprite");
 
 		float width = atof(SpriteNode->Attribute("w"));
-		float height = atof(SpriteNode->Attribute("w"));
+		float height = atof(SpriteNode->Attribute("h"));
 
 		effect.EffectId = effectId;
 		effect.AssetFileName = imagePath;

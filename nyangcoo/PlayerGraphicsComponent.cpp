@@ -25,6 +25,9 @@ void PlayerGraphicsComponent::render(Object* obj, Gdiplus::Graphics* pGraphics)
 	pGraphics->DrawString(temp, -1, &font, PointF(0, 100), &br);
 #endif
 
+	if (obj->Enable == false)
+		return;
+
 	auto pImg = (AssetManager::GetInstance().GetImage(obj->AssetFileName)).lock();
 
 	int displayX = obj->x - AniUnitWidth / 2;
@@ -64,6 +67,11 @@ void PlayerGraphicsComponent::Init(float width, float height, int frameNum, floa
 {
 	PlayerDeltaA = 0;
 
+	InitParams(width, height, frameNum, delta, rownum, imgNumPerLine);
+}
+
+void PlayerGraphicsComponent::InitParams(float width, float height, int frameNum, float delta, int rownum, int imgNumPerLine)
+{
 	setAniUnitSize(width, height);
 	setAniFrameCnt(frameNum);
 	setAniDelta(delta);
@@ -73,6 +81,8 @@ void PlayerGraphicsComponent::Init(float width, float height, int frameNum, floa
 
 void PlayerGraphicsComponent::InitAniUnits(int rownum, int imgNumPerLine)
 {
+	AniUnits.clear();
+
 	int cnt = 0;
 	for (int i = 0; i < rownum; ++i)
 	{

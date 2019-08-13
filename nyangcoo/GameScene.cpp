@@ -25,14 +25,14 @@ GameScene::GameScene() : Scene()
 
 	// 플레이어 생성
 	Player* samplePlayer = new Player();
-	samplePlayer->PlayerXmlFileName = "Asset\\player\\player_brave.xml";
+	samplePlayer->PlayerXmlFileName = "Asset\\player\\player_pistachio.xml";
 	XmlManager::GetInstance().ParsePlayerData(*samplePlayer);
 	samplePlayer->Init(new InputComponent(), new PlayerGraphicsComponent());
 
 	infoObj.emplace_back(samplePlayer);
 
 	Player* samplePlayer2 = new Player();
-	samplePlayer2->PlayerXmlFileName = "Asset\\player\\player_brave.xml";
+	samplePlayer2->PlayerXmlFileName = "Asset\\player\\player_whitechoco.xml";
 	XmlManager::GetInstance().ParsePlayerData(*samplePlayer2);
 	samplePlayer2->Init(new InputComponent(), new PlayerGraphicsComponent());
 
@@ -110,5 +110,5 @@ void GameScene::Render(Graphics* pGraphics)
 
 void GameScene::Release()
 {
-
+	Scene::Release();
 }

@@ -62,5 +62,24 @@ void Scene::Render(Gdiplus::Graphics* pGraphics)
 
 void Scene::Release()
 {
+	for (auto& it : infoObj)
+	{
+		if (it == nullptr) continue;
 
+		// 플레이어일 경우
+		if (it->Objtype == eObjectType_Player)
+		{
+			Player* p = reinterpret_cast<Player*>(it);
+			p->Release();
+		}
+		else if (it->Objtype == eObjectType_Enemy)
+		{
+			Enemy* e = reinterpret_cast<Enemy*>(it);
+			e->Release();
+		}
+		else
+		{
+			it->Release();
+		}
+	}
 }
