@@ -14,7 +14,7 @@ public:
 	std::wstring AssetFileName;
 	Gdiplus::Rect rc;
 	EObjectType Objtype;
-	bool Enable;
+	bool Visible;
 
 	int x, y;
 };

@@ -7,6 +7,7 @@ class PopUp :
 {
 public : 
 	PopUp();
+	PopUp(EPopup name);
 
 	virtual void Init();
 	virtual void Update(float Delta);

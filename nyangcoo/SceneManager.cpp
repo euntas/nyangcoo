@@ -67,7 +67,7 @@ void SceneManager::SendLButtonDown(UINT nFlags, CPoint point)
 			for (auto& pbit : pb->infoStaticObj)
 			{
 				Rect tempRC(pbit->x + pb->x, pbit->y + pb->y, pbit->rc.Width, pbit->rc.Height);
-				if (pbit->Objtype == eObjectType_Btn && tempRC.Contains(point.x, point.y))
+				if (pbit->Objtype == eObjectType_Btn && tempRC.Contains(point.x, point.y) && pb->Visible)
 				{
 					Btn* o = reinterpret_cast<Btn*>(pbit);
 					o->SendLButtonDown();

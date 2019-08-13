@@ -3,14 +3,14 @@
 
 StaticObject::StaticObject()
 	: Objtype(eObjectType_None)
-	, Enable(true)
+	, Visible(true)
 {
 
 }
 
 StaticObject::StaticObject(EObjectType InType)
 	: Objtype(InType)
-	, Enable(true)
+	, Visible(true)
 {
 
 }
@@ -27,7 +27,7 @@ void StaticObject::Update(float Delta)
 
 void StaticObject::Render(Gdiplus::Graphics* pGraphics)
 {
-	if (Enable == false) return;
+	if (Visible == false) return;
 
 	auto pImg = (AssetManager::GetInstance().GetImage(AssetFileName)).lock();
 

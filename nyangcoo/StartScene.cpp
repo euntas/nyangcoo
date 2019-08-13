@@ -51,6 +51,16 @@ StartScene::StartScene() : Scene()
 	infoStaticObj.emplace_back(LoadGameBtn);
 	infoStaticObj.emplace_back(ChallengeBtn);
 	infoStaticObj.emplace_back(ExitBtn);
+
+	PopUp* popUp = new PopUp(ePopup_close);
+
+	//PopUp = new StaticObject();
+	//popUp->Objtype = eObjectType_PopUp;
+	//popUp->AssetFileName = TEXT("popup_all.png");
+	popUp->rc = Rect(0, 0, 250, 198);
+
+	infoStaticObj.emplace_back(popUp);
+	popUp->Visible = false;
 }
 
 void StartScene::Init()

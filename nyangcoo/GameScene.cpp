@@ -39,11 +39,11 @@ GameScene::GameScene() : Scene()
 
 
 
-	PopUp* popUp = new PopUp();
+	PopUp* popUp = new PopUp(ePopup_close);
 
 	//PopUp = new StaticObject();
 	//popUp->Objtype = eObjectType_PopUp;
-	//popUp->AssetFileName = TEXT("sm_good.png");
+	//popUp->AssetFileName = TEXT("popup_all.png");
 	popUp->rc = Rect(0, 0, 250, 198);
 
 	infoStaticObj.emplace_back(popUp);
