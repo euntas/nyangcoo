@@ -61,6 +61,19 @@ void SceneManager::SendLButtonDown(UINT nFlags, CPoint point)
 			Btn* o = reinterpret_cast<Btn*>(it);
 			o->SendLButtonDown();
 		}
+		else if (it->Objtype == eObjectType_PopUp)
+		{
+			PopUp* pb = reinterpret_cast<PopUp*>(it);
+			for (auto& pbit : pb->infoStaticObj)
+			{
+				Rect tempRC(pbit->x + pb->x, pbit->y + pb->y, pbit->rc.Width, pbit->rc.Height);
+				if (pbit->Objtype == eObjectType_Btn && tempRC.Contains(point.x, point.y))
+				{
+					Btn* o = reinterpret_cast<Btn*>(pbit);
+					o->SendLButtonDown();
+				}
+			}
+		}
 	}
 }
 

@@ -13,23 +13,23 @@ LoadGameScene::LoadGameScene() : Scene()
 	Btn* LoadGameBtn = new Btn();
 	LoadGameBtn->ID = eScene_ChapterSelect;
 	LoadGameBtn->AssetFileName = TEXT("load_btn.png");
-	LoadGameBtn->rc = Rect(0, 0, 200, 60);
+	LoadGameBtn->rc = Rect(0, 0, 200, 84);
 	LoadGameBtn->x = 1200;
-	LoadGameBtn->y = 550;
+	LoadGameBtn->y = 526;
 
 	Btn* BackTitleBtn = new Btn();
 	BackTitleBtn->ID = eScene_Start;
 	BackTitleBtn->AssetFileName = TEXT("back_btn.png");
-	BackTitleBtn->rc = Rect(0, 0, 200, 60);
+	BackTitleBtn->rc = Rect(0, 0, 200, 84);
 	BackTitleBtn->x = 900;
-	BackTitleBtn->y = 550;
+	BackTitleBtn->y = 526;
 
 	Btn* DeleteGameBtn = new Btn();
 	DeleteGameBtn->ID = eScene_DeleteGame;
 	DeleteGameBtn->AssetFileName = TEXT("delete_btn.png");
-	DeleteGameBtn->rc = Rect(0, 0, 200, 60);
-	DeleteGameBtn->x = 10;
-	DeleteGameBtn->y = 550;
+	DeleteGameBtn->rc = Rect(0, 0, 200, 83);
+	DeleteGameBtn->x = 20;
+	DeleteGameBtn->y = 527;
 
 	infoStaticObj.emplace_back(bg);
 	infoStaticObj.emplace_back(LoadGameBtn);
