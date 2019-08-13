@@ -16,8 +16,6 @@ void Enemy::Init()
 	XmlManager::GetInstance().ParseEnemyInitData(*this);
 
 	curState = eState_Run;
-	//curState = eState_Damage;
-	//curState = eState_Dead;
 
 	AssetFileName = EnemyAssetFileName[curState];
 
@@ -48,18 +46,24 @@ void Enemy::Update(float Delta)
 		if (it->Objtype == eObjectType_Player)
 		{
 			Player* p = reinterpret_cast<Player*>(it);
-			float dist = pow(x - it->x, 2) + pow(y - it->y, 2);
+			float dist = pow(x - it->x - 2, 2) + pow(y - it->y - 2, 2);
 			float rad = pow((frameWidth[eState_Run] / 2 + p->frameWidth[eState_Run] / 2), 2);
 
 			// 적과 충돌
 			if (dist <= rad)
 			{
-				changeState(eState_Hit);
 				colPlayer.emplace_back(p);
+				//changeState(eState_Hit);
 				
 				break;
 			}
 		}
+	}
+
+	// 저장된 적이 있다면 hit으로 상태변화
+	if (colPlayer.size() > 0)
+	{
+		changeState(eState_Hit);
 	}
 
 	DeltaA += Delta;
@@ -91,12 +95,17 @@ void Enemy::Update(float Delta)
 void Enemy::Render(Gdiplus::Graphics* pGraphics)
 {
 	enemyGraphics_ = reinterpret_cast<PlayerGraphicsComponent*>(graphics_);
+	
 	enemyGraphics_->render(this, pGraphics);
 }
 
 void Enemy::Release()
 {
-
+	if (hp <= 0)
+	{
+		//delete this;
+		//this->Enable = false;
+	}
 }
 
 void Enemy::setEnemyPos(int x, int y)
@@ -112,4 +121,7 @@ void Enemy::changeState(EState state)
 
 	curState = state;
 	AssetFileName = EnemyAssetFileName[curState];
+
+	// 현재 state에 맞게 바꿔준다.
+	enemyGraphics_->InitParams(frameWidth[curState], frameHeight[curState], frameNum[curState], frameDelta[curState], spriteRowNum[curState], imgNumPerLine[curState]);
 }

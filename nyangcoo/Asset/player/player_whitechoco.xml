@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root name="whitechoco" hp="450" gold="100" speed="25" atk="50" atkSpeed="100.0" atkDist="0.0">
+	<TextureAtlas imagePath="player\\player_whitechoco_cookie_run.png" width="2048" height="512" frameNum="6" delta="150" rowNum="1" imgNumPerLine="6" state="0">
+	 <sprite h="151" w="152" y="0" x="0" n="player_whitechoco_cookie_run1.jpg.png"/>
+     <sprite h="151" w="152" y="0" x="152" n="player_whitechoco_cookie_run2.jpg.png"/>
+     <sprite h="151" w="152" y="0" x="304" n="player_whitechoco_cookie_run3.jpg.png"/> 
+     <sprite h="151" w="152" y="0" x="456" n="player_whitechoco_cookie_run4.jpg.png"/>
+     <sprite h="151" w="152" y="0" x="608" n="player_whitechoco_cookie_run5.jpg.png"/>
+     <sprite h="151" w="152" y="0" x="760" n="player_whitechoco_cookie_run6.jpg.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_whitechoco_cookie_hit.png" width="2048" height="512" frameNum="6" delta="150" rowNum="1" imgNumPerLine="6" state="1">
+	 <sprite h="146" w="274" y="0" x="0" n="player_whitechoco_cookie_hit1.jpg.png"/>
+     <sprite h="146" w="274" y="0" x="274" n="player_whitechoco_cookie_hit2.jpg.png"/>
+     <sprite h="146" w="274" y="0" x="548" n="player_whitechoco_cookie_hit3.jpg.png"/>
+     <sprite h="146" w="274" y="0" x="822" n="player_whitechoco_cookie_hit4.jpg.png"/>
+     <sprite h="146" w="274" y="0" x="1096" n="player_whitechoco_cookie_hit5.jpg.png"/>
+     <sprite h="146" w="274" y="0" x="1370" n="player_whitechoco_cookie_hit6.jpg.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_whitechoco_cookie_damage.png" width="2048" height="512" frameNum="4" delta="150" rowNum="1" imgNumPerLine="4" state="2">
+	 <sprite h="127" w="130" y="0" x="0" n="player_whitechoco_cookie_damage1.jpg.png"/>
+     <sprite h="127" w="130" y="0" x="130" n="player_whitechoco_cookie_damage2.jpg.png"/>
+     <sprite h="127" w="130" y="0" x="260" n="player_whitechoco_cookie_damage3.jpg.png"/>
+     <sprite h="127" w="130" y="0" x="390" n="player_whitechoco_cookie_damage4.jpg.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_whitechoco_cookie_death.png" width="2048" height="512" frameNum="4" delta="150" rowNum="1" imgNumPerLine="4" state="3">
+	 <sprite h="132" w="172" y="0" x="0" n="player_whitechoco_cookie_death1.jpg.png"/>
+     <sprite h="132" w="172" y="0" x="172" n="player_whitechoco_cookie_death2.jpg.png"/>
+     <sprite h="132" w="172" y="0" x="344" n="player_whitechoco_cookie_death3.jpg.png"/>
+     <sprite h="132" w="172" y="0" x="516" n="player_whitechoco_cookie_death4.jpg.png"/>
+	</TextureAtlas>
+	
+</Root>

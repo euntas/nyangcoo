@@ -158,6 +158,9 @@ UINT CnyangcooApp::funcThread(LPVOID pParam)
 		}
 
 		Sleep(1);
+
+		// Release
+		SceneManager::GetInstance().Release();
 	}
 
 	return  -1;

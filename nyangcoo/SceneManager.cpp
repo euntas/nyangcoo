@@ -77,3 +77,10 @@ void SceneManager::Init()
 
 	CurScene->Init();
 }
+
+void SceneManager::Release()
+{
+	if (CurScene == nullptr) return;
+
+	CurScene->Release();
+}
