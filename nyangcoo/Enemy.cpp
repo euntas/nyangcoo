@@ -9,6 +9,9 @@ Enemy::Enemy()
 
 void Enemy::Init()
 {
+	Enable = true;
+	Visible = true;
+
 	DeltaA = 0;
 
 	Enemy::setEnemyPos(1000, 520);
@@ -41,9 +44,12 @@ void Enemy::Update(float Delta)
 
 	// 플레이어들과 위치 비교
 	vector<Player*> colPlayer; // 충돌한 플레이어들 저장용
+	colPlayer.clear();
 	for (auto& it : SceneManager::GetInstance().GetCurScene()->infoObj)
 	{
-		if (it->Objtype == eObjectType_Player)
+		if (it == nullptr) continue;
+
+		if (it->Objtype == eObjectType_Player && it->Enable)
 		{
 			Player* p = reinterpret_cast<Player*>(it);
 			float dist = pow(x - it->x - 2, 2) + pow(y - it->y - 2, 2);
@@ -53,7 +59,6 @@ void Enemy::Update(float Delta)
 			if (dist <= rad)
 			{
 				colPlayer.emplace_back(p);
-				//changeState(eState_Hit);
 				
 				break;
 			}
@@ -65,7 +70,12 @@ void Enemy::Update(float Delta)
 	{
 		changeState(eState_Hit);
 	}
+	else
+	{
+		changeState(eState_Run);
+	}
 
+	// 실제 상태별 업데이트
 	DeltaA += Delta;
 	if (curState == eState_Run)
 	{
@@ -82,9 +92,14 @@ void Enemy::Update(float Delta)
 			DeltaA = 0;
 			for (auto& it : colPlayer)
 			{
+				if (it == nullptr) continue;
+
 				// 공격
-				it->hp -= atk;
-				printf("%s 가 %s 를 %d 공격 [%s HP : %d]\n", name.c_str(), it->name.c_str(), atk, it->name.c_str(), it->hp);
+				if (it->Enable == true)
+				{
+					it->hp -= atk;
+					printf("%s 가 %s 를 %d 공격 [%s HP : %d]\n", name.c_str(), it->name.c_str(), atk, it->name.c_str(), it->hp);
+				}
 			}
 		}
 	}
@@ -94,6 +109,9 @@ void Enemy::Update(float Delta)
 
 void Enemy::Render(Gdiplus::Graphics* pGraphics)
 {
+	if (this == nullptr) return;
+	if (pGraphics == nullptr) return;
+
 	enemyGraphics_ = reinterpret_cast<PlayerGraphicsComponent*>(graphics_);
 	
 	enemyGraphics_->render(this, pGraphics);
@@ -101,11 +119,22 @@ void Enemy::Render(Gdiplus::Graphics* pGraphics)
 
 void Enemy::Release()
 {
+	
+}
+
+bool Enemy::CheckDestroy()
+{
 	if (hp <= 0)
 	{
-		//delete this;
-		//this->Enable = false;
+		this->Enable = false;
 	}
+
+	if (Enable == false && Visible == false)
+	{
+		return true;
+	}
+	
+	return false;
 }
 
 void Enemy::setEnemyPos(int x, int y)

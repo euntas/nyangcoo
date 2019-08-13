@@ -7,15 +7,27 @@ void PlayerGraphicsComponent::update(Object* obj, float Delta)
 
 	if (PlayerDeltaA > AniDelta)
 	{
-		PlayerDeltaA = 0;
-		++AniFrameCnt;
-		if (AniFrameCnt > AniUnits.size() - 1)
-			AniFrameCnt = 0;
+		if (AniUnits.size() == AniFrameSize)
+		{
+			if (obj->Enable == false && AniFrameCnt >= AniUnits.size() - 1)
+			{
+				AniFrameCnt = 0;
+				obj->Visible = false;
+
+				return;
+			}
+
+			PlayerDeltaA = 0;
+			AniFrameCnt = AniFrameCnt >= AniUnits.size() - 1 ? 0 : AniFrameCnt + 1;
+		}
 	}
 }
 
 void PlayerGraphicsComponent::render(Object* obj, Gdiplus::Graphics* pGraphics)
 {
+	if (obj == nullptr) return;
+	if (pGraphics == nullptr) return;
+
 	//프레임 확인용 코드. 출력 원하지 않을 경우 pch에서 define 부분을 주석처리.
 #if defined FRAME_DEBUG
 	SolidBrush br(Color(255, 0, 0, 0));
@@ -25,7 +37,7 @@ void PlayerGraphicsComponent::render(Object* obj, Gdiplus::Graphics* pGraphics)
 	pGraphics->DrawString(temp, -1, &font, PointF(0, 100), &br);
 #endif
 
-	if (obj->Enable == false)
+	if (obj->Visible == false)
 		return;
 
 	auto pImg = (AssetManager::GetInstance().GetImage(obj->AssetFileName)).lock();
@@ -36,6 +48,7 @@ void PlayerGraphicsComponent::render(Object* obj, Gdiplus::Graphics* pGraphics)
 	Rect Dst(displayX, displayY, AniUnitWidth, AniUnitHeight);
 	Rect unitDst(0, 0, AniUnitWidth, AniUnitHeight);
 
+	//assert(AniUnits.size() > AniFrameCnt);
 	Bitmap bm(AniUnits[AniFrameCnt].Width, AniUnits[AniFrameCnt].Height, PixelFormat32bppARGB);
 	Graphics test(&bm);
 	test.DrawImage(pImg.get(), unitDst, AniUnits[AniFrameCnt].X, AniUnits[AniFrameCnt].Y, AniUnits[AniFrameCnt].Width, AniUnits[AniFrameCnt].Height, Gdiplus::Unit::UnitPixel,
@@ -55,6 +68,7 @@ void PlayerGraphicsComponent::setAniUnitSize(float width, float height)
 
 void PlayerGraphicsComponent::setAniFrameCnt(int frameNum)
 {
+	//AniFrameCnt = 0;
 	AniFrameSize = frameNum;
 }
 

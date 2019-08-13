@@ -12,6 +12,8 @@ public:
 	virtual void Render(Gdiplus::Graphics* pGraphics);
 	virtual void Release();
 
+	bool CheckDestroy();
+
 	void setEnemyPos(int x, int y);		// 캐릭터 위치 설정
 	void changeState(EState state);
 

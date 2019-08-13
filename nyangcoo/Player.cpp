@@ -9,6 +9,9 @@ Player::Player()
 
 void Player::Init()
 {
+	Enable = true;
+	Visible = true;
+
 	DeltaA = 0;
 
 	Player::setPlayerPos(250, 520);
@@ -41,9 +44,12 @@ void Player::Update(float Delta)
 
 	// 적들과 위치 비교
 	vector<Enemy*> colEnemy; // 충돌한 적들 저장용
+	colEnemy.clear();
 	for (auto& it : SceneManager::GetInstance().GetCurScene()->infoObj)
 	{
-		if (it->Objtype == eObjectType_Enemy)
+		if (it == nullptr) continue;
+
+		if (it->Objtype == eObjectType_Enemy && it->Enable)
 		{
 			Enemy* e = reinterpret_cast<Enemy*>(it);
 			float dist = pow(x - it->x - 2, 2) + pow(y - it->y - 2, 2);
@@ -53,7 +59,6 @@ void Player::Update(float Delta)
 			if (dist <= rad)
 			{
 				colEnemy.emplace_back(e);
-				//changeState(eState_Hit);
 				
 				break;
 			}
@@ -64,6 +69,10 @@ void Player::Update(float Delta)
 	if (colEnemy.size() > 0)
 	{
 		changeState(eState_Hit);
+	}
+	else
+	{
+		changeState(eState_Run);
 	}
 
 	// 실제 상태별 업데이트
@@ -83,9 +92,14 @@ void Player::Update(float Delta)
 			DeltaA = 0;
 			for (auto& it : colEnemy)
 			{
+				if (it == nullptr) continue;
+
 				// 공격
-				it->hp -= atk;
-				printf("%s 가 %s 를 %d 공격 [%s HP : %d]\n", name.c_str(), it->name.c_str(), atk, it->name.c_str(), it->hp);
+				if (it->Enable == true)
+				{
+					it->hp -= atk;
+					printf("%s 가 %s 를 %d 공격 [%s HP : %d]\n", name.c_str(), it->name.c_str(), atk, it->name.c_str(), it->hp);
+				}
 			}
 		}
 	}
@@ -95,6 +109,9 @@ void Player::Update(float Delta)
 
 void Player::Render(Gdiplus::Graphics* pGraphics)
 {
+	if (this == nullptr) return;
+	if (pGraphics == nullptr) return;
+
 	playerGraphics_ = reinterpret_cast<PlayerGraphicsComponent*>(graphics_);
 	
 	playerGraphics_->render(this, pGraphics);
@@ -102,11 +119,22 @@ void Player::Render(Gdiplus::Graphics* pGraphics)
 
 void Player::Release()
 {
+	
+}
+
+bool Player::CheckDestroy()
+{
 	if (hp <= 0)
 	{
-		//delete this;
-		//this->Enable = false;
+		this->Enable = false;
 	}
+
+	if (Enable == false && Visible == false)
+	{
+		return true;
+	}
+
+	return false;
 }
 
 void Player::setPlayerPos(int x, int y)

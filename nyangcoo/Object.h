@@ -6,6 +6,7 @@ public:
 	Object();
 	Object(EObjectType InType);
 
+	virtual void Init();
 	virtual void Init(InputComponent* input, GraphicsComponent* graphics);
 
 	virtual void Update(float Delta);
@@ -18,6 +19,7 @@ public:
 	Gdiplus::Rect rc;
 	EObjectType Objtype;
 	bool Enable;
+	bool Visible;
 	bool bleft;
 
 	int x, y;

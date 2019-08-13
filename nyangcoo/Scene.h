@@ -10,6 +10,8 @@ public:
 	virtual void Render(Gdiplus::Graphics* pGraphics);
 	virtual void Release();
 
+	void ClearAll();
+
 	bool bLoop;
 	CString Name;
 	vector<Object*> infoObj;				// 플레이어 저장용
