@@ -1,10 +1,10 @@
 #pragma once
 #include "GraphicsComponent.h"
-class PlayerGraphicsComponent : public GraphicsComponent
+class CharacterGraphicsComponent : public GraphicsComponent
 {
 public:
-	PlayerGraphicsComponent(Object* obj);
-	PlayerGraphicsComponent(Character* obj);
+	CharacterGraphicsComponent(Object* obj);
+	CharacterGraphicsComponent(Character* obj);
 
 	virtual void update(float Delta);
 	virtual void render(Gdiplus::Graphics* pGraphics);

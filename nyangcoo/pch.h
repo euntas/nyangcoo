@@ -26,11 +26,10 @@
 
 #include "InputComponent.h"
 #include "GraphicsComponent.h"
-#include "PlayerGraphicsComponent.h"
+#include "CharacterGraphicsComponent.h"
 #include "EffectGraphicsComponent.h"
 
-#include "Player.h"
-#include "Enemy.h"
+#include "Character.h"
 
 #include "Effect.h"
 #include "Btn.h"

@@ -1,7 +1,7 @@
 #include "pch.h"
-#include "PlayerGraphicsComponent.h"
+#include "CharacterGraphicsComponent.h"
 
-PlayerGraphicsComponent::PlayerGraphicsComponent(Object* obj)
+CharacterGraphicsComponent::CharacterGraphicsComponent(Object* obj)
 {
 	parentObj = obj;
 
@@ -9,7 +9,7 @@ PlayerGraphicsComponent::PlayerGraphicsComponent(Object* obj)
 	InitParams();
 }
 
-PlayerGraphicsComponent::PlayerGraphicsComponent(Character* obj)
+CharacterGraphicsComponent::CharacterGraphicsComponent(Character* obj)
 {
 	parentObj = obj;
 
@@ -17,7 +17,7 @@ PlayerGraphicsComponent::PlayerGraphicsComponent(Character* obj)
 	InitParams();
 }
 
-void PlayerGraphicsComponent::update(float Delta)
+void CharacterGraphicsComponent::update(float Delta)
 {
 	CriticalSec a;
 
@@ -48,7 +48,7 @@ void PlayerGraphicsComponent::update(float Delta)
 	
 }
 
-void PlayerGraphicsComponent::render(Gdiplus::Graphics* pGraphics)
+void CharacterGraphicsComponent::render(Gdiplus::Graphics* pGraphics)
 {
 	if (parentObj == nullptr) return;
 	if (pGraphics == nullptr) return;
@@ -89,19 +89,19 @@ void PlayerGraphicsComponent::render(Gdiplus::Graphics* pGraphics)
 	}
 }
 
-void PlayerGraphicsComponent::Init()
+void CharacterGraphicsComponent::Init()
 {
 	PlayerDeltaA = 0;
 }
 
-void PlayerGraphicsComponent::InitParams()
+void CharacterGraphicsComponent::InitParams()
 {
 	CriticalSec a;
 
 	InitAniUnits();
 }
 
-void PlayerGraphicsComponent::InitAniUnits()
+void CharacterGraphicsComponent::InitAniUnits()
 {
 	CriticalSec a;
 

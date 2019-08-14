@@ -42,17 +42,17 @@ void Object::Update(float Delta)
 	// 플레이어일 경우
 	if (Objtype == eObjectType_Player)
 	{
-		graphics_->update(this, Delta);
+		graphics_->update(Delta);
 	}
 	else
 	{
-		graphics_->update(this, Delta);
+		graphics_->update(Delta);
 	}
 }
 
 void Object::Render(Gdiplus::Graphics* pGraphics)
 {
-	graphics_->render(this, pGraphics);
+	graphics_->render(pGraphics);
 }
 
 void Object::Release() 

@@ -19,6 +19,7 @@ enum EObjectType
 	eObjectType_Btn,
 	eObjectType_Static,
 	eObjectType_Player,
+	eObjectType_Character,
 	eObjectType_Bullet,
 	eObjectType_Enemy,
 	eObjectType_BGImage,
@@ -47,4 +48,6 @@ enum EPopup {
 
 class InputComponent;
 class Object;
+class Character;
+class Effect;
 class GraphicsComponent;

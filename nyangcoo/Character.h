@@ -1,20 +1,21 @@
 #pragma once
 #include "Object.h"
-class Enemy :
+class Character :
 	public Object
 {
 public:
-	Enemy();
+	Character();
+	Character(EObjectType _objtype);
 
 	virtual void Init();
-	virtual void Init(InputComponent* input, PlayerGraphicsComponent* graphics);
+	virtual void Init(InputComponent* input, CharacterGraphicsComponent* graphics);
 	virtual void Update(float Delta);
 	virtual void Render(Gdiplus::Graphics* pGraphics);
 	virtual void Release();
 
 	bool CheckDestroy();
 
-	void setEnemyPos(int x, int y);		// 캐릭터 위치 설정
+	void setCharacterPos(int x, int y);		// 캐릭터 위치 설정
 	void changeState(EState state);
 
 	int curState;
@@ -32,8 +33,8 @@ public:
 	int hp;
 	int gold;
 
-	std::wstring EnemyAssetFileName[eState_Cnt];
-	std::string EnemyXmlFileName;
+	std::wstring CharacterAssetFileName[eState_Cnt];
+	std::string CharacterXmlFileName;
 
 	// 아래 변수들은 xml에서 읽어온 값을 넣는다. 한 프레임의 이미지 크기, 프레임 갯수, 프레임당 시간.
 	// ex) frameWidth[eState_Run] = 4
@@ -44,7 +45,9 @@ public:
 	int spriteRowNum[eState_Cnt];			// 스프라이트 이미지 줄 갯수
 	int imgNumPerLine[eState_Cnt];			// 스프라이트 한 줄 당 이미지 갯수
 
+	std::vector<Gdiplus::Rect> AniUnits[eState_Cnt];
+
 private:
-	PlayerGraphicsComponent* enemyGraphics_;
+	CharacterGraphicsComponent* characterGraphics_;
 };
 

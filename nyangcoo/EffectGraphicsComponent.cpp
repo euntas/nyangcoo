@@ -1,78 +1,80 @@
 #include "pch.h"
 #include "EffectGraphicsComponent.h"
 
-void EffectGraphicsComponent::update(Object* obj, float Delta)
+EffectGraphicsComponent::EffectGraphicsComponent(Object* obj)
 {
+	parentObj = obj;
+
+	Init();
+}
+
+EffectGraphicsComponent::EffectGraphicsComponent(Effect* obj)
+{
+	parentObj = obj;
+
+	Init();
+}
+
+void EffectGraphicsComponent::update(float Delta)
+{
+	Effect* ef = reinterpret_cast<Effect*>(parentObj);
+
 	EffectDeltaA += Delta;
 
-	if (obj->Enable == true && EffectDeltaA > AniDelta)
+	if (ef->Enable == true && EffectDeltaA > ef->frameDelta)
 	{
 		EffectDeltaA = 0;
 		++AniFrameCnt;
 		if (AniFrameCnt > AniUnits.size() - 1)
 		{
 			AniFrameCnt = 0;
-			obj->Enable = false;
+			ef->Enable = false;
 		}
 	}
 }
 
-void EffectGraphicsComponent::render(Object* obj, Gdiplus::Graphics* pGraphics)
+void EffectGraphicsComponent::render(Gdiplus::Graphics* pGraphics)
 {
-	if (obj->Enable)
+	Effect* ef = reinterpret_cast<Effect*>(parentObj);
+
+	if (ef->Enable)
 	{
-		auto pImg = (AssetManager::GetInstance().GetImage(obj->AssetFileName)).lock();
+		auto pImg = (AssetManager::GetInstance().GetImage(ef->AssetFileName)).lock();
 
-		int displayX = obj->x - AniUnitWidth / 2;
-		int displayY = obj->y - AniUnitHeight / 2;
+		int displayX = ef->x - ef->frameWidth / 2;
+		int displayY = ef->y - ef->frameHeight / 2;
 
-		Rect Dst(displayX, displayY, AniUnitWidth, AniUnitHeight);
+		Rect Dst(displayX, displayY, ef->frameWidth, ef->frameHeight);
 
 		pGraphics->DrawImage(pImg.get(), Dst, AniUnits[AniFrameCnt].X, AniUnits[AniFrameCnt].Y, AniUnits[AniFrameCnt].Width, AniUnits[AniFrameCnt].Height, Gdiplus::Unit::UnitPixel,
 			nullptr, 0, nullptr);
 	}
 }
 
-void EffectGraphicsComponent::setAniUnitSize(float width, float height)
-{
-	AniUnitWidth = width;
-	AniUnitHeight = height;
-}
-
-void EffectGraphicsComponent::setAniFrameCnt(int frameNum)
-{
-	AniFrameSize = frameNum;
-}
-
-void EffectGraphicsComponent::setAniDelta(float delta)
-{
-	AniDelta = delta;
-}
-
-void EffectGraphicsComponent::Init(float width, float height, int frameNum, float delta, int rownum, int imgNumPerLine)
+void EffectGraphicsComponent::Init()
 {
 	EffectDeltaA = 0;
 
-	setAniUnitSize(width, height);
-	setAniFrameCnt(frameNum);
-	setAniDelta(delta);
+	Effect* ef = reinterpret_cast<Effect*>(parentObj);
 
-	InitAniUnits(rownum, imgNumPerLine);
+	InitAniUnits(ef->spriteRowNum, ef->imgNumPerLine);
 }
 
 void EffectGraphicsComponent::InitAniUnits(int rownum, int imgNumPerLine)
 {
+	Effect* ef = reinterpret_cast<Effect*>(parentObj);
+
 	int cnt = 0;
 	for (int i = 0; i < rownum; ++i)
 	{
 		for (int j = 0; j < imgNumPerLine; ++j)
 		{
-			if (cnt >= AniFrameSize) return;
+			if (cnt >= ef->frameNum) return;
 
-			int x = j * AniUnitWidth;
-			int y = i * AniUnitHeight;
+			int x = j * ef->frameWidth;
+			int y = i * ef->frameHeight;
 
-			AniUnits.emplace_back(Rect(x, y, AniUnitWidth, AniUnitHeight));
+			AniUnits.emplace_back(Rect(x, y, ef->frameWidth, ef->frameHeight));
 			cnt++;
 		}
 	}
