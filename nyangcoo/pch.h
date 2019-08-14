@@ -34,6 +34,7 @@
 
 #include "Effect.h"
 #include "Btn.h"
+#include "PopUp.h"
 
 #include "GameScene.h"
 #include "StartScene.h"

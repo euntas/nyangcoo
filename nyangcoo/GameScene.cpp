@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "GameScene.h"
 
-
 GameScene::GameScene() : Scene()
 {
 	Name = "Scene_Game";
@@ -63,14 +62,17 @@ void GameScene::Init()
 
 	infoObj.emplace_back(ef);
 
-	Btn* BackTitleBtn = new Btn();
-	BackTitleBtn->ID = eScene_Start;
-	BackTitleBtn->AssetFileName = TEXT("back_btn.png");
-	BackTitleBtn->rc = Rect(0, 0, 200, 60);
-	BackTitleBtn->x = 630;
-	BackTitleBtn->y = 10;
 
-	infoStaticObj.emplace_back(BackTitleBtn);
+
+	PopUp* popUp = new PopUp(ePopup_close);
+
+	//PopUp = new StaticObject();
+	//popUp->Objtype = eObjectType_PopUp;
+	//popUp->AssetFileName = TEXT("popup_all.png");
+	popUp->rc = Rect(0, 0, 250, 198);
+
+	infoStaticObj.emplace_back(popUp);
+
 }
 
 void GameScene::Update(float Delta)
