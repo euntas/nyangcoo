@@ -38,6 +38,8 @@ CnyangcooApp::CnyangcooApp() noexcept
 
 CnyangcooApp theApp;
 DWORD CnyangcooApp::PrevTick = 0;
+DWORD CnyangcooApp::StaticTick = 0;
+int CnyangcooApp::CallCount = 0;
 
 // CnyangcooApp 초기화
 ULONG_PTR gpToken;
@@ -141,11 +143,30 @@ UINT CnyangcooApp::funcThread(LPVOID pParam)
 	{
 		DWORD tick = GetTickCount();
 		DWORD Delta = tick - PrevTick;
+		static DWORD AddDelta = 0;
 		PrevTick = tick;
-
+		StaticTick += Delta;
+		AddDelta += Delta;
+		static DWORD minDelta = 1000 / 60;
+		
 		if (CMainFrame * MainFrm = static_cast<CMainFrame*>(theApp.GetMainWnd()))
 		{
+			if (AddDelta < minDelta)
+			{
+				continue;
+			//	Sleep(minDelta - AddDelta);
+			}
+			else
+			{
+				if (AddDelta > 100)
+					AddDelta = 0;
+				else
+					AddDelta = AddDelta - minDelta;
+				Delta = minDelta;
+			}
+
 			// Update
+			//++CallCount;
 			SceneManager::GetInstance().Update(Delta);
 
 			// Render
@@ -155,9 +176,19 @@ UINT CnyangcooApp::funcThread(LPVOID pParam)
 			view->GetClientRect(rc);
 			if (!rc.IsRectNull())
 				view->InvalidateRect(rc);
+
+			if (StaticTick > 1000)
+			{
+				printf("dddddddddd: %d \n", CallCount);
+				CallCount = 0;
+				StaticTick = 0;
+			}
 		}
 
-		Sleep(1);
+		Sleep(0);
+
+		// Release
+		SceneManager::GetInstance().Release();
 	}
 
 	return  -1;

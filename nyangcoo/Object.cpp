@@ -4,6 +4,8 @@
 Object::Object()
 	: Objtype(eObjectType_None)
 	, Enable(true)
+	, bleft(true)
+	, Visible(true)
 {
 
 }
@@ -11,8 +13,16 @@ Object::Object()
 Object::Object(EObjectType InType)
 	: Objtype(InType)
 	, Enable(true)
+	, bleft(true)
+	, Visible(true)
 {
 
+}
+
+void Object::Init()
+{
+	Enable = true;
+	Visible = true;
 }
 
 void Object::Init(InputComponent* input, GraphicsComponent* graphics)

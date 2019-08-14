@@ -55,6 +55,8 @@ void SceneManager::SendLButtonDown(UINT nFlags, CPoint point)
 
 	for (auto& it : CurScene->infoStaticObj)
 	{
+		if (it == nullptr) continue;
+
 		Rect tempRC(it->x, it->y, it->rc.Width, it->rc.Height);
 		if (it->Objtype == eObjectType_Btn && tempRC.Contains(point.x, point.y))
 		{
@@ -89,4 +91,11 @@ void SceneManager::Init()
 	if (CurScene == nullptr) return;
 
 	CurScene->Init();
+}
+
+void SceneManager::Release()
+{
+	if (CurScene == nullptr) return;
+
+	CurScene->Release();
 }

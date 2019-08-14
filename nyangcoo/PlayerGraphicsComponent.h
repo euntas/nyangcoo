@@ -13,6 +13,8 @@ public:
 	void setAniDelta(float delta);
 	void InitAniUnits(int rownum, int imgNumPerLine);	// (애니메이션 용) 이미지에서 프레임 단위로 AniUnits에 그림 저장
 
+	void InitParams(float width, float height, int frameNum, float delta, int rownum, int imgNumPerLine);
+
 private:
 	float AniUnitWidth;		// (애니메이션 용) 한 프레임용 이미지 가로 길이
 	float AniUnitHeight;	// (애니메이션 용) 한 프레임용 이미지 세로 길이
