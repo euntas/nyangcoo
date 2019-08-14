@@ -47,7 +47,7 @@ PopUp::PopUp(EPopup name) : StaticObject(EObjectType::eObjectType_PopUp)
 		Btn* BackTitleBtn = new Btn();
 		BackTitleBtn->ID = eScene_Start;
 		//BackTitleBtn->ID = eScene_Exit;
-		BackTitleBtn->AssetFileName = TEXT("popup_gotitle.png");
+		BackTitleBtn->AssetFileName = TEXT("popup_backtitle.png");
 		BackTitleBtn->rc = Rect(0, 0, 227, 45);
 		BackTitleBtn->x = 12;
 		BackTitleBtn->y = 135;
