@@ -5,6 +5,23 @@ CookieSelectScene::CookieSelectScene() : Scene()
 {
 	Name = "Scene_CookieSelect";
 
+	Init();
+}
+
+void CookieSelectScene::makeBtn(EScene ID)
+{
+	Btn* b = new Btn();
+	b->ID = ID;
+	b->AssetFileName = TEXT("SelectStart_btn.png");
+	b->rc = Rect(0, 0, 403, 118);
+	b->x = 600;
+	b->y = 534;
+
+	infoStaticObj.emplace_back(b);
+}
+
+void CookieSelectScene::Init()
+{
 	bg = new StaticObject();
 	bg->Objtype = eObjectType_BGImage;
 	bg->AssetFileName = TEXT("CookieSelect_bg.png");
@@ -19,11 +36,8 @@ CookieSelectScene::CookieSelectScene() : Scene()
 
 	infoStaticObj.emplace_back(bg);
 	infoStaticObj.emplace_back(GameStartBtn);
-}
 
-void CookieSelectScene::Init()
-{
-
+	makeBtn(eScene_Game);
 }
 
 void CookieSelectScene::Update(float Delta)

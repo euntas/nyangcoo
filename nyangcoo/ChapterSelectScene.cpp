@@ -25,14 +25,14 @@ ChapterSelectScene::ChapterSelectScene() : Scene()
 	CookieSelectBtn->y = 550;
 
 	Btn* NextChapterBtn = new Btn();
-	NextChapterBtn->ID = eScene_Start;
+	NextChapterBtn->ID = eScene_Exit;
 	NextChapterBtn->AssetFileName = TEXT("arrow_right.png");
 	NextChapterBtn->rc = Rect(0, 0, 100, 118);
 	NextChapterBtn->x = 1310;
 	NextChapterBtn->y = 275;
 
 	Btn* PrevChapterBtn = new Btn();
-	PrevChapterBtn->ID = eScene_Start;
+	PrevChapterBtn->ID = eScene_Exit;
 	PrevChapterBtn->AssetFileName = TEXT("arrow_left.png");
 	PrevChapterBtn->rc = Rect(0, 0, 100, 118);
 	PrevChapterBtn->x = 10;
