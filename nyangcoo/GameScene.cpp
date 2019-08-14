@@ -33,14 +33,14 @@ void GameScene::Init()
 	Character* samplePlayer = new Character(eObjectType_Character);
 	samplePlayer->CharacterXmlFileName = "Asset\\player\\player_pistachio.xml";
 	XmlManager::GetInstance().ParseCharacterData(*samplePlayer);
-	samplePlayer->Init(new InputComponent(), new PlayerGraphicsComponent(samplePlayer));
+	samplePlayer->Init(new InputComponent(), new CharacterGraphicsComponent(samplePlayer));
 
 	infoObj.emplace_back(samplePlayer);
 
 	Character* samplePlayer2 = new Character(eObjectType_Character);
 	samplePlayer2->CharacterXmlFileName = "Asset\\player\\player_whitechoco.xml";
 	XmlManager::GetInstance().ParseCharacterData(*samplePlayer2);
-	samplePlayer2->Init(new InputComponent(), new PlayerGraphicsComponent(samplePlayer2));
+	samplePlayer2->Init(new InputComponent(), new CharacterGraphicsComponent(samplePlayer2));
 
 	samplePlayer2->x += 150; // samplePlayer보다 앞서 가게 하기 위해
 
@@ -50,7 +50,7 @@ void GameScene::Init()
 	Character* sampleEnemy = new Character(eObjectType_Enemy);
 	sampleEnemy->CharacterXmlFileName = "Asset\\player\\player_muscle.xml";
 	XmlManager::GetInstance().ParseCharacterData(*sampleEnemy);
-	sampleEnemy->Init(new InputComponent(), new PlayerGraphicsComponent(sampleEnemy));
+	sampleEnemy->Init(new InputComponent(), new CharacterGraphicsComponent(sampleEnemy));
 
 	infoObj.emplace_back(sampleEnemy);
 

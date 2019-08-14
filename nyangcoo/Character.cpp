@@ -44,11 +44,11 @@ void Character::Init()
 
 	AssetFileName = CharacterAssetFileName[curState];
 
-	characterGraphics_ = reinterpret_cast<PlayerGraphicsComponent*>(graphics_);
+	characterGraphics_ = reinterpret_cast<CharacterGraphicsComponent*>(graphics_);
 	characterGraphics_->Init();
 }
 
-void Character::Init(InputComponent* input, PlayerGraphicsComponent* graphics)
+void Character::Init(InputComponent* input, CharacterGraphicsComponent* graphics)
 {
 	input_ = input;
 	graphics_ = graphics;
@@ -139,7 +139,7 @@ void Character::Update(float Delta)
 			}
 		}
 	}
-	characterGraphics_ = reinterpret_cast<PlayerGraphicsComponent*>(graphics_);
+	characterGraphics_ = reinterpret_cast<CharacterGraphicsComponent*>(graphics_);
 	characterGraphics_->update(Delta);
 }
 
@@ -148,7 +148,7 @@ void Character::Render(Gdiplus::Graphics* pGraphics)
 	if (this == nullptr) return;
 	if (pGraphics == nullptr) return;
 
-	characterGraphics_ = reinterpret_cast<PlayerGraphicsComponent*>(graphics_);
+	characterGraphics_ = reinterpret_cast<CharacterGraphicsComponent*>(graphics_);
 
 	characterGraphics_->render(pGraphics);
 }

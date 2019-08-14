@@ -8,7 +8,7 @@ public:
 	Character(EObjectType _objtype);
 
 	virtual void Init();
-	virtual void Init(InputComponent* input, PlayerGraphicsComponent* graphics);
+	virtual void Init(InputComponent* input, CharacterGraphicsComponent* graphics);
 	virtual void Update(float Delta);
 	virtual void Render(Gdiplus::Graphics* pGraphics);
 	virtual void Release();
@@ -48,6 +48,6 @@ public:
 	std::vector<Gdiplus::Rect> AniUnits[eState_Cnt];
 
 private:
-	PlayerGraphicsComponent* characterGraphics_;
+	CharacterGraphicsComponent* characterGraphics_;
 };
 

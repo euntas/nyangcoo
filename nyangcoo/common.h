@@ -48,8 +48,6 @@ enum EPopup {
 
 class InputComponent;
 class Object;
-class Player;
-class Enemy;
 class Character;
 class Effect;
 class GraphicsComponent;
