@@ -51,6 +51,8 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 
 void CChildView::OnPaint() 
 {
+	++theApp.CallCount;
+
 	CPaintDC dc(this); // 그리기를 위한 디바이스 컨텍스트입니다.
 
 	Graphics MainG(dc);

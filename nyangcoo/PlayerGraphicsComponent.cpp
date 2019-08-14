@@ -86,6 +86,7 @@ void PlayerGraphicsComponent::Init(float width, float height, int frameNum, floa
 
 void PlayerGraphicsComponent::InitParams(float width, float height, int frameNum, float delta, int rownum, int imgNumPerLine)
 {
+	CriticalSec a;
 	setAniUnitSize(width, height);
 	setAniFrameCnt(frameNum);
 	setAniDelta(delta);

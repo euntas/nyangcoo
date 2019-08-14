@@ -29,6 +29,9 @@ public:
 	static DWORD PrevTick;
 	static Gdiplus::Graphics* MemoryGraphics;
 
+	static DWORD StaticTick;
+	static int CallCount;
+
 public:
 	afx_msg void OnAppAbout();
 	static UINT funcThread(LPVOID pParam);

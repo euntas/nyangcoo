@@ -16,6 +16,8 @@
 #include <string>
 #include <unordered_map>
 
+#include "CriticalSec.h"
+
 #include "common.h"
 
 #include "Object.h"
