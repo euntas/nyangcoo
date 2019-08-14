@@ -55,14 +55,12 @@ void GameScene::Init()
 	infoObj.emplace_back(sampleEnemy);
 
 	// 테스트용 이펙트
-	/*Effect* ef = new Effect();
+	Effect* ef = new Effect();
 	ef->EffectXmlFileName = "Asset\\effect\\effect_fox_hit.xml";
 	XmlManager::GetInstance().ParseEffectData(*ef);
-	ef->Init(new EffectGraphicsComponent());
+	ef->Init(new EffectGraphicsComponent(ef));
 
-	infoObj.emplace_back(ef);*/
-
-
+	infoObj.emplace_back(ef);
 
 	PopUp* popUp = new PopUp(ePopup_close);
 

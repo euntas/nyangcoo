@@ -49,4 +49,5 @@ class InputComponent;
 class Object;
 class Player;
 class Enemy;
+class Effect;
 class GraphicsComponent;
