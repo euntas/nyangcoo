@@ -1,10 +1,11 @@
 #pragma once
 #include "Object.h"
-class Player :
+class Character :
 	public Object
 {
 public:
-	Player();
+	Character();
+	Character(EObjectType _objtype);
 
 	virtual void Init();
 	virtual void Init(InputComponent* input, PlayerGraphicsComponent* graphics);
@@ -14,7 +15,7 @@ public:
 
 	bool CheckDestroy();
 
-	void setPlayerPos(int x, int y);		// 캐릭터 위치 설정
+	void setCharacterPos(int x, int y);		// 캐릭터 위치 설정
 	void changeState(EState state);
 
 	int curState;
@@ -32,8 +33,8 @@ public:
 	int hp;
 	int gold;
 
-	std::wstring PlayerAssetFileName[eState_Cnt];
-	std::string PlayerXmlFileName;
+	std::wstring CharacterAssetFileName[eState_Cnt];
+	std::string CharacterXmlFileName;
 
 	// 아래 변수들은 xml에서 읽어온 값을 넣는다. 한 프레임의 이미지 크기, 프레임 갯수, 프레임당 시간.
 	// ex) frameWidth[eState_Run] = 4
@@ -47,6 +48,6 @@ public:
 	std::vector<Gdiplus::Rect> AniUnits[eState_Cnt];
 
 private:
-	PlayerGraphicsComponent* playerGraphics_;
+	PlayerGraphicsComponent* characterGraphics_;
 };
 

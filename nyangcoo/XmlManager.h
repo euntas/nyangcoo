@@ -4,8 +4,8 @@ class XmlManager
 public:
 	static XmlManager& GetInstance();
 
-	void ParsePlayerData(Player& player);
-	void ParsePlayerInitData(Player& player);
+	void ParseCharacterData(Character& character);
+	void ParseCharacterInitData(Character& character);
 	void ParseEnemyData(Enemy& enemy);
 	void ParseEnemyInitData(Enemy& enemy);
 	void ParseEffectData(Effect& effect);

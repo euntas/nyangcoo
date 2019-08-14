@@ -19,6 +19,7 @@ enum EObjectType
 	eObjectType_Btn,
 	eObjectType_Static,
 	eObjectType_Player,
+	eObjectType_Character,
 	eObjectType_Bullet,
 	eObjectType_Enemy,
 	eObjectType_BGImage,
@@ -49,5 +50,6 @@ class InputComponent;
 class Object;
 class Player;
 class Enemy;
+class Character;
 class Effect;
 class GraphicsComponent;

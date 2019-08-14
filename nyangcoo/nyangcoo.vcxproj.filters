@@ -149,9 +149,12 @@
     </ClInclude>
     <ClInclude Include="PopUp.h">
       <Filter>헤더 파일\UI</Filter>
-     </ClInclude>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>헤더 파일\Unit</Filter>
+    </ClInclude>
     <ClInclude Include="CriticalSec.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -229,9 +232,12 @@
     </ClCompile>
     <ClCompile Include="PopUp.cpp">
       <Filter>소스 파일\UI</Filter>
-      </ClCompile>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>소스 파일\Unit</Filter>
+    </ClCompile>
     <ClCompile Include="CriticalSec.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

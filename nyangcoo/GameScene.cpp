@@ -30,16 +30,16 @@ void GameScene::Init()
 	infoStaticObj.emplace_back(CommandPlayer);
 
 	// 플레이어 생성
-	Player* samplePlayer = new Player();
-	samplePlayer->PlayerXmlFileName = "Asset\\player\\player_pistachio.xml";
-	XmlManager::GetInstance().ParsePlayerData(*samplePlayer);
+	Character* samplePlayer = new Character(eObjectType_Character);
+	samplePlayer->CharacterXmlFileName = "Asset\\player\\player_pistachio.xml";
+	XmlManager::GetInstance().ParseCharacterData(*samplePlayer);
 	samplePlayer->Init(new InputComponent(), new PlayerGraphicsComponent(samplePlayer));
 
 	infoObj.emplace_back(samplePlayer);
 
-	Player* samplePlayer2 = new Player();
-	samplePlayer2->PlayerXmlFileName = "Asset\\player\\player_whitechoco.xml";
-	XmlManager::GetInstance().ParsePlayerData(*samplePlayer2);
+	Character* samplePlayer2 = new Character(eObjectType_Character);
+	samplePlayer2->CharacterXmlFileName = "Asset\\player\\player_whitechoco.xml";
+	XmlManager::GetInstance().ParseCharacterData(*samplePlayer2);
 	samplePlayer2->Init(new InputComponent(), new PlayerGraphicsComponent(samplePlayer2));
 
 	samplePlayer2->x += 150; // samplePlayer보다 앞서 가게 하기 위해
@@ -47,9 +47,9 @@ void GameScene::Init()
 	infoObj.emplace_back(samplePlayer2);
 
 	// 적 생성
-	Enemy* sampleEnemy = new Enemy();
-	sampleEnemy->EnemyXmlFileName = "Asset\\player\\player_muscle.xml";
-	XmlManager::GetInstance().ParseEnemyData(*sampleEnemy);
+	Character* sampleEnemy = new Character(eObjectType_Enemy);
+	sampleEnemy->CharacterXmlFileName = "Asset\\player\\player_muscle.xml";
+	XmlManager::GetInstance().ParseCharacterData(*sampleEnemy);
 	sampleEnemy->Init(new InputComponent(), new PlayerGraphicsComponent(sampleEnemy));
 
 	infoObj.emplace_back(sampleEnemy);

@@ -196,6 +196,7 @@
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="Btn.h" />
     <ClInclude Include="ChapterSelectScene.h" />
+    <ClInclude Include="Character.h" />
     <ClInclude Include="ChildView.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="CookieSelectScene.h" />
@@ -228,6 +229,7 @@
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="Btn.cpp" />
     <ClCompile Include="ChapterSelectScene.cpp" />
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="ChildView.cpp" />
     <ClCompile Include="CookieSelectScene.cpp" />
     <ClCompile Include="CriticalSec.cpp" />

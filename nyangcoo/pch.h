@@ -29,6 +29,7 @@
 #include "PlayerGraphicsComponent.h"
 #include "EffectGraphicsComponent.h"
 
+#include "Character.h"
 #include "Player.h"
 #include "Enemy.h"
 
