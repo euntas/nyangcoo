@@ -1,15 +1,15 @@
 #include "pch.h"
 #include "GraphicsComponent.h"
 
-void GraphicsComponent::update(Object* obj, float Delta)
+void GraphicsComponent::update(float Delta)
 {
 
 }
 
-void GraphicsComponent::render(Object* obj, Gdiplus::Graphics* pGraphics)
+void GraphicsComponent::render(Gdiplus::Graphics* pGraphics)
 {
-	auto pImg = (AssetManager::GetInstance().GetImage(obj->AssetFileName)).lock();
+	auto pImg = (AssetManager::GetInstance().GetImage(parentObj->AssetFileName)).lock();
 
-	pGraphics->DrawImage(pImg.get(), obj->rc, obj->rc.X, obj->rc.Y, obj->rc.Width, obj->rc.Height, Gdiplus::Unit::UnitPixel,
+	pGraphics->DrawImage(pImg.get(), parentObj->rc, parentObj->rc.X, parentObj->rc.Y, parentObj->rc.Width, parentObj->rc.Height, Gdiplus::Unit::UnitPixel,
 		nullptr, 0, nullptr);
 }

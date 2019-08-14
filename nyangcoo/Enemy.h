@@ -44,6 +44,8 @@ public:
 	int spriteRowNum[eState_Cnt];			// 스프라이트 이미지 줄 갯수
 	int imgNumPerLine[eState_Cnt];			// 스프라이트 한 줄 당 이미지 갯수
 
+	std::vector<Gdiplus::Rect> AniUnits[eState_Cnt];
+
 private:
 	PlayerGraphicsComponent* enemyGraphics_;
 };

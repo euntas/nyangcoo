@@ -1,31 +1,85 @@
 #include "pch.h"
 #include "PlayerGraphicsComponent.h"
 
-void PlayerGraphicsComponent::update(Object* obj, float Delta)
+PlayerGraphicsComponent::PlayerGraphicsComponent(Object* obj)
 {
+	parentObj = obj;
+
+	Init();
+	InitParams();
+}
+
+PlayerGraphicsComponent::PlayerGraphicsComponent(Player* obj)
+{
+	parentObj = obj;
+
+	Init();
+	InitParams();
+}
+
+PlayerGraphicsComponent::PlayerGraphicsComponent(Enemy* obj)
+{
+	parentObj = obj;
+
+	Init();
+	InitParams();
+}
+
+void PlayerGraphicsComponent::update(float Delta)
+{
+	CriticalSec a;
+
 	PlayerDeltaA += Delta;
 
-	if (PlayerDeltaA > AniDelta)
+	if (parentObj->Objtype == eObjectType_Player)
 	{
-		if (AniUnits.size() == AniFrameSize)
+		Player* p = reinterpret_cast<Player*>(parentObj);
+
+		if (PlayerDeltaA > p->frameDelta[p->curState])
 		{
-			if (obj->Enable == false && AniFrameCnt >= AniUnits.size() - 1)
+			//if (p->AniUnits[p->curState].size() == p->frameNum[p->curState])
+			//{
+				if (p->Enable == false && AniFrameCnt >= p->AniUnits[p->curState].size() - 1)
+				{
+					AniFrameCnt = 0;
+					parentObj->Visible = false;
+
+					return;
+				}
+
+				PlayerDeltaA = 0;
+				AniFrameCnt = AniFrameCnt >= p->AniUnits[p->curState].size() - 1 ? 0 : AniFrameCnt + 1;
+			//}
+		}
+	}
+	else if (parentObj->Objtype == eObjectType_Enemy)
+	{
+		Enemy* e = reinterpret_cast<Enemy*>(parentObj);
+
+		if (PlayerDeltaA > e->frameDelta[e->curState])
+		{
+			//if (p->AniUnits[p->curState].size() == p->frameNum[p->curState])
+			//{
+			if (e->Enable == false && AniFrameCnt >= e->AniUnits[e->curState].size() - 1)
 			{
 				AniFrameCnt = 0;
-				obj->Visible = false;
+				parentObj->Visible = false;
 
 				return;
 			}
 
 			PlayerDeltaA = 0;
-			AniFrameCnt = AniFrameCnt >= AniUnits.size() - 1 ? 0 : AniFrameCnt + 1;
+			AniFrameCnt = AniFrameCnt >= e->AniUnits[e->curState].size() - 1 ? 0 : AniFrameCnt + 1;
+			//}
 		}
 	}
+
+	
 }
 
-void PlayerGraphicsComponent::render(Object* obj, Gdiplus::Graphics* pGraphics)
+void PlayerGraphicsComponent::render(Gdiplus::Graphics* pGraphics)
 {
-	if (obj == nullptr) return;
+	if (parentObj == nullptr) return;
 	if (pGraphics == nullptr) return;
 
 	//프레임 확인용 코드. 출력 원하지 않을 경우 pch에서 define 부분을 주석처리.
@@ -37,79 +91,121 @@ void PlayerGraphicsComponent::render(Object* obj, Gdiplus::Graphics* pGraphics)
 	pGraphics->DrawString(temp, -1, &font, PointF(0, 100), &br);
 #endif
 
-	if (obj->Visible == false)
+	if (parentObj->Visible == false)
 		return;
 
-	auto pImg = (AssetManager::GetInstance().GetImage(obj->AssetFileName)).lock();
+	auto pImg = (AssetManager::GetInstance().GetImage(parentObj->AssetFileName)).lock();
 
-	int displayX = obj->x - AniUnitWidth / 2;
-	int displayY = obj->y - AniUnitHeight;
+	if (parentObj->Objtype == eObjectType_Player)
+	{
+		Player* p = reinterpret_cast<Player*>(parentObj);
 
-	Rect Dst(displayX, displayY, AniUnitWidth, AniUnitHeight);
-	Rect unitDst(0, 0, AniUnitWidth, AniUnitHeight);
+		int displayX = parentObj->x - p->frameWidth[p->curState] / 2;
+		int displayY = parentObj->y - p->frameHeight[p->curState];
 
-	//assert(AniUnits.size() > AniFrameCnt);
-	Bitmap bm(AniUnits[AniFrameCnt].Width, AniUnits[AniFrameCnt].Height, PixelFormat32bppARGB);
-	Graphics test(&bm);
-	test.DrawImage(pImg.get(), unitDst, AniUnits[AniFrameCnt].X, AniUnits[AniFrameCnt].Y, AniUnits[AniFrameCnt].Width, AniUnits[AniFrameCnt].Height, Gdiplus::Unit::UnitPixel,
-		nullptr, 0, nullptr);
+		Rect Dst(displayX, displayY, p->frameWidth[p->curState], p->frameHeight[p->curState]);
+		Rect unitDst(0, 0, p->frameWidth[p->curState], p->frameHeight[p->curState]);
 
-	if (obj->bleft == false)
-		bm.RotateFlip(Rotate180FlipY);
+		//assert(AniUnits.size() > AniFrameCnt);
+		Bitmap bm(p->AniUnits[p->curState][AniFrameCnt].Width, p->AniUnits[p->curState][AniFrameCnt].Height, PixelFormat32bppARGB);
+		Graphics test(&bm);
+		test.DrawImage(pImg.get(), unitDst, p->AniUnits[p->curState][AniFrameCnt].X, p->AniUnits[p->curState][AniFrameCnt].Y, p->AniUnits[p->curState][AniFrameCnt].Width, p->AniUnits[p->curState][AniFrameCnt].Height, Gdiplus::Unit::UnitPixel,
+			nullptr, 0, nullptr);
 
-	pGraphics->DrawImage(&bm, Dst);
+		if (parentObj->bleft == false)
+			bm.RotateFlip(Rotate180FlipY);
+
+		pGraphics->DrawImage(&bm, Dst);
+	}
+	else if (parentObj->Objtype == eObjectType_Enemy)
+	{
+		Enemy* e = reinterpret_cast<Enemy*>(parentObj);
+
+		int displayX = parentObj->x - e->frameWidth[e->curState] / 2;
+		int displayY = parentObj->y - e->frameHeight[e->curState];
+
+		Rect Dst(displayX, displayY, e->frameWidth[e->curState], e->frameHeight[e->curState]);
+		Rect unitDst(0, 0, e->frameWidth[e->curState], e->frameHeight[e->curState]);
+
+		//assert(AniUnits.size() > AniFrameCnt);
+		Bitmap bm(e->AniUnits[e->curState][AniFrameCnt].Width, e->AniUnits[e->curState][AniFrameCnt].Height, PixelFormat32bppARGB);
+		Graphics test(&bm);
+		test.DrawImage(pImg.get(), unitDst, e->AniUnits[e->curState][AniFrameCnt].X, e->AniUnits[e->curState][AniFrameCnt].Y, e->AniUnits[e->curState][AniFrameCnt].Width, e->AniUnits[e->curState][AniFrameCnt].Height, Gdiplus::Unit::UnitPixel,
+			nullptr, 0, nullptr);
+
+		if (parentObj->bleft == false)
+			bm.RotateFlip(Rotate180FlipY);
+
+		pGraphics->DrawImage(&bm, Dst);
+	}
 }
 
-void PlayerGraphicsComponent::setAniUnitSize(float width, float height)
-{
-	AniUnitWidth = width;
-	AniUnitHeight = height;
-}
-
-void PlayerGraphicsComponent::setAniFrameCnt(int frameNum)
-{
-	//AniFrameCnt = 0;
-	AniFrameSize = frameNum;
-}
-
-void PlayerGraphicsComponent::setAniDelta(float delta)
-{
-	AniDelta = delta;
-}
-
-void PlayerGraphicsComponent::Init(float width, float height, int frameNum, float delta, int rownum, int imgNumPerLine)
+void PlayerGraphicsComponent::Init()
 {
 	PlayerDeltaA = 0;
 
-	InitParams(width, height, frameNum, delta, rownum, imgNumPerLine);
+	//InitParams();
 }
 
-void PlayerGraphicsComponent::InitParams(float width, float height, int frameNum, float delta, int rownum, int imgNumPerLine)
+void PlayerGraphicsComponent::InitParams()
 {
 	CriticalSec a;
-	setAniUnitSize(width, height);
-	setAniFrameCnt(frameNum);
-	setAniDelta(delta);
 
-	InitAniUnits(rownum, imgNumPerLine);
+	InitAniUnits();
 }
 
-void PlayerGraphicsComponent::InitAniUnits(int rownum, int imgNumPerLine)
+void PlayerGraphicsComponent::InitAniUnits()
 {
-	AniUnits.clear();
+	CriticalSec a;
 
-	int cnt = 0;
-	for (int i = 0; i < rownum; ++i)
+	if (parentObj->Objtype == eObjectType_Player)
 	{
-		for (int j = 0; j < imgNumPerLine; ++j)
+		Player* p = reinterpret_cast<Player*>(parentObj);
+
+		for (int state = 0; state < eState_Cnt; state++)
 		{
-			if (cnt >= AniFrameSize) return;
+			p->AniUnits[state].clear();
 
-			int x = j * AniUnitWidth;
-			int y = i * AniUnitHeight;
+			int rownum = p->spriteRowNum[state];
+			int imgNumPerLine = p->imgNumPerLine[state];
 
-			AniUnits.emplace_back(Rect(x, y, AniUnitWidth, AniUnitHeight));
-			cnt++;
+			int cnt = 0;
+			for (int i = 0; i < rownum; ++i)
+			{
+				for (int j = 0; j < imgNumPerLine; ++j)
+				{
+					int x = j * p->frameWidth[state];
+					int y = i * p->frameHeight[state];
+
+					p->AniUnits[state].emplace_back(Rect(x, y, p->frameWidth[state], p->frameHeight[state]));
+					cnt++;
+				}
+			}
+		}
+	}
+	else if (parentObj->Objtype == eObjectType_Enemy)
+	{
+		Enemy* e = reinterpret_cast<Enemy*>(parentObj);
+
+		for (int state = 0; state < eState_Cnt; state++)
+		{
+			e->AniUnits[state].clear();
+
+			int rownum = e->spriteRowNum[state];
+			int imgNumPerLine = e->imgNumPerLine[state];
+
+			int cnt = 0;
+			for (int i = 0; i < rownum; ++i)
+			{
+				for (int j = 0; j < imgNumPerLine; ++j)
+				{
+					int x = j * e->frameWidth[state];
+					int y = i * e->frameHeight[state];
+
+					e->AniUnits[state].emplace_back(Rect(x, y, e->frameWidth[state], e->frameHeight[state]));
+					cnt++;
+				}
+			}
 		}
 	}
 }

@@ -23,7 +23,7 @@ void Player::Init()
 	AssetFileName = PlayerAssetFileName[curState];
 
 	playerGraphics_ = reinterpret_cast<PlayerGraphicsComponent*>(graphics_);
-	playerGraphics_->Init(frameWidth[curState], frameHeight[curState], frameNum[curState], frameDelta[curState], spriteRowNum[curState], imgNumPerLine[curState]);
+	playerGraphics_->Init();
 }
 
 void Player::Init(InputComponent* input, PlayerGraphicsComponent* graphics)
@@ -99,12 +99,17 @@ void Player::Update(float Delta)
 				{
 					it->hp -= atk;
 					printf("%s 가 %s 를 %d 공격 [%s HP : %d]\n", name.c_str(), it->name.c_str(), atk, it->name.c_str(), it->hp);
+
+					if (it->hp <= 0)
+					{
+						it->Enable = false;
+					}
 				}
 			}
 		}
 	}
 	playerGraphics_ = reinterpret_cast<PlayerGraphicsComponent*>(graphics_);
-	playerGraphics_->update(this, Delta);
+	playerGraphics_->update(Delta);
 }
 
 void Player::Render(Gdiplus::Graphics* pGraphics)
@@ -114,7 +119,7 @@ void Player::Render(Gdiplus::Graphics* pGraphics)
 
 	playerGraphics_ = reinterpret_cast<PlayerGraphicsComponent*>(graphics_);
 	
-	playerGraphics_->render(this, pGraphics);
+	playerGraphics_->render(pGraphics);
 }
 
 void Player::Release()
@@ -124,11 +129,6 @@ void Player::Release()
 
 bool Player::CheckDestroy()
 {
-	if (hp <= 0)
-	{
-		this->Enable = false;
-	}
-
 	if (Enable == false && Visible == false)
 	{
 		return true;
@@ -152,5 +152,5 @@ void Player::changeState(EState state)
 	AssetFileName = PlayerAssetFileName[curState];
 
 	// 현재 state에 맞게 바꿔준다.
-	playerGraphics_->InitParams(frameWidth[curState], frameHeight[curState], frameNum[curState], frameDelta[curState], spriteRowNum[curState], imgNumPerLine[curState]);
+	//playerGraphics_->InitParams(frameWidth[curState], frameHeight[curState], frameNum[curState], frameDelta[curState], spriteRowNum[curState], imgNumPerLine[curState]);
 }

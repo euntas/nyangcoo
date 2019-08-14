@@ -83,32 +83,32 @@ void Scene::Render(Gdiplus::Graphics* pGraphics)
 
 void Scene::Release()
 {
-	for (auto it = infoObj.begin(); it != infoObj.end(); ++it)
-	{
-		if ((*it) == nullptr) continue;
+	//for (auto it = infoObj.begin(); it != infoObj.end(); ++it)
+	//{
+	//	if ((*it) == nullptr) continue;
 
-		// 플레이어일 경우
-		if ((*it)->Objtype == eObjectType_Player)
-		{
-			Player* p = reinterpret_cast<Player*>(*it);
-			if (p->CheckDestroy())
-			{
-				it = infoObj.erase(it);
-			}
-		}
-		else if ((*it)->Objtype == eObjectType_Enemy)
-		{
-			Enemy* e = reinterpret_cast<Enemy*>(*it);
-			if (e->CheckDestroy())
-			{
-				it = infoObj.erase(it);
-			}
-		}
-		else
-		{
-			//it->Release();
-		}
-	}
+	//	// 플레이어일 경우
+	//	if ((*it)->Objtype == eObjectType_Player)
+	//	{
+	//		Player* p = reinterpret_cast<Player*>(*it);
+	//		if (p->CheckDestroy())
+	//		{
+	//			it = infoObj.erase(it);
+	//		}
+	//	}
+	//	else if ((*it)->Objtype == eObjectType_Enemy)
+	//	{
+	//		Enemy* e = reinterpret_cast<Enemy*>(*it);
+	//		if (e->CheckDestroy())
+	//		{
+	//			it = infoObj.erase(it);
+	//		}
+	//	}
+	//	else
+	//	{
+	//		//it->Release();
+	//	}
+	//}
 }
 
 void Scene::ClearAll()

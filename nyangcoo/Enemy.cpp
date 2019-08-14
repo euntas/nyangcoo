@@ -23,7 +23,7 @@ void Enemy::Init()
 	AssetFileName = EnemyAssetFileName[curState];
 
 	enemyGraphics_ = reinterpret_cast<PlayerGraphicsComponent*>(graphics_);
-	enemyGraphics_->Init(frameWidth[curState], frameHeight[curState], frameNum[curState], frameDelta[curState], spriteRowNum[curState], imgNumPerLine[curState]);
+	enemyGraphics_->Init();
 }
 
 void Enemy::Init(InputComponent* input, PlayerGraphicsComponent* graphics)
@@ -99,12 +99,17 @@ void Enemy::Update(float Delta)
 				{
 					it->hp -= atk;
 					printf("%s 가 %s 를 %d 공격 [%s HP : %d]\n", name.c_str(), it->name.c_str(), atk, it->name.c_str(), it->hp);
+
+					if (it->hp <= 0)
+					{
+						it->Enable = false;
+					}
 				}
 			}
 		}
 	}
 	enemyGraphics_ = reinterpret_cast<PlayerGraphicsComponent*>(graphics_);
-	enemyGraphics_->update(this, Delta);
+	enemyGraphics_->update(Delta);
 }
 
 void Enemy::Render(Gdiplus::Graphics* pGraphics)
@@ -114,7 +119,7 @@ void Enemy::Render(Gdiplus::Graphics* pGraphics)
 
 	enemyGraphics_ = reinterpret_cast<PlayerGraphicsComponent*>(graphics_);
 	
-	enemyGraphics_->render(this, pGraphics);
+	enemyGraphics_->render(pGraphics);
 }
 
 void Enemy::Release()
@@ -124,11 +129,6 @@ void Enemy::Release()
 
 bool Enemy::CheckDestroy()
 {
-	if (hp <= 0)
-	{
-		this->Enable = false;
-	}
-
 	if (Enable == false && Visible == false)
 	{
 		return true;
@@ -152,5 +152,5 @@ void Enemy::changeState(EState state)
 	AssetFileName = EnemyAssetFileName[curState];
 
 	// 현재 state에 맞게 바꿔준다.
-	enemyGraphics_->InitParams(frameWidth[curState], frameHeight[curState], frameNum[curState], frameDelta[curState], spriteRowNum[curState], imgNumPerLine[curState]);
+	//enemyGraphics_->InitParams();
 }
