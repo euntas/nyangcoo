@@ -29,22 +29,34 @@ void GameScene::Init()
 
 	infoStaticObj.emplace_back(CommandPlayer);
 
+	// 캐릭터 생성용 슬롯 버튼 만들기
+	MakeCharacterBtn* mcb = new MakeCharacterBtn("pistachio");
+	infoStaticObj.emplace_back(mcb);
+
+	MakeCharacterBtn* mcb2 = new MakeCharacterBtn("whitechoco");
+	mcb2->x = mcb->x + 100;
+	infoStaticObj.emplace_back(mcb2);
+
+	MakeCharacterBtn* mcb3 = new MakeCharacterBtn("muscle");
+	mcb3->x = mcb2->x + 100;
+	infoStaticObj.emplace_back(mcb3);
+
 	// 플레이어 생성
-	Character* samplePlayer = new Character(eObjectType_Character);
-	samplePlayer->CharacterXmlFileName = "Asset\\player\\player_pistachio.xml";
-	XmlManager::GetInstance().ParseCharacterData(*samplePlayer);
-	samplePlayer->Init(new InputComponent(), new CharacterGraphicsComponent(samplePlayer));
+	//Character* samplePlayer = new Character(eObjectType_Character);
+	//samplePlayer->CharacterXmlFileName = "Asset\\player\\player_pistachio.xml";
+	//XmlManager::GetInstance().ParseCharacterData(*samplePlayer);
+	//samplePlayer->Init(new InputComponent(), new CharacterGraphicsComponent(samplePlayer));
 
-	infoObj.emplace_back(samplePlayer);
+	//infoObj.emplace_back(samplePlayer);
 
-	Character* samplePlayer2 = new Character(eObjectType_Character);
-	samplePlayer2->CharacterXmlFileName = "Asset\\player\\player_whitechoco.xml";
-	XmlManager::GetInstance().ParseCharacterData(*samplePlayer2);
-	samplePlayer2->Init(new InputComponent(), new CharacterGraphicsComponent(samplePlayer2));
+	//Character* samplePlayer2 = new Character(eObjectType_Character);
+	//samplePlayer2->CharacterXmlFileName = "Asset\\player\\player_whitechoco.xml";
+	//XmlManager::GetInstance().ParseCharacterData(*samplePlayer2);
+	//samplePlayer2->Init(new InputComponent(), new CharacterGraphicsComponent(samplePlayer2));
 
-	samplePlayer2->x += 150; // samplePlayer보다 앞서 가게 하기 위해
+	//samplePlayer2->x += 150; // samplePlayer보다 앞서 가게 하기 위해
 
-	infoObj.emplace_back(samplePlayer2);
+	//infoObj.emplace_back(samplePlayer2);
 
 	// 적 생성
 	Character* sampleEnemy = new Character(eObjectType_Enemy);

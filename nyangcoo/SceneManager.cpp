@@ -76,6 +76,16 @@ void SceneManager::SendLButtonDown(UINT nFlags, CPoint point)
 				}
 			}
 		}
+		else if (it->Objtype == eObjectType_MakeCharacterBtn)
+		{
+			MakeCharacterBtn* mcb = reinterpret_cast<MakeCharacterBtn*>(it);
+
+			Rect tempRC(mcb->x, mcb->y, mcb->rc.Width, mcb->rc.Height);
+			if (tempRC.Contains(point.x, point.y))
+			{
+				mcb->SendLButtonDown();
+			}
+		}
 	}
 }
 
