@@ -222,6 +222,7 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="StaticObject.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="UpgradeCharacterBtn.h" />
     <ClInclude Include="XmlManager.h" />
   </ItemGroup>
   <ItemGroup>
@@ -255,6 +256,7 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="StaticObject.cpp" />
+    <ClCompile Include="UpgradeCharacterBtn.cpp" />
     <ClCompile Include="XmlManager.cpp" />
   </ItemGroup>
   <ItemGroup>

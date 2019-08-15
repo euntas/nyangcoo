@@ -25,5 +25,8 @@ public:
 
 	ECharacter ID;
 	std::string NameStr;
+
+	// TODO. upgrade로 높아지는 수치는 atk뿐?
+	int atk;
 };
 

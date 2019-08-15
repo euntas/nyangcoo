@@ -33,13 +33,24 @@ void GameScene::Init()
 	MakeCharacterBtn* mcb = new MakeCharacterBtn("pistachio");
 	infoStaticObj.emplace_back(mcb);
 
+	UpgradeCharacterBtn* ucb = new UpgradeCharacterBtn(mcb);
+	infoStaticObj.emplace_back(ucb);
+
 	MakeCharacterBtn* mcb2 = new MakeCharacterBtn("whitechoco");
 	mcb2->x = mcb->x + 100;
 	infoStaticObj.emplace_back(mcb2);
 
+	UpgradeCharacterBtn* ucb2 = new UpgradeCharacterBtn(mcb2);
+	ucb2->x = ucb->x + 100;
+	infoStaticObj.emplace_back(ucb2);
+
 	MakeCharacterBtn* mcb3 = new MakeCharacterBtn("muscle");
 	mcb3->x = mcb2->x + 100;
 	infoStaticObj.emplace_back(mcb3);
+
+	UpgradeCharacterBtn* ucb3 = new UpgradeCharacterBtn(mcb3);
+	ucb3->x = ucb2->x + 100;
+	infoStaticObj.emplace_back(ucb3);
 
 	// 플레이어 생성
 	//Character* samplePlayer = new Character(eObjectType_Character);

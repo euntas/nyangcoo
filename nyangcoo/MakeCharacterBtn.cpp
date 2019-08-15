@@ -105,5 +105,7 @@ Character* MakeCharacterBtn::MakeCharacter()
 	XmlManager::GetInstance().ParseCharacterData(*resPlayer);
 	resPlayer->Init(new InputComponent(), new CharacterGraphicsComponent(resPlayer));
 
+	resPlayer->atk += this->atk;
+
 	return resPlayer;
 }

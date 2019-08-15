@@ -153,6 +153,9 @@
     <ClInclude Include="Effect.h">
       <Filter>헤더 파일\Unit</Filter>
     </ClInclude>
+    <ClInclude Include="UpgradeCharacterBtn.h">
+      <Filter>헤더 파일\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainFrm.cpp">
@@ -232,6 +235,9 @@
     </ClCompile>
     <ClCompile Include="Effect.cpp">
       <Filter>소스 파일\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="UpgradeCharacterBtn.cpp">
+      <Filter>소스 파일\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

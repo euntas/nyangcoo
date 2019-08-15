@@ -26,6 +26,7 @@ enum EObjectType
 	eObjectType_Effect,
 	eObjectType_PopUp,
 	eObjectType_MakeCharacterBtn,
+	eObjectType_UpgradeCharacterBtn,
 	eObjectType_Cnt
 };
 

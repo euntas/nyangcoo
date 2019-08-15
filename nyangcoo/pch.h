@@ -35,6 +35,7 @@
 #include "Btn.h"
 #include "PopUp.h"
 #include "MakeCharacterBtn.h"
+#include "UpgradeCharacterBtn.h"
 
 #include "GameScene.h"
 #include "StartScene.h"

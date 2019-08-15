@@ -86,6 +86,16 @@ void SceneManager::SendLButtonDown(UINT nFlags, CPoint point)
 				mcb->SendLButtonDown();
 			}
 		}
+		else if (it->Objtype == eObjectType_UpgradeCharacterBtn)
+		{
+			UpgradeCharacterBtn* ucb = reinterpret_cast<UpgradeCharacterBtn*>(it);
+
+			Rect tempRC(ucb->x, ucb->y, ucb->rc.Width, ucb->rc.Height);
+			if (tempRC.Contains(point.x, point.y))
+			{
+				ucb->SendLButtonDown();
+			}
+		}
 	}
 }
 
