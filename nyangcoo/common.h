@@ -25,6 +25,8 @@ enum EObjectType
 	eObjectType_BGImage,
 	eObjectType_Effect,
 	eObjectType_PopUp,
+	eObjectType_MakeCharacterBtn,
+	eObjectType_UpgradeCharacterBtn,
 	eObjectType_Cnt
 };
 
@@ -44,6 +46,13 @@ enum EEffect {
 enum EPopup {
 	ePopup_close,
 	ePopup_Cnt
+};
+
+enum ECharacter {
+	eCharacter_pistachio,
+	eCharacter_whitechoco,
+	eCharacter_muscle,
+	eCharacter_Cnt
 };
 
 class InputComponent;

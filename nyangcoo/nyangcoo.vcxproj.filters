@@ -129,9 +129,6 @@
     <ClInclude Include="EffectGraphicsComponent.h">
       <Filter>헤더 파일\Component</Filter>
     </ClInclude>
-    <ClInclude Include="Effect.h">
-      <Filter>헤더 파일\Util</Filter>
-    </ClInclude>
     <ClInclude Include="ChapterSelectScene.h">
       <Filter>헤더 파일\Scene</Filter>
     </ClInclude>
@@ -149,6 +146,15 @@
     </ClInclude>
     <ClInclude Include="CharacterGraphicsComponent.h">
       <Filter>헤더 파일\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeCharacterBtn.h">
+      <Filter>헤더 파일\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>헤더 파일\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="UpgradeCharacterBtn.h">
+      <Filter>헤더 파일\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -206,9 +212,6 @@
     <ClCompile Include="EffectGraphicsComponent.cpp">
       <Filter>소스 파일\Component</Filter>
     </ClCompile>
-    <ClCompile Include="Effect.cpp">
-      <Filter>소스 파일\Util</Filter>
-    </ClCompile>
     <ClCompile Include="ChapterSelectScene.cpp">
       <Filter>소스 파일\Scene</Filter>
     </ClCompile>
@@ -226,6 +229,15 @@
     </ClCompile>
     <ClCompile Include="CharacterGraphicsComponent.cpp">
       <Filter>소스 파일\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="MakeCharacterBtn.cpp">
+      <Filter>소스 파일\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>소스 파일\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="UpgradeCharacterBtn.cpp">
+      <Filter>소스 파일\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
