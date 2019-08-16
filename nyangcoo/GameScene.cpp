@@ -20,9 +20,9 @@ void GameScene::Init()
 	// 배경 그림 깔기
 	bg = new StaticObject();
 	bg->Objtype = eObjectType_BGImage;
-	bg->AssetFileName = TEXT("bg_bamboo.png");
-	bg->ImgRC = Rect(0, 0, 1420, 672);
-	bg->ViewRC = bg->ImgRC;
+	bg->AssetFileName = TEXT("bg_bamboo2.png");
+	bg->ImgRC = Rect(0, 0, 2840, 672);
+	bg->ViewRC = Rect(0, 0, 1420, 672);
 
 	infoStaticObj.emplace_back(bg);
 
@@ -125,6 +125,15 @@ void GameScene::Init()
 
 void GameScene::Update(float Delta)
 {
+	if (GetAsyncKeyState(VK_LEFT) & 0x8001)
+	{
+		SceneManager::GetInstance().CameraPt.X += 1;
+	}
+	else if (GetAsyncKeyState(VK_RIGHT) & 0x8001)
+	{
+		SceneManager::GetInstance().CameraPt.X -= 1;
+	}
+
 	Scene::Update(Delta);
 
 	gsGoldDeltaA += Delta;

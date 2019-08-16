@@ -8,7 +8,7 @@ SceneManager& SceneManager::GetInstance()
 }
 
 SceneManager::SceneManager()
-	: CurScene(nullptr)
+	: CurScene(nullptr), CameraPt(0, 0)
 {
 	StartScene* startScene = new StartScene();
 	mScene.emplace_back(startScene);

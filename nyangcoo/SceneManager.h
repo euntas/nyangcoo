@@ -17,6 +17,8 @@ public:
 
 	Gdiplus::Rect ViewRC;			// 뷰 화면 전체 크기
 
+	Gdiplus::Point CameraPt;			// 화면 이동 위한 좌표 변화량 저장용
+
 private:
 	std::vector<Scene*> mScene;
 	Scene* CurScene;
