@@ -25,6 +25,14 @@ MakeCharacterBtn::MakeCharacterBtn(std::string characterName)
 	{
 		ID = eCharacter_muscle;
 	}
+	else if (characterName == "kiwi")
+	{
+		ID = eCharacter_kiwi;
+	}
+	else if (characterName == "windarcher")
+	{
+		ID = eCharacter_windarcher;
+	}
 	else {
 		ID = eCharacter_pistachio;
 	} 

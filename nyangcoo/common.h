@@ -49,9 +49,12 @@ enum EPopup {
 };
 
 enum ECharacter {
+	eCharacter_moonlight,
 	eCharacter_pistachio,
 	eCharacter_whitechoco,
 	eCharacter_muscle,
+	eCharacter_windarcher,
+	eCharacter_kiwi,
 	eCharacter_Cnt
 };
 

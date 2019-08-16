@@ -19,8 +19,6 @@ CharacterGraphicsComponent::CharacterGraphicsComponent(Character* obj)
 
 void CharacterGraphicsComponent::update(float Delta)
 {
-	CriticalSec a;
-
 	PlayerDeltaA += Delta;
 
 	if (parentObj->Objtype == eObjectType_Player || parentObj->Objtype == eObjectType_Character || parentObj->Objtype == eObjectType_Enemy)
@@ -94,27 +92,30 @@ void CharacterGraphicsComponent::Init()
 	PlayerDeltaA = 0;
 }
 
+void CharacterGraphicsComponent::ChangeMotion()
+{
+	PlayerDeltaA = 0;
+	AniFrameCnt = 0;
+}
+
 void CharacterGraphicsComponent::InitParams()
 {
-	CriticalSec a;
-
 	InitAniUnits();
 }
 
 void CharacterGraphicsComponent::InitAniUnits()
 {
-	CriticalSec a;
-
 	if (parentObj->Objtype == eObjectType_Player || parentObj->Objtype == eObjectType_Character || parentObj->Objtype == eObjectType_Enemy)
 	{
 		Character* p = reinterpret_cast<Character*>(parentObj);
 
 		for (int state = 0; state < eState_Cnt; state++)
 		{
-			p->AniUnits[state].clear();
+			//p->AniUnits[state].clear();
 
 			int rownum = p->spriteRowNum[state];
 			int imgNumPerLine = p->imgNumPerLine[state];
+			p->AniUnits[state].resize(rownum * imgNumPerLine);
 
 			int cnt = 0;
 			for (int i = 0; i < rownum; ++i)
@@ -124,7 +125,8 @@ void CharacterGraphicsComponent::InitAniUnits()
 					int x = j * p->frameWidth[state];
 					int y = i * p->frameHeight[state];
 
-					p->AniUnits[state].emplace_back(Rect(x, y, p->frameWidth[state], p->frameHeight[state]));
+					//p->AniUnits[state].emplace_back(Rect(x, y, p->frameWidth[state], p->frameHeight[state]));
+					p->AniUnits[state][cnt] =  Rect(x, y, p->frameWidth[state], p->frameHeight[state]);
 					cnt++;
 				}
 			}

@@ -152,6 +152,10 @@ void Character::Update(float Delta)
 			DeltaA = 0;
 		}
 	}
+	else if (curState == eState_Dead)
+	{
+		Enable = false;
+	}
 
 	characterGraphics_ = reinterpret_cast<CharacterGraphicsComponent*>(graphics_);
 	characterGraphics_->update(Delta);
@@ -190,9 +194,14 @@ void Character::setCharacterPos(int x, int y)
 
 void Character::changeState(EState state)
 {
+	CriticalSec cs;
+
 	if (curState == eState_Dead)
+		return;
+	if (curState == state)
 		return;
 
 	curState = state;
+	characterGraphics_->ChangeMotion();
 	AssetFileName = CharacterAssetFileName[curState];
 }

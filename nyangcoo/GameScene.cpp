@@ -14,7 +14,7 @@ void GameScene::Init()
 	ClearAll();
 
 	gsGoldDeltaA = 0;
-	gold = 0;
+	gold = 1000;
 	gsGoldDelta = 500; // 골드 증가 초기 속도
 
 	// 배경 그림 깔기
@@ -49,6 +49,22 @@ void GameScene::Init()
 	UpgradeCharacterBtn* ucb3 = new UpgradeCharacterBtn(mcb3);
 	ucb3->x = ucb2->x + 100;
 	infoStaticObj.emplace_back(ucb3);
+
+	MakeCharacterBtn* mcb4 = new MakeCharacterBtn("kiwi");
+	mcb4->x = mcb3->x + 100;
+	infoStaticObj.emplace_back(mcb4);
+
+	UpgradeCharacterBtn* ucb4 = new UpgradeCharacterBtn(mcb4);
+	ucb4->x = ucb3->x + 100;
+	infoStaticObj.emplace_back(ucb4);
+
+	MakeCharacterBtn* mcb5 = new MakeCharacterBtn("windarcher");
+	mcb5->x = mcb4->x + 100;
+	infoStaticObj.emplace_back(mcb5);
+
+	UpgradeCharacterBtn* ucb5 = new UpgradeCharacterBtn(mcb5);
+	ucb5->x = ucb4->x + 100;
+	infoStaticObj.emplace_back(ucb5);
 
 	// 플레이어 생성
 	Character* CommandPlayer = new Character(eObjectType_Player);
