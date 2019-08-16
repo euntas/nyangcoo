@@ -10,12 +10,14 @@ GameScene::GameScene() : Scene()
 
 void GameScene::Init()
 {
+	// 초기 수치 부여
 	ClearAll();
 
 	gsGoldDeltaA = 0;
 	gold = 0;
 	gsGoldDelta = 500; // 골드 증가 초기 속도
 
+	// 배경 그림 깔기
 	bg = new StaticObject();
 	bg->Objtype = eObjectType_BGImage;
 	bg->AssetFileName = TEXT("bg_bamboo.png");
@@ -72,15 +74,26 @@ void GameScene::Init()
 
 	infoObj.emplace_back(ef);
 
+	// TODO. 나중에 수정필요. 팝업 부분
 	PopUp* popUp = new PopUp(ePopup_close);
 
 	//PopUp = new StaticObject();
 	//popUp->Objtype = eObjectType_PopUp;
 	//popUp->AssetFileName = TEXT("popup_all.png");
 	popUp->rc = Rect(0, 0, 250, 198);
+	popUp->Visible = false;
 
 	infoStaticObj.emplace_back(popUp);
 
+	// TODO. 나중에 지우기
+	Btn* ExitBtn = new Btn();
+	ExitBtn->ID = eScene_Exit;
+	ExitBtn->AssetFileName = TEXT("title_btn_04.png");
+	ExitBtn->rc = Rect(0, 0, 236, 72);
+	ExitBtn->x = 1200;
+	ExitBtn->y = 5;
+
+	infoStaticObj.emplace_back(ExitBtn);
 }
 
 void GameScene::Update(float Delta)
@@ -101,6 +114,7 @@ void GameScene::Render(Graphics* pGraphics)
 {
 	Scene::Render(pGraphics);
 
+	printTitle(pGraphics);
 	printGold(gold, pGraphics);
 }
 
@@ -118,6 +132,37 @@ void GameScene::printGold(int _gold, Graphics* pGraphics)
 	SolidBrush B(Color(0, 0, 0));
 
 	wstring tempStr = L"골드 : " + std::to_wstring(_gold);
+
+	pGraphics->DrawString(tempStr.c_str(), -1, &F, P, &B);
+}
+
+void GameScene::printTitle(Gdiplus::Graphics* pGraphics)
+{
+	// 바탕 그림 깔기
+	StaticObject* titleBg = new StaticObject();
+	titleBg->Objtype = eObjectType_None;
+	titleBg->AssetFileName = TEXT("title_stage_bg.png");
+	titleBg->rc = Rect(0, 0, 350, 86);
+	titleBg->x = 550;
+	titleBg->y = 10;
+
+	auto pImg = (AssetManager::GetInstance().GetImage(titleBg->AssetFileName)).lock();
+
+	Rect tempRC(titleBg->x, titleBg->y, titleBg->rc.Width, titleBg->rc.Height);
+	pGraphics->DrawImage(pImg.get(), tempRC, titleBg->rc.X, titleBg->rc.Y, titleBg->rc.Width, titleBg->rc.Height, Gdiplus::Unit::UnitPixel,
+		nullptr, 0, nullptr);
+
+	// 글자 출력
+	Gdiplus::Font F(L"Arial", 6, FontStyleBold, UnitMillimeter);
+
+	PointF P(titleBg->x + 35, titleBg->y + 15);
+
+	SolidBrush B(Color(255, 255, 255));
+
+	wstring tempStr = L"프롤로그 마녀의 훈련장 \n";
+	// TODO. 나중에 진짜 수치로 바꿔주기
+	tempStr = tempStr + L"    wave " + std::to_wstring(1);
+	tempStr = tempStr + L"\t" + std::to_wstring(10) + L"/" + std::to_wstring(10);
 
 	pGraphics->DrawString(tempStr.c_str(), -1, &F, P, &B);
 }

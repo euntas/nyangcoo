@@ -13,6 +13,7 @@ public:
 	virtual void Release();
 
 	void printGold(int _gold, Gdiplus::Graphics* pGraphics);
+	void printTitle(Gdiplus::Graphics* pGraphics);
 
 	StaticObject* bg;
 
