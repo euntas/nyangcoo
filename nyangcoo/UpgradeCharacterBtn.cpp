@@ -13,7 +13,7 @@ UpgradeCharacterBtn::UpgradeCharacterBtn(MakeCharacterBtn* parent)
 
 	upgradeCost = 100;
 
-	std::string fn = "slot\\up_slot_" + std::to_string(upgradeCost) + ".png";
+	std::string fn = "slot\\up_slot.png";
 	this->AssetFileName.assign(fn.begin(), fn.end());
 }
 
@@ -48,11 +48,12 @@ void UpgradeCharacterBtn::Release()
 
 void UpgradeCharacterBtn::SendLButtonDown()
 {
-	// TODO. 골드가 upgradeCost 이상일때만 실행해야 함.
 	GameScene* gs = reinterpret_cast<GameScene*>(SceneManager::GetInstance().GetCurScene());
 
 	if (gs->gold >= upgradeCost)
 	{
+		gs->gold -= upgradeCost;
+
 		parentMakeBtn->atk += 50;
 
 		// 코스트 증가시킴
