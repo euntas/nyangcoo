@@ -110,6 +110,15 @@ void GameScene::Init()
 	ExitBtn->y = 5;
 
 	infoStaticObj.emplace_back(ExitBtn);
+
+	Btn* LoadGameBtn = new Btn();
+	LoadGameBtn->ID = eScene_LoadGame;
+	LoadGameBtn->AssetFileName = TEXT("title_btn_02.png");
+	LoadGameBtn->rc = Rect(0, 0, 236, 72);
+	LoadGameBtn->x = 1200;
+	LoadGameBtn->y = 100;
+
+	infoStaticObj.emplace_back(LoadGameBtn);
 }
 
 void GameScene::Update(float Delta)

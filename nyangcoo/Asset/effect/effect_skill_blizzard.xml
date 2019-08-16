@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+	<TextureAtlas imagePath="effect\\effect_skill_blizzard.png" width="1024" height="256" frameNum="6" delta="150" rowNum="3" imgNumPerLine="2" effectId="0">
+	 <sprite h="346" w="700" y="0" x="0" n="effect_skill_blizzard1.png"/>
+     <sprite h="346" w="700" y="0" x="700" n="effect_skill_blizzard2.png"/>
+     <sprite h="346" w="700" y="346" x="0" n="effect_skill_blizzard3.png"/>
+     <sprite h="346" w="700" y="346" x="700" n="effect_skill_blizzard4.png"/>
+     <sprite h="346" w="700" y="692" x="0" n="effect_skill_blizzard5.png"/>
+     <sprite h="346" w="700" y="692" x="700" n="effect_skill_blizzard6.png"/>
+	</TextureAtlas>
+</Root>
