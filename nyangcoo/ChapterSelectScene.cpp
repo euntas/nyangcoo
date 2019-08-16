@@ -8,102 +8,118 @@ ChapterSelectScene::ChapterSelectScene() : Scene()
 	bg = new StaticObject();
 	bg->Objtype = eObjectType_BGImage;
 	bg->AssetFileName = TEXT("ChapterSelect_bg.png");
-	bg->rc = Rect(0, 0, 1420, 672);
+	bg->ImgRC = Rect(0, 0, 1420, 672);
+	bg->ViewRC = bg->ImgRC;
 
 	Btn* GameStartBtn = new Btn();
 	GameStartBtn->ID = eScene_Game;
 	GameStartBtn->AssetFileName = TEXT("GameStart_btn.png");
-	GameStartBtn->rc = Rect(0, 0, 277, 85);
+	GameStartBtn->ImgRC = Rect(0, 0, 277, 85);
+	GameStartBtn->ViewRC = GameStartBtn->ImgRC;
 	GameStartBtn->x = 1058;
 	GameStartBtn->y = 550;
 
 	Btn* CookieSelectBtn = new Btn();
 	CookieSelectBtn->ID = eScene_CookieSelect;
 	CookieSelectBtn->AssetFileName = TEXT("CookieSelect_btn.png");
-	CookieSelectBtn->rc = Rect(0, 0, 204, 89);
+	CookieSelectBtn->ImgRC = Rect(0, 0, 204, 89);
+	CookieSelectBtn->ViewRC = CookieSelectBtn->ImgRC;
 	CookieSelectBtn->x = 49;
 	CookieSelectBtn->y = 550;
 
 	Btn* NextChapterBtn = new Btn();
-	NextChapterBtn->ID = eScene_Start;
+	NextChapterBtn->ID = eScene_Exit;
 	NextChapterBtn->AssetFileName = TEXT("arrow_right.png");
-	NextChapterBtn->rc = Rect(0, 0, 100, 118);
+	NextChapterBtn->ImgRC = Rect(0, 0, 100, 118);
+	NextChapterBtn->ViewRC = NextChapterBtn->ImgRC;
 	NextChapterBtn->x = 1310;
 	NextChapterBtn->y = 275;
 
 	Btn* PrevChapterBtn = new Btn();
-	PrevChapterBtn->ID = eScene_Start;
+	PrevChapterBtn->ID = eScene_Exit;
 	PrevChapterBtn->AssetFileName = TEXT("arrow_left.png");
-	PrevChapterBtn->rc = Rect(0, 0, 100, 118);
+	PrevChapterBtn->ImgRC = Rect(0, 0, 100, 118);
+	PrevChapterBtn->ViewRC = PrevChapterBtn->ImgRC;
 	PrevChapterBtn->x = 10;
 	PrevChapterBtn->y = 275;
 
-	Btn* ChapterTitle = new Btn();
+	ChapterTitle = new StaticObject();
+	ChapterTitle->Objtype = eObjectType_None;
 	ChapterTitle->AssetFileName = TEXT("chapter_title.png");
-	ChapterTitle->rc = Rect(0, 0, 553, 111);
+	ChapterTitle->ImgRC = Rect(0, 0, 553, 111);
+	ChapterTitle->ViewRC = ChapterTitle->ImgRC;
 	ChapterTitle->x = 470;
 	ChapterTitle->y = 8;
 
 	Btn* StageClearedBtn = new Btn();
 	StageClearedBtn->ID = eScene_Game;
 	StageClearedBtn->AssetFileName = TEXT("stage_cleared.png");
-	StageClearedBtn->rc = Rect(0, 0, 113, 112);
+	StageClearedBtn->ImgRC = Rect(0, 0, 113, 112);
+	StageClearedBtn->ViewRC = StageClearedBtn->ImgRC;
 	StageClearedBtn->x = 148;
 	StageClearedBtn->y = 273;
 
 	Btn* StageNotYetBtn1 = new Btn();
-	//StageNotYetBtn1->ID = eScene_Game;
+	StageNotYetBtn1->ID = eScene_Script;
 	StageNotYetBtn1->AssetFileName = TEXT("stage_notyet.png");
-	StageNotYetBtn1->rc = Rect(0, 0, 113, 112);
+	StageNotYetBtn1->ImgRC = Rect(0, 0, 113, 112);
+	StageNotYetBtn1->ViewRC = StageNotYetBtn1->ImgRC;
 	StageNotYetBtn1->x = 347;
 	StageNotYetBtn1->y = 273;
 
 	Btn* StageNotYetBtn2 = new Btn();
 	//StageNotYetBtn2->ID = eScene_Game;
 	StageNotYetBtn2->AssetFileName = TEXT("stage_notyet.png");
-	StageNotYetBtn2->rc = Rect(0, 0, 113, 112);
+	StageNotYetBtn2->ImgRC = Rect(0, 0, 113, 112);
+	StageNotYetBtn2->ViewRC = StageNotYetBtn2->ImgRC;
 	StageNotYetBtn2->x = 535;
 	StageNotYetBtn2->y = 183;
 
 	Btn* StageNotYetBtn3 = new Btn();
 	//StageNotYetBtn3->ID = eScene_Game;
 	StageNotYetBtn3->AssetFileName = TEXT("stage_notyet.png");
-	StageNotYetBtn3->rc = Rect(0, 0, 113, 112);
+	StageNotYetBtn3->ImgRC = Rect(0, 0, 113, 112);
+	StageNotYetBtn3->ViewRC = StageNotYetBtn3->ImgRC;
 	StageNotYetBtn3->x = 535;
 	StageNotYetBtn3->y = 368;
 
 	Btn* StageNotYetBtn4 = new Btn();
 	//StageNotYetBtn4->ID = eScene_Game;
 	StageNotYetBtn4->AssetFileName = TEXT("stage_notyet.png");
-	StageNotYetBtn4->rc = Rect(0, 0, 113, 112);
+	StageNotYetBtn4->ImgRC = Rect(0, 0, 113, 112);
+	StageNotYetBtn4->ViewRC = StageNotYetBtn4->ImgRC;
 	StageNotYetBtn4->x = 729;
 	StageNotYetBtn4->y = 128;
 
 	Btn* StageNotYetBtn5 = new Btn();
 	//StageNotYetBtn5->ID = eScene_Game;
 	StageNotYetBtn5->AssetFileName = TEXT("stage_notyet.png");
-	StageNotYetBtn5->rc = Rect(0, 0, 113, 112);
+	StageNotYetBtn5->ImgRC = Rect(0, 0, 113, 112);
+	StageNotYetBtn5->ViewRC = StageNotYetBtn5->ImgRC;
 	StageNotYetBtn5->x = 729;
 	StageNotYetBtn5->y = 424;
 
 	Btn* StageNotYetBtn6 = new Btn();
 	//StageNotYetBtn6->ID = eScene_Game;
 	StageNotYetBtn6->AssetFileName = TEXT("stage_notyet.png");
-	StageNotYetBtn6->rc = Rect(0, 0, 113, 112);
+	StageNotYetBtn6->ImgRC = Rect(0, 0, 113, 112);
+	StageNotYetBtn6->ViewRC = StageNotYetBtn6->ImgRC;
 	StageNotYetBtn6->x = 907;
 	StageNotYetBtn6->y = 183;
 
 	Btn* StageNotYetBtn7 = new Btn();
 	//StageNotYetBtn7->ID = eScene_Game;
 	StageNotYetBtn7->AssetFileName = TEXT("stage_notyet.png");
-	StageNotYetBtn7->rc = Rect(0, 0, 113, 112);
+	StageNotYetBtn7->ImgRC = Rect(0, 0, 113, 112);
+	StageNotYetBtn7->ViewRC = StageNotYetBtn7->ImgRC;
 	StageNotYetBtn7->x = 907;
 	StageNotYetBtn7->y = 368;
 
 	Btn* StageNotYetBtn8 = new Btn();
 	//StageNotYetBtn8->ID = eScene_Game;
 	StageNotYetBtn8->AssetFileName = TEXT("stage_notyet.png");
-	StageNotYetBtn8->rc = Rect(0, 0, 113, 112);
+	StageNotYetBtn8->ImgRC = Rect(0, 0, 113, 112);
+	StageNotYetBtn8->ViewRC = StageNotYetBtn8->ImgRC;
 	StageNotYetBtn8->x = 1094;
 	StageNotYetBtn8->y = 273;	
 

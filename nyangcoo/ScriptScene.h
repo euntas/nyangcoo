@@ -1,11 +1,11 @@
 #pragma once
 #include "Scene.h"
 
-class ChapterSelectScene :
+class ScriptScene :
 	public Scene
 {
 public:
-	ChapterSelectScene();
+	ScriptScene();
 
 	virtual void Init();
 	virtual void Update(float Delta);
@@ -13,5 +13,9 @@ public:
 	virtual void Release();
 
 	StaticObject* bg;
-	StaticObject* ChapterTitle;
+	StaticObject* ChapterName;
+	StaticObject* ScriptText;
+	StaticObject* ScriptChoice;
+	StaticObject* ScriptPlayer;
 };
+

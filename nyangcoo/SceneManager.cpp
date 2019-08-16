@@ -24,6 +24,9 @@ SceneManager::SceneManager()
 
 	CookieSelectScene* cookieselectScene = new CookieSelectScene();
 	mScene.emplace_back(cookieselectScene);
+
+	ScriptScene* scriptScene = new ScriptScene();
+	mScene.emplace_back(scriptScene);
 }
 
 void SceneManager::LoadScene(CString& pName)
@@ -57,18 +60,19 @@ void SceneManager::SendLButtonDown(UINT nFlags, CPoint point)
 	{
 		if (it == nullptr) continue;
 
-		Rect tempRC(it->x, it->y, it->rc.Width, it->rc.Height);
+		Rect tempRC(it->x, it->y, it->ImgRC.Width, it->ImgRC.Height);
 		if (it->Objtype == eObjectType_Btn && tempRC.Contains(point.x, point.y))
 		{
 			Btn* o = reinterpret_cast<Btn*>(it);
 			o->SendLButtonDown();
+			
 		}
 		else if (it->Objtype == eObjectType_PopUp)
 		{
 			PopUp* pb = reinterpret_cast<PopUp*>(it);
 			for (auto& pbit : pb->infoStaticObj)
 			{
-				Rect tempRC(pbit->x + pb->x, pbit->y + pb->y, pbit->rc.Width, pbit->rc.Height);
+				Rect tempRC(pbit->x + pb->x, pbit->y + pb->y, pbit->ImgRC.Width, pbit->ImgRC.Height);
 				if (pbit->Objtype == eObjectType_Btn && tempRC.Contains(point.x, point.y) && pb->Visible)
 				{
 					Btn* o = reinterpret_cast<Btn*>(pbit);
@@ -80,7 +84,7 @@ void SceneManager::SendLButtonDown(UINT nFlags, CPoint point)
 		{
 			MakeCharacterBtn* mcb = reinterpret_cast<MakeCharacterBtn*>(it);
 
-			Rect tempRC(mcb->x, mcb->y, mcb->rc.Width, mcb->rc.Height);
+			Rect tempRC(mcb->x, mcb->y, mcb->ImgRC.Width, mcb->ImgRC.Height);
 			if (tempRC.Contains(point.x, point.y))
 			{
 				mcb->SendLButtonDown();
@@ -90,11 +94,36 @@ void SceneManager::SendLButtonDown(UINT nFlags, CPoint point)
 		{
 			UpgradeCharacterBtn* ucb = reinterpret_cast<UpgradeCharacterBtn*>(it);
 
-			Rect tempRC(ucb->x, ucb->y, ucb->rc.Width, ucb->rc.Height);
+			Rect tempRC(ucb->x, ucb->y, ucb->ImgRC.Width, ucb->ImgRC.Height);
 			if (tempRC.Contains(point.x, point.y))
 			{
 				ucb->SendLButtonDown();
 			}
+		}
+	}
+}
+
+void SceneManager::SendMouseMove(UINT nFlags, CPoint point)
+{
+	if (CurScene == nullptr) return;
+
+	for (auto& it : CurScene->infoStaticObj)
+	{
+		if (it == nullptr) continue;
+
+		Rect tempRC(it->x, it->y, it->ViewRC.Width, it->ViewRC.Height);
+		if (it->Objtype == eObjectType_Btn && tempRC.Contains(point.x, point.y))
+		{
+			Btn* o = reinterpret_cast<Btn*>(it);
+			o->ViewRC.Width = o->ImgRC.Width + 50;
+			o->ViewRC.Height = o->ImgRC.Height + 50;
+			printf("point : %d, %d\n", point.x, point.y);
+		}
+		else if (it->Objtype == eObjectType_Btn)
+		{
+			Btn* o = reinterpret_cast<Btn*>(it);
+			o->ViewRC.Width = o->ImgRC.Width;
+			o->ViewRC.Height = o->ImgRC.Height;
 		}
 	}
 }

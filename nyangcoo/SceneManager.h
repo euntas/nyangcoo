@@ -10,7 +10,7 @@ public:
 	Scene* GetCurScene();
 	static SceneManager& GetInstance();
 	void SendLButtonDown(UINT nFlags, CPoint point);
-	
+	void SendMouseMove(UINT nFlags, CPoint point);
 	void Init();
 	void Update(float Delta);
 	void Release();
