@@ -23,7 +23,7 @@ void CharacterGraphicsComponent::update(float Delta)
 
 	PlayerDeltaA += Delta;
 
-	if (parentObj->Objtype == eObjectType_Character || parentObj->Objtype == eObjectType_Enemy)
+	if (parentObj->Objtype == eObjectType_Player || parentObj->Objtype == eObjectType_Character || parentObj->Objtype == eObjectType_Enemy)
 	{
 		Character* p = reinterpret_cast<Character*>(parentObj);
 
@@ -67,7 +67,7 @@ void CharacterGraphicsComponent::render(Gdiplus::Graphics* pGraphics)
 
 	auto pImg = (AssetManager::GetInstance().GetImage(parentObj->AssetFileName)).lock();
 
-	if (parentObj->Objtype == eObjectType_Character || parentObj->Objtype == eObjectType_Enemy)
+	if (parentObj->Objtype == eObjectType_Player || parentObj->Objtype == eObjectType_Character || parentObj->Objtype == eObjectType_Enemy)
 	{
 		Character* p = reinterpret_cast<Character*>(parentObj);
 
@@ -105,7 +105,7 @@ void CharacterGraphicsComponent::InitAniUnits()
 {
 	CriticalSec a;
 
-	if (parentObj->Objtype == eObjectType_Character || parentObj->Objtype == eObjectType_Enemy)
+	if (parentObj->Objtype == eObjectType_Player || parentObj->Objtype == eObjectType_Character || parentObj->Objtype == eObjectType_Enemy)
 	{
 		Character* p = reinterpret_cast<Character*>(parentObj);
 

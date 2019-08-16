@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root name="moonlight" hp="1000" gold="0" speed="0" atk="0" atkSpeed="0.0" atkDist="0.0">
+	<TextureAtlas imagePath="player\\player_moonlight_cookie_stand.png" width="2048" height="512" frameNum="2" delta="300" rowNum="1" imgNumPerLine="2" state="0">
+	 <sprite h="245" w="343" y="0" x="0" n="player_monnlight_cookie_stand1.jpg.png"/>
+     <sprite h="245" w="343" y="0" x="343" n="player_monnlight_cookie_stand2.jpg.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_moonlight_cookie_skill.png" width="2048" height="512" frameNum="3" delta="300" rowNum="1" imgNumPerLine="3" state="1">
+	 <sprite h="237" w="343" y="0" x="0" n="player_monnlight_cookie_skill1.jpg.png"/>
+     <sprite h="237" w="343" y="0" x="343" n="player_monnlight_cookie_skill2.jpg.png"/>
+     <sprite h="237" w="343" y="0" x="686" n="player_monnlight_cookie_skill3.jpg.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_moonlight_cookie_damage.png" width="2048" height="512" frameNum="3" delta="300" rowNum="3" imgNumPerLine="1" state="2">
+	 <sprite h="300" w="343" y="0" x="0" n="player_monnlight_cookie_damage1.jpg.png"/>
+     <sprite h="300" w="343" y="320" x="0" n="player_monnlight_cookie_damage2.jpg.png"/>
+     <sprite h="320" w="343" y="640" x="0" n="player_monnlight_cookie_damage3.jpg.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_moonlight_cookie_death.png" width="2048" height="512" frameNum="5" delta="300" rowNum="1" imgNumPerLine="5" state="3">
+	 <sprite h="237" w="343" y="0" x="0" n="player_monnlight_cookie_death1.jpg.png"/>
+     <sprite h="237" w="343" y="0" x="343" n="player_monnlight_cookie_death2.jpg.png"/>
+     <sprite h="237" w="343" y="0" x="686" n="player_monnlight_cookie_death3.jpg.png"/>
+     <sprite h="237" w="343" y="0" x="1029" n="player_monnlight_cookie_death4.jpg.png"/>
+     <sprite h="237" w="343" y="0" x="1372" n="player_monnlight_cookie_death5.jpg.png"/>
+	</TextureAtlas>
+	
+</Root>

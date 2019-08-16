@@ -25,15 +25,7 @@ void GameScene::Init()
 
 	infoStaticObj.emplace_back(bg);
 
-	// TODO. 테스트용 나중에 진짜 본진 플레이어로 바꾸기
-	StaticObject* CommandPlayer = new StaticObject();
-	CommandPlayer->Objtype = eObjectType_None;
-	CommandPlayer->AssetFileName = TEXT("player_monnlight_cookie_stand.jpg.png");
-	CommandPlayer->rc = Rect(0, 0, 343, 237);
-	CommandPlayer->x = 0;
-	CommandPlayer->y = 250;
-
-	infoStaticObj.emplace_back(CommandPlayer);
+	
 
 	// 캐릭터 생성용 슬롯 버튼 만들기
 	MakeCharacterBtn* mcb = new MakeCharacterBtn("pistachio");
@@ -57,6 +49,14 @@ void GameScene::Init()
 	UpgradeCharacterBtn* ucb3 = new UpgradeCharacterBtn(mcb3);
 	ucb3->x = ucb2->x + 100;
 	infoStaticObj.emplace_back(ucb3);
+
+	// 플레이어 생성
+	Character* CommandPlayer = new Character(eObjectType_Player);
+	CommandPlayer->CharacterXmlFileName = "Asset\\player\\player_moonlight.xml";
+	XmlManager::GetInstance().ParseCharacterData(*CommandPlayer);
+	CommandPlayer->Init(new InputComponent(), new CharacterGraphicsComponent(CommandPlayer));
+
+	infoObj.emplace_back(CommandPlayer);
 
 	// 적 생성
 	Character* sampleEnemy = new Character(eObjectType_Enemy);
