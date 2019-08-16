@@ -12,6 +12,10 @@ void GameScene::Init()
 {
 	ClearAll();
 
+	gsGoldDeltaA = 0;
+	gold = 0;
+	gsGoldDelta = 500; // 골드 증가 초기 속도
+
 	bg = new StaticObject();
 	bg->Objtype = eObjectType_BGImage;
 	bg->AssetFileName = TEXT("bg_bamboo.png");
@@ -52,23 +56,6 @@ void GameScene::Init()
 	ucb3->x = ucb2->x + 100;
 	infoStaticObj.emplace_back(ucb3);
 
-	// 플레이어 생성
-	//Character* samplePlayer = new Character(eObjectType_Character);
-	//samplePlayer->CharacterXmlFileName = "Asset\\player\\player_pistachio.xml";
-	//XmlManager::GetInstance().ParseCharacterData(*samplePlayer);
-	//samplePlayer->Init(new InputComponent(), new CharacterGraphicsComponent(samplePlayer));
-
-	//infoObj.emplace_back(samplePlayer);
-
-	//Character* samplePlayer2 = new Character(eObjectType_Character);
-	//samplePlayer2->CharacterXmlFileName = "Asset\\player\\player_whitechoco.xml";
-	//XmlManager::GetInstance().ParseCharacterData(*samplePlayer2);
-	//samplePlayer2->Init(new InputComponent(), new CharacterGraphicsComponent(samplePlayer2));
-
-	//samplePlayer2->x += 150; // samplePlayer보다 앞서 가게 하기 위해
-
-	//infoObj.emplace_back(samplePlayer2);
-
 	// 적 생성
 	Character* sampleEnemy = new Character(eObjectType_Enemy);
 	sampleEnemy->CharacterXmlFileName = "Asset\\player\\player_muscle.xml";
@@ -99,14 +86,38 @@ void GameScene::Init()
 void GameScene::Update(float Delta)
 {
 	Scene::Update(Delta);
+
+	gsGoldDeltaA += Delta;
+
+	if (gsGoldDeltaA > gsGoldDelta)
+	{
+		gsGoldDeltaA = 0;
+
+		gold += 10;
+	}
 }
 
 void GameScene::Render(Graphics* pGraphics)
 {
 	Scene::Render(pGraphics);
+
+	printGold(gold, pGraphics);
 }
 
 void GameScene::Release()
 {
 	Scene::Release();
+}
+
+void GameScene::printGold(int _gold, Graphics* pGraphics)
+{
+	Gdiplus::Font F(L"Arial", 10, FontStyleBold, UnitMillimeter);
+
+	PointF P(10.0f, 10.0f);
+
+	SolidBrush B(Color(0, 0, 0));
+
+	wstring tempStr = L"골드 : " + std::to_wstring(_gold);
+
+	pGraphics->DrawString(tempStr.c_str(), -1, &F, P, &B);
 }

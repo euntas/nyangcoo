@@ -95,7 +95,13 @@ void MakeCharacterBtn::Release()
 void MakeCharacterBtn::SendLButtonDown()
 {
 	// TODO. 골드가 cost 이상일때만 실행해야 함.
-	SceneManager::GetInstance().GetCurScene()->infoObj.emplace_back(MakeCharacter());
+	GameScene* gs = reinterpret_cast<GameScene*>(SceneManager::GetInstance().GetCurScene());
+
+	if (gs->gold >= cost)
+	{
+		gs->gold -= cost;
+		SceneManager::GetInstance().GetCurScene()->infoObj.emplace_back(MakeCharacter());
+	}
 }
 
 Character* MakeCharacterBtn::MakeCharacter()
