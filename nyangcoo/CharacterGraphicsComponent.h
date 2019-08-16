@@ -10,7 +10,7 @@ public:
 	virtual void render(Gdiplus::Graphics* pGraphics);
 	
 	void Init();
-	
+	void ChangeMotion();
 	void InitAniUnits();	// (애니메이션 용) 이미지에서 프레임 단위로 AniUnits에 그림 저장
 
 	void InitParams();

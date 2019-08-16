@@ -24,7 +24,7 @@ void Scene::Update(float Delta)
 		if (it == nullptr) continue;
 
 		// 플레이어일 경우
-		if (it->Objtype == eObjectType_Character || it->Objtype == eObjectType_Enemy)
+		if (it->Objtype == eObjectType_Player || it->Objtype == eObjectType_Character || it->Objtype == eObjectType_Enemy)
 		{
 			Character* p = reinterpret_cast<Character*>(it);
 			p->Update(Delta);
@@ -52,7 +52,7 @@ void Scene::Render(Gdiplus::Graphics* pGraphics)
 	{
 		if (it == nullptr) continue;
 
-		if (it->Objtype == eObjectType_Character || it->Objtype == eObjectType_Enemy)
+		if (it->Objtype == eObjectType_Player || it->Objtype == eObjectType_Character || it->Objtype == eObjectType_Enemy)
 		{
 			Character* p = reinterpret_cast<Character*>(it);
 			p->Render(pGraphics);

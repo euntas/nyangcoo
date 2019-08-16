@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root name="kiwi" hp="100" gold="70" speed="0.5" atk="10" atkSpeed="250.0" atkDist="0.0">
+	<TextureAtlas imagePath="player\\player_kiwi_run.png" width="2048" height="512" frameNum="4" delta="150" rowNum="1" imgNumPerLine="4" state="0">
+	 <sprite h="197" w="245" y="0" x="0" n="player_kiwi_run1.jpg.png"/>
+     <sprite h="197" w="245" y="0" x="245" n="player_kiwi_run2.jpg.png"/>
+     <sprite h="197" w="245" y="0" x="490" n="player_kiwi_run3.jpg.png"/>
+     <sprite h="197" w="245" y="0" x="735" n="player_kiwi_run4.jpg.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_kiwi_hit.png" width="2048" height="512" frameNum="8" delta="150" rowNum="1" imgNumPerLine="8" state="1">
+	 <sprite h="220" w="230" y="0" x="0" n="player_kiwi_hit1.jpg.png"/>
+     <sprite h="220" w="230" y="0" x="230" n="player_kiwi_hit2.jpg.png"/>
+     <sprite h="220" w="230" y="0" x="460" n="player_kiwi_hit3.jpg.png"/>
+     <sprite h="220" w="230" y="0" x="690" n="player_kiwi_hit4.jpg.png"/>
+     <sprite h="220" w="230" y="0" x="920" n="player_kiwi_hit5.jpg.png"/>
+     <sprite h="220" w="230" y="0" x="1150" n="player_kiwi_hit6.jpg.png"/>
+     <sprite h="220" w="230" y="0" x="1380" n="player_kiwi_hit7.jpg.png"/>
+     <sprite h="220" w="230" y="0" x="1610" n="player_kiwi_hit8.jpg.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_kiwi_damage.png" width="2048" height="512" frameNum="2" delta="150" rowNum="1" imgNumPerLine="2" state="2">
+	 <sprite h="129" w="265" y="0" x="0" n="player_kiwi_damge1.jpg.png"/>
+     <sprite h="129" w="265" y="0" x="265" n="player_kiwi_damge2.jpg.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_kiwi_death.png" width="2048" height="512" frameNum="3" delta="150" rowNum="1" imgNumPerLine="3" state="3">
+	 <sprite h="200" w="449" y="0" x="0" n="player_kiwi_death1.jpg.png"/>
+     <sprite h="200" w="449" y="0" x="449" n="player_kiwi_death2.jpg.png"/>
+     <sprite h="200" w="449" y="0" x="898" n="player_kiwi_death3.jpg.png"/>
+	</TextureAtlas>
+	
+</Root>

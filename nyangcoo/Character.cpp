@@ -34,7 +34,7 @@ void Character::Init()
 	}
 	else
 	{
-		setCharacterPos(0, 250);
+		setCharacterPos(100, 500);
 	}
 	
 
@@ -62,6 +62,12 @@ void Character::Update(float Delta)
 	if (hp <= 0)
 	{
 		changeState(eState_Dead);
+	}
+
+	// 본진 캐릭터일 경우 체력이 200 이하로 줄어들면 damage 모션으로 바뀐다.
+	if (this->Objtype == eObjectType_Player && hp <= 500)
+	{
+		changeState(eState_Damage);
 	}
 
 	// 적들과 위치 비교
@@ -93,7 +99,7 @@ void Character::Update(float Delta)
 	{
 		changeState(eState_Hit);
 	}
-	else
+	else if (curState != eState_Damage)
 	{
 		changeState(eState_Run);
 	}
@@ -139,6 +145,18 @@ void Character::Update(float Delta)
 			}
 		}
 	}
+	else if (curState == eState_Damage)
+	{
+		if (DeltaA > speed)
+		{
+			DeltaA = 0;
+		}
+	}
+	else if (curState == eState_Dead)
+	{
+		Enable = false;
+	}
+
 	characterGraphics_ = reinterpret_cast<CharacterGraphicsComponent*>(graphics_);
 	characterGraphics_->update(Delta);
 }
@@ -176,9 +194,14 @@ void Character::setCharacterPos(int x, int y)
 
 void Character::changeState(EState state)
 {
+	CriticalSec cs;
+
 	if (curState == eState_Dead)
+		return;
+	if (curState == state)
 		return;
 
 	curState = state;
+	characterGraphics_->ChangeMotion();
 	AssetFileName = CharacterAssetFileName[curState];
 }

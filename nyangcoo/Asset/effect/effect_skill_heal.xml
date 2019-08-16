@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+	<TextureAtlas imagePath="effect\\effect_skill_heal.png" width="1024" height="256" frameNum="8" delta="150" rowNum="1" imgNumPerLine="8" effectId="0">
+	 <sprite h="170" w="185" y="0" x="0" n="effect_skill_heal1.png"/>
+     <sprite h="170" w="185" y="0" x="185" n="effect_skill_heal2.png"/>
+     <sprite h="170" w="185" y="0" x="370" n="effect_skill_heal3.png"/>
+     <sprite h="170" w="185" y="0" x="555" n="effect_skill_heal4.png"/>
+     <sprite h="170" w="185" y="0" x="740" n="effect_skill_heal5.png"/>
+     <sprite h="170" w="185" y="0" x="925" n="effect_skill_heal6.png"/>
+     <sprite h="170" w="185" y="0" x="1110" n="effect_skill_heal7.png"/>
+     <sprite h="170" w="185" y="0" x="1295" n="effect_skill_heal8.png"/>
+	</TextureAtlas>
+</Root>

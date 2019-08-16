@@ -13,6 +13,8 @@ public:
 
 	void SendLButtonDown();
 
+	void printCost(Gdiplus::Graphics* pGraphics);
+
 	MakeCharacterBtn* parentMakeBtn;
 
 	int upgradeCost;

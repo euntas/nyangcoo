@@ -13,7 +13,7 @@ UpgradeCharacterBtn::UpgradeCharacterBtn(MakeCharacterBtn* parent)
 	ViewRC = ImgRC;
 	upgradeCost = 100;
 
-	std::string fn = "slot\\up_slot_" + std::to_string(upgradeCost) + ".png";
+	std::string fn = "slot\\up_slot.png";
 	this->AssetFileName.assign(fn.begin(), fn.end());
 }
 
@@ -37,6 +37,8 @@ void UpgradeCharacterBtn::Render(Gdiplus::Graphics* pGraphics)
 	Rect tempRC(x, y, ViewRC.Width, ViewRC.Height);
 	pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X, ImgRC.Y, ImgRC.Width, ImgRC.Height, Gdiplus::Unit::UnitPixel,
 		nullptr, 0, nullptr);
+
+	printCost(pGraphics);
 }
 
 void UpgradeCharacterBtn::Release()
@@ -46,6 +48,28 @@ void UpgradeCharacterBtn::Release()
 
 void UpgradeCharacterBtn::SendLButtonDown()
 {
-	// TODO. 골드가 upgradeCost 이상일때만 실행해야 함.
-	parentMakeBtn->atk += 50;
+	GameScene* gs = reinterpret_cast<GameScene*>(SceneManager::GetInstance().GetCurScene());
+
+	if (gs->gold >= upgradeCost)
+	{
+		gs->gold -= upgradeCost;
+
+		parentMakeBtn->atk += 50;
+
+		// 코스트 증가시킴
+		upgradeCost += 50;
+	}
+}
+
+void UpgradeCharacterBtn::printCost(Graphics* pGraphics)
+{
+	Gdiplus::Font F(L"Arial", 5, FontStyleBold, UnitMillimeter);
+
+	PointF P(x + 30, y + 8);
+
+	SolidBrush B(Color(0, 0, 0));
+
+	wstring tempStr = L"" + std::to_wstring(upgradeCost);
+
+	pGraphics->DrawString(tempStr.c_str(), -1, &F, P, &B);
 }
