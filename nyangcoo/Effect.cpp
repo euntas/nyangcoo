@@ -14,19 +14,19 @@ void Effect::Init(EffectGraphicsComponent* graphics)
 	Effect::setEffectPos(700, 420);
 
 	effectGraphics_ = reinterpret_cast<EffectGraphicsComponent*>(graphics_);
-	effectGraphics_->Init(frameWidth, frameHeight, frameNum, frameDelta, spriteRowNum, imgNumPerLine);
+	effectGraphics_->Init();
 }
 
 void Effect::Update(float Delta)
 {
 	effectGraphics_ = reinterpret_cast<EffectGraphicsComponent*>(graphics_);
-	effectGraphics_->update(this, Delta);
+	effectGraphics_->update(Delta);
 }
 
 void Effect::Render(Gdiplus::Graphics* pGraphics)
 {
 	effectGraphics_ = reinterpret_cast<EffectGraphicsComponent*>(graphics_);
-	effectGraphics_->render(this, pGraphics);
+	effectGraphics_->render(pGraphics);
 }
 
 void Effect::Release()
