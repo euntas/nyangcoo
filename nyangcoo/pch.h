@@ -42,6 +42,8 @@
 #include "LoadGameScene.h"
 #include "ChapterSelectScene.h"
 #include "CookieSelectScene.h"
+#include "ScriptScene.h"
+
 
 #include "XmlManager.h"
 #include "AssetManager.h"

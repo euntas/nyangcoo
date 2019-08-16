@@ -15,7 +15,8 @@ void GameScene::Init()
 	bg = new StaticObject();
 	bg->Objtype = eObjectType_BGImage;
 	bg->AssetFileName = TEXT("bg_bamboo.png");
-	bg->rc = Rect(0, 0, 1420, 672);
+	bg->ImgRC = Rect(0, 0, 1420, 672);
+	bg->ViewRC = bg->ImgRC;
 
 	infoStaticObj.emplace_back(bg);
 
@@ -23,7 +24,8 @@ void GameScene::Init()
 	StaticObject* CommandPlayer = new StaticObject();
 	CommandPlayer->Objtype = eObjectType_None;
 	CommandPlayer->AssetFileName = TEXT("player_monnlight_cookie_stand.jpg.png");
-	CommandPlayer->rc = Rect(0, 0, 343, 237);
+	CommandPlayer->ImgRC = Rect(0, 0, 343, 237);
+	CommandPlayer->ViewRC = CommandPlayer->ImgRC;
 	CommandPlayer->x = 0;
 	CommandPlayer->y = 250;
 
@@ -90,7 +92,8 @@ void GameScene::Init()
 	//PopUp = new StaticObject();
 	//popUp->Objtype = eObjectType_PopUp;
 	//popUp->AssetFileName = TEXT("popup_all.png");
-	popUp->rc = Rect(0, 0, 250, 198);
+	popUp->ImgRC = Rect(0, 0, 250, 198);
+	popUp->ViewRC = popUp->ImgRC;
 
 	infoStaticObj.emplace_back(popUp);
 
