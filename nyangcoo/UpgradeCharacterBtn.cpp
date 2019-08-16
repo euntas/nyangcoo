@@ -9,8 +9,8 @@ UpgradeCharacterBtn::UpgradeCharacterBtn(MakeCharacterBtn* parent)
 	this->x = parent->x;
 	this->y = parent->y - 34;
 
-	this->rc = Gdiplus::Rect(0, 0, 85, 34);
-
+	this->ImgRC = Gdiplus::Rect(0, 0, 85, 34);
+	ViewRC = ImgRC;
 	upgradeCost = 100;
 
 	std::string fn = "slot\\up_slot.png";
@@ -34,8 +34,8 @@ void UpgradeCharacterBtn::Render(Gdiplus::Graphics* pGraphics)
 
 	auto pImg = (AssetManager::GetInstance().GetImage(AssetFileName)).lock();
 
-	Rect tempRC(x, y, rc.Width, rc.Height);
-	pGraphics->DrawImage(pImg.get(), tempRC, rc.X, rc.Y, rc.Width, rc.Height, Gdiplus::Unit::UnitPixel,
+	Rect tempRC(x, y, ViewRC.Width, ViewRC.Height);
+	pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X, ImgRC.Y, ImgRC.Width, ImgRC.Height, Gdiplus::Unit::UnitPixel,
 		nullptr, 0, nullptr);
 
 	printCost(pGraphics);

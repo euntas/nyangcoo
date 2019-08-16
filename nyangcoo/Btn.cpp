@@ -31,6 +31,11 @@ void Btn::SendLButtonDown()
 		SceneManager::GetInstance().LoadScene(CString("Scene_CookieSelect"));
 		SceneManager::GetInstance().Init();
 		break;
+	case eScene_Script:
+		SceneManager::GetInstance().LoadScene(CString("Scene_Script"));
+		SceneManager::GetInstance().Init();
+
+		break;
 	case eScene_Exit:
 		//PostQuitMessage(0);
 		//TODO. 추후 종료 확인 창을 띄우는 작업을 해야함.

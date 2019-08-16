@@ -21,11 +21,10 @@ void GameScene::Init()
 	bg = new StaticObject();
 	bg->Objtype = eObjectType_BGImage;
 	bg->AssetFileName = TEXT("bg_bamboo.png");
-	bg->rc = Rect(0, 0, 1420, 672);
+	bg->ImgRC = Rect(0, 0, 1420, 672);
+	bg->ViewRC = bg->ImgRC;
 
 	infoStaticObj.emplace_back(bg);
-
-	
 
 	// 캐릭터 생성용 슬롯 버튼 만들기
 	MakeCharacterBtn* mcb = new MakeCharacterBtn("pistachio");
@@ -96,8 +95,9 @@ void GameScene::Init()
 	//PopUp = new StaticObject();
 	//popUp->Objtype = eObjectType_PopUp;
 	//popUp->AssetFileName = TEXT("popup_all.png");
-	popUp->rc = Rect(0, 0, 250, 198);
 	popUp->Visible = false;
+	popUp->ImgRC = Rect(0, 0, 250, 198);
+	popUp->ViewRC = popUp->ImgRC;
 
 	infoStaticObj.emplace_back(popUp);
 
@@ -105,7 +105,8 @@ void GameScene::Init()
 	Btn* ExitBtn = new Btn();
 	ExitBtn->ID = eScene_Exit;
 	ExitBtn->AssetFileName = TEXT("title_btn_04.png");
-	ExitBtn->rc = Rect(0, 0, 236, 72);
+	ExitBtn->ImgRC = Rect(0, 0, 236, 72);
+	ExitBtn->ViewRC = ExitBtn->ImgRC;
 	ExitBtn->x = 1200;
 	ExitBtn->y = 5;
 
@@ -114,7 +115,8 @@ void GameScene::Init()
 	Btn* LoadGameBtn = new Btn();
 	LoadGameBtn->ID = eScene_LoadGame;
 	LoadGameBtn->AssetFileName = TEXT("title_btn_02.png");
-	LoadGameBtn->rc = Rect(0, 0, 236, 72);
+	LoadGameBtn->ImgRC = Rect(0, 0, 236, 72);
+	LoadGameBtn->ViewRC = LoadGameBtn->ImgRC;
 	LoadGameBtn->x = 1200;
 	LoadGameBtn->y = 100;
 
@@ -167,20 +169,20 @@ void GameScene::printTitle(Gdiplus::Graphics* pGraphics)
 	StaticObject* titleBg = new StaticObject();
 	titleBg->Objtype = eObjectType_None;
 	titleBg->AssetFileName = TEXT("title_stage_bg.png");
-	titleBg->rc = Rect(0, 0, 350, 86);
-	titleBg->x = 550;
-	titleBg->y = 10;
+	titleBg->ImgRC = Rect(0, 0, 350, 86);
+	titleBg->ViewRC = titleBg->ImgRC;
+	titleBg->ViewRC.X = 550;
+	titleBg->ViewRC.Y = 10;
 
 	auto pImg = (AssetManager::GetInstance().GetImage(titleBg->AssetFileName)).lock();
 
-	Rect tempRC(titleBg->x, titleBg->y, titleBg->rc.Width, titleBg->rc.Height);
-	pGraphics->DrawImage(pImg.get(), tempRC, titleBg->rc.X, titleBg->rc.Y, titleBg->rc.Width, titleBg->rc.Height, Gdiplus::Unit::UnitPixel,
+	pGraphics->DrawImage(pImg.get(), titleBg->ViewRC, titleBg->ImgRC.X, titleBg->ImgRC.Y, titleBg->ImgRC.Width, titleBg->ImgRC.Height, Gdiplus::Unit::UnitPixel,
 		nullptr, 0, nullptr);
 
 	// 글자 출력
 	Gdiplus::Font F(L"Arial", 6, FontStyleBold, UnitMillimeter);
 
-	PointF P(titleBg->x + 35, titleBg->y + 15);
+	PointF P(titleBg->ViewRC.X + 35, titleBg->ViewRC.Y + 15);
 
 	SolidBrush B(Color(255, 255, 255));
 

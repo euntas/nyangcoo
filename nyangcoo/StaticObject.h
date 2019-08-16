@@ -12,7 +12,9 @@ public:
 	virtual void Release();
 
 	std::wstring AssetFileName;
-	Gdiplus::Rect rc;
+	Gdiplus::Rect ImgRC;
+	Gdiplus::Rect ViewRC;
+	
 	EObjectType Objtype;
 	bool Visible;
 

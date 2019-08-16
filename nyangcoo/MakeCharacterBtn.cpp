@@ -40,7 +40,7 @@ MakeCharacterBtn::MakeCharacterBtn(std::string characterName)
 	this->x = 50;
 	this->y = 575;
 
-	this->rc = Gdiplus::Rect(0, 0, 85, 99);
+	this->ImgRC = Gdiplus::Rect(0, 0, 85, 99);
 
 	cost = 150;
 
@@ -53,7 +53,8 @@ MakeCharacterBtn::MakeCharacterBtn(std::string characterName)
 
 	characterImg = new StaticObject();
 	characterImg->AssetFileName.assign(imgFilename.begin(), imgFilename.end());
-	characterImg->rc = Gdiplus::Rect(0, 0, 57, 64);
+	characterImg->ImgRC = Gdiplus::Rect(0, 0, 57, 64);
+	characterImg->ViewRC = characterImg->ImgRC;
 	characterImg->x = 12;
 	characterImg->y = 13;
 		
@@ -80,8 +81,8 @@ void MakeCharacterBtn::Render(Gdiplus::Graphics* pGraphics)
 
 	auto pImg = (AssetManager::GetInstance().GetImage(makeSlotImg->AssetFileName)).lock();
 
-	Rect tempRC(x, y, rc.Width, rc.Height);
-	pGraphics->DrawImage(pImg.get(), tempRC, rc.X, rc.Y, rc.Width, rc.Height, Gdiplus::Unit::UnitPixel,
+	Rect tempRC(x, y, ImgRC.Width, ImgRC.Height);
+	pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X, ImgRC.Y, ImgRC.Width, ImgRC.Height, Gdiplus::Unit::UnitPixel,
 		nullptr, 0, nullptr);
 
 	// 캐릭터 그림
@@ -90,8 +91,8 @@ void MakeCharacterBtn::Render(Gdiplus::Graphics* pGraphics)
 
 	auto pImg2 = (AssetManager::GetInstance().GetImage(characterImg->AssetFileName)).lock();
 	
-	Rect tempRC2(x + characterImg->x, y + characterImg->y, characterImg->rc.Width, characterImg->rc.Height);
-	pGraphics->DrawImage(pImg2.get(), tempRC2, characterImg->rc.X, characterImg->rc.Y, characterImg->rc.Width, characterImg->rc.Height, Gdiplus::Unit::UnitPixel,
+	Rect tempRC2(x + characterImg->x, y + characterImg->y, characterImg->ViewRC.Width, characterImg->ViewRC.Height);
+	pGraphics->DrawImage(pImg2.get(), tempRC2, characterImg->ImgRC.X, characterImg->ImgRC.Y, characterImg->ImgRC.Width, characterImg->ImgRC.Height, Gdiplus::Unit::UnitPixel,
 		nullptr, 0, nullptr);
 }
 

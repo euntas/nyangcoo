@@ -12,5 +12,7 @@ public:
 	virtual void Render(Gdiplus::Graphics* pGraphics);
 	virtual void Release();
 
+	void makeBtn(EScene ID);
+
 	StaticObject* bg;
 };

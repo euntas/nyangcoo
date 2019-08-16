@@ -211,6 +211,7 @@
     <ClInclude Include="LoadGameScene.h" />
     <ClInclude Include="MakeCharacterBtn.h" />
     <ClInclude Include="PopUp.h" />
+    <ClInclude Include="ScriptScene.h" />
     <ClInclude Include="StartScene.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="nyangcoo.h" />
@@ -242,6 +243,7 @@
     <ClCompile Include="LoadGameScene.cpp" />
     <ClCompile Include="MakeCharacterBtn.cpp" />
     <ClCompile Include="PopUp.cpp" />
+    <ClCompile Include="ScriptScene.cpp" />
     <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="nyangcoo.cpp" />
