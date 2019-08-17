@@ -26,6 +26,7 @@ void CookieSelectScene::Init()
 	bg->Objtype = eObjectType_BGImage;
 	bg->AssetFileName = TEXT("CookieSelect_bg.png");
 	bg->ImgRC = Rect(0, 0, 1420, 672);
+	bg->ViewRC = bg->ImgRC;
 
 	Btn* GameStartBtn = new Btn();
 	GameStartBtn->ID = eScene_Game;

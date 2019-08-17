@@ -34,7 +34,7 @@ void Character::Init()
 	}
 	else
 	{
-		setCharacterPos(100, 500);
+		setCharacterPos(172, 500);
 	}
 	
 
