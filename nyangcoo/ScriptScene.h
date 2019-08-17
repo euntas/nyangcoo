@@ -12,6 +12,8 @@ public:
 	virtual void Render(Gdiplus::Graphics* pGraphics);
 	virtual void Release();
 
+	void printChoice(Gdiplus::Graphics* pGraphics);
+
 	StaticObject* bg;
 	StaticObject* ChapterName;
 	StaticObject* ScriptText;

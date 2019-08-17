@@ -49,6 +49,23 @@ void CookieSelectScene::Init()
 	infoStaticObj.emplace_back(RefreshBtn);
 
 	makeBtn(eScene_Game);
+
+	selectChar("selected_kiwi");
+}
+
+void CookieSelectScene::selectChar(std::string name)
+{
+	std::string charFilename = "slot_" + name + ".png";
+
+	StaticObject* Selected_Kiwi = new StaticObject();
+	Selected_Kiwi->Objtype = eObjectType_None;
+	Selected_Kiwi->AssetFileName.assign(charFilename.begin(), charFilename.end());
+	Selected_Kiwi->ImgRC = Rect(0, 0, 203, 220);
+	Selected_Kiwi->ViewRC = Selected_Kiwi->ImgRC;
+	Selected_Kiwi->x = 40;
+	Selected_Kiwi->y = 40;
+
+	infoStaticObj.emplace_back(Selected_Kiwi);
 }
 
 void CookieSelectScene::Update(float Delta)

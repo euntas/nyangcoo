@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root name="macho" hp="250" gold="0" speed="50" atk="10" atkSpeed="250.0" atkDist="0.0">
+	<TextureAtlas imagePath="player\\player_macho_run.png" width="2048" height="512" frameNum="3" delta="150" rowNum="1" imgNumPerLine="3" state="0">
+	 <sprite h="50" w="66" y="0" x="0" n="player_macho_run1.png"/>
+     <sprite h="50" w="66" y="0" x="66" n="player_macho_run2.png"/>
+     <sprite h="50" w="66" y="0" x="132" n="player_macho_run3.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_macho_hit.png" width="2048" height="512" frameNum="4" delta="150" rowNum="1" imgNumPerLine="4" state="1">
+	 <sprite h="56" w="67" y="0" x="0" n="player_macho_hit1.png"/>
+     <sprite h="56" w="67" y="0" x="67" n="player_macho_hit2.png"/>
+     <sprite h="56" w="67" y="0" x="134" n="player_macho_hit3.png"/>
+     <sprite h="56" w="67" y="0" x="201" n="player_macho_hit4.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_macho_damage.png" width="2048" height="512" frameNum="0" delta="150" rowNum="0" imgNumPerLine="0" state="2">
+	 
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_macho_death.png" width="2048" height="512" frameNum="3" delta="150" rowNum="1" imgNumPerLine="3" state="3">
+	 <sprite h="55" w="55" y="0" x="0" n="player_macho_death1.png"/>
+     <sprite h="55" w="55" y="0" x="55" n="player_macho_death2.png"/>
+     <sprite h="55" w="55" y="0" x="110" n="player_macho_death3.png"/>
+	</TextureAtlas>
+	
+</Root>
