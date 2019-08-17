@@ -37,29 +37,13 @@ void StaticObject::Render(Gdiplus::Graphics* pGraphics)
 		{
 			GameScene* gs = reinterpret_cast<GameScene*>(SceneManager::GetInstance().GetCurScene());
 			Gdiplus::Rect tempRC = gs->bg->ViewRC;
-
-			int tempX = ImgRC.X + SceneManager::GetInstance().CameraPt.X;
-			if (tempX < 0)
-			{
-				tempRC.X = 0;
-				pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X, ImgRC.Y, gs->bg->ViewRC.Width, gs->bg->ViewRC.Height, Gdiplus::Unit::UnitPixel,
+				
+			pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X, ImgRC.Y, gs->bg->ViewRC.Width, gs->bg->ViewRC.Height, Gdiplus::Unit::UnitPixel,
 					nullptr, 0, nullptr);
-			}
-			else if (tempX > gs->bg->ImgRC.Width)
-			{
-				tempRC.X = gs->bg->ImgRC.Width;
-				pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X, ImgRC.Y, gs->bg->ViewRC.Width, gs->bg->ViewRC.Height, Gdiplus::Unit::UnitPixel,
-					nullptr, 0, nullptr);
-			}
-			else
-			{
-				pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X + SceneManager::GetInstance().CameraPt.X, ImgRC.Y, gs->bg->ViewRC.Width, gs->bg->ViewRC.Height, Gdiplus::Unit::UnitPixel,
-					nullptr, 0, nullptr);
-			}
 		}
 		else
 		{
-			pGraphics->DrawImage(pImg.get(), SceneManager::GetInstance().ViewRC, ImgRC.X, ImgRC.Y, ImgRC.Width, ImgRC.Height, Gdiplus::Unit::UnitPixel,
+			pGraphics->DrawImage(pImg.get(), ViewRC, ImgRC.X, ImgRC.Y, ViewRC.Width, ViewRC.Height, Gdiplus::Unit::UnitPixel,
 				nullptr, 0, nullptr);
 		}
 	}

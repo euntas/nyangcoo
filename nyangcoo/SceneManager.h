@@ -11,6 +11,7 @@ public:
 	static SceneManager& GetInstance();
 	void SendLButtonDown(UINT nFlags, CPoint point);
 	void SendMouseMove(UINT nFlags, CPoint point);
+	void SendKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 	void Init();
 	void Update(float Delta);
 	void Release();

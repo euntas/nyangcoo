@@ -148,3 +148,39 @@ void SceneManager::Release()
 
 	CurScene->Release();
 }
+
+void SceneManager::SendKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	if (CurScene->Name == "Scene_Game")
+	{
+		GameScene* gs = reinterpret_cast<GameScene*>(GetCurScene());
+
+		int moveX = 10;
+		bool flag = false;
+
+		if (GetAsyncKeyState(VK_LEFT) & 0x8001)
+		{
+			flag = true;
+		}
+		else if (GetAsyncKeyState(VK_RIGHT) & 0x8001)
+		{
+			flag = true;
+			moveX *= -1;
+		}
+
+		// 키가 눌린 경우 배경화면과 캐릭터의 x값을 변경해준다.
+		if (flag)
+		{
+			int tempx = gs->bg->ImgRC.X + moveX;
+			if (tempx >= gs->bg->ViewRC.X && tempx <= gs->bg->ViewRC.Width)
+			{
+				gs->bg->ImgRC.X += moveX;
+
+				for (auto& it : gs->infoObj)
+				{
+					it->x -= moveX;
+				}
+			}
+		}
+	}
+}

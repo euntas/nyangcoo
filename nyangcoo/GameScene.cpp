@@ -125,15 +125,6 @@ void GameScene::Init()
 
 void GameScene::Update(float Delta)
 {
-	if (GetAsyncKeyState(VK_LEFT) & 0x8001)
-	{
-		SceneManager::GetInstance().CameraPt.X += 1;
-	}
-	else if (GetAsyncKeyState(VK_RIGHT) & 0x8001)
-	{
-		SceneManager::GetInstance().CameraPt.X -= 1;
-	}
-
 	Scene::Update(Delta);
 
 	gsGoldDeltaA += Delta;
