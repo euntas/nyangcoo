@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root name="titan" hp="1000" gold="0" speed="50" atk="30" atkSpeed="350.0" atkDist="0.0">
+	<TextureAtlas imagePath="player\\player_titan_run.png" width="2048" height="512" frameNum="6" delta="150" rowNum="1" imgNumPerLine="6" state="0">
+	 <sprite h="300" w="140" y="0" x="0" n="player_titan_run1.png"/>
+     <sprite h="300" w="140" y="0" x="140" n="player_titan_run2.png"/>
+     <sprite h="300" w="140" y="0" x="280" n="player_titan_run3.png"/>
+     <sprite h="300" w="140" y="0" x="420" n="player_titan_run4.png"/>
+     <sprite h="300" w="140" y="0" x="560" n="player_titan_run5.png"/>
+     <sprite h="300" w="140" y="0" x="700" n="player_titan_run6.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_titan_hit.png" width="2048" height="512" frameNum="7" delta="150" rowNum="1" imgNumPerLine="7" state="1">
+	 <sprite h="300" w="300" y="0" x="0" n="player_titan_hit1.png"/>
+     <sprite h="300" w="300" y="0" x="300" n="player_titan_hit2.png"/>
+     <sprite h="300" w="300" y="0" x="300" n="player_titan_hit3.png"/>
+     <sprite h="300" w="300" y="0" x="300" n="player_titan_hit4.png"/>
+     <sprite h="300" w="300" y="0" x="600" n="player_titan_hit5.png"/>
+     <sprite h="300" w="300" y="0" x="900" n="player_titan_hit6.png"/>
+     <sprite h="300" w="300" y="0" x="1200" n="player_titan_hit7.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_titan_death.png" width="2048" height="512" frameNum="3" delta="150" rowNum="1" imgNumPerLine="3" state="2">
+	 <sprite h="300" w="300" y="0" x="0" n="player_titan_death1.png"/>
+     <sprite h="300" w="300" y="0" x="300" n="player_titan_death2.png"/>
+     <sprite h="300" w="300" y="0" x="600" n="player_titan_death3.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_titan_death.png" width="2048" height="512" frameNum="3" delta="150" rowNum="1" imgNumPerLine="3" state="3">
+	 <sprite h="300" w="300" y="0" x="0" n="player_titan_death1.png"/>
+     <sprite h="300" w="300" y="0" x="300" n="player_titan_death2.png"/>
+     <sprite h="300" w="300" y="0" x="600" n="player_titan_death3.png"/>
+	</TextureAtlas>
+	
+</Root>

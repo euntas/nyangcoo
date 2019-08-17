@@ -79,7 +79,14 @@ void GameScene::Init()
 	XmlManager::GetInstance().ParseCharacterData(*sampleEnemy);
 	sampleEnemy->Init(new InputComponent(), new CharacterGraphicsComponent(sampleEnemy));
 
+	Character* sampleEnemy2 = new Character(eObjectType_Enemy);
+	sampleEnemy2->CharacterXmlFileName = "Asset\\player\\player_titan.xml";
+	XmlManager::GetInstance().ParseCharacterData(*sampleEnemy2);
+	sampleEnemy2->Init(new InputComponent(), new CharacterGraphicsComponent(sampleEnemy2));
+	sampleEnemy2->bleft = true;
+
 	infoObj.emplace_back(sampleEnemy);
+	infoObj.emplace_back(sampleEnemy2);
 
 	// 테스트용 이펙트
 	Effect* ef = new Effect();
