@@ -210,6 +210,7 @@
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="LoadGameScene.h" />
     <ClInclude Include="MakeCharacterBtn.h" />
+    <ClInclude Include="PlayerSkillBtn.h" />
     <ClInclude Include="PopUp.h" />
     <ClInclude Include="ScriptScene.h" />
     <ClInclude Include="StartScene.h" />
@@ -242,6 +243,7 @@
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="LoadGameScene.cpp" />
     <ClCompile Include="MakeCharacterBtn.cpp" />
+    <ClCompile Include="PlayerSkillBtn.cpp" />
     <ClCompile Include="PopUp.cpp" />
     <ClCompile Include="ScriptScene.cpp" />
     <ClCompile Include="StartScene.cpp" />
