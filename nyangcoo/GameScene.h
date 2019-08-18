@@ -29,7 +29,6 @@ public:
 
 	Character* CommandPlayer;	// TODO. 스테이지 정보에서 가져와야 함
 
-	// TODO. 나중에 스테이지에서 정보 가져오고 여기 변수는 지워야 함.
-	int maxGold = 1500;
+	int maxGold;
 };
 

@@ -17,6 +17,6 @@ public:
 	StaticObject* btnImg;
 	Effect* skillEffect;
 
-	int CurStageID;
+	int CurID;
 };
 

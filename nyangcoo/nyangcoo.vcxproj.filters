@@ -162,6 +162,9 @@
     <ClInclude Include="PlayerSkillBtn.h">
       <Filter>헤더 파일\UI</Filter>
     </ClInclude>
+    <ClInclude Include="GameStage.h">
+      <Filter>헤더 파일\Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainFrm.cpp">
@@ -250,6 +253,9 @@
     </ClCompile>
     <ClCompile Include="PlayerSkillBtn.cpp">
       <Filter>소스 파일\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStage.cpp">
+      <Filter>소스 파일\Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

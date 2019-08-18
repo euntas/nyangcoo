@@ -59,8 +59,11 @@ enum ECharacter {
 	eCharacter_Cnt
 };
 
+class GameStage;
 class InputComponent;
 class Object;
 class Character;
 class Effect;
 class GraphicsComponent;
+
+#define MAX_WAVE_NUM 4

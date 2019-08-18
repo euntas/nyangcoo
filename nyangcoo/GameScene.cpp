@@ -17,13 +17,13 @@ void GameScene::Init()
 	gold = 1000;
 	gsGoldDelta = 500; // 골드 증가 초기 속도
 
-	// 배경 그림 깔기
-	bg = new StaticObject();
-	bg->Objtype = eObjectType_BGImage;
-	bg->AssetFileName = TEXT("bg_bamboo2.png");
-	bg->ImgRC = Rect(0, 0, 2840, 672);
-	bg->ViewRC = Rect(0, 0, 1420, 672);
+	// 게임 매니저 초기화
+	GameManager::GetInstance().Init(0);
 
+	maxGold = GameManager::GetInstance().curStage->maxGold;
+
+	// 배경 그림 깔기
+	bg = GameManager::GetInstance().curStage->bg;
 	infoStaticObj.emplace_back(bg);
 
 	// 캐릭터 생성용 슬롯 버튼 만들기
@@ -43,47 +43,16 @@ void GameScene::Init()
 			ucb[n]->x = ucb[n - 1]->x + 100;
 		infoStaticObj.emplace_back(ucb[n]);
 	}
-
+	
 	// 플레이어 생성
-	CommandPlayer = new Character(eObjectType_Player);
-	CommandPlayer->CharacterXmlFileName = "Asset\\player\\player_moonlight.xml";
-	XmlManager::GetInstance().ParseCharacterData(*CommandPlayer);
-	CommandPlayer->Init(new InputComponent(), new CharacterGraphicsComponent(CommandPlayer));
-
-	infoObj.emplace_back(CommandPlayer);
+	CommandPlayer = GameManager::GetInstance().CommandPlayer;
+	infoObj.emplace_back(GameManager::GetInstance().CommandPlayer);
 
 	// 적 생성
-	Character* sampleEnemy = new Character(eObjectType_Enemy);
-	sampleEnemy->CharacterXmlFileName = "Asset\\player\\player_muscle.xml";
-	XmlManager::GetInstance().ParseCharacterData(*sampleEnemy);
-	sampleEnemy->Init(new InputComponent(), new CharacterGraphicsComponent(sampleEnemy));
-
-	Character* sampleEnemy2 = new Character(eObjectType_Enemy);
-	sampleEnemy2->CharacterXmlFileName = "Asset\\player\\player_titan.xml";
-	XmlManager::GetInstance().ParseCharacterData(*sampleEnemy2);
-	sampleEnemy2->Init(new InputComponent(), new CharacterGraphicsComponent(sampleEnemy2));
-	sampleEnemy2->bleft = true;
-
-	Character* sampleEnemy3 = new Character(eObjectType_Enemy);
-	sampleEnemy3->CharacterXmlFileName = "Asset\\player\\player_titan.xml";
-	XmlManager::GetInstance().ParseCharacterData(*sampleEnemy3);
-	sampleEnemy3->Init(new InputComponent(), new CharacterGraphicsComponent(sampleEnemy3));
-	sampleEnemy3->x = sampleEnemy2->x + 600;
-	sampleEnemy3->bleft = true;
-
-	infoObj.emplace_back(sampleEnemy);
-	infoObj.emplace_back(sampleEnemy2);
-	infoObj.emplace_back(sampleEnemy3);
-
-	// 테스트용 이펙트
-	Effect* ef = new Effect();
-	ef->EffectXmlFileName = "Asset\\effect\\effect_fox_hit.xml";
-	XmlManager::GetInstance().ParseEffectData(*ef);
-	ef->x = 700; 
-	ef->y = 420;
-	ef->Init(new EffectGraphicsComponent(ef));
-
-	infoObj.emplace_back(ef);
+	for (auto& it : GameManager::GetInstance().curEnemyList)
+	{
+		infoObj.emplace_back(it);
+	}
 
 	// TODO. 나중에 수정필요. 팝업 부분
 	PopUp* popUp = new PopUp(ePopup_close);
@@ -157,8 +126,18 @@ void GameScene::InitGoldBar()
 
 void GameScene::Update(float Delta)
 {
+	// 게임이 종료되면 씬 전환
+	if (GameManager::GetInstance().IsGameEnd())
+	{
+		SceneManager::GetInstance().LoadScene(CString("Scene_Script"));
+		SceneManager::GetInstance().Init();
+
+		return;
+	}
+
 	Scene::Update(Delta);
 
+	// 골드 관련 코드
 	gsGoldDeltaA += Delta;
 
 	if (gsGoldDeltaA > gsGoldDelta)
@@ -184,6 +163,28 @@ void GameScene::Update(float Delta)
 		else
 			goldPart[i]->AssetFileName = TEXT("goldbar\\goldbar_unit_brown.png");
 	}
+
+	// 죽은애들 처리
+	for (Object* ch : infoObj)
+	{
+		Character* c = reinterpret_cast<Character*>(ch);
+		if (c->Enable == false && c->Visible == false)
+		{
+			ch = nullptr;
+		}
+	}
+
+	// wave관련 코드
+	if (GameManager::GetInstance().IsAllEnemyDead())
+	{
+		GameManager::GetInstance().ChangeWave();
+
+		for (auto& it : GameManager::GetInstance().curEnemyList)
+		{
+			infoObj.emplace_back(it);
+		}
+	}
+
 }
 
 void GameScene::Render(Graphics* pGraphics)
@@ -269,8 +270,8 @@ void GameScene::printTitle(Gdiplus::Graphics* pGraphics)
 
 	wstring tempStr = L"프롤로그 마녀의 훈련장 \n";
 	// TODO. 나중에 진짜 수치로 바꿔주기
-	tempStr = tempStr + L"    wave " + std::to_wstring(1);
-	tempStr = tempStr + L"\t" + std::to_wstring(10) + L"/" + std::to_wstring(10);
+	tempStr = tempStr + L"    wave " + std::to_wstring(GameManager::GetInstance().curWaveNum + 1);
+	tempStr = tempStr + L"\t" + std::to_wstring(GameManager::GetInstance().remainEnemyNum) + L"/" + std::to_wstring(GameManager::GetInstance().curEnemyList.size());
 
 	pGraphics->DrawString(tempStr.c_str(), -1, &F, P, &B);
 }

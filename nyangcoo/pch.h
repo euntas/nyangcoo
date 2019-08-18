@@ -45,6 +45,8 @@
 #include "CookieSelectScene.h"
 #include "ScriptScene.h"
 
+#include "GameStage.h"
+
 
 #include "XmlManager.h"
 #include "AssetManager.h"
