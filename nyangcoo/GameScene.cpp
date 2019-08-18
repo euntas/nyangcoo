@@ -152,6 +152,37 @@ void GameScene::Init()
 	LoadGameBtn->y = 100;
 
 	infoStaticObj.emplace_back(LoadGameBtn);
+
+	// ∞ÒµÂ πŸ
+	goldBg = new StaticObject();
+	goldBg->AssetFileName = TEXT("goldbar\\goldbar_bg.png");
+	goldBg->ImgRC = Rect(0, 0, 417, 113);
+	goldBg->ViewRC = goldBg->ImgRC;
+	goldBg->x = 10;
+	goldBg->y = 10;
+
+	infoStaticObj.emplace_back(goldBg);
+
+	for (int i = 0; i < 10; i++)
+	{
+		goldPart[i] = new StaticObject();
+		goldPart[i]->AssetFileName = TEXT("goldbar\\goldbar_unit_brown.png");
+		goldPart[i]->ImgRC = Rect(0, 0, 36, 64);
+		goldPart[i]->ViewRC = goldPart[i]->ImgRC;
+		if (i == 0)
+		{
+			goldPart[i]->x = goldBg->x + 25;
+			goldPart[i]->y = goldBg->y + 25;
+		}
+		else
+		{
+			goldPart[i]->x = goldPart[i-1]->x + 36;
+			goldPart[i]->y = goldPart[i-1]->y;
+		}
+		
+		infoStaticObj.emplace_back(goldPart[i]);
+	}
+
 }
 
 void GameScene::Update(float Delta)
@@ -164,7 +195,24 @@ void GameScene::Update(float Delta)
 	{
 		gsGoldDeltaA = 0;
 
-		gold += 10;
+		// max∫∏¥Ÿ ¿€¿∏∏È ∞ÒµÂ ¡ı∞°Ω√≈¥
+		
+		if (gold < maxGold)
+		{
+			gold += 10;
+		}	
+	}
+
+	// ∞ÒµÂπŸ √‚∑¬¿ß«ÿ ∞ËªÍ
+	int goldPerUnit = maxGold / 10;
+	int lastUnitNum = gold / goldPerUnit;
+
+	for (int i = 0; i < 10; i++)
+	{
+		if (i < lastUnitNum)
+			goldPart[i]->AssetFileName = TEXT("goldbar\\goldbar_unit_yellow.png");
+		else
+			goldPart[i]->AssetFileName = TEXT("goldbar\\goldbar_unit_brown.png");
 	}
 }
 
@@ -185,11 +233,11 @@ void GameScene::printGold(int _gold, Graphics* pGraphics)
 {
 	Gdiplus::Font F(L"Arial", 10, FontStyleBold, UnitMillimeter);
 
-	PointF P(10.0f, 10.0f);
+	PointF P(10.0f, 100.0f);
 
 	SolidBrush B(Color(0, 0, 0));
 
-	wstring tempStr = L"∞ÒµÂ : " + std::to_wstring(_gold);
+	wstring tempStr = L"∞ÒµÂ : " + std::to_wstring(_gold) + L"/" + std::to_wstring(maxGold);
 
 	pGraphics->DrawString(tempStr.c_str(), -1, &F, P, &B);
 }
