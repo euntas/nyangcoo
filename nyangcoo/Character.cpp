@@ -30,7 +30,7 @@ void Character::Init()
 	}
 	else if (Objtype == eObjectType_Enemy)
 	{
-		setCharacterPos(1000, 520);
+		setCharacterPos(1500, 520);
 	}
 	else
 	{

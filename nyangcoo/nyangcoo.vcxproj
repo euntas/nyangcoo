@@ -210,8 +210,10 @@
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="LoadGameScene.h" />
     <ClInclude Include="MakeCharacterBtn.h" />
+    <ClInclude Include="PlayerSkillBtn.h" />
     <ClInclude Include="PopUp.h" />
     <ClInclude Include="ScriptScene.h" />
+    <ClInclude Include="GameStage.h" />
     <ClInclude Include="StartScene.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="nyangcoo.h" />
@@ -242,8 +244,10 @@
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="LoadGameScene.cpp" />
     <ClCompile Include="MakeCharacterBtn.cpp" />
+    <ClCompile Include="PlayerSkillBtn.cpp" />
     <ClCompile Include="PopUp.cpp" />
     <ClCompile Include="ScriptScene.cpp" />
+    <ClCompile Include="GameStage.cpp" />
     <ClCompile Include="StartScene.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="nyangcoo.cpp" />

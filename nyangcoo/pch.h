@@ -36,6 +36,7 @@
 #include "PopUp.h"
 #include "MakeCharacterBtn.h"
 #include "UpgradeCharacterBtn.h"
+#include "PlayerSkillBtn.h"
 
 #include "GameScene.h"
 #include "StartScene.h"
@@ -43,6 +44,8 @@
 #include "ChapterSelectScene.h"
 #include "CookieSelectScene.h"
 #include "ScriptScene.h"
+
+#include "GameStage.h"
 
 
 #include "XmlManager.h"
