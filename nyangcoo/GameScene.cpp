@@ -27,62 +27,25 @@ void GameScene::Init()
 	infoStaticObj.emplace_back(bg);
 
 	// 캐릭터 생성용 슬롯 버튼 만들기
-	MakeCharacterBtn* mcb = new MakeCharacterBtn("pistachio");
-	infoStaticObj.emplace_back(mcb);
+	std::string charNameList[8] = { "pistachio",  "whitechoco", "muscle", "kiwi", "windarcher", "pistachio", "whitechoco", "kiwi" };
+	MakeCharacterBtn* mcb[8];
+	UpgradeCharacterBtn* ucb[8];
 
-	UpgradeCharacterBtn* ucb = new UpgradeCharacterBtn(mcb);
-	infoStaticObj.emplace_back(ucb);
+	for (int n = 0; n < 8; n++)
+	{
+		mcb[n] = new MakeCharacterBtn(charNameList[n]);
+		if (n > 0)
+			mcb[n]->x = mcb[n-1]->x + 100;
+		infoStaticObj.emplace_back(mcb[n]);
 
-	MakeCharacterBtn* mcb2 = new MakeCharacterBtn("whitechoco");
-	mcb2->x = mcb->x + 100;
-	infoStaticObj.emplace_back(mcb2);
-
-	UpgradeCharacterBtn* ucb2 = new UpgradeCharacterBtn(mcb2);
-	ucb2->x = ucb->x + 100;
-	infoStaticObj.emplace_back(ucb2);
-
-	MakeCharacterBtn* mcb3 = new MakeCharacterBtn("muscle");
-	mcb3->x = mcb2->x + 100;
-	infoStaticObj.emplace_back(mcb3);
-
-	UpgradeCharacterBtn* ucb3 = new UpgradeCharacterBtn(mcb3);
-	ucb3->x = ucb2->x + 100;
-	infoStaticObj.emplace_back(ucb3);
-
-	MakeCharacterBtn* mcb4 = new MakeCharacterBtn("kiwi");
-	mcb4->x = mcb3->x + 100;
-	infoStaticObj.emplace_back(mcb4);
-
-	UpgradeCharacterBtn* ucb4 = new UpgradeCharacterBtn(mcb4);
-	ucb4->x = ucb3->x + 100;
-	infoStaticObj.emplace_back(ucb4);
-
-	MakeCharacterBtn* mcb5 = new MakeCharacterBtn("windarcher");
-	mcb5->x = mcb4->x + 100;
-	infoStaticObj.emplace_back(mcb5);
-
-	UpgradeCharacterBtn* ucb5 = new UpgradeCharacterBtn(mcb5);
-	ucb5->x = ucb4->x + 100;
-	infoStaticObj.emplace_back(ucb5);
-
-	MakeCharacterBtn* mcb6 = new MakeCharacterBtn("windarcher");
-	mcb6->x = mcb5->x + 100;
-	infoStaticObj.emplace_back(mcb6);
-
-	UpgradeCharacterBtn* ucb6 = new UpgradeCharacterBtn(mcb6);
-	ucb6->x = ucb5->x + 100;
-	infoStaticObj.emplace_back(ucb6);
-
-	MakeCharacterBtn* mcb7 = new MakeCharacterBtn("windarcher");
-	mcb7->x = mcb6->x + 100;
-	infoStaticObj.emplace_back(mcb7);
-
-	UpgradeCharacterBtn* ucb7 = new UpgradeCharacterBtn(mcb7);
-	ucb7->x = ucb6->x + 100;
-	infoStaticObj.emplace_back(ucb7);
+		ucb[n] = new UpgradeCharacterBtn(mcb[n]);
+		if (n > 0)
+			ucb[n]->x = ucb[n - 1]->x + 100;
+		infoStaticObj.emplace_back(ucb[n]);
+	}
 
 	// 플레이어 생성
-	Character* CommandPlayer = new Character(eObjectType_Player);
+	CommandPlayer = new Character(eObjectType_Player);
 	CommandPlayer->CharacterXmlFileName = "Asset\\player\\player_moonlight.xml";
 	XmlManager::GetInstance().ParseCharacterData(*CommandPlayer);
 	CommandPlayer->Init(new InputComponent(), new CharacterGraphicsComponent(CommandPlayer));
@@ -116,6 +79,8 @@ void GameScene::Init()
 	Effect* ef = new Effect();
 	ef->EffectXmlFileName = "Asset\\effect\\effect_fox_hit.xml";
 	XmlManager::GetInstance().ParseEffectData(*ef);
+	ef->x = 700; 
+	ef->y = 420;
 	ef->Init(new EffectGraphicsComponent(ef));
 
 	infoObj.emplace_back(ef);
@@ -154,6 +119,12 @@ void GameScene::Init()
 	infoStaticObj.emplace_back(LoadGameBtn);
 
 	// 골드 바
+	InitGoldBar();
+
+}
+
+void GameScene::InitGoldBar()
+{
 	goldBg = new StaticObject();
 	goldBg->AssetFileName = TEXT("goldbar\\goldbar_bg.png");
 	goldBg->ImgRC = Rect(0, 0, 417, 113);
@@ -176,13 +147,12 @@ void GameScene::Init()
 		}
 		else
 		{
-			goldPart[i]->x = goldPart[i-1]->x + 36;
-			goldPart[i]->y = goldPart[i-1]->y;
+			goldPart[i]->x = goldPart[i - 1]->x + 36;
+			goldPart[i]->y = goldPart[i - 1]->y;
 		}
-		
+
 		infoStaticObj.emplace_back(goldPart[i]);
 	}
-
 }
 
 void GameScene::Update(float Delta)
@@ -222,6 +192,7 @@ void GameScene::Render(Graphics* pGraphics)
 
 	printTitle(pGraphics);
 	printGold(gold, pGraphics);
+	printHP(CommandPlayer, pGraphics);
 }
 
 void GameScene::Release()
@@ -231,13 +202,44 @@ void GameScene::Release()
 
 void GameScene::printGold(int _gold, Graphics* pGraphics)
 {
+	// 아이콘이미지 출력
+	StaticObject* ic = new StaticObject();
+	ic->Objtype = eObjectType_None;
+	ic->AssetFileName = TEXT("goldbar\\gold_icon.png");
+	ic->ImgRC = Rect(0, 0, 19, 22);
+	ic->ViewRC = Rect(0, 0, 40, 37);
+	ic->ViewRC.X = goldBg->x + 100;
+	ic->ViewRC.Y = goldBg->y + 40;
+
+	auto pImg = (AssetManager::GetInstance().GetImage(ic->AssetFileName)).lock();
+
+	pGraphics->DrawImage(pImg.get(), ic->ViewRC, ic->ImgRC.X, ic->ImgRC.Y, ic->ImgRC.Width, ic->ImgRC.Height, Gdiplus::Unit::UnitPixel,
+		nullptr, 0, nullptr);
+
+	// 글자 출력
 	Gdiplus::Font F(L"Arial", 10, FontStyleBold, UnitMillimeter);
 
-	PointF P(10.0f, 100.0f);
+	PointF P(goldBg->x + 130.0f, goldBg->y + 35.0f);
 
 	SolidBrush B(Color(0, 0, 0));
 
-	wstring tempStr = L"골드 : " + std::to_wstring(_gold) + L"/" + std::to_wstring(maxGold);
+	wstring tempStr = std::to_wstring(_gold) + L"/" + std::to_wstring(maxGold);
+
+	pGraphics->DrawString(tempStr.c_str(), -1, &F, P, &B);
+}
+
+void GameScene::printHP(Character* _character, Gdiplus::Graphics* pGraphics)
+{
+	if (_character->Visible == false)
+		return;
+
+	Gdiplus::Font F(L"Arial", 5, FontStyleBold, UnitMillimeter);
+
+	PointF P(_character->x, _character->y - _character->AniUnits[_character->curState][0].Height);
+
+	SolidBrush B(Color(0, 0, 0));
+
+	wstring tempStr = std::to_wstring(_character->hp) + L"/" + std::to_wstring(_character->maxHp);
 
 	pGraphics->DrawString(tempStr.c_str(), -1, &F, P, &B);
 }

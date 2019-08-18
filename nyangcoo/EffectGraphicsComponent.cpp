@@ -13,6 +13,10 @@ EffectGraphicsComponent::EffectGraphicsComponent(Effect* obj)
 	parentObj = obj;
 
 	Init();
+
+	Effect* ef = reinterpret_cast<Effect*>(parentObj);
+
+	InitAniUnits(ef->spriteRowNum, ef->imgNumPerLine);
 }
 
 void EffectGraphicsComponent::update(float Delta)
@@ -25,10 +29,11 @@ void EffectGraphicsComponent::update(float Delta)
 	{
 		EffectDeltaA = 0;
 		++AniFrameCnt;
-		if (AniFrameCnt > AniUnits.size() - 1)
+		if (AniFrameCnt >= AniUnits.size() - 1)
 		{
 			AniFrameCnt = 0;
 			ef->Enable = false;
+			ef->Visible = false;
 		}
 	}
 }
@@ -36,6 +41,9 @@ void EffectGraphicsComponent::update(float Delta)
 void EffectGraphicsComponent::render(Gdiplus::Graphics* pGraphics)
 {
 	Effect* ef = reinterpret_cast<Effect*>(parentObj);
+
+	if (ef->Visible == false)
+		return;
 
 	if (ef->Enable)
 	{
@@ -54,10 +62,6 @@ void EffectGraphicsComponent::render(Gdiplus::Graphics* pGraphics)
 void EffectGraphicsComponent::Init()
 {
 	EffectDeltaA = 0;
-
-	Effect* ef = reinterpret_cast<Effect*>(parentObj);
-
-	InitAniUnits(ef->spriteRowNum, ef->imgNumPerLine);
 }
 
 void EffectGraphicsComponent::InitAniUnits(int rownum, int imgNumPerLine)
@@ -75,6 +79,7 @@ void EffectGraphicsComponent::InitAniUnits(int rownum, int imgNumPerLine)
 			int y = i * ef->frameHeight;
 
 			AniUnits.emplace_back(Rect(x, y, ef->frameWidth, ef->frameHeight));
+
 			cnt++;
 		}
 	}

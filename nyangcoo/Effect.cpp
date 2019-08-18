@@ -4,17 +4,20 @@
 Effect::Effect()
 	: Object(eObjectType_Effect)
 {
-
+	
 }
 
 void Effect::Init(EffectGraphicsComponent* graphics)
 {
 	graphics_ = graphics;
 
-	Effect::setEffectPos(700, 420);
+	Effect::setEffectPos(x, y);
 
 	effectGraphics_ = reinterpret_cast<EffectGraphicsComponent*>(graphics_);
 	effectGraphics_->Init();
+
+	Enable = true;
+	Visible = true;
 }
 
 void Effect::Update(float Delta)

@@ -38,7 +38,7 @@ MakeCharacterBtn::MakeCharacterBtn(std::string characterName)
 	} 
 
 	this->x = 50;
-	this->y = 575;
+	this->y = 570;
 
 	this->ImgRC = Gdiplus::Rect(0, 0, 85, 99);
 
@@ -109,7 +109,20 @@ void MakeCharacterBtn::SendLButtonDown()
 	if (gs->gold >= cost)
 	{
 		gs->gold -= cost;
-		SceneManager::GetInstance().GetCurScene()->infoObj.emplace_back(MakeCharacter());
+		//SceneManager::GetInstance().GetCurScene()->infoObj.emplace_back(MakeCharacter());
+
+		Character* c = MakeCharacter();
+		SceneManager::GetInstance().GetCurScene()->infoObj.emplace_back(c);
+
+		// TODO. 지워야함 실험용 이펙트
+		Effect* ef = new Effect();
+		ef->EffectXmlFileName = "Asset\\effect\\effect_fox_hit.xml";
+		XmlManager::GetInstance().ParseEffectData(*ef);
+		ef->x = c->x;
+		ef->y = c->y - c->AniUnits[c->curState][0].Height / 2;
+		ef->Init(new EffectGraphicsComponent(ef));
+
+		SceneManager::GetInstance().GetCurScene()->infoObj.emplace_back(ef);
 	}
 }
 

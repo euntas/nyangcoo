@@ -31,6 +31,7 @@ public:
 	float atkDist;
 
 	int hp;
+	int maxHp;
 	int gold;
 
 	std::wstring CharacterAssetFileName[eState_Cnt];
