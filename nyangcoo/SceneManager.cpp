@@ -72,8 +72,7 @@ void SceneManager::SendLButtonDown(UINT nFlags, CPoint point)
 			PopUp* pb = reinterpret_cast<PopUp*>(it);
 			for (auto& pbit : pb->infoStaticObj)
 			{
-				Rect tempRC(pbit->x + pb->x, pbit->y + pb->y, pbit->ImgRC.Width, pbit->ImgRC.Height);
-				if (pbit->Objtype == eObjectType_Btn && tempRC.Contains(point.x, point.y) && pb->Visible)
+				if (pbit->Objtype == eObjectType_Btn && pbit->ViewRC.Contains(point.x, point.y) && pb->Visible)
 				{
 					Btn* o = reinterpret_cast<Btn*>(pbit);
 					o->SendLButtonDown();
