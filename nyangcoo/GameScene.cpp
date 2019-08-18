@@ -65,6 +65,22 @@ void GameScene::Init()
 	ucb5->x = ucb4->x + 100;
 	infoStaticObj.emplace_back(ucb5);
 
+	MakeCharacterBtn* mcb6 = new MakeCharacterBtn("windarcher");
+	mcb6->x = mcb5->x + 100;
+	infoStaticObj.emplace_back(mcb6);
+
+	UpgradeCharacterBtn* ucb6 = new UpgradeCharacterBtn(mcb6);
+	ucb6->x = ucb5->x + 100;
+	infoStaticObj.emplace_back(ucb6);
+
+	MakeCharacterBtn* mcb7 = new MakeCharacterBtn("windarcher");
+	mcb7->x = mcb6->x + 100;
+	infoStaticObj.emplace_back(mcb7);
+
+	UpgradeCharacterBtn* ucb7 = new UpgradeCharacterBtn(mcb7);
+	ucb7->x = ucb6->x + 100;
+	infoStaticObj.emplace_back(ucb7);
+
 	// 플레이어 생성
 	Character* CommandPlayer = new Character(eObjectType_Player);
 	CommandPlayer->CharacterXmlFileName = "Asset\\player\\player_moonlight.xml";
@@ -85,8 +101,16 @@ void GameScene::Init()
 	sampleEnemy2->Init(new InputComponent(), new CharacterGraphicsComponent(sampleEnemy2));
 	sampleEnemy2->bleft = true;
 
+	Character* sampleEnemy3 = new Character(eObjectType_Enemy);
+	sampleEnemy3->CharacterXmlFileName = "Asset\\player\\player_titan.xml";
+	XmlManager::GetInstance().ParseCharacterData(*sampleEnemy3);
+	sampleEnemy3->Init(new InputComponent(), new CharacterGraphicsComponent(sampleEnemy3));
+	sampleEnemy3->x = sampleEnemy2->x + 600;
+	sampleEnemy3->bleft = true;
+
 	infoObj.emplace_back(sampleEnemy);
 	infoObj.emplace_back(sampleEnemy2);
+	infoObj.emplace_back(sampleEnemy3);
 
 	// 테스트용 이펙트
 	Effect* ef = new Effect();
