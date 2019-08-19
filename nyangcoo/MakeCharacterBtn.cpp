@@ -81,9 +81,32 @@ void MakeCharacterBtn::Render(Gdiplus::Graphics* pGraphics)
 
 	auto pImg = (AssetManager::GetInstance().GetImage(makeSlotImg->AssetFileName)).lock();
 
-	Rect tempRC(x, y, ImgRC.Width, ImgRC.Height);
-	pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X, ImgRC.Y, ImgRC.Width, ImgRC.Height, Gdiplus::Unit::UnitPixel,
-		nullptr, 0, nullptr);
+	
+	if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+	{
+		//gray scale conversion:
+		Gdiplus::ColorMatrix matrix =
+		{
+			.3f, .3f, .3f,   0,   0,
+			.6f, .6f, .6f,   0,   0,
+			.1f, .1f, .1f,   0,   0,
+			0,   0,   0,   1,   0,
+			0,   0,   0,   0,   1
+		};
+		Gdiplus::ImageAttributes attr;
+		attr.SetColorMatrix(&matrix,
+			Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
+
+		Rect tempRC(x, y, ImgRC.Width, ImgRC.Height);
+		pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X, ImgRC.Y, ImgRC.Width, ImgRC.Height, Gdiplus::Unit::UnitPixel,
+			&attr, 0, nullptr);
+	}
+	else
+	{
+		Rect tempRC(x, y, ImgRC.Width, ImgRC.Height);
+		pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X, ImgRC.Y, ImgRC.Width, ImgRC.Height, Gdiplus::Unit::UnitPixel,
+			nullptr, 0, nullptr);
+	}
 
 	// 캐릭터 그림
 	if (characterImg->Visible == false)
@@ -92,8 +115,29 @@ void MakeCharacterBtn::Render(Gdiplus::Graphics* pGraphics)
 	auto pImg2 = (AssetManager::GetInstance().GetImage(characterImg->AssetFileName)).lock();
 	
 	Rect tempRC2(x + characterImg->x, y + characterImg->y, characterImg->ViewRC.Width, characterImg->ViewRC.Height);
-	pGraphics->DrawImage(pImg2.get(), tempRC2, characterImg->ImgRC.X, characterImg->ImgRC.Y, characterImg->ImgRC.Width, characterImg->ImgRC.Height, Gdiplus::Unit::UnitPixel,
-		nullptr, 0, nullptr);
+	if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+	{
+		//gray scale conversion:
+		Gdiplus::ColorMatrix matrix =
+		{
+			.3f, .3f, .3f,   0,   0,
+			.6f, .6f, .6f,   0,   0,
+			.1f, .1f, .1f,   0,   0,
+			0,   0,   0,   1,   0,
+			0,   0,   0,   0,   1
+		};
+		Gdiplus::ImageAttributes attr;
+		attr.SetColorMatrix(&matrix,
+			Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
+
+		pGraphics->DrawImage(pImg2.get(), tempRC2, characterImg->ImgRC.X, characterImg->ImgRC.Y, characterImg->ImgRC.Width, characterImg->ImgRC.Height, Gdiplus::Unit::UnitPixel,
+			&attr, 0, nullptr);
+	}
+	else
+	{
+		pGraphics->DrawImage(pImg2.get(), tempRC2, characterImg->ImgRC.X, characterImg->ImgRC.Y, characterImg->ImgRC.Width, characterImg->ImgRC.Height, Gdiplus::Unit::UnitPixel,
+			nullptr, 0, nullptr);
+	}
 }
 
 void MakeCharacterBtn::Release()

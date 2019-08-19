@@ -26,11 +26,11 @@ void Character::Init()
 
 	if (Objtype == eObjectType_Character)
 	{
-		setCharacterPos(250, 520);
+		setCharacterPos(GameManager::GetInstance().CommandPlayer->x + 78, 520);
 	}
 	else if (Objtype == eObjectType_Enemy)
 	{
-		setCharacterPos(1500, 520);
+		setCharacterPos(GameManager::GetInstance().curStage->bg->ImgRC.Width, 520);
 	}
 	else
 	{

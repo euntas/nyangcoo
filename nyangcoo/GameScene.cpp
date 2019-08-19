@@ -18,7 +18,7 @@ void GameScene::Init()
 	gsGoldDelta = 500; // 골드 증가 초기 속도
 
 	// 게임 매니저 초기화
-	GameManager::GetInstance().Init(0);
+	GameManager::GetInstance().Init(1);
 
 	maxGold = GameManager::GetInstance().curStage->maxGold;
 
@@ -27,7 +27,7 @@ void GameScene::Init()
 	infoStaticObj.emplace_back(bg);
 
 	// 캐릭터 생성용 슬롯 버튼 만들기
-	std::string charNameList[8] = { "pistachio",  "whitechoco", "muscle", "kiwi", "windarcher", "pistachio", "whitechoco", "kiwi" };
+	std::string charNameList[8] = { "pistachio",  "whitechoco", "muscle", "kiwi", "windarcher", "pistachio", "plum", "moonrabit" };
 	MakeCharacterBtn* mcb[8];
 	UpgradeCharacterBtn* ucb[8];
 
@@ -126,6 +126,7 @@ void GameScene::InitGoldBar()
 
 void GameScene::Update(float Delta)
 {
+	infoObj;
 	// 게임이 종료되면 씬 전환
 	if (GameManager::GetInstance().IsGameEnd())
 	{
@@ -165,23 +166,37 @@ void GameScene::Update(float Delta)
 	}
 
 	// 죽은애들 처리
+/*
 	for (Object* ch : infoObj)
 	{
-		Character* c = reinterpret_cast<Character*>(ch);
-		if (c->Enable == false && c->Visible == false)
+		if (ch->Objtype == eObjectType_Effect)
 		{
-			ch = nullptr;
+			Effect* e = reinterpret_cast<Effect*>(ch);
+			if (e->Enable == false && e->Visible == false)
+			{
+				e = nullptr;
+			}
 		}
-	}
+		else if (ch->Objtype == eObjectType_Character)
+		{
+			Character* c = reinterpret_cast<Character*>(ch);
+			if (c->Enable == false && c->Visible == false)
+			{
+				ch = nullptr;
+			}
+		}
+		
+	}*/
 
 	// wave관련 코드
 	if (GameManager::GetInstance().IsAllEnemyDead())
 	{
-		GameManager::GetInstance().ChangeWave();
-
-		for (auto& it : GameManager::GetInstance().curEnemyList)
+		if (GameManager::GetInstance().ChangeWave())
 		{
-			infoObj.emplace_back(it);
+			for (auto& it : GameManager::GetInstance().curEnemyList)
+			{
+				infoObj.emplace_back(it);
+			}
 		}
 	}
 
@@ -214,8 +229,30 @@ void GameScene::printGold(int _gold, Graphics* pGraphics)
 
 	auto pImg = (AssetManager::GetInstance().GetImage(ic->AssetFileName)).lock();
 
-	pGraphics->DrawImage(pImg.get(), ic->ViewRC, ic->ImgRC.X, ic->ImgRC.Y, ic->ImgRC.Width, ic->ImgRC.Height, Gdiplus::Unit::UnitPixel,
-		nullptr, 0, nullptr);
+	if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+	{
+		//gray scale conversion:
+		Gdiplus::ColorMatrix matrix =
+		{
+			.3f, .3f, .3f,   0,   0,
+			.6f, .6f, .6f,   0,   0,
+			.1f, .1f, .1f,   0,   0,
+			0,   0,   0,   1,   0,
+			0,   0,   0,   0,   1
+		};
+
+		Gdiplus::ImageAttributes attr;
+		attr.SetColorMatrix(&matrix,
+			Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
+
+		pGraphics->DrawImage(pImg.get(), ic->ViewRC, ic->ImgRC.X, ic->ImgRC.Y, ic->ImgRC.Width, ic->ImgRC.Height, Gdiplus::Unit::UnitPixel,
+			&attr, 0, nullptr);
+	}
+	else
+	{
+		pGraphics->DrawImage(pImg.get(), ic->ViewRC, ic->ImgRC.X, ic->ImgRC.Y, ic->ImgRC.Width, ic->ImgRC.Height, Gdiplus::Unit::UnitPixel,
+			nullptr, 0, nullptr);
+	}
 
 	// 글자 출력
 	Gdiplus::Font F(L"Arial", 10, FontStyleBold, UnitMillimeter);
@@ -258,8 +295,30 @@ void GameScene::printTitle(Gdiplus::Graphics* pGraphics)
 
 	auto pImg = (AssetManager::GetInstance().GetImage(titleBg->AssetFileName)).lock();
 
-	pGraphics->DrawImage(pImg.get(), titleBg->ViewRC, titleBg->ImgRC.X, titleBg->ImgRC.Y, titleBg->ImgRC.Width, titleBg->ImgRC.Height, Gdiplus::Unit::UnitPixel,
-		nullptr, 0, nullptr);
+	if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+	{
+		//gray scale conversion:
+		Gdiplus::ColorMatrix matrix =
+		{
+			.3f, .3f, .3f,   0,   0,
+			.6f, .6f, .6f,   0,   0,
+			.1f, .1f, .1f,   0,   0,
+			0,   0,   0,   1,   0,
+			0,   0,   0,   0,   1
+		};
+
+		Gdiplus::ImageAttributes attr;
+		attr.SetColorMatrix(&matrix,
+			Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
+
+		pGraphics->DrawImage(pImg.get(), titleBg->ViewRC, titleBg->ImgRC.X, titleBg->ImgRC.Y, titleBg->ImgRC.Width, titleBg->ImgRC.Height, Gdiplus::Unit::UnitPixel,
+			&attr, 0, nullptr);
+	}
+	else
+	{
+		pGraphics->DrawImage(pImg.get(), titleBg->ViewRC, titleBg->ImgRC.X, titleBg->ImgRC.Y, titleBg->ImgRC.Width, titleBg->ImgRC.Height, Gdiplus::Unit::UnitPixel,
+			nullptr, 0, nullptr);
+	}
 
 	// 글자 출력
 	Gdiplus::Font F(L"Arial", 6, FontStyleBold, UnitMillimeter);

@@ -15,5 +15,7 @@ public:
 	int waveNum; // 이 스테이지의 wave 갯수
 	
 	vector<std::string> enemyNameList[MAX_WAVE_NUM];
+
+	std::string stageXmlFileName;
 };
 

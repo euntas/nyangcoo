@@ -170,26 +170,16 @@ void SceneManager::SendKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		// 키가 눌린 경우 배경화면과 캐릭터의 x값을 변경해준다.
 		if (flag)
 		{
-			int tempx = gs->bg->ImgRC.X + moveX;
-			if (tempx >= gs->bg->ViewRC.X && tempx <= gs->bg->ViewRC.Width)
+			StaticObject* Bg = GameManager::GetInstance().curStage->bg;
+			int tempx = Bg->ImgRC.X + moveX;
+			if (tempx >= 0 && tempx <= Bg->ImgRC.Width - Bg->ViewRC.Width)
 			{
-				gs->bg->ImgRC.X += moveX;
+				Bg->ImgRC.X += moveX;
 
 				for (auto& it : gs->infoObj)
 				{
 					it->x -= moveX;
 				}
-			}
-		}
-	}
-
-	if (GetAsyncKeyState(VK_ESCAPE) & 0x8001)
-	{
-		for (auto& it : GetCurScene()->infoStaticObj)
-		{
-			if (it->Objtype == eObjectType_PopUp)
-			{
-				it->Visible = !it->Visible;
 			}
 		}
 	}

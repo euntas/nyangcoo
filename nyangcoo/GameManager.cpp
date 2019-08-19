@@ -19,6 +19,8 @@ void GameManager::Init(int stageID)
 	curStage = new GameStage(stageID);
 	curWaveNum = 0;
 
+	IsGrayScale = true;
+
 	MakePlayer();
 	MakeEnemyForWave(curWaveNum);
 }
@@ -34,7 +36,7 @@ void GameManager::MakeEnemyForWave(int waveNum)
 		sampleEnemy->CharacterXmlFileName = "Asset\\player\\player_" + it + ".xml";
 		XmlManager::GetInstance().ParseCharacterData(*sampleEnemy);
 		sampleEnemy->Init(new InputComponent(), new CharacterGraphicsComponent(sampleEnemy));
-		sampleEnemy->x += (distCnt * 300);
+		sampleEnemy->x += (distCnt * 200);
 		if (it == "titan")
 			sampleEnemy->bleft = true;
 
@@ -63,16 +65,18 @@ void GameManager::ClearAll()
 	curCharacterList.clear();
 }
 
-void GameManager::ChangeWave()
+bool GameManager::ChangeWave()
 {
 	if (curWaveNum + 1 >= curStage->waveNum)
 	{
-		return;
+		return false;
 	}
 
 	curWaveNum++;
 
 	MakeEnemyForWave(curWaveNum);
+
+	return true;
 }
 
 bool GameManager::IsAllEnemyDead()
@@ -104,7 +108,7 @@ bool GameManager::IsGameEnd()
 	}
 
 	// 적들 상태 확인
-	if (curWaveNum + 1 != curStage->waveNum)
+	if (curWaveNum + 1 < curStage->waveNum)
 		return false;
 
 	for (auto& it : curEnemyList)

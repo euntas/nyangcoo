@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root name="plum" hp="200" gold="150" speed="30" atk="20" atkSpeed="150.0" atkDist="10.0">
+	<TextureAtlas imagePath="player\\player_plum_run.png" width="2048" height="512" frameNum="4" delta="150" rowNum="1" imgNumPerLine="4" state="0">
+	 <sprite h="186" w="133" y="0" x="0" n="player_plum_run1.png"/>
+     <sprite h="186" w="133" y="0" x="133" n="player_plum_run2.png"/>
+     <sprite h="186" w="133" y="0" x="266" n="player_plum_run3.png"/>
+     <sprite h="186" w="133" y="0" x="399" n="player_plum_run4.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_plum_hit.png" width="2048" height="512" frameNum="6" delta="150" rowNum="3" imgNumPerLine="2" state="1">
+	 <sprite h="274" w="216" y="0" x="0" n="player_plum_hit1.png"/>
+     <sprite h="274" w="216" y="0" x="216" n="player_plum_hit2.png"/>
+     <sprite h="274" w="216" y="274" x="0" n="player_plum_hit3.png"/>
+     <sprite h="274" w="216" y="274" x="216" n="player_plum_hit4.png"/>
+     <sprite h="274" w="216" y="548" x="0" n="player_plum_hit5.png"/>
+     <sprite h="274" w="216" y="548" x="0" n="player_plum_hit6.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_plum_damage.png" width="2048" height="512" frameNum="3" delta="150" rowNum="1" imgNumPerLine="3" state="2">
+	 <sprite h="175" w="135" y="0" x="0" n="player_plum_damage1.png"/>
+     <sprite h="175" w="135" y="0" x="135" n="player_plum_damage2.png"/>
+     <sprite h="175" w="135" y="0" x="270" n="player_plum_damage3.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_plum_death.png" width="2048" height="512" frameNum="3" delta="150" rowNum="1" imgNumPerLine="3" state="3">
+	 <sprite h="153" w="143" y="0" x="0" n="player_plum_death1.png"/>
+     <sprite h="153" w="143" y="0" x="143" n="player_plum_death2.png"/>
+     <sprite h="153" w="143" y="0" x="286" n="player_plum_death3.png"/>
+	</TextureAtlas>
+	
+</Root>
