@@ -229,8 +229,30 @@ void GameScene::printGold(int _gold, Graphics* pGraphics)
 
 	auto pImg = (AssetManager::GetInstance().GetImage(ic->AssetFileName)).lock();
 
-	pGraphics->DrawImage(pImg.get(), ic->ViewRC, ic->ImgRC.X, ic->ImgRC.Y, ic->ImgRC.Width, ic->ImgRC.Height, Gdiplus::Unit::UnitPixel,
-		nullptr, 0, nullptr);
+	if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+	{
+		//gray scale conversion:
+		Gdiplus::ColorMatrix matrix =
+		{
+			.3f, .3f, .3f,   0,   0,
+			.6f, .6f, .6f,   0,   0,
+			.1f, .1f, .1f,   0,   0,
+			0,   0,   0,   1,   0,
+			0,   0,   0,   0,   1
+		};
+
+		Gdiplus::ImageAttributes attr;
+		attr.SetColorMatrix(&matrix,
+			Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
+
+		pGraphics->DrawImage(pImg.get(), ic->ViewRC, ic->ImgRC.X, ic->ImgRC.Y, ic->ImgRC.Width, ic->ImgRC.Height, Gdiplus::Unit::UnitPixel,
+			&attr, 0, nullptr);
+	}
+	else
+	{
+		pGraphics->DrawImage(pImg.get(), ic->ViewRC, ic->ImgRC.X, ic->ImgRC.Y, ic->ImgRC.Width, ic->ImgRC.Height, Gdiplus::Unit::UnitPixel,
+			nullptr, 0, nullptr);
+	}
 
 	// 글자 출력
 	Gdiplus::Font F(L"Arial", 10, FontStyleBold, UnitMillimeter);
@@ -273,8 +295,30 @@ void GameScene::printTitle(Gdiplus::Graphics* pGraphics)
 
 	auto pImg = (AssetManager::GetInstance().GetImage(titleBg->AssetFileName)).lock();
 
-	pGraphics->DrawImage(pImg.get(), titleBg->ViewRC, titleBg->ImgRC.X, titleBg->ImgRC.Y, titleBg->ImgRC.Width, titleBg->ImgRC.Height, Gdiplus::Unit::UnitPixel,
-		nullptr, 0, nullptr);
+	if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+	{
+		//gray scale conversion:
+		Gdiplus::ColorMatrix matrix =
+		{
+			.3f, .3f, .3f,   0,   0,
+			.6f, .6f, .6f,   0,   0,
+			.1f, .1f, .1f,   0,   0,
+			0,   0,   0,   1,   0,
+			0,   0,   0,   0,   1
+		};
+
+		Gdiplus::ImageAttributes attr;
+		attr.SetColorMatrix(&matrix,
+			Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
+
+		pGraphics->DrawImage(pImg.get(), titleBg->ViewRC, titleBg->ImgRC.X, titleBg->ImgRC.Y, titleBg->ImgRC.Width, titleBg->ImgRC.Height, Gdiplus::Unit::UnitPixel,
+			&attr, 0, nullptr);
+	}
+	else
+	{
+		pGraphics->DrawImage(pImg.get(), titleBg->ViewRC, titleBg->ImgRC.X, titleBg->ImgRC.Y, titleBg->ImgRC.Width, titleBg->ImgRC.Height, Gdiplus::Unit::UnitPixel,
+			nullptr, 0, nullptr);
+	}
 
 	// 글자 출력
 	Gdiplus::Font F(L"Arial", 6, FontStyleBold, UnitMillimeter);

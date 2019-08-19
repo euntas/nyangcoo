@@ -19,6 +19,8 @@ void GameManager::Init(int stageID)
 	curStage = new GameStage(stageID);
 	curWaveNum = 0;
 
+	IsGrayScale = true;
+
 	MakePlayer();
 	MakeEnemyForWave(curWaveNum);
 }

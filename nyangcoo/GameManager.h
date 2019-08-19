@@ -14,7 +14,7 @@ public:
 	bool IsAllEnemyDead();
 	bool IsGameEnd();
 	bool IsWin; // true : 플레이어 승리 false : 적 승리
-
+	bool IsGrayScale;
 
 	GameStage* curStage;
 	int curWaveNum;

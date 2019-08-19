@@ -51,15 +51,6 @@ void CharacterGraphicsComponent::render(Gdiplus::Graphics* pGraphics)
 	if (parentObj == nullptr) return;
 	if (pGraphics == nullptr) return;
 
-	//프레임 확인용 코드. 출력 원하지 않을 경우 pch에서 define 부분을 주석처리.
-#if defined FRAME_DEBUG
-	SolidBrush br(Color(255, 0, 0, 0));
-	CString temp;
-	temp.Format(TEXT("%d"), (int)PlayerDeltaA);
-	Gdiplus::Font font(&FontFamily(L"Arial"), 12);
-	pGraphics->DrawString(temp, -1, &font, PointF(0, 100), &br);
-#endif
-
 	if (parentObj->Visible == false)
 		return;
 
@@ -79,15 +70,44 @@ void CharacterGraphicsComponent::render(Gdiplus::Graphics* pGraphics)
 		Rect Dst(displayX, displayY, p->frameWidth[p->curState], p->frameHeight[p->curState]);
 		Rect unitDst(0, 0, p->frameWidth[p->curState], p->frameHeight[p->curState]);
 
-		Bitmap bm(p->AniUnits[p->curState][AniFrameCnt].Width, p->AniUnits[p->curState][AniFrameCnt].Height, PixelFormat32bppARGB);
-		Graphics test(&bm);
-		test.DrawImage(pImg.get(), unitDst, p->AniUnits[p->curState][AniFrameCnt].X, p->AniUnits[p->curState][AniFrameCnt].Y, p->AniUnits[p->curState][AniFrameCnt].Width, p->AniUnits[p->curState][AniFrameCnt].Height, Gdiplus::Unit::UnitPixel,
-			nullptr, 0, nullptr);
+		if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+		{
+			//gray scale conversion:
+			Gdiplus::ColorMatrix matrix =
+			{
+				.3f, .3f, .3f,   0,   0,
+				.6f, .6f, .6f,   0,   0,
+				.1f, .1f, .1f,   0,   0,
+				0,   0,   0,   1,   0,
+				0,   0,   0,   0,   1
+			};
 
-		if (parentObj->bleft == false)
-			bm.RotateFlip(Rotate180FlipY);
+			Gdiplus::ImageAttributes attr;
+			attr.SetColorMatrix(&matrix,
+				Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
 
-		pGraphics->DrawImage(&bm, Dst);
+			Bitmap bm(p->AniUnits[p->curState][AniFrameCnt].Width, p->AniUnits[p->curState][AniFrameCnt].Height, PixelFormat32bppARGB);
+			Graphics test(&bm);
+			test.DrawImage(pImg.get(), unitDst, p->AniUnits[p->curState][AniFrameCnt].X, p->AniUnits[p->curState][AniFrameCnt].Y, p->AniUnits[p->curState][AniFrameCnt].Width, p->AniUnits[p->curState][AniFrameCnt].Height, Gdiplus::Unit::UnitPixel,
+				&attr, 0, nullptr);
+
+			if (parentObj->bleft == false)
+				bm.RotateFlip(Rotate180FlipY);
+
+			pGraphics->DrawImage(&bm, Dst);
+		}
+		else
+		{
+			Bitmap bm(p->AniUnits[p->curState][AniFrameCnt].Width, p->AniUnits[p->curState][AniFrameCnt].Height, PixelFormat32bppARGB);
+			Graphics test(&bm);
+			test.DrawImage(pImg.get(), unitDst, p->AniUnits[p->curState][AniFrameCnt].X, p->AniUnits[p->curState][AniFrameCnt].Y, p->AniUnits[p->curState][AniFrameCnt].Width, p->AniUnits[p->curState][AniFrameCnt].Height, Gdiplus::Unit::UnitPixel,
+				nullptr, 0, nullptr);
+
+			if (parentObj->bleft == false)
+				bm.RotateFlip(Rotate180FlipY);
+
+			pGraphics->DrawImage(&bm, Dst);
+		}
 	}
 }
 
