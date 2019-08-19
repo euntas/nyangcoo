@@ -18,7 +18,7 @@ void GameScene::Init()
 	gsGoldDelta = 500; // 골드 증가 초기 속도
 
 	// 게임 매니저 초기화
-	GameManager::GetInstance().Init(1);
+	GameManager::GetInstance().Init(0);
 
 	maxGold = GameManager::GetInstance().curStage->maxGold;
 
@@ -90,11 +90,7 @@ void GameScene::Init()
 	// 골드 바
 	InitGoldBar();
 
-	PopUp* ResultPopUp = new PopUp(ePopup_result);
-	/*ResultPopUp->AssetFileName = TEXT("result_win.png");
-	ResultPopUp->Visible = true;
-	ResultPopUp->ImgRC = Rect(0, 0, 271, 219);
-	ResultPopUp->ViewRC = ResultPopUp->ImgRC;*/
+	ResultPopUp = new PopUp(ePopup_result);
 
 	infoStaticObj.emplace_back(ResultPopUp);
 
@@ -138,10 +134,15 @@ void GameScene::Update(float Delta)
 	// 게임이 종료되면 씬 전환
 	if (GameManager::GetInstance().IsGameEnd())
 	{
-		SceneManager::GetInstance().LoadScene(CString("Scene_Script"));
-		SceneManager::GetInstance().Init();
-
-		return;
+		Delta = 0;
+		GameManager::GetInstance().IsGrayScale = true;
+		
+		if (GameManager::GetInstance().IsWin == false)
+		{
+			ResultPopUp->bg->AssetFileName = TEXT("result_lose.png");
+		}
+		
+		ResultPopUp->Visible = true;
 	}
 
 	Scene::Update(Delta);

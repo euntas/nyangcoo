@@ -188,7 +188,9 @@ void SceneManager::SendKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
 		for (auto& it : GetCurScene()->infoStaticObj)
 		{
-			if (it->Objtype == eObjectType_PopUp)
+			PopUp* pu = reinterpret_cast<PopUp*>(it);
+
+			if (it->Objtype == eObjectType_PopUp && pu->name != ePopup_result)
 			{
 				it->Visible = !it->Visible;
 			}

@@ -28,15 +28,15 @@ PopUp::PopUp() : StaticObject(EObjectType::eObjectType_PopUp)
 
 }
 
-PopUp::PopUp(EPopup name) : StaticObject(EObjectType::eObjectType_PopUp)
+PopUp::PopUp(EPopup _name) : StaticObject(EObjectType::eObjectType_PopUp)
 {
+	name = _name;
+
 	this->x = 585;
 	this->y = 197;
 
 	if (name == ePopup_close)
 	{
-		name = ePopup_close;
-
 		bg = new StaticObject();
 		bg->Objtype = eObjectType_BGImage;
 		bg->AssetFileName = TEXT("popup_background.png");
@@ -112,7 +112,7 @@ void PopUp::Render(Gdiplus::Graphics* pGraphics)
 
 		auto pImg = (AssetManager::GetInstance().GetImage(it->AssetFileName)).lock();
 
-		if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+		if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game" && name != ePopup_result)
 		{
 			//gray scale conversion:
 			Gdiplus::ColorMatrix matrix =

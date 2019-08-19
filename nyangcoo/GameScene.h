@@ -30,5 +30,7 @@ public:
 	Character* CommandPlayer;	// TODO. 스테이지 정보에서 가져와야 함
 
 	int maxGold;
+
+	PopUp* ResultPopUp;
 };
 
