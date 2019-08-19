@@ -90,8 +90,15 @@ void GameScene::Init()
 	// 골드 바
 	InitGoldBar();
 
-	ResultPopUp = new PopUp(ePopup_result);
+	// 플레이어 스킬
+	PlayerSkillBtn* ps_heal = new PlayerSkillBtn("heal");
+	infoStaticObj.emplace_back(ps_heal);
 
+	PlayerSkillBtn* ps_blizzard = new PlayerSkillBtn("blizzard");
+	ps_blizzard->btnImg->x = ps_heal->btnImg->x + 150;
+	infoStaticObj.emplace_back(ps_blizzard);
+
+	ResultPopUp = new PopUp(ePopup_result);
 	infoUIObj.emplace_back(ResultPopUp);
 
 }
