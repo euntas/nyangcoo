@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root name="lemon" hp="200" gold="150" speed="20" atk="15" atkSpeed="150.0" atkDist="10.0">
+	<TextureAtlas imagePath="player\\player_lemon_run.png" width="2048" height="512" frameNum="4" delta="150" rowNum="1" imgNumPerLine="4" state="0">
+	 <sprite h="151" w="114" y="0" x="0" n="player_lemon_run1.png"/>
+     <sprite h="151" w="114" y="0" x="114" n="player_lemon_run2.png"/>
+     <sprite h="151" w="114" y="0" x="228" n="player_lemon_run3.png"/>
+     <sprite h="151" w="114" y="0" x="342" n="player_lemon_run4.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_lemon_hit.png" width="2048" height="512" frameNum="4" delta="150" rowNum="1" imgNumPerLine="4" state="1">
+	 <sprite h="179" w="262" y="0" x="0" n="player_lemon_hit1.png"/>
+     <sprite h="179" w="262" y="0" x="262" n="player_lemon_hit2.png"/>
+     <sprite h="179" w="262" y="0" x="524" n="player_lemon_hit3.png"/>
+     <sprite h="179" w="262" y="0" x="786" n="player_lemon_hit4.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_lemon_damage.png" width="2048" height="512" frameNum="3" delta="150" rowNum="1" imgNumPerLine="3" state="2">
+	 <sprite h="175" w="149" y="0" x="0" n="player_lemon_damage1.png"/>
+     <sprite h="175" w="149" y="0" x="149" n="player_lemon_damage2.png"/>
+     <sprite h="175" w="149" y="0" x="298" n="player_lemon_damage3.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_lemon_death.png" width="2048" height="512" frameNum="4" delta="150" rowNum="1" imgNumPerLine="4" state="3">
+	 <sprite h="128" w="145" y="0" x="0" n="player_lemon_death1.png"/>
+     <sprite h="128" w="145" y="0" x="145" n="player_lemon_death2.png"/>
+     <sprite h="128" w="145" y="0" x="290" n="player_lemon_death3.png"/>
+     <sprite h="128" w="145" y="0" x="435" n="player_lemon_death4.png"/>
+	</TextureAtlas>
+	
+</Root>
