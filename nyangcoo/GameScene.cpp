@@ -90,6 +90,14 @@ void GameScene::Init()
 	// 골드 바
 	InitGoldBar();
 
+	PopUp* ResultPopUp = new PopUp(ePopup_result);
+	/*ResultPopUp->AssetFileName = TEXT("result_win.png");
+	ResultPopUp->Visible = true;
+	ResultPopUp->ImgRC = Rect(0, 0, 271, 219);
+	ResultPopUp->ViewRC = ResultPopUp->ImgRC;*/
+
+	infoStaticObj.emplace_back(ResultPopUp);
+
 }
 
 void GameScene::InitGoldBar()
@@ -112,7 +120,7 @@ void GameScene::InitGoldBar()
 		if (i == 0)
 		{
 			goldPart[i]->x = goldBg->x + 25;
-			goldPart[i]->y = goldBg->y + 25;
+			goldPart[i]->y = goldBg->y + 19;
 		}
 		else
 		{
@@ -225,7 +233,7 @@ void GameScene::printGold(int _gold, Graphics* pGraphics)
 	ic->ImgRC = Rect(0, 0, 40, 39);
 	ic->ViewRC = Rect(0, 0, 40, 39);
 	ic->ViewRC.X = goldBg->x + 100;
-	ic->ViewRC.Y = goldBg->y + 40;
+	ic->ViewRC.Y = goldBg->y + 34;
 
 	auto pImg = (AssetManager::GetInstance().GetImage(ic->AssetFileName)).lock();
 
@@ -257,7 +265,7 @@ void GameScene::printGold(int _gold, Graphics* pGraphics)
 	// 글자 출력
 	Gdiplus::Font F(L"Arial", 10, FontStyleBold, UnitMillimeter);
 
-	PointF P(goldBg->x + 130.0f, goldBg->y + 35.0f);
+	PointF P(goldBg->x + 130.0f, goldBg->y + 29.0f);
 
 	SolidBrush B(Color(0, 0, 0));
 
