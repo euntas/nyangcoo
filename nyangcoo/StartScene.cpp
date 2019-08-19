@@ -59,14 +59,10 @@ StartScene::StartScene() : Scene()
 	infoStaticObj.emplace_back(ExitBtn);
 
 	PopUp* popUp = new PopUp(ePopup_close);
-
-	//PopUp = new StaticObject();
-	//popUp->Objtype = eObjectType_PopUp;
-	//popUp->AssetFileName = TEXT("popup_all.png");
 	popUp->ImgRC = Rect(0, 0, 250, 198);
-
-	infoStaticObj.emplace_back(popUp);
+	popUp->ViewRC = popUp->ImgRC;
 	popUp->Visible = false;
+	infoStaticObj.emplace_back(popUp);
 }
 
 void StartScene::Init()

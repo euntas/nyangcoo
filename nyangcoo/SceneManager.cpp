@@ -183,4 +183,17 @@ void SceneManager::SendKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			}
 		}
 	}
+	else if (CurScene == nullptr) return;
+	{
+		StartScene* ss = reinterpret_cast<StartScene*>(GetCurScene());
+
+		if (GetAsyncKeyState(VK_ESCAPE) & 0x8001)
+		{
+			for (auto& it : ss->infoStaticObj)
+			if (it->Objtype == eObjectType_PopUp)
+			{
+				it->Visible = !it->Visible;
+			}
+		}
+	}
 }
