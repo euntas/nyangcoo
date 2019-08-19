@@ -29,6 +29,19 @@ SceneManager::SceneManager()
 	mScene.emplace_back(scriptScene);
 }
 
+Scene* SceneManager::GetSceneByName(CString& pName)
+{
+	for (auto& it : mScene)
+	{
+		if (!it->Name.CompareNoCase(pName))
+		{
+			return it;
+		}
+	}
+
+	return nullptr;
+}
+
 void SceneManager::LoadScene(CString& pName)
 {
 	for (auto& it : mScene)
@@ -97,6 +110,24 @@ void SceneManager::SendLButtonDown(UINT nFlags, CPoint point)
 			if (tempRC.Contains(point.x, point.y))
 			{
 				ucb->SendLButtonDown();
+			}
+		}
+	}
+
+	for (auto& it : CurScene->infoUIObj)
+	{
+		if (it == nullptr) continue;
+
+		if (it->Objtype == eObjectType_PopUp)
+		{
+			PopUp* pb = reinterpret_cast<PopUp*>(it);
+			for (auto& pbit : pb->infoStaticObj)
+			{
+				if (pbit->Objtype == eObjectType_Btn && pbit->ViewRC.Contains(point.x, point.y) && pb->Visible)
+				{
+					Btn* o = reinterpret_cast<Btn*>(pbit);
+					o->SendLButtonDown();
+				}
 			}
 		}
 	}
@@ -180,6 +211,19 @@ void SceneManager::SendKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 				{
 					it->x -= moveX;
 				}
+			}
+		}
+	}
+
+	if (GetAsyncKeyState(VK_ESCAPE) & 0x8001)
+	{
+		for (auto& it : GetCurScene()->infoStaticObj)
+		{
+			PopUp* pu = reinterpret_cast<PopUp*>(it);
+
+			if (it->Objtype == eObjectType_PopUp && pu->name != ePopup_result)
+			{
+				it->Visible = !it->Visible;
 			}
 		}
 	}

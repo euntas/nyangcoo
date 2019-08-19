@@ -17,6 +17,7 @@ public:
 	
 	EObjectType Objtype;
 	bool Visible;
+	bool Enable;
 
 	int x, y;
 };

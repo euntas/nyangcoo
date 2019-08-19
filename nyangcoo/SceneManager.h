@@ -15,6 +15,7 @@ public:
 	void Init();
 	void Update(float Delta);
 	void Release();
+	Scene* GetSceneByName(CString& pName);
 
 	Gdiplus::Rect ViewRC;			// 뷰 화면 전체 크기
 

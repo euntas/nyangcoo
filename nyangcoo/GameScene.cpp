@@ -18,7 +18,7 @@ void GameScene::Init()
 	gsGoldDelta = 500; // 골드 증가 초기 속도
 
 	// 게임 매니저 초기화
-	GameManager::GetInstance().Init(1);
+	GameManager::GetInstance().Init(GameManager::GetInstance().btnID);
 
 	maxGold = GameManager::GetInstance().curStage->maxGold;
 
@@ -90,6 +90,10 @@ void GameScene::Init()
 	// 골드 바
 	InitGoldBar();
 
+	ResultPopUp = new PopUp(ePopup_result);
+
+	infoUIObj.emplace_back(ResultPopUp);
+
 }
 
 void GameScene::InitGoldBar()
@@ -112,7 +116,7 @@ void GameScene::InitGoldBar()
 		if (i == 0)
 		{
 			goldPart[i]->x = goldBg->x + 25;
-			goldPart[i]->y = goldBg->y + 25;
+			goldPart[i]->y = goldBg->y + 19;
 		}
 		else
 		{
@@ -130,10 +134,18 @@ void GameScene::Update(float Delta)
 	// 게임이 종료되면 씬 전환
 	if (GameManager::GetInstance().IsGameEnd())
 	{
-		SceneManager::GetInstance().LoadScene(CString("Scene_Script"));
-		SceneManager::GetInstance().Init();
-
-		return;
+		Delta = 0;
+		GameManager::GetInstance().IsGrayScale = true;
+		
+		if (GameManager::GetInstance().IsWin == false)
+		{
+			ResultPopUp->bg->AssetFileName = TEXT("result_lose.png");
+		}
+		else
+		{
+			GameManager::GetInstance().stageClearList[GameManager::GetInstance().curStage->stageID + 1] = true;
+		}
+		ResultPopUp->Visible = true;
 	}
 
 	Scene::Update(Delta);
@@ -225,7 +237,7 @@ void GameScene::printGold(int _gold, Graphics* pGraphics)
 	ic->ImgRC = Rect(0, 0, 40, 39);
 	ic->ViewRC = Rect(0, 0, 40, 39);
 	ic->ViewRC.X = goldBg->x + 100;
-	ic->ViewRC.Y = goldBg->y + 40;
+	ic->ViewRC.Y = goldBg->y + 34;
 
 	auto pImg = (AssetManager::GetInstance().GetImage(ic->AssetFileName)).lock();
 
@@ -257,7 +269,7 @@ void GameScene::printGold(int _gold, Graphics* pGraphics)
 	// 글자 출력
 	Gdiplus::Font F(L"Arial", 10, FontStyleBold, UnitMillimeter);
 
-	PointF P(goldBg->x + 130.0f, goldBg->y + 35.0f);
+	PointF P(goldBg->x + 130.0f, goldBg->y + 29.0f);
 
 	SolidBrush B(Color(0, 0, 0));
 

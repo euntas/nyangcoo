@@ -3,7 +3,11 @@
 
 GameManager::GameManager()
 {
-
+	// TODO. 나중에 DB로 옮겨야 함
+	stageClearList.insert(make_pair(0, true));
+	stageClearList.insert(make_pair(1, false));
+	stageClearList.insert(make_pair(2, false));
+	stageClearList.insert(make_pair(3, false));
 }
 
 GameManager& GameManager::GetInstance()
@@ -19,7 +23,7 @@ void GameManager::Init(int stageID)
 	curStage = new GameStage(stageID);
 	curWaveNum = 0;
 
-	IsGrayScale = true;
+	IsGrayScale = false;
 
 	MakePlayer();
 	MakeEnemyForWave(curWaveNum);
