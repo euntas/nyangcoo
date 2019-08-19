@@ -14,8 +14,10 @@ public:
 
 	void SendLButtonDown();
 
+	ESkillType skillType;
+	std::string Name;
+
 	StaticObject* btnImg;
-	Effect* skillEffect;
 
 	int CurID;
 };

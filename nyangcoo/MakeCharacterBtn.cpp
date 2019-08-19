@@ -157,6 +157,7 @@ void MakeCharacterBtn::SendLButtonDown()
 
 		Character* c = MakeCharacter();
 		SceneManager::GetInstance().GetCurScene()->infoObj.emplace_back(c);
+		GameManager::GetInstance().curCharacterList.emplace_back(c);
 
 		// TODO. 지워야함 실험용 이펙트
 		Effect* ef = new Effect();

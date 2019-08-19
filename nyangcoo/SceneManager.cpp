@@ -112,6 +112,16 @@ void SceneManager::SendLButtonDown(UINT nFlags, CPoint point)
 				ucb->SendLButtonDown();
 			}
 		}
+		else if (it->Objtype == eObjectType_PlayerSkillBtn)
+		{
+			PlayerSkillBtn* psb = reinterpret_cast<PlayerSkillBtn*>(it);
+
+			Rect tempRC(psb->btnImg->x, psb->btnImg->y, psb->btnImg->ImgRC.Width, psb->btnImg->ImgRC.Height);
+			if (tempRC.Contains(point.x, point.y))
+			{
+				psb->SendLButtonDown();
+			}
+		}
 	}
 
 	for (auto& it : CurScene->infoUIObj)
