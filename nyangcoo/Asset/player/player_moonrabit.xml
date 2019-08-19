@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root name="moonrabit" hp="500" gold="150" speed="50" atk="10" atkSpeed="250.0" atkDist="10.0">
+	<TextureAtlas imagePath="player\\player_moonrabit_run.png" width="2048" height="512" frameNum="5" delta="150" rowNum="1" imgNumPerLine="5" state="0">
+	 <sprite h="290" w="314" y="0" x="0" n="player_moonrabit_run1.png"/>
+     <sprite h="290" w="314" y="0" x="314" n="player_moonrabit_run2.png"/>
+     <sprite h="290" w="314" y="0" x="628" n="player_moonrabit_run3.png"/>
+     <sprite h="290" w="314" y="0" x="942" n="player_moonrabit_run4.png"/>
+     <sprite h="290" w="314" y="0" x="1256" n="player_moonrabit_run5.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_moonrabit_hit.png" width="2048" height="512" frameNum="6" delta="150" rowNum="1" imgNumPerLine="6" state="1">
+	 <sprite h="282" w="316" y="0" x="0" n="player_moonrabit_hit1.png"/>
+     <sprite h="282" w="316" y="0" x="316" n="player_moonrabit_hit2.png"/>
+     <sprite h="282" w="316" y="0" x="632" n="player_moonrabit_hit3.png"/>
+     <sprite h="282" w="316" y="0" x="948" n="player_moonrabit_hit4.png"/>
+     <sprite h="282" w="316" y="0" x="1264" n="player_moonrabit_hit5.png"/>
+     <sprite h="282" w="316" y="0" x="1580" n="player_moonrabit_hit6.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_moonrabit_damage.png" width="2048" height="512" frameNum="5" delta="150" rowNum="1" imgNumPerLine="5" state="2">
+	 <sprite h="230" w="306" y="0" x="0" n="player_moonrabit_damage1.png"/>
+     <sprite h="230" w="306" y="0" x="306" n="player_moonrabit_damage2.png"/>
+     <sprite h="230" w="306" y="0" x="612" n="player_moonrabit_damage3.png"/>
+     <sprite h="230" w="306" y="0" x="918" n="player_moonrabit_damage4.png"/>
+     <sprite h="230" w="306" y="0" x="0" n="player_moonrabit_damage5.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_moonrabit_death.png" width="2048" height="512" frameNum="4" delta="150" rowNum="1" imgNumPerLine="4" state="3">
+	 <sprite h="247" w="322" y="0" x="0" n="player_moonrabit_death1.png"/>
+     <sprite h="247" w="322" y="0" x="322" n="player_moonrabit_death2.png"/>
+     <sprite h="247" w="322" y="0" x="644" n="player_moonrabit_death3.png"/>
+     <sprite h="247" w="322" y="0" x="966" n="player_moonrabit_death4.png"/>
+	</TextureAtlas>
+	
+</Root>
