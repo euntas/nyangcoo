@@ -27,7 +27,7 @@ void GameScene::Init()
 	infoStaticObj.emplace_back(bg);
 
 	// 캐릭터 생성용 슬롯 버튼 만들기
-	std::string charNameList[8] = { "pistachio",  "whitechoco", "muscle", "kiwi", "windarcher", "pistachio", "plum", "moonrabit" };
+	std::string charNameList[8] = { "pistachio",  "whitechoco", "muscle", "kiwi", "windarcher", "lemon", "plum", "moonrabit" };
 	MakeCharacterBtn* mcb[8];
 	UpgradeCharacterBtn* ucb[8];
 
@@ -346,7 +346,7 @@ void GameScene::printTitle(Gdiplus::Graphics* pGraphics)
 
 	SolidBrush B(Color(255, 255, 255));
 
-	wstring tempStr = L"프롤로그 마녀의 훈련장 \n";
+	wstring tempStr = GameManager::GetInstance().curStage->stageTitle;
 	// TODO. 나중에 진짜 수치로 바꿔주기
 	tempStr = tempStr + L"    wave " + std::to_wstring(GameManager::GetInstance().curWaveNum + 1);
 	tempStr = tempStr + L"\t" + std::to_wstring(GameManager::GetInstance().remainEnemyNum) + L"/" + std::to_wstring(GameManager::GetInstance().curEnemyList.size());

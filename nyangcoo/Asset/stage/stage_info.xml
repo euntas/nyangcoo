@@ -4,12 +4,13 @@
 		<ImgRC x="0" y="0" width="1920" height="672"></ImgRC>
 		<ViewRC x="0" y="0" width="1420" height="672"></ViewRC>
 		<enemyList wave="0">
+      <name>macho</name>
 			<name>muscle</name>
 			<name>titan</name>
 			<name>titan</name>
 		</enemyList>
 	</Stage>
-	<Stage stageID="1" stageTitle="프롤로그 마녀의 훈련장" maxGold="1500" maxHP="1000" waveNum="2" imagePath="bg_moon.png">
+	<Stage stageID="1" stageTitle="스테이지 두번째 훈련장" maxGold="1500" maxHP="1000" waveNum="2" imagePath="bg_moon.png">
 		<ImgRC x="0" y="0" width="1920" height="672"></ImgRC>
 		<ViewRC x="0" y="0" width="1420" height="672"></ViewRC>
 		<enemyList wave="0">
@@ -18,13 +19,13 @@
 			<name>titan</name>
 		</enemyList>
 		<enemyList wave="1">
-			<name>titan</name>
+      <name>macho</name>
 			<name>muscle</name>
 			<name>titan</name>
 			<name>titan</name>
 		</enemyList>
 	</Stage>
-	<Stage stageID="2" stageTitle="프롤로그 마녀의 훈련장" maxGold="1500" maxHP="1000" waveNum="1" imagePath="bg_bamboo.png">
+	<Stage stageID="2" stageTitle="세번째 스테이지 훈련장" maxGold="1500" maxHP="1000" waveNum="1" imagePath="bg_bamboo.png">
 		<ImgRC x="0" y="0" width="2840" height="672"></ImgRC>
 		<ViewRC x="0" y="0" width="1420" height="672"></ViewRC>
 		<enemyList wave="0">
@@ -33,7 +34,7 @@
 			<name>titan</name>
 		</enemyList>
 	</Stage>
-	<Stage stageID="3" stageTitle="프롤로그 마녀의 훈련장" maxGold="1500" maxHP="1000" waveNum="3" imagePath="bg_moon.png">
+	<Stage stageID="3" stageTitle="여기가 끝일지도 몰라" maxGold="1500" maxHP="1000" waveNum="3" imagePath="bg_moon.png">
 		<ImgRC x="0" y="0" width="2840" height="672"></ImgRC>
 		<ViewRC x="0" y="0" width="1420" height="672"></ViewRC>
 		<enemyList wave="0">
