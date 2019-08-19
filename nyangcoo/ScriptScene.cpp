@@ -41,7 +41,7 @@ void ScriptScene::Init()
 	ScriptPlayer->y = 389;
 
 	Btn* ChoiceBtn1 = new Btn();
-	ChoiceBtn1->ID = eScene_Game;
+	ChoiceBtn1->ID = eScene_ChapterSelect;
 	ChoiceBtn1->AssetFileName = TEXT("ChoiceBtn.png");
 	ChoiceBtn1->ImgRC = Rect(0, 0, 935, 50);
 	ChoiceBtn1->ViewRC = ChoiceBtn1->ImgRC;
@@ -49,7 +49,7 @@ void ScriptScene::Init()
 	ChoiceBtn1->y = 522;
 
 	Btn* ChoiceBtn2 = new Btn();
-	ChoiceBtn2->ID = eScene_Exit;
+	ChoiceBtn2->ID = eScene_ChapterSelect;
 	ChoiceBtn2->AssetFileName = TEXT("ChoiceBtn.png");
 	ChoiceBtn2->ImgRC = Rect(0, 0, 935, 50);
 	ChoiceBtn2->ViewRC = ChoiceBtn2->ImgRC;

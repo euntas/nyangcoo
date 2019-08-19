@@ -96,7 +96,7 @@ void GameScene::InitGoldBar()
 {
 	goldBg = new StaticObject();
 	goldBg->AssetFileName = TEXT("goldbar\\goldbar_bg.png");
-	goldBg->ImgRC = Rect(0, 0, 417, 113);
+	goldBg->ImgRC = Rect(0, 0, 414, 102);
 	goldBg->ViewRC = goldBg->ImgRC;
 	goldBg->x = 10;
 	goldBg->y = 10;
@@ -207,8 +207,8 @@ void GameScene::printGold(int _gold, Graphics* pGraphics)
 	StaticObject* ic = new StaticObject();
 	ic->Objtype = eObjectType_None;
 	ic->AssetFileName = TEXT("goldbar\\gold_icon.png");
-	ic->ImgRC = Rect(0, 0, 19, 22);
-	ic->ViewRC = Rect(0, 0, 40, 37);
+	ic->ImgRC = Rect(0, 0, 40, 39);
+	ic->ViewRC = Rect(0, 0, 40, 39);
 	ic->ViewRC.X = goldBg->x + 100;
 	ic->ViewRC.Y = goldBg->y + 40;
 
