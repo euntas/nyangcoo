@@ -5,6 +5,17 @@ ChapterSelectScene::ChapterSelectScene() : Scene()
 {
 	Name = "Scene_ChapterSelect";
 
+	// TODO. 나중에 DB로 옮겨야 함
+	stageClearList.insert(make_pair(0, true));
+	stageClearList.insert(make_pair(1, false));
+	stageClearList.insert(make_pair(2, false));
+	stageClearList.insert(make_pair(3, false));
+
+	Init();
+}
+
+void ChapterSelectScene::Init()
+{
 	bg = new StaticObject();
 	bg->Objtype = eObjectType_BGImage;
 	bg->AssetFileName = TEXT("ChapterSelect_bg.png");
@@ -51,33 +62,64 @@ ChapterSelectScene::ChapterSelectScene() : Scene()
 	ChapterTitle->x = 470;
 	ChapterTitle->y = 8;
 
-	Btn* StageClearedBtn = new Btn();
+	Btn* StageClearedBtn = new Btn(0);
 	StageClearedBtn->ID = eScene_Game;
-	StageClearedBtn->AssetFileName = TEXT("stage_cleared.png");
+	if (stageClearList.find(0)->second == true)
+	{
+		StageClearedBtn->AssetFileName = TEXT("stage_cleared.png");
+	}
+	else
+	{
+		StageClearedBtn->AssetFileName = TEXT("stage_notyet.png");
+	}
 	StageClearedBtn->ImgRC = Rect(0, 0, 113, 112);
 	StageClearedBtn->ViewRC = StageClearedBtn->ImgRC;
 	StageClearedBtn->x = 148;
 	StageClearedBtn->y = 273;
 
-	Btn* StageNotYetBtn1 = new Btn();
-	StageNotYetBtn1->ID = eScene_Script;
-	StageNotYetBtn1->AssetFileName = TEXT("stage_notyet.png");
+	Btn* StageNotYetBtn1 = new Btn(1);
+	StageNotYetBtn1->ID = eScene_Game;
+	if (stageClearList.find(1)->second == true)
+	{
+		StageNotYetBtn1->AssetFileName = TEXT("stage_cleared.png");
+	}
+	else
+	{
+		StageNotYetBtn1->Enable = false;
+		StageNotYetBtn1->AssetFileName = TEXT("stage_notyet.png");
+	}
 	StageNotYetBtn1->ImgRC = Rect(0, 0, 113, 112);
 	StageNotYetBtn1->ViewRC = StageNotYetBtn1->ImgRC;
 	StageNotYetBtn1->x = 347;
 	StageNotYetBtn1->y = 273;
 
-	Btn* StageNotYetBtn2 = new Btn();
-	//StageNotYetBtn2->ID = eScene_Game;
-	StageNotYetBtn2->AssetFileName = TEXT("stage_notyet.png");
+	Btn* StageNotYetBtn2 = new Btn(2);
+	StageNotYetBtn2->ID = eScene_Game;
+	if (stageClearList.find(2)->second == true)
+	{
+		StageNotYetBtn2->AssetFileName = TEXT("stage_cleared.png");
+	}
+	else
+	{
+		StageNotYetBtn2->Enable = false;
+		StageNotYetBtn2->AssetFileName = TEXT("stage_notyet.png");
+	}
 	StageNotYetBtn2->ImgRC = Rect(0, 0, 113, 112);
 	StageNotYetBtn2->ViewRC = StageNotYetBtn2->ImgRC;
 	StageNotYetBtn2->x = 535;
 	StageNotYetBtn2->y = 183;
 
-	Btn* StageNotYetBtn3 = new Btn();
-	//StageNotYetBtn3->ID = eScene_Game;
-	StageNotYetBtn3->AssetFileName = TEXT("stage_notyet.png");
+	Btn* StageNotYetBtn3 = new Btn(3);
+	StageNotYetBtn3->ID = eScene_Game;
+	if (stageClearList.find(3)->second == true)
+	{
+		StageNotYetBtn3->AssetFileName = TEXT("stage_cleared.png");
+	}
+	else
+	{
+		StageNotYetBtn3->Enable = false;
+		StageNotYetBtn3->AssetFileName = TEXT("stage_notyet.png");
+	}
 	StageNotYetBtn3->ImgRC = Rect(0, 0, 113, 112);
 	StageNotYetBtn3->ViewRC = StageNotYetBtn3->ImgRC;
 	StageNotYetBtn3->x = 535;
@@ -121,7 +163,7 @@ ChapterSelectScene::ChapterSelectScene() : Scene()
 	StageNotYetBtn8->ImgRC = Rect(0, 0, 113, 112);
 	StageNotYetBtn8->ViewRC = StageNotYetBtn8->ImgRC;
 	StageNotYetBtn8->x = 1094;
-	StageNotYetBtn8->y = 273;	
+	StageNotYetBtn8->y = 273;
 
 
 	infoStaticObj.emplace_back(bg);
@@ -145,11 +187,6 @@ ChapterSelectScene::ChapterSelectScene() : Scene()
 	popUp->ViewRC = popUp->ImgRC;
 	popUp->Visible = false;
 	infoStaticObj.emplace_back(popUp);
-}
-
-void ChapterSelectScene::Init()
-{
-
 }
 
 void ChapterSelectScene::Update(float Delta)

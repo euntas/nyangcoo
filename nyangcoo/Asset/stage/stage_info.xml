@@ -33,4 +33,23 @@
 			<name>titan</name>
 		</enemyList>
 	</Stage>
+	<Stage stageID="3" stageTitle="프롤로그 마녀의 훈련장" maxGold="1500" maxHP="1000" waveNum="3" imagePath="bg_moon.png">
+		<ImgRC x="0" y="0" width="2840" height="672"></ImgRC>
+		<ViewRC x="0" y="0" width="1420" height="672"></ViewRC>
+		<enemyList wave="0">
+			<name>muscle</name>
+			<name>titan</name>
+			<name>titan</name>
+		</enemyList>
+		<enemyList wave="1">
+			<name>muscle</name>
+			<name>titan</name>
+			<name>titan</name>
+		</enemyList>
+		<enemyList wave="2">
+			<name>muscle</name>
+			<name>titan</name>
+			<name>titan</name>
+		</enemyList>
+	</Stage>
 </Root>

@@ -4,6 +4,7 @@
 StaticObject::StaticObject()
 	: Objtype(eObjectType_None)
 	, Visible(true)
+	, Enable(true)
 {
 
 }
@@ -11,6 +12,7 @@ StaticObject::StaticObject()
 StaticObject::StaticObject(EObjectType InType)
 	: Objtype(InType)
 	, Visible(true)
+	, Enable(true)
 {
 
 }

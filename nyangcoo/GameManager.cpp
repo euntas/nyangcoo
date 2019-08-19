@@ -3,7 +3,7 @@
 
 GameManager::GameManager()
 {
-
+	
 }
 
 GameManager& GameManager::GetInstance()

@@ -29,6 +29,19 @@ SceneManager::SceneManager()
 	mScene.emplace_back(scriptScene);
 }
 
+Scene* SceneManager::GetSceneByName(CString& pName)
+{
+	for (auto& it : mScene)
+	{
+		if (!it->Name.CompareNoCase(pName))
+		{
+			return it;
+		}
+	}
+
+	return nullptr;
+}
+
 void SceneManager::LoadScene(CString& pName)
 {
 	for (auto& it : mScene)

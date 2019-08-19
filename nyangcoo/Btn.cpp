@@ -4,14 +4,24 @@
 Btn::Btn()
 	: StaticObject(EObjectType::eObjectType_Btn)
 {
+	stageID = 0;
+}
 
+Btn::Btn(int _stageID)
+	: StaticObject(EObjectType::eObjectType_Btn)
+{
+	stageID = _stageID;
 }
 
 void Btn::SendLButtonDown()
 {
+	if (Enable == false)
+		return;
+
 	switch (ID)
 	{
 	case eScene_Game: 
+		GameManager::GetInstance().btnID = stageID;
 		SceneManager::GetInstance().LoadScene(CString("Scene_Game"));
 		SceneManager::GetInstance().Init();
 		break;

@@ -12,6 +12,7 @@
 #include <tinyxml2.h>
 #include <gdiplus.h>
 #include <vector>
+#include <map>
 #include <memory>
 #include <string>
 #include <unordered_map>

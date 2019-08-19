@@ -18,7 +18,7 @@ void GameScene::Init()
 	gsGoldDelta = 500; // 골드 증가 초기 속도
 
 	// 게임 매니저 초기화
-	GameManager::GetInstance().Init(0);
+	GameManager::GetInstance().Init(GameManager::GetInstance().btnID);
 
 	maxGold = GameManager::GetInstance().curStage->maxGold;
 
@@ -141,7 +141,11 @@ void GameScene::Update(float Delta)
 		{
 			ResultPopUp->bg->AssetFileName = TEXT("result_lose.png");
 		}
-		
+		else
+		{
+			ChapterSelectScene* css = reinterpret_cast<ChapterSelectScene*>(SceneManager::GetInstance().GetSceneByName(CString("Scene_ChapterSelect")));
+			css->stageClearList.find(GameManager::GetInstance().curStage->stageID)->second = true;
+		}
 		ResultPopUp->Visible = true;
 	}
 

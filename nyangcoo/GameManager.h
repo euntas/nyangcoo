@@ -23,6 +23,8 @@ public:
 	vector<Character*> curCharacterList;
 	Character* CommandPlayer;
 
+	int btnID; // 버튼이 가지고 있는 stageID이다. 버튼이 눌리면 저장되게끔 되어있음.
+
 private:
 };
 
