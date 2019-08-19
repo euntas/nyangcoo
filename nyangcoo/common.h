@@ -28,7 +28,15 @@ enum EObjectType
 	eObjectType_PopUp,
 	eObjectType_MakeCharacterBtn,
 	eObjectType_UpgradeCharacterBtn,
+	eObjectType_PlayerSkillBtn,
 	eObjectType_Cnt
+};
+
+enum ESkillType
+{
+	eSkill_Heal,
+	eSkill_Blizzard,
+	eSkill_Cnt
 };
 
 enum EState {
