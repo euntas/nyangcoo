@@ -27,7 +27,7 @@ void GameScene::Init()
 	infoStaticObj.emplace_back(bg);
 
 	// 캐릭터 생성용 슬롯 버튼 만들기
-	std::string charNameList[8] = { "pistachio",  "whitechoco", "muscle", "kiwi", "windarcher", "pistachio", "whitechoco", "kiwi" };
+	std::string charNameList[8] = { "pistachio",  "whitechoco", "muscle", "kiwi", "windarcher", "pistachio", "plum", "moonrabit" };
 	MakeCharacterBtn* mcb[8];
 	UpgradeCharacterBtn* ucb[8];
 
