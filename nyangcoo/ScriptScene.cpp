@@ -5,6 +5,11 @@ ScriptScene::ScriptScene() : Scene()
 {
 	Name = "Scene_Script";
 
+	Init();
+}
+
+void ScriptScene::Init()
+{
 	bg = new StaticObject();
 	bg->Objtype = eObjectType_BGImage;
 	bg->AssetFileName = TEXT("script_scene_bg.png");
@@ -26,14 +31,6 @@ ScriptScene::ScriptScene() : Scene()
 	ScriptText->ViewRC = ScriptText->ImgRC;
 	ScriptText->x = 58;
 	ScriptText->y = 123;
-
-	//ScriptChoice = new StaticObject();
-	//ScriptChoice->Objtype = eObjectType_None;
-	//ScriptChoice->AssetFileName = TEXT("script_scene_choice.png");
-	//ScriptChoice->ImgRC = Rect(0, 0, 1000, 248);
-	//ScriptChoice->ViewRC = ScriptChoice->ImgRC;
-	//ScriptChoice->x = 355;
-	//ScriptChoice->y = 412;
 
 	ScriptPlayer = new StaticObject();
 	ScriptPlayer->Objtype = eObjectType_None;
@@ -62,15 +59,15 @@ ScriptScene::ScriptScene() : Scene()
 	infoStaticObj.emplace_back(bg);
 	infoStaticObj.emplace_back(ChapterName);
 	infoStaticObj.emplace_back(ScriptText);
-	infoStaticObj.emplace_back(ScriptChoice);
 	infoStaticObj.emplace_back(ScriptPlayer);
 	infoStaticObj.emplace_back(ChoiceBtn1);
 	infoStaticObj.emplace_back(ChoiceBtn2);
-}
 
-void ScriptScene::Init()
-{
-
+	PopUp* popUp = new PopUp(ePopup_close);
+	popUp->ImgRC = Rect(0, 0, 250, 198);
+	popUp->ViewRC = popUp->ImgRC;
+	popUp->Visible = false;
+	infoStaticObj.emplace_back(popUp);
 }
 
 void ScriptScene::Update(float Delta)

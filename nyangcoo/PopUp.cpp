@@ -33,7 +33,7 @@ PopUp::PopUp(EPopup name) : StaticObject(EObjectType::eObjectType_PopUp)
 	if (name == ePopup_close)
 	{
 		this->x = 585;
-		this->y = 237;
+		this->y = 197;
 
 		name = ePopup_close;
 
