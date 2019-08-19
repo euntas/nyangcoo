@@ -51,6 +51,12 @@ void CookieSelectScene::Init()
 	makeBtn(eScene_Game);
 
 	selectChar("selected_kiwi");
+
+	PopUp* popUp = new PopUp(ePopup_close);
+	popUp->ImgRC = Rect(0, 0, 250, 198);
+	popUp->ViewRC = popUp->ImgRC;
+	popUp->Visible = false;
+	infoStaticObj.emplace_back(popUp);
 }
 
 void CookieSelectScene::selectChar(std::string name)

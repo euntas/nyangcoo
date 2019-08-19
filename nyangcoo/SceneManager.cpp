@@ -182,4 +182,15 @@ void SceneManager::SendKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			}
 		}
 	}
+
+	if (GetAsyncKeyState(VK_ESCAPE) & 0x8001)
+	{
+		for (auto& it : GetCurScene()->infoStaticObj)
+		{
+			if (it->Objtype == eObjectType_PopUp)
+			{
+				it->Visible = !it->Visible;
+			}
+		}
+	}
 }

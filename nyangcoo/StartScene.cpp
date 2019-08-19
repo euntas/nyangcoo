@@ -64,7 +64,9 @@ void StartScene::Init()
 	infoStaticObj.emplace_back(ExitBtn);
 
 	PopUp* popUp = new PopUp(ePopup_close);
-
+	popUp->ImgRC = Rect(0, 0, 250, 198);
+	popUp->ViewRC = popUp->ImgRC;
+	popUp->Visible = false;
 	infoStaticObj.emplace_back(popUp);
 }
 

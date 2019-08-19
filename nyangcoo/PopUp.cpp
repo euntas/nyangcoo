@@ -32,8 +32,8 @@ PopUp::PopUp(EPopup name) : StaticObject(EObjectType::eObjectType_PopUp)
 {
 	if (name == ePopup_close)
 	{
-		this->x = 630;
-		this->y = 10;
+		this->x = 585;
+		this->y = 197;
 
 		name = ePopup_close;
 
@@ -48,7 +48,6 @@ PopUp::PopUp(EPopup name) : StaticObject(EObjectType::eObjectType_PopUp)
 		infoStaticObj.emplace_back(bg);
 
 		Btn* BackTitleBtn = new Btn();
-		//BackTitleBtn->ID = eScene_Start;
 		BackTitleBtn->ID = eScene_Exit;
 		BackTitleBtn->AssetFileName = TEXT("popup_backtitle.png");
 		BackTitleBtn->ImgRC = Rect(0, 0, 227, 45);
@@ -60,7 +59,7 @@ PopUp::PopUp(EPopup name) : StaticObject(EObjectType::eObjectType_PopUp)
 
 		infoStaticObj.emplace_back(BackTitleBtn);
 
-		//Visible = false;
+		Visible = false;
 	}
 	
 
