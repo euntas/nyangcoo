@@ -5,12 +5,6 @@ ChapterSelectScene::ChapterSelectScene() : Scene()
 {
 	Name = "Scene_ChapterSelect";
 
-	// TODO. 나중에 DB로 옮겨야 함
-	stageClearList.insert(make_pair(0, true));
-	stageClearList.insert(make_pair(1, false));
-	stageClearList.insert(make_pair(2, false));
-	stageClearList.insert(make_pair(3, false));
-
 	Init();
 }
 
@@ -61,10 +55,10 @@ void ChapterSelectScene::Init()
 	ChapterTitle->ViewRC = ChapterTitle->ImgRC;
 	ChapterTitle->x = 470;
 	ChapterTitle->y = 8;
-
+	
 	Btn* StageClearedBtn = new Btn(0);
 	StageClearedBtn->ID = eScene_Game;
-	if (stageClearList.find(0)->second == true)
+	if (GameManager::GetInstance().stageClearList[0] == true)
 	{
 		StageClearedBtn->AssetFileName = TEXT("stage_cleared.png");
 	}
@@ -79,7 +73,7 @@ void ChapterSelectScene::Init()
 
 	Btn* StageNotYetBtn1 = new Btn(1);
 	StageNotYetBtn1->ID = eScene_Game;
-	if (stageClearList.find(1)->second == true)
+	if (GameManager::GetInstance().stageClearList[1] == true)
 	{
 		StageNotYetBtn1->AssetFileName = TEXT("stage_cleared.png");
 	}
@@ -95,7 +89,7 @@ void ChapterSelectScene::Init()
 
 	Btn* StageNotYetBtn2 = new Btn(2);
 	StageNotYetBtn2->ID = eScene_Game;
-	if (stageClearList.find(2)->second == true)
+	if (GameManager::GetInstance().stageClearList[2] == true)
 	{
 		StageNotYetBtn2->AssetFileName = TEXT("stage_cleared.png");
 	}
@@ -111,7 +105,7 @@ void ChapterSelectScene::Init()
 
 	Btn* StageNotYetBtn3 = new Btn(3);
 	StageNotYetBtn3->ID = eScene_Game;
-	if (stageClearList.find(3)->second == true)
+	if (GameManager::GetInstance().stageClearList[3] == true)
 	{
 		StageNotYetBtn3->AssetFileName = TEXT("stage_cleared.png");
 	}

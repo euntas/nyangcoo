@@ -143,8 +143,7 @@ void GameScene::Update(float Delta)
 		}
 		else
 		{
-			ChapterSelectScene* css = reinterpret_cast<ChapterSelectScene*>(SceneManager::GetInstance().GetSceneByName(CString("Scene_ChapterSelect")));
-			css->stageClearList.find(GameManager::GetInstance().curStage->stageID)->second = true;
+			GameManager::GetInstance().stageClearList[GameManager::GetInstance().curStage->stageID + 1] = true;
 		}
 		ResultPopUp->Visible = true;
 	}
