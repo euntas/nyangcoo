@@ -37,9 +37,31 @@ void StaticObject::Render(Gdiplus::Graphics* pGraphics)
 		{
 			GameScene* gs = reinterpret_cast<GameScene*>(SceneManager::GetInstance().GetCurScene());
 			Gdiplus::Rect tempRC = gs->bg->ViewRC;
-				
-			pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X, ImgRC.Y, gs->bg->ViewRC.Width, gs->bg->ViewRC.Height, Gdiplus::Unit::UnitPixel,
+
+			if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+			{
+				//gray scale conversion:
+				Gdiplus::ColorMatrix matrix =
+				{
+					.3f, .3f, .3f,   0,   0,
+					.6f, .6f, .6f,   0,   0,
+					.1f, .1f, .1f,   0,   0,
+					0,   0,   0,   1,   0,
+					0,   0,   0,   0,   1
+				};
+
+				Gdiplus::ImageAttributes attr;
+				attr.SetColorMatrix(&matrix,
+					Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
+
+				pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X, ImgRC.Y, gs->bg->ViewRC.Width, gs->bg->ViewRC.Height, Gdiplus::Unit::UnitPixel,
+					&attr, 0, nullptr);
+			}
+			else
+			{
+				pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X, ImgRC.Y, gs->bg->ViewRC.Width, gs->bg->ViewRC.Height, Gdiplus::Unit::UnitPixel,
 					nullptr, 0, nullptr);
+			}
 		}
 		else
 		{
@@ -54,8 +76,31 @@ void StaticObject::Render(Gdiplus::Graphics* pGraphics)
 		int AddY = (tempRC.Height - ImgRC.Height) * 0.5f;
 		tempRC.X -= AddX;
 		tempRC.Y -= AddY;
-		pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X, ImgRC.Y, ImgRC.Width, ImgRC.Height, Gdiplus::Unit::UnitPixel,
-			nullptr, 0, nullptr);
+
+		if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+		{
+			//gray scale conversion:
+			Gdiplus::ColorMatrix matrix =
+			{
+				.3f, .3f, .3f,   0,   0,
+				.6f, .6f, .6f,   0,   0,
+				.1f, .1f, .1f,   0,   0,
+				0,   0,   0,   1,   0,
+				0,   0,   0,   0,   1
+			};
+
+			Gdiplus::ImageAttributes attr;
+			attr.SetColorMatrix(&matrix,
+				Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
+
+			pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X, ImgRC.Y, ImgRC.Width, ImgRC.Height, Gdiplus::Unit::UnitPixel,
+				&attr, 0, nullptr);
+		}
+		else
+		{
+			pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X, ImgRC.Y, ImgRC.Width, ImgRC.Height, Gdiplus::Unit::UnitPixel,
+				nullptr, 0, nullptr);
+		}
 	}
 }
 
