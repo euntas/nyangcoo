@@ -34,7 +34,7 @@ void GameManager::MakeEnemyForWave(int waveNum)
 		sampleEnemy->CharacterXmlFileName = "Asset\\player\\player_" + it + ".xml";
 		XmlManager::GetInstance().ParseCharacterData(*sampleEnemy);
 		sampleEnemy->Init(new InputComponent(), new CharacterGraphicsComponent(sampleEnemy));
-		sampleEnemy->x += (distCnt * 300);
+		sampleEnemy->x += (distCnt * 200);
 		if (it == "titan")
 			sampleEnemy->bleft = true;
 

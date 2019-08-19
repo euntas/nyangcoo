@@ -13,23 +13,10 @@ GameStage::GameStage(int _stageID)
 
 void GameStage::Init(int _stageID)
 {
-	stageID = _stageID;
-
-	stageTitle = L"프롤로그 마녀의 훈련장 \n";
-
-	maxGold = 1500;
-	maxHP = 1000;
-
+	stageXmlFileName = "Asset\\stage\\stage_info.xml";
 	bg = new StaticObject();
 	bg->Objtype = eObjectType_BGImage;
-	bg->AssetFileName = TEXT("bg_bamboo2.png");
-	bg->ImgRC = Rect(0, 0, 2840, 672);
-	bg->ViewRC = Rect(0, 0, 1420, 672);
+	XmlManager::GetInstance().ParseStageData(*this, _stageID);
 
-	//waveNum = 3;
-	waveNum = 1;
-
-	enemyNameList[0] = {"muscle", "titan", "titan"};
-	//enemyNameList[1] = {"titan" , "muscle", "titan", "titan" };
-	//enemyNameList[2] = { "muscle", "titan", "titan" };
+	stageTitle = L"프롤로그 마녀의 훈련장 \n";
 }
