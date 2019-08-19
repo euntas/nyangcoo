@@ -126,6 +126,7 @@ void GameScene::InitGoldBar()
 
 void GameScene::Update(float Delta)
 {
+	infoObj;
 	// 게임이 종료되면 씬 전환
 	if (GameManager::GetInstance().IsGameEnd())
 	{
@@ -165,23 +166,37 @@ void GameScene::Update(float Delta)
 	}
 
 	// 죽은애들 처리
+/*
 	for (Object* ch : infoObj)
 	{
-		Character* c = reinterpret_cast<Character*>(ch);
-		if (c->Enable == false && c->Visible == false)
+		if (ch->Objtype == eObjectType_Effect)
 		{
-			ch = nullptr;
+			Effect* e = reinterpret_cast<Effect*>(ch);
+			if (e->Enable == false && e->Visible == false)
+			{
+				e = nullptr;
+			}
 		}
-	}
+		else if (ch->Objtype == eObjectType_Character)
+		{
+			Character* c = reinterpret_cast<Character*>(ch);
+			if (c->Enable == false && c->Visible == false)
+			{
+				ch = nullptr;
+			}
+		}
+		
+	}*/
 
 	// wave관련 코드
 	if (GameManager::GetInstance().IsAllEnemyDead())
 	{
-		GameManager::GetInstance().ChangeWave();
-
-		for (auto& it : GameManager::GetInstance().curEnemyList)
+		if (GameManager::GetInstance().ChangeWave())
 		{
-			infoObj.emplace_back(it);
+			for (auto& it : GameManager::GetInstance().curEnemyList)
+			{
+				infoObj.emplace_back(it);
+			}
 		}
 	}
 

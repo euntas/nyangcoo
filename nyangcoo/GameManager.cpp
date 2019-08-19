@@ -63,16 +63,18 @@ void GameManager::ClearAll()
 	curCharacterList.clear();
 }
 
-void GameManager::ChangeWave()
+bool GameManager::ChangeWave()
 {
 	if (curWaveNum + 1 >= curStage->waveNum)
 	{
-		return;
+		return false;
 	}
 
 	curWaveNum++;
 
 	MakeEnemyForWave(curWaveNum);
+
+	return true;
 }
 
 bool GameManager::IsAllEnemyDead()
@@ -104,7 +106,7 @@ bool GameManager::IsGameEnd()
 	}
 
 	// 적들 상태 확인
-	if (curWaveNum + 1 != curStage->waveNum)
+	if (curWaveNum + 1 < curStage->waveNum)
 		return false;
 
 	for (auto& it : curEnemyList)
