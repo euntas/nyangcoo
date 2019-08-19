@@ -5,6 +5,11 @@ StartScene::StartScene() : Scene()
 {
 	Name = "Scene_Start";
 
+	Init();
+}
+
+void StartScene::Init()
+{
 	bg = new StaticObject();
 	bg->Objtype = eObjectType_BGImage;
 	bg->AssetFileName = TEXT("bg.png");
@@ -14,7 +19,7 @@ StartScene::StartScene() : Scene()
 	Btn* StartBtn = new Btn();
 	StartBtn->ID = eScene_ChapterSelect;
 	StartBtn->AssetFileName = TEXT("title_btn_00.png");
-	StartBtn->ImgRC = Rect(0,0, 236, 72);
+	StartBtn->ImgRC = Rect(0, 0, 236, 72);
 	StartBtn->ViewRC = StartBtn->ImgRC;
 	StartBtn->x = 600;
 	StartBtn->y = 200;
@@ -63,11 +68,6 @@ StartScene::StartScene() : Scene()
 	popUp->ViewRC = popUp->ImgRC;
 	popUp->Visible = false;
 	infoStaticObj.emplace_back(popUp);
-}
-
-void StartScene::Init()
-{
-
 }
 
 void StartScene::Update(float Delta)

@@ -13,6 +13,7 @@ public:
 	virtual void Release();
 
 	void printChoice(Gdiplus::Graphics* pGraphics);
+	void printGameResult(Gdiplus::Graphics* pGraphics);
 
 	StaticObject* bg;
 	StaticObject* ChapterName;

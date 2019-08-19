@@ -79,6 +79,7 @@ void ScriptScene::Render(Graphics* pGraphics)
 {
 	Scene::Render(pGraphics);
 	printChoice(pGraphics);
+	printGameResult(pGraphics);
 }
 
 void ScriptScene::Release()
@@ -123,4 +124,25 @@ void ScriptScene::printChoice(Gdiplus::Graphics* pGraphics)
 	wstring tempCho = L"마법사들의 도시에 알린다.\n\n\n\n마법사들의 도시로 향하는 [냥국] 병사들을 공격한다.";
 
 	pGraphics->DrawString(tempCho.c_str(), -1, &F, P2, &B2);
+}
+
+void ScriptScene::printGameResult(Gdiplus::Graphics* pGraphics)
+{
+	Gdiplus::Font F(L"Arial", 5, FontStyleBold, UnitMillimeter);
+
+	Gdiplus::PointF P1(45, 125);
+
+	Gdiplus::SolidBrush B1(Color(13, 48, 119));
+
+	wstring tempTex = L"결과 : ";
+	if (GameManager::GetInstance().IsWin)
+	{
+		tempTex += L"승리";
+	}
+	else
+	{
+		tempTex += L"패배";
+	}
+
+	pGraphics->DrawString(tempTex.c_str(), -1, &F, P1, &B1);
 }

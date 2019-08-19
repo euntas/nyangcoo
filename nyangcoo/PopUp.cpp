@@ -42,6 +42,8 @@ PopUp::PopUp(EPopup name) : StaticObject(EObjectType::eObjectType_PopUp)
 		bg->AssetFileName = TEXT("popup_background.png");
 		bg->ImgRC = Rect(0, 0, 250, 198);
 		bg->ViewRC = bg->ImgRC;
+		bg->ViewRC.X = x;
+		bg->ViewRC.Y = y;
 
 		infoStaticObj.emplace_back(bg);
 
@@ -52,6 +54,8 @@ PopUp::PopUp(EPopup name) : StaticObject(EObjectType::eObjectType_PopUp)
 		BackTitleBtn->ViewRC = BackTitleBtn->ImgRC;
 		BackTitleBtn->x = 12;
 		BackTitleBtn->y = 135;
+		BackTitleBtn->ViewRC.X = x + BackTitleBtn->x;
+		BackTitleBtn->ViewRC.Y = y + BackTitleBtn->y;
 
 		infoStaticObj.emplace_back(BackTitleBtn);
 
@@ -82,18 +86,8 @@ void PopUp::Render(Gdiplus::Graphics* pGraphics)
 
 		auto pImg = (AssetManager::GetInstance().GetImage(it->AssetFileName)).lock();
 
-		if (it->Objtype == eObjectType_BGImage) // 배경 그림
-		{
-			Rect tempRC(x, y, ViewRC.Width, ViewRC.Height);
-			pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X, ImgRC.Y, ImgRC.Width, ImgRC.Height, Gdiplus::Unit::UnitPixel,
+		pGraphics->DrawImage(pImg.get(), it->ViewRC, it->ImgRC.X, it->ImgRC.Y, it->ImgRC.Width, it->ImgRC.Height, Gdiplus::Unit::UnitPixel,
 				nullptr, 0, nullptr);
-		}
-		else // 그 외 그림
-		{
-			Rect tempRC(x + it->x, y + it->y, it->ViewRC.Width, it->ViewRC.Height);
-			pGraphics->DrawImage(pImg.get(), tempRC, it->ImgRC.X, it->ImgRC.Y, it->ImgRC.Width, it->ImgRC.Height, Gdiplus::Unit::UnitPixel,
-				nullptr, 0, nullptr);
-		}
 	}
 }
 

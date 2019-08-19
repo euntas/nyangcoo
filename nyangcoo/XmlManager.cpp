@@ -28,6 +28,7 @@ void XmlManager::ParseCharacterData(Character& character)
 	character.atkSpeed = atkSpeed;
 	character.atkDist = atkDist;
 	character.hp = hp;
+	character.maxHp = hp;
 	character.gold = gold;
 
 	XMLElement* Node;
@@ -82,6 +83,7 @@ void XmlManager::ParseCharacterInitData(Character& character)
 	character.atkSpeed = atkSpeed;
 	character.atkDist = atkDist;
 	character.hp = hp;
+	character.maxHp = hp;
 	character.gold = gold;
 }
 

@@ -39,7 +39,7 @@ void Btn::SendLButtonDown()
 	case eScene_Exit:
 		//PostQuitMessage(0);
 		//TODO. 추후 종료 확인 창을 띄우는 작업을 해야함.
-		if (SceneManager::GetInstance().GetCurScene()->Name == "Scene_Start")
+		/*if (SceneManager::GetInstance().GetCurScene()->Name == "Scene_Start")
 		{
 			for (auto& it : SceneManager::GetInstance().GetCurScene()->infoStaticObj)
 			{
@@ -51,9 +51,9 @@ void Btn::SendLButtonDown()
 			break;
 		}
 		else 
-		{
+		{*/
 			ExitProcess(0);
-		}
+		//}
 		
 		break;
 	}

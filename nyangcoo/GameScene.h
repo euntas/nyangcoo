@@ -13,7 +13,9 @@ public:
 	virtual void Release();
 
 	void printGold(int _gold, Gdiplus::Graphics* pGraphics);
+	void InitGoldBar();
 	void printTitle(Gdiplus::Graphics* pGraphics);
+	void printHP(Character* _character, Gdiplus::Graphics* pGraphics);
 
 	StaticObject* bg;
 
@@ -21,5 +23,12 @@ public:
 
 	float gsGoldDelta;			// 골드 증가 기준속도
 	float gsGoldDeltaA;
+
+	StaticObject* goldBg;		// 골드바 배경
+	StaticObject* goldPart[10];	// 골드바 유닛
+
+	Character* CommandPlayer;	// TODO. 스테이지 정보에서 가져와야 함
+
+	int maxGold;
 };
 
