@@ -113,6 +113,24 @@ void SceneManager::SendLButtonDown(UINT nFlags, CPoint point)
 			}
 		}
 	}
+
+	for (auto& it : CurScene->infoUIObj)
+	{
+		if (it == nullptr) continue;
+
+		if (it->Objtype == eObjectType_PopUp)
+		{
+			PopUp* pb = reinterpret_cast<PopUp*>(it);
+			for (auto& pbit : pb->infoStaticObj)
+			{
+				if (pbit->Objtype == eObjectType_Btn && pbit->ViewRC.Contains(point.x, point.y) && pb->Visible)
+				{
+					Btn* o = reinterpret_cast<Btn*>(pbit);
+					o->SendLButtonDown();
+				}
+			}
+		}
+	}
 }
 
 void SceneManager::SendMouseMove(UINT nFlags, CPoint point)

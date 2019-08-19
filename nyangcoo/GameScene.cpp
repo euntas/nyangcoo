@@ -92,7 +92,7 @@ void GameScene::Init()
 
 	ResultPopUp = new PopUp(ePopup_result);
 
-	infoStaticObj.emplace_back(ResultPopUp);
+	infoUIObj.emplace_back(ResultPopUp);
 
 }
 
