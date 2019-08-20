@@ -20,5 +20,7 @@ public:
 	StaticObject* btnImg;
 
 	int CurID;
+
+	float angle;
 };
 

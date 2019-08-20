@@ -10,37 +10,55 @@ PlayerSkillBtn::PlayerSkillBtn()
 PlayerSkillBtn::PlayerSkillBtn(std::string skillName)
 	: StaticObject(EObjectType::eObjectType_PlayerSkillBtn)
 {
+	Enable = false;
+
 	Name = skillName;
 
-	std::string imgFilename;
-
-	imgFilename = "skill_" + skillName + ".png";
-
-	if (skillName == "heal")
-	{	
-		skillType = eSkill_Heal;
-	}
-	else if (skillName == "blizzard")
-	{
-		skillType = eSkill_Blizzard;
-	}
-		
-	btnImg = new StaticObject();
-	btnImg->AssetFileName.assign(imgFilename.begin(), imgFilename.end());
-	btnImg->ImgRC = Gdiplus::Rect(0, 0, 127, 144);
-	btnImg->ViewRC = btnImg->ImgRC;
-	btnImg->x = 1000 + x;
-	btnImg->y = 530 + y;
+	Init();
 }
 
 void PlayerSkillBtn::Init()
 {
+	angle = 0.f;
 
+	std::string imgFilename;
+
+	imgFilename = "skill_" + Name + ".png";
+
+	if (Name == "heal")
+	{
+		skillType = eSkill_Heal;
+	}
+	else if (Name == "blizzard")
+	{
+		skillType = eSkill_Blizzard;
+	}
+
+	btnImg = new StaticObject();
+	btnImg->AssetFileName.assign(imgFilename.begin(), imgFilename.end());
+	btnImg->ImgRC = Gdiplus::Rect(0, 0, 127, 144);
+	btnImg->ViewRC = btnImg->ImgRC;
 }
 
 void PlayerSkillBtn::Update(float Delta)
 {
+	if (Enable == false)
+	{
+		if (Name == "heal")
+		{
+			angle += 1;
+		}
+		else if (Name == "blizzard")
+		{
+			angle += 0.5;
+		}
+	}
 
+	if (angle == 360)
+	{
+		angle = 0;
+		Enable = true;
+	}
 }
 
 void PlayerSkillBtn::Render(Gdiplus::Graphics* pGraphics)
@@ -78,6 +96,7 @@ void PlayerSkillBtn::Render(Gdiplus::Graphics* pGraphics)
 
 		g->SetCompositingMode(CompositingMode::CompositingModeSourceCopy);
 		g->FillPie(&empty, int(-btnImg->ImgRC.Width *0.5f), int(-btnImg->ImgRC.Height * 0.5f), btnImg->ImgRC.Width *2, btnImg->ImgRC.Height * 2, -90, angle);
+
 		pGraphics->DrawImage(&bitmap2, btnImg->x, btnImg->y);
 	}
 }
@@ -89,6 +108,15 @@ void PlayerSkillBtn::Release()
 
 void PlayerSkillBtn::SendLButtonDown()
 {
+	if (Enable == false)
+	{
+		return;
+	}
+	else
+	{
+		Enable = !Enable;
+	}
+
 	if (Name == "heal")
 	{
 		for (Character* it : GameManager::GetInstance().curCharacterList)
