@@ -46,6 +46,40 @@ void PlayerSkillBtn::Update(float Delta)
 void PlayerSkillBtn::Render(Gdiplus::Graphics* pGraphics)
 {
 	btnImg->Render(pGraphics);
+
+	// ÄðÅ¸ÀÓ °ü·Ã
+	Gdiplus::SolidBrush gray(Color(128, 0, 0, 0));
+	Gdiplus::SolidBrush empty(Color(0, 0, 0, 0));
+
+	if (Enable == false)
+	{
+		Rect coverImg(0, 0, btnImg->ImgRC.Width, btnImg->ImgRC.Height);
+		Gdiplus::Bitmap bitmap2(coverImg.Width, coverImg.Height, PixelFormat32bppARGB);
+		Gdiplus::Graphics* g = Gdiplus::Graphics::FromImage(&bitmap2);
+
+		auto pImg = (AssetManager::GetInstance().GetImage(btnImg->AssetFileName)).lock();
+
+		//gray scale conversion:
+		Gdiplus::ColorMatrix matrix =
+		{
+			.3f, .3f, .3f,   0,   0,
+			.6f, .6f, .6f,   0,   0,
+			.1f, .1f, .1f,   0,   0,
+			0,   0,   0,   1,   0,
+			0,   0,   0,   0,   1
+		};
+
+		Gdiplus::ImageAttributes attr;
+		attr.SetColorMatrix(&matrix,
+			Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
+
+		g->DrawImage(pImg.get(), coverImg, btnImg->ImgRC.X, btnImg->ImgRC.Y, btnImg->ImgRC.Width, btnImg->ImgRC.Height, Gdiplus::Unit::UnitPixel,
+			&attr, 0, nullptr);
+
+		g->SetCompositingMode(CompositingMode::CompositingModeSourceCopy);
+		g->FillPie(&empty, int(-btnImg->ImgRC.Width *0.5f), int(-btnImg->ImgRC.Height * 0.5f), btnImg->ImgRC.Width *2, btnImg->ImgRC.Height * 2, -90, angle);
+		pGraphics->DrawImage(&bitmap2, btnImg->x, btnImg->y);
+	}
 }
 
 void PlayerSkillBtn::Release()
