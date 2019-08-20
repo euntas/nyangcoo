@@ -34,6 +34,17 @@ void Scene::Update(float Delta)
 			it->Update(Delta);
 		}
 	}
+
+	for (auto& it : infoStaticObj)
+	{
+		if (it == nullptr) continue;
+
+		if (it->Objtype == eObjectType_PlayerSkillBtn)
+		{
+			PlayerSkillBtn* psb = reinterpret_cast<PlayerSkillBtn*>(it);
+			psb->Update(Delta);
+		}
+	}
 }
 
 void Scene::Render(Gdiplus::Graphics* pGraphics)

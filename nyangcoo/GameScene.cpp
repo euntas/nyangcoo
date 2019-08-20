@@ -10,6 +10,8 @@ GameScene::GameScene() : Scene()
 
 void GameScene::Init()
 {
+	GameManager::GetInstance().IsGrayScale = false;
+
 	// 초기 수치 부여
 	ClearAll();
 
@@ -92,10 +94,13 @@ void GameScene::Init()
 
 	// 플레이어 스킬
 	PlayerSkillBtn* ps_heal = new PlayerSkillBtn("heal");
+	ps_heal->btnImg->x = 1000;
+	ps_heal->btnImg->y = 530;
 	infoStaticObj.emplace_back(ps_heal);
 
 	PlayerSkillBtn* ps_blizzard = new PlayerSkillBtn("blizzard");
 	ps_blizzard->btnImg->x = ps_heal->btnImg->x + 150;
+	ps_blizzard->btnImg->y = ps_heal->btnImg->y;
 	infoStaticObj.emplace_back(ps_blizzard);
 
 	ResultPopUp = new PopUp(ePopup_result);
