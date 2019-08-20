@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Root name="titan" hp="1000" gold="0" speed="50" atk="30" atkSpeed="350.0" atkDist="0.0">
+<Root name="titan" hp="1000" gold="0" speed="40" atk="30" atkSpeed="350.0" atkDist="0.0">
 	<TextureAtlas imagePath="player\\player_titan_run.png" width="2048" height="512" frameNum="6" delta="150" rowNum="1" imgNumPerLine="6" state="0">
 	 <sprite h="300" w="140" y="0" x="0" n="player_titan_run1.png"/>
      <sprite h="300" w="140" y="0" x="140" n="player_titan_run2.png"/>
