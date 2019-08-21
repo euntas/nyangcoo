@@ -51,9 +51,9 @@ void ChapterSelectScene::Init()
 	ChapterTitle = new StaticObject();
 	ChapterTitle->Objtype = eObjectType_None;
 	ChapterTitle->AssetFileName = TEXT("chapter_title.png");
-	ChapterTitle->ImgRC = Rect(0, 0, 553, 111);
+	ChapterTitle->ImgRC = Rect(0, 0, 553, 120);
 	ChapterTitle->ViewRC = ChapterTitle->ImgRC;
-	ChapterTitle->x = 470;
+	ChapterTitle->x = 433;
 	ChapterTitle->y = 8;
 	
 	Btn* StageClearedBtn = new Btn(0);
