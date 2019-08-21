@@ -81,8 +81,8 @@ void Character::Update(float Delta)
 			|| (this->Objtype == eObjectType_Enemy && (it->Objtype == eObjectType_Character || it->Objtype == eObjectType_Player) && it->Enable))
 		{
 			Character* e = reinterpret_cast<Character*>(it);
-			float dist = pow(x - it->x - 2, 2) + pow(y - it->y - 2, 2);
-			float rad = pow((frameWidth[eState_Run] / 2 + e->frameWidth[eState_Run] / 2), 2);
+			float dist = pow(x + atkDist - it->x - 2, 2) + pow(y - it->y - 2, 2);
+			float rad = pow((frameWidth[eState_Run] / 2 + atkDist + e->frameWidth[eState_Run] / 2), 2);
 
 			// 적과 충돌
 			if (dist <= rad)
