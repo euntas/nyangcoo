@@ -17,25 +17,25 @@ void ChapterSelectScene::Init()
 	bg->ViewRC = bg->ImgRC;
 
 	Btn* GameStartBtn = new Btn();
-	GameStartBtn->ID = eScene_Game;
-	GameStartBtn->AssetFileName = TEXT("GameStart_btn.png");
-	GameStartBtn->ImgRC = Rect(0, 0, 277, 85);
+	GameStartBtn->ID = eScene_Start;
+	GameStartBtn->AssetFileName = TEXT("BackMain_btn.png");
+	GameStartBtn->ImgRC = Rect(0, 0, 200, 173);
 	GameStartBtn->ViewRC = GameStartBtn->ImgRC;
-	GameStartBtn->x = 1058;
-	GameStartBtn->y = 550;
+	GameStartBtn->x = 1187;
+	GameStartBtn->y = 466;
 
 	Btn* CookieSelectBtn = new Btn();
 	CookieSelectBtn->ID = eScene_CookieSelect;
 	CookieSelectBtn->AssetFileName = TEXT("CookieSelect_btn.png");
-	CookieSelectBtn->ImgRC = Rect(0, 0, 204, 89);
+	CookieSelectBtn->ImgRC = Rect(0, 0, 200, 165);
 	CookieSelectBtn->ViewRC = CookieSelectBtn->ImgRC;
-	CookieSelectBtn->x = 49;
-	CookieSelectBtn->y = 550;
+	CookieSelectBtn->x = 29;
+	CookieSelectBtn->y = 475;
 
 	Btn* NextChapterBtn = new Btn();
 	NextChapterBtn->ID = eScene_Exit;
 	NextChapterBtn->AssetFileName = TEXT("arrow_right.png");
-	NextChapterBtn->ImgRC = Rect(0, 0, 100, 118);
+	NextChapterBtn->ImgRC = Rect(0, 0, 100, 78);
 	NextChapterBtn->ViewRC = NextChapterBtn->ImgRC;
 	NextChapterBtn->x = 1310;
 	NextChapterBtn->y = 275;
@@ -43,7 +43,7 @@ void ChapterSelectScene::Init()
 	Btn* PrevChapterBtn = new Btn();
 	PrevChapterBtn->ID = eScene_Exit;
 	PrevChapterBtn->AssetFileName = TEXT("arrow_left.png");
-	PrevChapterBtn->ImgRC = Rect(0, 0, 100, 118);
+	PrevChapterBtn->ImgRC = Rect(0, 0, 100, 78);
 	PrevChapterBtn->ViewRC = PrevChapterBtn->ImgRC;
 	PrevChapterBtn->x = 10;
 	PrevChapterBtn->y = 275;
@@ -51,9 +51,9 @@ void ChapterSelectScene::Init()
 	ChapterTitle = new StaticObject();
 	ChapterTitle->Objtype = eObjectType_None;
 	ChapterTitle->AssetFileName = TEXT("chapter_title.png");
-	ChapterTitle->ImgRC = Rect(0, 0, 553, 111);
+	ChapterTitle->ImgRC = Rect(0, 0, 553, 120);
 	ChapterTitle->ViewRC = ChapterTitle->ImgRC;
-	ChapterTitle->x = 470;
+	ChapterTitle->x = 433;
 	ChapterTitle->y = 8;
 	
 	Btn* StageClearedBtn = new Btn(0);

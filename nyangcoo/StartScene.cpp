@@ -10,6 +10,8 @@ StartScene::StartScene() : Scene()
 
 void StartScene::Init()
 {
+	infoStaticObj.clear();
+
 	bg = new StaticObject();
 	bg->Objtype = eObjectType_BGImage;
 	bg->AssetFileName = TEXT("bg.png");
