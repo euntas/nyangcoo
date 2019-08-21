@@ -3,7 +3,7 @@
 
 GameManager::GameManager()
 {
-	coin = 0;
+	
 }
 
 GameManager& GameManager::GetInstance()
@@ -15,12 +15,16 @@ GameManager& GameManager::GetInstance()
 void GameManager::Init(int stageID)
 {
 	ClearAll();
+	
+	coin = 0;
 
 	// TODO. 나중에 DB로 옮겨야 함
 	stageClearList.insert(make_pair(0, true));
 	stageClearList.insert(make_pair(1, false));
 	stageClearList.insert(make_pair(2, false));
 	stageClearList.insert(make_pair(3, false));
+
+	InitAllCharacterList();
 
 	seletedSlotNum = -1;
 
@@ -73,6 +77,7 @@ void GameManager::ClearAll()
 	curCharacterList.clear();
 	stageClearList.clear();
 	stageSelectedList.clear();
+	AllCharacterList.clear();
 }
 
 bool GameManager::ChangeWave()
@@ -134,4 +139,20 @@ bool GameManager::IsGameEnd()
 
 	IsWin = true;
 	return true;
+}
+
+void GameManager::InitAllCharacterList()
+{
+	AllCharacterList.insert(make_pair("brave", true));
+	AllCharacterList.insert(make_pair("kiwi", true));
+	AllCharacterList.insert(make_pair("lemon", true));
+	AllCharacterList.insert(make_pair("macho", true));
+	AllCharacterList.insert(make_pair("moonlight", true));
+	AllCharacterList.insert(make_pair("moonrabit", true));
+	AllCharacterList.insert(make_pair("muscle", true));
+	AllCharacterList.insert(make_pair("pistachio", true));
+	AllCharacterList.insert(make_pair("plum", true));
+	AllCharacterList.insert(make_pair("titan", true));
+	AllCharacterList.insert(make_pair("whitechoco", true));
+	AllCharacterList.insert(make_pair("windarcher", true));
 }

@@ -13,6 +13,8 @@ public:
 	bool ChangeWave(); // true면 다음wave로, false면 변경 불가
 	bool IsAllEnemyDead();
 	bool IsGameEnd();
+	void InitAllCharacterList();
+
 	bool IsWin; // true : 플레이어 승리 false : 적 승리
 	bool IsGrayScale;
 

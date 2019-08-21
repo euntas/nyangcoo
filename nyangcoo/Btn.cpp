@@ -6,6 +6,7 @@ Btn::Btn()
 {
 	stageID = 0;
 	IsClicked = false;
+	selectOption = -1;
 }
 
 Btn::Btn(int _stageID)
@@ -13,6 +14,7 @@ Btn::Btn(int _stageID)
 {
 	stageID = _stageID;
 	IsClicked = false;
+	selectOption = -1;
 }
 
 void Btn::SendLButtonDown()
@@ -56,6 +58,13 @@ void Btn::SendLButtonDown()
 						break;
 					}
 				}
+			}
+		}
+		else if (SceneManager::GetInstance().GetCurScene()->Name == "Scene_Script")
+		{
+			if (selectOption == 0 || selectOption == 1)
+			{
+				GameManager::GetInstance().stageSelectedList[GameManager::GetInstance().curStage->stageID] = selectOption;
 			}
 		}
 
@@ -116,6 +125,11 @@ void Btn::SendLButtonDown()
 
 	case eSaveLoadBtn_Save:
 	{
+		if (GameManager::GetInstance().seletedSlotNum != -1)
+		{
+			XmlManager::GetInstance().SaveSlotData(GameManager::GetInstance().seletedSlotNum);
+		}
+
 		SceneManager::GetInstance().LoadScene(CString("Scene_SaveGame"));
 		SceneManager::GetInstance().Init();
 		break;

@@ -62,7 +62,7 @@ void SaveGameScene::Init()
 	}
 
 	Btn* SaveGameBtn = new Btn();
-	SaveGameBtn->ID = eSaveLoadBtn_Load;
+	SaveGameBtn->ID = eSaveLoadBtn_Save;
 	SaveGameBtn->AssetFileName = TEXT("saveload\\SaveGame_btn.png");
 	SaveGameBtn->ImgRC = Rect(0, 0, 200, 163);
 	SaveGameBtn->ViewRC = SaveGameBtn->ImgRC;
