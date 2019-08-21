@@ -26,18 +26,18 @@ void LoadGameScene::Init()
 	// 슬롯 버튼 생성
 	for (int idx = 0; idx < 3; idx++)
 	{
-		Btn* SlotBtn = new Btn();
+		SlotBtn[idx] = new Btn();
 		if (idx == 0)
 		{
-			SlotBtn->ID = eSaveLoadBtn_Select0;
+			SlotBtn[idx]->ID = eSaveLoadBtn_Select0;
 		}
 		else if (idx == 1)
 		{
-			SlotBtn->ID = eSaveLoadBtn_Select1;
+			SlotBtn[idx]->ID = eSaveLoadBtn_Select1;
 		}
 		else if (idx == 2)
 		{
-			SlotBtn->ID = eSaveLoadBtn_Select2;
+			SlotBtn[idx]->ID = eSaveLoadBtn_Select2;
 		}
 
 		std::string st;
@@ -48,16 +48,16 @@ void LoadGameScene::Init()
 		else
 		{
 			st = "saveload\\Slot_Empty.png";
-			SlotBtn->Enable = false;
+			SlotBtn[idx]->Enable = false;
 		}
 		
-		SlotBtn->AssetFileName.assign(st.begin(), st.end());
-		SlotBtn->ImgRC = Rect(0, 0, 900, 118);
-		SlotBtn->ViewRC = SlotBtn->ImgRC;	
-		SlotBtn->x = 260;
-		SlotBtn->y = 48 + idx*140;
+		SlotBtn[idx]->AssetFileName.assign(st.begin(), st.end());
+		SlotBtn[idx]->ImgRC = Rect(0, 0, 900, 118);
+		SlotBtn[idx]->ViewRC = SlotBtn[idx]->ImgRC;
+		SlotBtn[idx]->x = 260;
+		SlotBtn[idx]->y = 48 + idx*140;
 
-		infoStaticObj.emplace_back(SlotBtn);
+		infoStaticObj.emplace_back(SlotBtn[idx]);
 	}
 
 	Btn* LoadGameBtn = new Btn();
@@ -101,15 +101,21 @@ void LoadGameScene::Init()
 
 	infoStaticObj.emplace_back(selectedImg);
 
-	seletedSlotNum = -1;
+	GameManager::GetInstance().seletedSlotNum = -1;
 }
 
 void LoadGameScene::Update(float Delta)
 {
-	if (seletedSlotNum == 0 || seletedSlotNum == 1 || seletedSlotNum == 2)
+	int seletedSlotNum = GameManager::GetInstance().seletedSlotNum;
+
+	if (seletedSlotNum != -1)
 	{
 		selectedImg->y = 48 + (seletedSlotNum * 140);
 		selectedImg->Visible = true;
+	}
+	else
+	{
+		selectedImg->Visible = false;
 	}
 
 	Scene::Update(Delta);

@@ -12,6 +12,8 @@ void SaveGameScene::Init()
 {
 	infoStaticObj.clear();
 
+	GameManager::GetInstance().seletedSlotNum = -1;
+
 	bg = new StaticObject();
 	bg->Objtype = eObjectType_BGImage;
 	bg->AssetFileName = TEXT("load_bg.png");
@@ -100,8 +102,6 @@ void SaveGameScene::Init()
 
 	infoStaticObj.emplace_back(selectedImg);
 
-	seletedSlotNum = -1;
-
 	// 글자 출력
 	for (auto& it : GameManager::GetInstance().slotList)
 	{
@@ -124,6 +124,8 @@ void SaveGameScene::Init()
 
 void SaveGameScene::Update(float Delta)
 {
+	int seletedSlotNum = GameManager::GetInstance().seletedSlotNum;
+
 	if (seletedSlotNum == 0 || seletedSlotNum == 1 || seletedSlotNum == 2)
 	{
 		selectedImg->y = 48 + (seletedSlotNum * 140);

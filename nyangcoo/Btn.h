@@ -9,5 +9,6 @@ public:
 	void SendLButtonDown();
 	int ID;
 	int stageID;
+	bool IsClicked; // save, load À§ÇÔ
 };
 

@@ -173,7 +173,9 @@ void ChapterSelectScene::Init()
 	infoStaticObj.emplace_back(CookieSelectBtn);
 	infoStaticObj.emplace_back(NextChapterBtn);
 	infoStaticObj.emplace_back(PrevChapterBtn);
-	infoStaticObj.emplace_back(SaveGameBtn);
+	infoStaticObj.emplace_back(
+	
+	);
 	infoStaticObj.emplace_back(ChapterTitle);
 	infoStaticObj.emplace_back(StageClearedBtn);
 	infoStaticObj.emplace_back(StageNotYetBtn1);

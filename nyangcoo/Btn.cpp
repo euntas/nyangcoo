@@ -5,12 +5,14 @@ Btn::Btn()
 	: StaticObject(EObjectType::eObjectType_Btn)
 {
 	stageID = 0;
+	IsClicked = false;
 }
 
 Btn::Btn(int _stageID)
 	: StaticObject(EObjectType::eObjectType_Btn)
 {
 	stageID = _stageID;
+	IsClicked = false;
 }
 
 void Btn::SendLButtonDown()
@@ -56,22 +58,35 @@ void Btn::SendLButtonDown()
 	case eSaveLoadBtn_Select2:
 	{
 		LoadGameScene* lgs = reinterpret_cast<LoadGameScene*>(SceneManager::GetInstance().GetCurScene());
-			
-		if (this->ID == eSaveLoadBtn_Select0)
-			lgs->seletedSlotNum = 0;
-		else if (this->ID == eSaveLoadBtn_Select1)
-			lgs->seletedSlotNum = 1;
-		else if (this->ID == eSaveLoadBtn_Select2)
-			lgs->seletedSlotNum = 2;
+		
+		IsClicked = !IsClicked;
+
+		if (this->ID == eSaveLoadBtn_Select0 && IsClicked)
+		{
+			GameManager::GetInstance().seletedSlotNum = 0;
+		}
+		else if (this->ID == eSaveLoadBtn_Select1 && IsClicked)
+		{
+			GameManager::GetInstance().seletedSlotNum = 1;
+		}
+		else if (this->ID == eSaveLoadBtn_Select2 && IsClicked)
+		{
+			GameManager::GetInstance().seletedSlotNum = 2;
+		}
+		else
+		{
+			GameManager::GetInstance().seletedSlotNum = -1;
+		}
 
 		break;
 	}
 
 	case eSaveLoadBtn_Load:
 	{
-		LoadGameScene* lgs = reinterpret_cast<LoadGameScene*>(SceneManager::GetInstance().GetCurScene());
-
-		XmlManager::GetInstance().LoadSlotData(lgs->seletedSlotNum);
+		if (GameManager::GetInstance().seletedSlotNum != -1)
+		{
+			XmlManager::GetInstance().LoadSlotData(GameManager::GetInstance().seletedSlotNum);
+		}
 
 		SceneManager::GetInstance().LoadScene(CString("Scene_ChapterSelect"));
 		SceneManager::GetInstance().Init();

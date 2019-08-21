@@ -22,6 +22,8 @@ void GameManager::Init(int stageID)
 {
 	ClearAll();
 
+	seletedSlotNum = -1;
+
 	curStage = new GameStage(stageID);
 	curWaveNum = 0;
 

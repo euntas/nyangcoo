@@ -14,5 +14,7 @@ public:
 
 	StaticObject* bg;
 	StaticObject* selectedImg;
-	int seletedSlotNum;
+	Btn* SlotBtn[3];
+
+	
 };
