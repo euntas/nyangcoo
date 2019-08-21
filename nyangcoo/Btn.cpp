@@ -39,9 +39,30 @@ void Btn::SendLButtonDown()
 		break;
 	
 	case eScene_ChapterSelect:
+	{
+		if (SceneManager::GetInstance().GetCurScene()->Name == "Scene_Start")
+		{
+			StartScene* ss = reinterpret_cast<StartScene*>(SceneManager::GetInstance().GetCurScene());
+			for (auto& it : ss->infoStaticObj)
+			{
+				if (it->Objtype == eObjectType_Btn && it->AssetFileName == TEXT("title_btn_00.png"))
+				{
+					Btn* sb = reinterpret_cast<Btn*>(it);
+					sb->IsClicked = !sb->IsClicked;
+
+					if (sb->IsClicked)
+					{
+						GameManager::GetInstance().Init(0);
+						break;
+					}
+				}
+			}
+		}
+
 		SceneManager::GetInstance().LoadScene(CString("Scene_ChapterSelect"));
 		SceneManager::GetInstance().Init();
 		break;
+	}
 	
 	case eScene_CookieSelect:
 		SceneManager::GetInstance().LoadScene(CString("Scene_CookieSelect"));

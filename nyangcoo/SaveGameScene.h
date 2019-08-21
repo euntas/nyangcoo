@@ -13,6 +13,7 @@ public:
 
 	StaticObject* bg;
 	StaticObject* selectedImg;
+	Btn* SlotBtn[3];
 
 	std::wstring tempTitleStr[ALL_STAGE_NUM];
 };

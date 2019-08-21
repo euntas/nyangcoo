@@ -4,12 +4,6 @@
 GameManager::GameManager()
 {
 	coin = 0;
-
-	// TODO. 나중에 DB로 옮겨야 함
-	stageClearList.insert(make_pair(0, true));
-	stageClearList.insert(make_pair(1, false));
-	stageClearList.insert(make_pair(2, false));
-	stageClearList.insert(make_pair(3, false));
 }
 
 GameManager& GameManager::GetInstance()
@@ -21,6 +15,12 @@ GameManager& GameManager::GetInstance()
 void GameManager::Init(int stageID)
 {
 	ClearAll();
+
+	// TODO. 나중에 DB로 옮겨야 함
+	stageClearList.insert(make_pair(0, true));
+	stageClearList.insert(make_pair(1, false));
+	stageClearList.insert(make_pair(2, false));
+	stageClearList.insert(make_pair(3, false));
 
 	seletedSlotNum = -1;
 
@@ -71,6 +71,8 @@ void GameManager::ClearAll()
 	curWaveNum = 0;
 	curEnemyList.clear();
 	curCharacterList.clear();
+	stageClearList.clear();
+	stageSelectedList.clear();
 }
 
 bool GameManager::ChangeWave()
