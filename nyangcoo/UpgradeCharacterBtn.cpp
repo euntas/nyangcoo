@@ -77,7 +77,8 @@ void UpgradeCharacterBtn::SendLButtonDown()
 	{
 		gs->gold -= upgradeCost;
 
-		parentMakeBtn->atk += 50;
+		parentMakeBtn->atk += 5;
+		parentMakeBtn->HP += 20;
 
 		// 코스트 증가시킴
 		upgradeCost += 50;

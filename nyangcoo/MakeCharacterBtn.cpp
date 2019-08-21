@@ -179,6 +179,7 @@ Character* MakeCharacterBtn::MakeCharacter()
 	resPlayer->Init(new InputComponent(), new CharacterGraphicsComponent(resPlayer));
 
 	resPlayer->atk += this->atk;
+	resPlayer->hp += this->HP;
 
 	return resPlayer;
 }
