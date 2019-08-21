@@ -58,10 +58,6 @@ void GameScene::Init()
 
 	// TODO. 나중에 수정필요. 팝업 부분
 	PopUp* popUp = new PopUp(ePopup_close);
-
-	//PopUp = new StaticObject();
-	//popUp->Objtype = eObjectType_PopUp;
-	//popUp->AssetFileName = TEXT("popup_all.png");
 	popUp->Visible = false;
 	popUp->ImgRC = Rect(0, 0, 250, 198);
 	popUp->ViewRC = popUp->ImgRC;

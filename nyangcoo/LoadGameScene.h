@@ -13,4 +13,6 @@ public:
 	virtual void Release();
 
 	StaticObject* bg;
+	StaticObject* selectedImg;
+	int seletedSlotNum;
 };

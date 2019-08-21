@@ -11,6 +11,11 @@ enum EScene {
 	eScene_ChapterSelect,
 	eScene_CookieSelect,
 	eScene_Script,
+	eSaveLoadBtn_Select0,
+	eSaveLoadBtn_Select1,
+	eSaveLoadBtn_Select2,
+	eSaveLoadBtn_Load,
+	eSaveLoadBtn_Save,
 	eScene_Cnt
 };
 
