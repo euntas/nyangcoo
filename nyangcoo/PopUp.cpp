@@ -3,28 +3,6 @@
 
 PopUp::PopUp() : StaticObject(EObjectType::eObjectType_PopUp)
 {
-	/*this->x = 630;
-	this->y = 10;
-
-	name = ePopup_close;
-
-	
-
-	bg = new StaticObject();
-	bg->Objtype = eObjectType_BGImage;
-	bg->AssetFileName = TEXT("popup_all.png");
-	bg->rc = Rect(0, 0, 250, 198);
-
-	infoStaticObj.emplace_back(bg);
-
-	Btn* BackTitleBtn = new Btn();
-	BackTitleBtn->ID = eScene_Start;
-	BackTitleBtn->AssetFileName = TEXT("popup_gotitle.png");
-	BackTitleBtn->rc = Rect(0, 0, 227, 45);
-	BackTitleBtn->x = 12;
-	BackTitleBtn->y = 136;
-
-	infoStaticObj.emplace_back(BackTitleBtn);*/
 
 }
 
@@ -46,6 +24,18 @@ PopUp::PopUp(EPopup _name) : StaticObject(EObjectType::eObjectType_PopUp)
 		bg->ViewRC.Y = y;
 
 		infoStaticObj.emplace_back(bg);
+
+		Btn* LoadTitleBtn = new Btn();
+		LoadTitleBtn->ID = eScene_Exit;
+		LoadTitleBtn->AssetFileName = TEXT("popup_loadtitle.png");
+		LoadTitleBtn->ImgRC = Rect(0, 0, 227, 45);
+		LoadTitleBtn->ViewRC = LoadTitleBtn->ImgRC;
+		LoadTitleBtn->x = 12;
+		LoadTitleBtn->y = 80;
+		LoadTitleBtn->ViewRC.X = x + LoadTitleBtn->x;
+		LoadTitleBtn->ViewRC.Y = y + LoadTitleBtn->y;
+
+		infoStaticObj.emplace_back(LoadTitleBtn);
 
 		Btn* BackTitleBtn = new Btn();
 		BackTitleBtn->ID = eScene_Exit;

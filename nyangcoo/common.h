@@ -55,6 +55,9 @@ enum EEffect {
 enum EPopup {
 	ePopup_close,
 	ePopup_result,
+	ePopup_saveloadpopup,
+	ePopup_save,
+	ePopup_load,
 	ePopup_Cnt
 };
 
