@@ -25,6 +25,7 @@ void GameManager::Init(int stageID)
 	stageClearList.insert(make_pair(3, false));
 
 	InitAllCharacterList();
+	InitStageSelectedList();
 
 	seletedSlotNum = -1;
 
@@ -155,4 +156,12 @@ void GameManager::InitAllCharacterList()
 	AllCharacterList.insert(make_pair("titan", true));
 	AllCharacterList.insert(make_pair("whitechoco", true));
 	AllCharacterList.insert(make_pair("windarcher", true));
+}
+
+void GameManager::InitStageSelectedList()
+{
+	for (int i = 0; i < 4; i++)
+	{
+		stageSelectedList.insert(make_pair(i, -1));
+	}
 }
