@@ -11,6 +11,7 @@ enum EScene {
 	eScene_ChapterSelect,
 	eScene_CookieSelect,
 	eScene_Script,
+	eScene_Help,
 	eScene_Cnt
 };
 

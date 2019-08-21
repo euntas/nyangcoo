@@ -46,6 +46,23 @@ void Btn::SendLButtonDown()
 		SceneManager::GetInstance().Init();
 
 		break;
+	case eScene_Help:
+		if (SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+		{
+			for (auto& it : SceneManager::GetInstance().GetCurScene()->infoUIObj)
+			{
+				if (it->Objtype == eObjectType_None && it->AssetFileName == L"help_popup.png")
+				{
+					it->Visible = !it->Visible;
+				}
+			}
+			break;
+		}
+		else
+		{
+			ExitProcess(0);
+		}
+
 	case eScene_Exit:
 		//PostQuitMessage(0);
 		//TODO. 추후 종료 확인 창을 띄우는 작업을 해야함.

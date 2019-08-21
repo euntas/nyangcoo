@@ -68,26 +68,16 @@ void GameScene::Init()
 
 	infoStaticObj.emplace_back(popUp);
 
-	// TODO. 나중에 지우기
-	Btn* ExitBtn = new Btn();
-	ExitBtn->ID = eScene_Exit;
-	ExitBtn->AssetFileName = TEXT("title_btn_04.png");
-	ExitBtn->ImgRC = Rect(0, 0, 236, 72);
-	ExitBtn->ViewRC = ExitBtn->ImgRC;
-	ExitBtn->x = 1200;
-	ExitBtn->y = 5;
+	Btn* HelpBtn = new Btn();
+	HelpBtn->ID = eScene_Help;
+	HelpBtn->AssetFileName = TEXT("help_btn.png");
+	HelpBtn->ImgRC = Rect(0, 0, 65, 65);
+	HelpBtn->ViewRC = HelpBtn->ImgRC;
+	HelpBtn->x = 1350;
+	HelpBtn->y = 20;
 
-	infoStaticObj.emplace_back(ExitBtn);
+	infoStaticObj.emplace_back(HelpBtn);
 
-	Btn* LoadGameBtn = new Btn();
-	LoadGameBtn->ID = eScene_LoadGame;
-	LoadGameBtn->AssetFileName = TEXT("title_btn_02.png");
-	LoadGameBtn->ImgRC = Rect(0, 0, 236, 72);
-	LoadGameBtn->ViewRC = LoadGameBtn->ImgRC;
-	LoadGameBtn->x = 1200;
-	LoadGameBtn->y = 100;
-
-	infoStaticObj.emplace_back(LoadGameBtn);
 
 	// 골드 바
 	InitGoldBar();
@@ -105,6 +95,17 @@ void GameScene::Init()
 
 	ResultPopUp = new PopUp(ePopup_result);
 	infoUIObj.emplace_back(ResultPopUp);
+
+	// 물음표 눌렀을때 나타나는 그림
+	StaticObject* questionImg = new StaticObject();
+	questionImg->AssetFileName = L"help_popup.png";
+	questionImg->ImgRC = Rect(0, 0, 1300, 600);
+	questionImg->ViewRC = questionImg->ImgRC;
+	questionImg->x = 60;
+	questionImg->y = 50;
+	questionImg->Visible = false;
+
+	infoUIObj.emplace_back(questionImg);
 
 }
 
@@ -231,8 +232,19 @@ void GameScene::Render(Graphics* pGraphics)
 	Scene::Render(pGraphics);
 
 	printTitle(pGraphics);
-	printGold(gold, pGraphics);
-	printHP(CommandPlayer, pGraphics);
+
+	for (auto& it : infoUIObj)
+	{
+		if (it->Objtype == eObjectType_None && it->AssetFileName == L"help_popup.png")
+		{
+			if (it->Visible == false)
+			{
+				printGold(gold, pGraphics);
+				printHP(CommandPlayer, pGraphics);
+			}
+		}
+	}
+	
 }
 
 void GameScene::Release()

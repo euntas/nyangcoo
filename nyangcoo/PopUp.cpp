@@ -87,8 +87,6 @@ PopUp::PopUp(EPopup _name) : StaticObject(EObjectType::eObjectType_PopUp)
 
 		Visible = false;
 	}
-	
-
 }
 
 void PopUp::Init()
