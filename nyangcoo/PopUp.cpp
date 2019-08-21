@@ -3,28 +3,6 @@
 
 PopUp::PopUp() : StaticObject(EObjectType::eObjectType_PopUp)
 {
-	/*this->x = 630;
-	this->y = 10;
-
-	name = ePopup_close;
-
-	
-
-	bg = new StaticObject();
-	bg->Objtype = eObjectType_BGImage;
-	bg->AssetFileName = TEXT("popup_all.png");
-	bg->rc = Rect(0, 0, 250, 198);
-
-	infoStaticObj.emplace_back(bg);
-
-	Btn* BackTitleBtn = new Btn();
-	BackTitleBtn->ID = eScene_Start;
-	BackTitleBtn->AssetFileName = TEXT("popup_gotitle.png");
-	BackTitleBtn->rc = Rect(0, 0, 227, 45);
-	BackTitleBtn->x = 12;
-	BackTitleBtn->y = 136;
-
-	infoStaticObj.emplace_back(BackTitleBtn);*/
 
 }
 

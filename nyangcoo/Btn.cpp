@@ -25,28 +25,68 @@ void Btn::SendLButtonDown()
 		SceneManager::GetInstance().LoadScene(CString("Scene_Game"));
 		SceneManager::GetInstance().Init();
 		break;
+	
 	case eScene_LoadGame:
 		SceneManager::GetInstance().LoadScene(CString("Scene_LoadGame"));
 		SceneManager::GetInstance().Init();
 		break;
+	
 	case eScene_Start:
 		SceneManager::GetInstance().LoadScene(CString("Scene_Start"));
 		SceneManager::GetInstance().Init();
 		break;
+	
 	case eScene_ChapterSelect:
 		SceneManager::GetInstance().LoadScene(CString("Scene_ChapterSelect"));
 		SceneManager::GetInstance().Init();
 		break;
+	
 	case eScene_CookieSelect:
 		SceneManager::GetInstance().LoadScene(CString("Scene_CookieSelect"));
 		SceneManager::GetInstance().Init();
 		break;
+	
 	case eScene_Script:
 		SceneManager::GetInstance().LoadScene(CString("Scene_Script"));
 		SceneManager::GetInstance().Init();
+		break;
+	
+	case eSaveLoadBtn_Select0:
+	case eSaveLoadBtn_Select1:
+	case eSaveLoadBtn_Select2:
+	{
+		LoadGameScene* lgs = reinterpret_cast<LoadGameScene*>(SceneManager::GetInstance().GetCurScene());
+			
+		if (this->ID == eSaveLoadBtn_Select0)
+			lgs->seletedSlotNum = 0;
+		else if (this->ID == eSaveLoadBtn_Select1)
+			lgs->seletedSlotNum = 1;
+		else if (this->ID == eSaveLoadBtn_Select2)
+			lgs->seletedSlotNum = 2;
 
 		break;
+	}
+
+	case eSaveLoadBtn_Load:
+	{
+		LoadGameScene* lgs = reinterpret_cast<LoadGameScene*>(SceneManager::GetInstance().GetCurScene());
+
+		XmlManager::GetInstance().LoadSlotData(lgs->seletedSlotNum);
+
+		SceneManager::GetInstance().LoadScene(CString("Scene_ChapterSelect"));
+		SceneManager::GetInstance().Init();
+		break;
+	}
+
+	case eSaveLoadBtn_Save:
+	{
+		SceneManager::GetInstance().LoadScene(CString("Scene_SaveGame"));
+		SceneManager::GetInstance().Init();
+		break;
+  }
+      
 	case eScene_Help:
+  {
 		if (SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
 		{
 			for (auto& it : SceneManager::GetInstance().GetCurScene()->infoUIObj)
@@ -56,31 +96,17 @@ void Btn::SendLButtonDown()
 					it->Visible = !it->Visible;
 				}
 			}
-			break;
 		}
 		else
 		{
 			ExitProcess(0);
 		}
-
+    
+    break;
+  }
+    
 	case eScene_Exit:
-		//PostQuitMessage(0);
-		//TODO. 추후 종료 확인 창을 띄우는 작업을 해야함.
-		/*if (SceneManager::GetInstance().GetCurScene()->Name == "Scene_Start")
-		{
-			for (auto& it : SceneManager::GetInstance().GetCurScene()->infoStaticObj)
-			{
-				if (it->Objtype == eObjectType_PopUp)
-				{
-					it->Visible = true;
-				}
-			}
-			break;
-		}
-		else 
-		{*/
 			ExitProcess(0);
-		//}
 		
 		break;
 	}

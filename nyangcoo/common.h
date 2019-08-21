@@ -6,12 +6,18 @@ enum EScene {
 	eScene_Exit,
 	eScene_Continue,
 	eScene_LoadGame,
+	eScene_SaveGame,
 	eScene_Challenge,
 	eScene_DeleteGame,
 	eScene_ChapterSelect,
 	eScene_CookieSelect,
 	eScene_Script,
 	eScene_Help,
+	eSaveLoadBtn_Select0,
+	eSaveLoadBtn_Select1,
+	eSaveLoadBtn_Select2,
+	eSaveLoadBtn_Load,
+	eSaveLoadBtn_Save,
 	eScene_Cnt
 };
 
@@ -56,6 +62,9 @@ enum EEffect {
 enum EPopup {
 	ePopup_close,
 	ePopup_result,
+	ePopup_saveloadpopup,
+	ePopup_save,
+	ePopup_load,
 	ePopup_Cnt
 };
 
@@ -77,3 +86,4 @@ class Effect;
 class GraphicsComponent;
 
 #define MAX_WAVE_NUM 4
+#define ALL_STAGE_NUM 4

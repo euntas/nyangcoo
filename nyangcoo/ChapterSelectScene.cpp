@@ -24,6 +24,14 @@ void ChapterSelectScene::Init()
 	GameStartBtn->x = 1187;
 	GameStartBtn->y = 466;
 
+	Btn* SaveGameBtn = new Btn();
+	SaveGameBtn->ID = eSaveLoadBtn_Save;
+	SaveGameBtn->AssetFileName = TEXT("saveload\\SaveGame_btn.png");
+	SaveGameBtn->ImgRC = Rect(0, 0, 200, 173);
+	SaveGameBtn->ViewRC = SaveGameBtn->ImgRC;
+	SaveGameBtn->x = 950;
+	SaveGameBtn->y = 480;
+
 	Btn* CookieSelectBtn = new Btn();
 	CookieSelectBtn->ID = eScene_CookieSelect;
 	CookieSelectBtn->AssetFileName = TEXT("CookieSelect_btn.png");
@@ -165,6 +173,7 @@ void ChapterSelectScene::Init()
 	infoStaticObj.emplace_back(CookieSelectBtn);
 	infoStaticObj.emplace_back(NextChapterBtn);
 	infoStaticObj.emplace_back(PrevChapterBtn);
+	infoStaticObj.emplace_back(SaveGameBtn);
 	infoStaticObj.emplace_back(ChapterTitle);
 	infoStaticObj.emplace_back(StageClearedBtn);
 	infoStaticObj.emplace_back(StageNotYetBtn1);
