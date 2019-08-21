@@ -177,6 +177,106 @@ void XmlManager::ParseStageData(GameStage& gameStage, int stageID)
 	}
 }
 
+void XmlManager::ParseSavedData()
+{
+	std::string filename = "Asset\\stage\\save_info.xml";
+
+	tinyxml2::XMLDocument* doc = new tinyxml2::XMLDocument();
+	doc->LoadFile(filename.c_str());
+
+	XMLElement* Root = doc->RootElement();
+	XMLElement* Node;
+
+	for (Node = (tinyxml2::XMLElement*)Root->FirstChildElement("slot"); Node != 0; Node = (tinyxml2::XMLElement*)Node->NextSiblingElement("slot"))
+	{
+		int slotNum = atoi(Node->Attribute("slotNum"));
+		bool isEmpty = Node->BoolAttribute("isEmpty");
+
+		GameManager::GetInstance().slotList.insert(make_pair(slotNum, isEmpty));
+	}
+}
+
+void XmlManager::LoadSlotData(int slotId)
+{
+	std::string filename = "Asset\\stage\\save_info.xml";
+
+	tinyxml2::XMLDocument* doc = new tinyxml2::XMLDocument();
+	doc->LoadFile(filename.c_str());
+
+	XMLElement* Root = doc->RootElement();
+	XMLElement* Node;
+
+	for (Node = (tinyxml2::XMLElement*)Root->FirstChildElement("slot"); Node != 0; Node = (tinyxml2::XMLElement*)Node->NextSiblingElement("slot"))
+	{
+		int slotNum = atoi(Node->Attribute("slotNum"));
+		bool isEmpty = Node->BoolAttribute("isEmpty");
+		int coin = atoi(Node->Attribute("coin"));
+
+		GameManager::GetInstance().coin = coin;
+
+		if (slotNum == slotId && isEmpty == false)
+		{
+			XMLElement* stageNode;
+			for (stageNode = (tinyxml2::XMLElement*)Node->FirstChildElement("stage"); stageNode != 0; stageNode = (tinyxml2::XMLElement*)stageNode->NextSiblingElement("stage"))
+			{
+				int stageId = atoi(stageNode->Attribute("stageId"));
+				bool lock = stageNode->BoolAttribute("lock");
+				int selectedStr = atoi(stageNode->Attribute("selectedStr"));
+
+				GameManager::GetInstance().stageClearList[stageId] = lock;
+				GameManager::GetInstance().stageSelectedList[stageId] = selectedStr;
+			}
+
+			XMLElement* characterNode;
+			for (characterNode = (tinyxml2::XMLElement*)Node->FirstChildElement("character"); characterNode != 0; characterNode = (tinyxml2::XMLElement*)characterNode->NextSiblingElement("character"))
+			{
+				bool lock = characterNode->BoolAttribute("lock");
+				
+				GameManager::GetInstance().AllCharacterList[characterNode->GetText()] = lock;
+			}
+		}
+		else
+		{
+			printf("로드에 실패했습니다. \n");
+		}
+	}
+}
+
+void XmlManager::SaveSlotData(int slotId)
+{
+	std::string filename = "Asset\\stage\\save_info.xml";
+
+	tinyxml2::XMLDocument* doc = new tinyxml2::XMLDocument();
+	doc->LoadFile(filename.c_str());
+
+	XMLElement* Root = doc->RootElement();
+	XMLElement* Node;
+
+	for (Node = (tinyxml2::XMLElement*)Root->FirstChildElement("slot"); Node != 0; Node = (tinyxml2::XMLElement*)Node->NextSiblingElement("slot"))
+	{
+		int slotNum = atoi(Node->Attribute("slotNum"));
+
+		if (slotNum == slotId)
+		{
+			Node->SetAttribute("coin", GameManager::GetInstance().coin);
+
+			XMLElement* stageNode;
+			for (stageNode = (tinyxml2::XMLElement*)Node->FirstChildElement("stage"); stageNode != 0; stageNode = (tinyxml2::XMLElement*)stageNode->NextSiblingElement("stage"))
+			{
+				int stageId = atoi(stageNode->Attribute("stageId"));
+
+				stageNode->SetAttribute("lock", GameManager::GetInstance().stageClearList[stageId]);
+				stageNode->SetAttribute("selectedStr", GameManager::GetInstance().stageSelectedList[stageId]);
+			}
+
+			XMLElement* characterNode;
+			for (characterNode = (tinyxml2::XMLElement*)Node->FirstChildElement("character"); characterNode != 0; characterNode = (tinyxml2::XMLElement*)characterNode->NextSiblingElement("character"))
+			{
+				characterNode->SetAttribute("lock", GameManager::GetInstance().AllCharacterList[characterNode->GetText()]);
+			}
+		}
+	}	
+}
 
 
 

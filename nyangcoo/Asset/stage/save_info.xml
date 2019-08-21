@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+	<slot slotNum="0" isEmpty="false" coin="1000">
+		<stage lock="false" stageId="0" selectedStr="0"></stage>
+		<stage lock="false" stageId="1" selectedStr="-1"></stage>
+		<stage lock="true" stageId="2" selectedStr="-1"></stage>
+		<stage lock="true" stageId="3" selectedStr="-1"></stage>
+		<character lock="false">brave</character>
+		<character lock="false">kiwi</character>
+		<character lock="false">lemon</character>
+		<character lock="false">macho</character>
+		<character lock="false">moonlight</character>
+		<character lock="false">moonrabit</character>
+		<character lock="false">muscle</character>
+		<character lock="false">pistachio</character>
+		<character lock="false">plum</character>
+		<character lock="false">titan</character>
+		<character lock="false">whitechoco</character>
+		<character lock="false">windarcher</character>
+	</slot>
+	<slot slotNum="1" isEmpty="true" coin="0">
+		<stage lock="false" stageId="0" selectedStr="0"></stage>
+		<stage lock="false" stageId="1" selectedStr="-1"></stage>
+		<stage lock="false" stageId="2" selectedStr="-1"></stage>
+		<stage lock="false" stageId="3" selectedStr="-1"></stage>
+		<character lock="true">brave</character>
+		<character lock="true">kiwi</character>
+		<character lock="true">lemon</character>
+		<character lock="true">macho</character>
+		<character lock="true">moonlight</character>
+		<character lock="true">moonrabit</character>
+		<character lock="true">muscle</character>
+		<character lock="true">pistachio</character>
+		<character lock="true">plum</character>
+		<character lock="true">titan</character>
+		<character lock="true">whitechoco</character>
+		<character lock="true">windarcher</character>
+	</slot>
+	<slot slotNum="2" isEmpty="true" coin="0">
+		<stage lock="false" stageId="0" selectedStr="0"></stage>
+		<stage lock="false" stageId="1" selectedStr="-1"></stage>
+		<stage lock="false" stageId="2" selectedStr="-1"></stage>
+		<stage lock="false" stageId="3" selectedStr="-1"></stage>
+		<character lock="true">brave</character>
+		<character lock="true">kiwi</character>
+		<character lock="true">lemon</character>
+		<character lock="true">macho</character>
+		<character lock="true">moonlight</character>
+		<character lock="true">moonrabit</character>
+		<character lock="true">muscle</character>
+		<character lock="true">pistachio</character>
+		<character lock="true">plum</character>
+		<character lock="true">titan</character>
+		<character lock="true">whitechoco</character>
+		<character lock="true">windarcher</character>
+	</slot>
+</Root>
