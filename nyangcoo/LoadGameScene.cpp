@@ -43,30 +43,30 @@ void LoadGameScene::Init()
 		std::string st;
 		if (GameManager::GetInstance().slotList[idx])
 		{
-			st = "test" + to_string(idx + 1) + "_check.png";
+			st = "saveload\\Slot_Saved.png";
 		}
 		else
 		{
-			st = "test" + to_string(idx + 1) + ".png";
+			st = "saveload\\Slot_Empty.png";
 			SlotBtn->Enable = false;
 		}
 		
 		SlotBtn->AssetFileName.assign(st.begin(), st.end());
-		SlotBtn->ImgRC = Rect(0, 0, 520, 100);
-		SlotBtn->ViewRC = SlotBtn->ImgRC;
-		SlotBtn->x = 500;
-		SlotBtn->y = 80 + idx*120;
+		SlotBtn->ImgRC = Rect(0, 0, 900, 118);
+		SlotBtn->ViewRC = SlotBtn->ImgRC;	
+		SlotBtn->x = 260;
+		SlotBtn->y = 48 + idx*140;
 
 		infoStaticObj.emplace_back(SlotBtn);
 	}
 
 	Btn* LoadGameBtn = new Btn();
 	LoadGameBtn->ID = eSaveLoadBtn_Load;
-	LoadGameBtn->AssetFileName = TEXT("load_btn.png");
-	LoadGameBtn->ImgRC = Rect(0, 0, 200, 84);
+	LoadGameBtn->AssetFileName = TEXT("saveload\\LoadGame_btn.png");
+	LoadGameBtn->ImgRC = Rect(0, 0, 200, 163);
 	LoadGameBtn->ViewRC = LoadGameBtn->ImgRC;
-	LoadGameBtn->x = 1200;
-	LoadGameBtn->y = 526;
+	LoadGameBtn->x = 1190;
+	LoadGameBtn->y = 484;
 
 	infoStaticObj.emplace_back(LoadGameBtn);
 
@@ -82,21 +82,21 @@ void LoadGameScene::Init()
 
 	Btn* DeleteGameBtn = new Btn();
 	DeleteGameBtn->ID = eScene_DeleteGame;
-	DeleteGameBtn->AssetFileName = TEXT("delete_btn.png");
-	DeleteGameBtn->ImgRC = Rect(0, 0, 200, 83);
+	DeleteGameBtn->AssetFileName = TEXT("saveload\\DeleteGame_btn.png");
+	DeleteGameBtn->ImgRC = Rect(0, 0, 200, 163);
 	DeleteGameBtn->ViewRC = DeleteGameBtn->ImgRC;
-	DeleteGameBtn->x = 20;
-	DeleteGameBtn->y = 527;
+	DeleteGameBtn->x = 30;
+	DeleteGameBtn->y = 479;
 
 	infoStaticObj.emplace_back(DeleteGameBtn);
 
 	// 버튼 클릭시 나타날 그림 생성시에는 비활성화
 	selectedImg = new StaticObject();
-	selectedImg->AssetFileName = TEXT("btn_selected.png");
-	selectedImg->ImgRC = Rect(0, 0, 154, 154);
+	selectedImg->AssetFileName = TEXT("saveload\\Save_Cursor.png");
+	selectedImg->ImgRC = Rect(0, 0, 99, 87);
 	selectedImg->ViewRC = selectedImg->ImgRC;
-	selectedImg->x = 100;
-	selectedImg->y = 40;
+	selectedImg->x = 94;
+	selectedImg->y = 64;
 	selectedImg->Visible = false;
 
 	infoStaticObj.emplace_back(selectedImg);
@@ -108,7 +108,7 @@ void LoadGameScene::Update(float Delta)
 {
 	if (seletedSlotNum == 0 || seletedSlotNum == 1 || seletedSlotNum == 2)
 	{
-		selectedImg->y = 40 + (seletedSlotNum * 120);
+		selectedImg->y = 48 + (seletedSlotNum * 140);
 		selectedImg->Visible = true;
 	}
 

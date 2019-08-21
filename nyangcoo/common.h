@@ -6,6 +6,7 @@ enum EScene {
 	eScene_Exit,
 	eScene_Continue,
 	eScene_LoadGame,
+	eScene_SaveGame,
 	eScene_Challenge,
 	eScene_DeleteGame,
 	eScene_ChapterSelect,

@@ -1,14 +1,113 @@
 ﻿  pch.cpp
+  AssetManager.cpp
   Btn.cpp
+  ChapterSelectScene.cpp
+  Character.cpp
+  CharacterGraphicsComponent.cpp
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\Character.cpp(84,15): warning C4244:  '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\CharacterGraphicsComponent.cpp(32,43): warning C4018:  '>=': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\CharacterGraphicsComponent.cpp(41,31): warning C4018:  '>=': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\CharacterGraphicsComponent.cpp(63,16): warning C4244:  '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\CharacterGraphicsComponent.cpp(64,16): warning C4244:  '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\CharacterGraphicsComponent.cpp(70,86): warning C4244:  '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\CharacterGraphicsComponent.cpp(70,57): warning C4244:  '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\CharacterGraphicsComponent.cpp(71,76): warning C4244:  '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\CharacterGraphicsComponent.cpp(71,47): warning C4244:  '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\CharacterGraphicsComponent.cpp(149,12): warning C4244:  '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\CharacterGraphicsComponent.cpp(150,12): warning C4244:  '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\CharacterGraphicsComponent.cpp(153,86): warning C4244:  '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   ChildView.cpp
+  CookieSelectScene.cpp
+  CriticalSec.cpp
+  Effect.cpp
+  EffectGraphicsComponent.cpp
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\CharacterGraphicsComponent.cpp(153,63): warning C4244:  '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\EffectGraphicsComponent.cpp(32,19): warning C4018:  '>=': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\EffectGraphicsComponent.cpp(52,16): warning C4244:  '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\EffectGraphicsComponent.cpp(53,16): warning C4244:  '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\EffectGraphicsComponent.cpp(55,50): warning C4244:  '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\EffectGraphicsComponent.cpp(55,34): warning C4244:  '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\EffectGraphicsComponent.cpp(78,10): warning C4244:  '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\EffectGraphicsComponent.cpp(79,10): warning C4244:  '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\EffectGraphicsComponent.cpp(81,55): warning C4244:  '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   GameManager.cpp
   GameScene.cpp
-  LoginScene.cpp
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\EffectGraphicsComponent.cpp(81,39): warning C4244:  '인수': 'float'에서 'INT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\GameScene.cpp(296,40): warning C4244:  '인수': 'INT'에서 'Gdiplus::REAL'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\GameScene.cpp(296,21): warning C4244:  '인수': 'int'에서 'Gdiplus::REAL'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\GameScene.cpp(346,53): warning C4244:  '인수': 'int'에서 'Gdiplus::REAL'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  GameStage.cpp
+  GraphicsComponent.cpp
+  InputComponent.cpp
+  LoadGameScene.cpp
   MainFrm.cpp
+  MakeCharacterBtn.cpp
   Object.cpp
+  PlayerSkillBtn.cpp
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  PopUp.cpp
+  SaveGameScene.cpp
   Scene.cpp
   SceneManager.cpp
+  ScriptScene.cpp
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\GameScene.cpp(346,29): warning C4244:  '인수': 'int'에서 'Gdiplus::REAL'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\ScriptScene.cpp(112,73): warning C4244:  '인수': 'int'에서 'Gdiplus::REAL'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\ScriptScene.cpp(112,44): warning C4244:  '인수': 'int'에서 'Gdiplus::REAL'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\ScriptScene.cpp(121,74): warning C4244:  '인수': 'int'에서 'Gdiplus::REAL'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  StartScene.cpp
   StaticObject.cpp
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\ScriptScene.cpp(121,44): warning C4244:  '인수': 'int'에서 'Gdiplus::REAL'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\StaticObject.cpp(77,12): warning C4244:  '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  UpgradeCharacterBtn.cpp
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\StaticObject.cpp(78,12): warning C4244:  '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\UpgradeCharacterBtn.cpp(92,21): warning C4244:  '인수': 'int'에서 'Gdiplus::REAL'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  XmlManager.cpp
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\UpgradeCharacterBtn.cpp(92,13): warning C4244:  '인수': 'int'에서 'Gdiplus::REAL'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\XmlManager.cpp(18,14): warning C4244:  '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\XmlManager.cpp(20,17): warning C4244:  '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\XmlManager.cpp(21,16): warning C4244:  '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\XmlManager.cpp(47,15): warning C4244:  '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\XmlManager.cpp(52,15): warning C4244:  '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\XmlManager.cpp(53,16): warning C4244:  '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\XmlManager.cpp(73,14): warning C4244:  '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\XmlManager.cpp(75,17): warning C4244:  '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\XmlManager.cpp(76,16): warning C4244:  '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\XmlManager.cpp(109,15): warning C4244:  '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\XmlManager.cpp(114,15): warning C4244:  '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   nyangcoo.cpp
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\XmlManager.cpp(115,16): warning C4244:  '초기화 중': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   코드를 생성하고 있습니다...
+C:\Users\inhahrd\source\repos\nyangcoo\nyangcoo\nyangcoo.cpp(170,39): warning C4244:  '인수': 'DWORD'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+AssetManager.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+Btn.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+ChapterSelectScene.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+Character.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+ChildView.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+CookieSelectScene.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+CriticalSec.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+Effect.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+EffectGraphicsComponent.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+GameManager.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+GameScene.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+GraphicsComponent.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+InputComponent.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+LoadGameScene.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+MakeCharacterBtn.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+PlayerSkillBtn.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+PopUp.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+SaveGameScene.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+ScriptScene.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+GameStage.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+StartScene.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+MainFrm.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+nyangcoo.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+Object.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+pch.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+CharacterGraphicsComponent.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+Scene.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+SceneManager.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+StaticObject.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+UpgradeCharacterBtn.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
+XmlManager.obj : warning LNK4258: '/entry:WinMainCRTStartup' 지시문은 '/ENTRY:wWinMainCRTStartup' 스위치와 호환되지 않습니다. 무시됩니다.
   nyangcoo.vcxproj -> C:\Users\inhahrd\source\repos\nyangcoo\Debug\nyangcoo.exe

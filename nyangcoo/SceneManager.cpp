@@ -19,6 +19,9 @@ SceneManager::SceneManager()
 	LoadGameScene* loadgameScene = new LoadGameScene();
 	mScene.emplace_back(loadgameScene);
 
+	SaveGameScene* savegameScene = new SaveGameScene();
+	mScene.emplace_back(savegameScene);
+
 	ChapterSelectScene* chapterselectScene = new ChapterSelectScene();
 	mScene.emplace_back(chapterselectScene);
 

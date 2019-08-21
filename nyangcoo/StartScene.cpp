@@ -41,7 +41,7 @@ void StartScene::Init()
 	LoadGameBtn->y = 380;
 
 	Btn* ChallengeBtn = new Btn();
-	ChallengeBtn->ID = eScene_Challenge;
+	ChallengeBtn->ID = eScene_SaveGame;
 	ChallengeBtn->AssetFileName = TEXT("title_btn_03.png");
 	ChallengeBtn->ImgRC = Rect(0, 0, 236, 72);
 	ChallengeBtn->ViewRC = ChallengeBtn->ImgRC;
