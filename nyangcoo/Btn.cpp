@@ -83,8 +83,28 @@ void Btn::SendLButtonDown()
 		SceneManager::GetInstance().LoadScene(CString("Scene_SaveGame"));
 		SceneManager::GetInstance().Init();
 		break;
-	}
-	
+  }
+      
+	case eScene_Help:
+  {
+		if (SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+		{
+			for (auto& it : SceneManager::GetInstance().GetCurScene()->infoUIObj)
+			{
+				if (it->Objtype == eObjectType_None && it->AssetFileName == L"help_popup.png")
+				{
+					it->Visible = !it->Visible;
+				}
+			}
+		}
+		else
+		{
+			ExitProcess(0);
+		}
+    
+    break;
+  }
+    
 	case eScene_Exit:
 			ExitProcess(0);
 		
