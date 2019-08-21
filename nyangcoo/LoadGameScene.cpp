@@ -102,6 +102,25 @@ void LoadGameScene::Init()
 	infoStaticObj.emplace_back(selectedImg);
 
 	GameManager::GetInstance().seletedSlotNum = -1;
+
+	// 글자 출력
+	for (auto& it : GameManager::GetInstance().slotList)
+	{
+		int lastStageNum;
+
+		// 슬롯에 저장 데이터가 있다면
+		if (it.second == true)
+		{
+			// 가장 마지막 해금 스테이지 번호 가져오기
+			lastStageNum = XmlManager::GetInstance().getLastStageNum(it.first);
+
+			tempTitleStr[it.first] = GameManager::GetInstance().StageTitle[lastStageNum];
+		}
+		else
+		{
+			tempTitleStr[it.first] = L"저장된 데이터가 없습니다.";
+		}
+	}
 }
 
 void LoadGameScene::Update(float Delta)
@@ -124,6 +143,17 @@ void LoadGameScene::Update(float Delta)
 void LoadGameScene::Render(Graphics* pGraphics)
 {
 	Scene::Render(pGraphics);
+
+	for (int i = 0; i < 3; i++)
+	{
+		Gdiplus::Font F(L"Arial", 10, FontStyleBold, UnitMillimeter);
+
+		PointF P(450, 80 + i * 140);
+
+		SolidBrush B(Color(0, 0, 0));
+
+		pGraphics->DrawString(tempTitleStr[i].c_str(), -1, &F, P, &B);
+	}
 }
 
 void LoadGameScene::Release()
