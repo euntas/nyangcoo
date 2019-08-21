@@ -85,3 +85,4 @@ class Effect;
 class GraphicsComponent;
 
 #define MAX_WAVE_NUM 4
+#define ALL_STAGE_NUM 4

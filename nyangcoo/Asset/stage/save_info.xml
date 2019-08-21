@@ -2,9 +2,9 @@
 <Root>
 	<slot slotNum="0" state="true" coin="1000">
 		<stage state="true" stageId="0" selectedStr="0"></stage>
-		<stage state="false" stageId="1" selectedStr="-1"></stage>
+		<stage state="true" stageId="1" selectedStr="-1"></stage>
 		<stage state="false" stageId="2" selectedStr="-1"></stage>
-		<stage state="true" stageId="3" selectedStr="-1"></stage>
+		<stage state="false" stageId="3" selectedStr="-1"></stage>
 		<character state="true">brave</character>
 		<character state="true">kiwi</character>
 		<character state="true">lemon</character>

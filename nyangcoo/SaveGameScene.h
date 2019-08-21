@@ -14,5 +14,7 @@ public:
 	StaticObject* bg;
 	StaticObject* selectedImg;
 	int seletedSlotNum;
+
+	std::wstring tempTitleStr[ALL_STAGE_NUM + 1];
 };
 

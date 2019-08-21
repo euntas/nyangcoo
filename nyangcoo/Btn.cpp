@@ -77,6 +77,13 @@ void Btn::SendLButtonDown()
 		SceneManager::GetInstance().Init();
 		break;
 	}
+
+	case eSaveLoadBtn_Save:
+	{
+		SceneManager::GetInstance().LoadScene(CString("Scene_SaveGame"));
+		SceneManager::GetInstance().Init();
+		break;
+	}
 	
 	case eScene_Exit:
 			ExitProcess(0);

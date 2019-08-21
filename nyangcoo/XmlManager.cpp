@@ -196,6 +196,46 @@ void XmlManager::ParseSavedData()
 	}
 }
 
+int XmlManager::getLastStageNum(int slotId)
+{
+	std::string filename = "Asset\\stage\\save_info.xml";
+
+	tinyxml2::XMLDocument* doc = new tinyxml2::XMLDocument();
+	doc->LoadFile(filename.c_str());
+
+	XMLElement* Root = doc->RootElement();
+	XMLElement* Node;
+
+	for (Node = (tinyxml2::XMLElement*)Root->FirstChildElement("slot"); Node != 0; Node = (tinyxml2::XMLElement*)Node->NextSiblingElement("slot"))
+	{
+		int slotNum = atoi(Node->Attribute("slotNum"));
+		bool state = Node->BoolAttribute("state");
+
+		if (slotNum == slotId)
+		{
+			XMLElement* stageNode;
+			int lastStage = 0;
+			for (stageNode = (tinyxml2::XMLElement*)Node->FirstChildElement("stage"); stageNode != 0; stageNode = (tinyxml2::XMLElement*)stageNode->NextSiblingElement("stage"))
+			{
+				if (stageNode->BoolAttribute("state") == true)
+				{
+					lastStage++;
+				}
+				else
+				{
+					if (lastStage != 0)
+					{
+						lastStage--;
+						break;
+					}
+				}
+			}
+
+			return lastStage;
+		}
+	}
+}
+
 void XmlManager::LoadSlotData(int slotId)
 {
 	std::string filename = "Asset\\stage\\save_info.xml";

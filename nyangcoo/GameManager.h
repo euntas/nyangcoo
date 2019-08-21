@@ -29,6 +29,8 @@ public:
 
 	int btnID; // 버튼이 가지고 있는 stageID이다. 버튼이 눌리면 저장되게끔 되어있음.
 
+	std::wstring StageTitle[4] = { L"프롤로그 마녀의 훈련장 \n" , L"스테이지 두번째 훈련장 \n" , L"세번째 스테이지 훈련장 \n" , L"여기가 끝일지도 몰라 \n" };
+
 	// TODO. 스테이지 클리어 정보 관련. 나중에 DB로 옮겨야 함
 	map<int, bool> stageClearList; // <stageID, true or false>
 	map<int, int> stageSelectedList; // 선택문 리스트. -1: 선택안함, 0: 첫번째 선택문 선택, 1: 두번째 선택문 선택
