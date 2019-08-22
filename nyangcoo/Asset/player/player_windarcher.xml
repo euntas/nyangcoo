@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Root name="windarcher" hp="150" gold="150" speed="25" atk="20" atkSpeed="250.0" atkDist="30.0">
+<Root name="windarcher" hp="200" gold="400" speed="40" atk="10" atkSpeed="250.0" atkDist="250.0">
 	<TextureAtlas imagePath="player\\player_windarcher_run.png" width="2048" height="512" frameNum="4" delta="150" rowNum="1" imgNumPerLine="4" state="0">
 	 <sprite h="173" w="191" y="0" x="0" n="player_windarcher_run1.png"/>
      <sprite h="173" w="191" y="0" x="191" n="player_windarcher_run2.png"/>

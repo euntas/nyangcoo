@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root name="knight" hp="400" gold="0" speed="15" atk="8" atkSpeed="250.0" atkDist="0.0">
+	<TextureAtlas imagePath="player\\player_knight_run.png" width="2048" height="512" frameNum="3" delta="150" rowNum="1" imgNumPerLine="3" state="0">
+	 <sprite h="155" w="160" y="0" x="0" n="player_knight_run1.jpg"/>
+     <sprite h="155" w="160" y="0" x="160" n="player_knight_run2.jpg"/>
+     <sprite h="155" w="160" y="0" x="320" n="player_knight_run3.jpg"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_knight_hit.png" width="2048" height="512" frameNum="4" delta="150" rowNum="1" imgNumPerLine="4" state="1">
+	 <sprite h="160" w="190" y="0" x="0" n="player_knight_hit1.jpg"/>
+     <sprite h="160" w="190" y="0" x="190" n="player_knight_hit2.jpg"/>
+     <sprite h="160" w="190" y="0" x="380" n="player_knight_hit3.jpg"/>
+     <sprite h="160" w="190" y="0" x="570" n="player_knight_hit4.jpg"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_knight_death.png" width="2048" height="512" frameNum="3" delta="150" rowNum="1" imgNumPerLine="3" state="2">
+	 <sprite h="158" w="160" y="0" x="0" n="player_knight_death1.jpg"/>
+     <sprite h="158" w="160" y="0" x="160" n="player_knight_death2.jpg"/>
+     <sprite h="158" w="160" y="0" x="320" n="player_knight_death3.jpg"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_knight_death.png" width="2048" height="512" frameNum="3" delta="150" rowNum="1" imgNumPerLine="3" state="3">
+	 <sprite h="158" w="160" y="0" x="0" n="player_knight_death1.jpg"/>
+     <sprite h="158" w="160" y="0" x="160" n="player_knight_death2.jpg"/>
+     <sprite h="158" w="160" y="0" x="320" n="player_knight_death3.jpg"/>
+	</TextureAtlas>
+	
+</Root>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Root name="macho" hp="350" gold="0" speed="20" atk="20" atkSpeed="250.0" atkDist="0.0">
+<Root name="macho" hp="350" gold="0" speed="10" atk="3" atkSpeed="150.0" atkDist="0.0">
 	<TextureAtlas imagePath="player\\player_macho_run.png" width="2048" height="512" frameNum="3" delta="150" rowNum="1" imgNumPerLine="3" state="0">
 	 <sprite h="50" w="66" y="0" x="0" n="player_macho_run1.png"/>
      <sprite h="50" w="66" y="0" x="66" n="player_macho_run2.png"/>
