@@ -41,6 +41,8 @@ public:
 
 	int seletedSlotNum;
 
+	int playerUpgradeLevel;
+
 private:
 };
 
