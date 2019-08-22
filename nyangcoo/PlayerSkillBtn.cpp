@@ -173,9 +173,7 @@ void PlayerSkillBtn::SendLButtonDown()
 		Effect* skillEffect = new Effect();
 		skillEffect->EffectXmlFileName = "Asset\\effect\\effect_skill_" + Name + ".xml";
 		XmlManager::GetInstance().ParseEffectData(*skillEffect);
-		/*skillEffect->x = GameManager::GetInstance().CommandPlayer->x + (GameManager::GetInstance().CommandPlayer->frameWidth[0] / 2);
-		skillEffect->y = GameManager::GetInstance().CommandPlayer->y + (GameManager::GetInstance().CommandPlayer->frameHeight[0] / 2);*/
-		skillEffect->x = 2 * (GameManager::GetInstance().CommandPlayer->x + GameManager::GetInstance().CommandPlayer->frameWidth[0]);
+		skillEffect->x = GameManager::GetInstance().CommandPlayer->x + skillEffect->x + skillEffect->frameWidth / 2 + 10;
 		skillEffect->y = GameManager::GetInstance().CommandPlayer->y - 100;
 		skillEffect->Init(new EffectGraphicsComponent(skillEffect));
 
@@ -185,7 +183,9 @@ void PlayerSkillBtn::SendLButtonDown()
 		{
 			if (it->Enable == true && it->Visible == true)
 			{
-				if (skillEffect->x < it->x && it->x < skillEffect->x + skillEffect->frameWidth)
+				int minX = skillEffect->x - (skillEffect->frameWidth / 2);
+				int maxX = minX + skillEffect->frameWidth;
+				if (minX < it->x && it->x < maxX)
 				{
 					// 만약에 레이저의 범위 안에 적이 존재하면
 					//공격한다

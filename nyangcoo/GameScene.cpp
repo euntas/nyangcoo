@@ -10,8 +10,6 @@ GameScene::GameScene() : Scene()
 
 void GameScene::Init()
 {
-	GameManager::GetInstance().IsGrayScale = false;
-
 	// 초기 수치 부여
 	ClearAll();
 
@@ -80,7 +78,7 @@ void GameScene::Init()
 
 	// 플레이어 스킬
 	PlayerSkillBtn* ps_heal = new PlayerSkillBtn("heal");
-	ps_heal->btnImg->x = 1000;
+	ps_heal->btnImg->x = 910;
 	ps_heal->btnImg->y = 525;
 	infoStaticObj.emplace_back(ps_heal);
 
@@ -108,6 +106,8 @@ void GameScene::Init()
 
 	infoUIObj.emplace_back(questionImg);
 
+
+	GameManager::GetInstance().IsGrayScale = false;
 }
 
 void GameScene::InitGoldBar()
