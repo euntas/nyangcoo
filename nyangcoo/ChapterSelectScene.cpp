@@ -29,7 +29,7 @@ void ChapterSelectScene::Init()
 	Btn* SaveGameBtn = new Btn();
 	SaveGameBtn->ID = eSaveLoadBtn_Save;
 	SaveGameBtn->AssetFileName = TEXT("saveload\\SaveGame_btn.png");
-	SaveGameBtn->ImgRC = Rect(0, 0, 200, 173);
+	SaveGameBtn->ImgRC = Rect(0, 0, 200, 158);
 	SaveGameBtn->ViewRC = SaveGameBtn->ImgRC;
 	SaveGameBtn->x = 950;
 	SaveGameBtn->y = 480;
@@ -188,7 +188,7 @@ void ChapterSelectScene::Init()
 	infoStaticObj.emplace_back(StageNotYetBtn8);
 
 	PopUp* popUp = new PopUp(ePopup_close);
-	popUp->ImgRC = Rect(0, 0, 250, 198);
+	popUp->ImgRC = Rect(0, 0, 271, 279);
 	popUp->ViewRC = popUp->ImgRC;
 	popUp->Visible = false;
 	infoStaticObj.emplace_back(popUp);

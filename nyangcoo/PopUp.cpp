@@ -18,7 +18,7 @@ PopUp::PopUp(EPopup _name) : StaticObject(EObjectType::eObjectType_PopUp)
 		bg = new StaticObject();
 		bg->Objtype = eObjectType_BGImage;
 		bg->AssetFileName = TEXT("popup_background.png");
-		bg->ImgRC = Rect(0, 0, 250, 198);
+		bg->ImgRC = Rect(0, 0, 271, 279);
 		bg->ViewRC = bg->ImgRC;
 		bg->ViewRC.X = x;
 		bg->ViewRC.Y = y;
@@ -26,25 +26,40 @@ PopUp::PopUp(EPopup _name) : StaticObject(EObjectType::eObjectType_PopUp)
 		infoStaticObj.emplace_back(bg);
 
 		Btn* BackTitleBtn = new Btn();
-		BackTitleBtn->ID = eScene_Exit;
-		BackTitleBtn->AssetFileName = TEXT("popup_backtitle.png");
-		BackTitleBtn->ImgRC = Rect(0, 0, 227, 45);
+		BackTitleBtn->ID = eScene_Start;
+		BackTitleBtn->AssetFileName = TEXT("popup_backtomain.png");
+		BackTitleBtn->ImgRC = Rect(0, 0, 212, 62);
 		BackTitleBtn->ViewRC = BackTitleBtn->ImgRC;
-		BackTitleBtn->x = 12;
-		BackTitleBtn->y = 135;
+		BackTitleBtn->x = 30;
+		BackTitleBtn->y = 126;
 		BackTitleBtn->ViewRC.X = x + BackTitleBtn->x;
 		BackTitleBtn->ViewRC.Y = y + BackTitleBtn->y;
 
 		infoStaticObj.emplace_back(BackTitleBtn);
 
+		Btn* GameOverBtn = new Btn();
+		GameOverBtn->ID = eScene_Exit;
+		GameOverBtn->AssetFileName = TEXT("popup_gameover.png");
+		GameOverBtn->ImgRC = Rect(0, 0, 212, 62);
+		GameOverBtn->ViewRC = GameOverBtn->ImgRC;
+		GameOverBtn->x = 30;
+		GameOverBtn->y = 194;
+		GameOverBtn->ViewRC.X = x + GameOverBtn->x;
+		GameOverBtn->ViewRC.Y = y + GameOverBtn->y;
+
+		infoStaticObj.emplace_back(GameOverBtn);
+
 		Visible = false;
 	}
 	else if (name == ePopup_result)
 	{
+		this->x = 410;
+		this->y = 100;
+
 		bg = new StaticObject();
 		bg->Objtype = eObjectType_BGImage;
 		bg->AssetFileName = TEXT("result_win.png");
-		bg->ImgRC = Rect(0, 0, 271, 219);
+		bg->ImgRC = Rect(0, 0, 600, 400);
 		bg->ViewRC = bg->ImgRC;
 		bg->ViewRC.X = x;
 		bg->ViewRC.Y = y;
@@ -54,10 +69,10 @@ PopUp::PopUp(EPopup _name) : StaticObject(EObjectType::eObjectType_PopUp)
 		Btn* BackTitleBtn = new Btn();
 		BackTitleBtn->ID = eScene_Script;
 		BackTitleBtn->AssetFileName = TEXT("continue_btn.png");
-		BackTitleBtn->ImgRC = Rect(0, 0, 212, 62);
+		BackTitleBtn->ImgRC = Rect(0, 0, 237, 69);
 		BackTitleBtn->ViewRC = BackTitleBtn->ImgRC;
-		BackTitleBtn->x = 30;
-		BackTitleBtn->y = 138;
+		BackTitleBtn->x = 183;
+		BackTitleBtn->y = 304;
 		BackTitleBtn->ViewRC.X = x + BackTitleBtn->x;
 		BackTitleBtn->ViewRC.Y = y + BackTitleBtn->y;
 

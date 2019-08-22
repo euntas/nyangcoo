@@ -56,7 +56,21 @@ void Scene::Render(Gdiplus::Graphics* pGraphics)
 	{
 		if (it == nullptr) continue;
 
-		it->Render(pGraphics);
+		if ((this->Name == "Scene_LoadGame" || this->Name == "Scene_SaveGame" || this->Name == "Scene_Script") && it->Objtype == eObjectType_PopUp)
+		{
+			PopUp* p = reinterpret_cast<PopUp*>(it);
+			if (p->name == ePopup_close)
+			{
+			}
+			else
+			{
+				it->Render(pGraphics);
+			}
+		}
+		else
+		{
+			it->Render(pGraphics);
+		}
 	}
 
 	for (auto& it : infoObj)
