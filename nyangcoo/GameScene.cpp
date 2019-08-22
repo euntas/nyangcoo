@@ -27,7 +27,17 @@ void GameScene::Init()
 	infoStaticObj.emplace_back(bg);
 
 	// 캐릭터 생성용 슬롯 버튼 만들기
-	std::string charNameList[8] = { "pistachio",  "whitechoco", "muscle", "kiwi", "windarcher", "lemon", "plum", "moonrabit" };
+	std::string charNameList[8];
+
+	for (int i = 0; i < MAX_SELECT_COOKIE_NUM; i++)
+	{
+		charNameList[i] = GameManager::GetInstance().characterSelectedList[i];
+	}
+
+	charNameList[5] = "lemon";
+	charNameList[6] = "plum";
+	charNameList[7] = "moonrabit";
+
 	MakeCharacterBtn* mcb[8];
 	UpgradeCharacterBtn* ucb[8];
 
@@ -168,6 +178,7 @@ void GameScene::Update(float Delta)
 		}
 		else
 		{
+			GameManager::GetInstance().coin += 700;
 			GameManager::GetInstance().stageClearList[GameManager::GetInstance().curStage->stageID + 1] = true;
 		}
 		ResultPopUp->Visible = true;

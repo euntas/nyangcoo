@@ -19,6 +19,7 @@ enum EScene {
 	eSaveLoadBtn_Load,
 	eSaveLoadBtn_Save,
 	ePlayerUpgradeBtn,
+	eSuffleBtn,
 	eScene_Cnt
 };
 
@@ -71,12 +72,14 @@ enum EPopup {
 };
 
 enum ECharacter {
-	eCharacter_moonlight,
 	eCharacter_pistachio,
 	eCharacter_whitechoco,
 	eCharacter_muscle,
 	eCharacter_windarcher,
 	eCharacter_kiwi,
+	eCharacter_lemon,
+	eCharacter_moonrabit,
+	eCharacter_plum,
 	eCharacter_Cnt
 };
 
@@ -89,3 +92,4 @@ class GraphicsComponent;
 
 #define MAX_WAVE_NUM 4
 #define ALL_STAGE_NUM 4
+#define MAX_SELECT_COOKIE_NUM 5

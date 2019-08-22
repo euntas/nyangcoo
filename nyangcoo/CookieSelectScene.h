@@ -13,9 +13,9 @@ public:
 	virtual void Render(Gdiplus::Graphics* pGraphics);
 	virtual void Release();
 
-	void selectChar(std::string name);
-
-	void makeBtn(EScene ID);
+	void selectChar(std::string name, int placeIdx);
+	void printCoin(Gdiplus::Graphics* pGraphics);
+	void printCharacterText(Gdiplus::Graphics* pGraphics);
 
 	StaticObject* bg;
 	StaticObject* Selected_Kiwi;

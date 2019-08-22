@@ -30,6 +30,7 @@ public:
 	map<int, bool> slotList; // 저장 슬롯 리스트, 저장 상태 파악 위해
 	map<std::string, bool> AllCharacterList; // 전체 캐릭터의 해금 상태 파악을 위해 
 	int coin; // 냥코인
+	map<int, int> savedCoinList;
 
 	int btnID; // 버튼이 가지고 있는 stageID이다. 버튼이 눌리면 저장되게끔 되어있음.
 
@@ -38,6 +39,8 @@ public:
 	// TODO. 스테이지 클리어 정보 관련. 나중에 DB로 옮겨야 함
 	map<int, bool> stageClearList; // <stageID, true or false>
 	map<int, int> stageSelectedList; // 선택문 리스트. -1: 선택안함, 0: 첫번째 선택문 선택, 1: 두번째 선택문 선택
+
+	std::string characterSelectedList[MAX_SELECT_COOKIE_NUM] = { "pistachio",  "whitechoco", "muscle", "kiwi", "windarcher"}; // 쿠키선택창 덱 선택
 
 	int seletedSlotNum;
 

@@ -8,20 +8,10 @@ CookieSelectScene::CookieSelectScene() : Scene()
 	Init();
 }
 
-void CookieSelectScene::makeBtn(EScene ID)
-{
-	//Btn* b = new Btn();
-	//b->ID = ID;
-	//b->AssetFileName = TEXT("SelectStart_btn.png");
-	//b->rc = Rect(0, 0, 403, 118);
-	//b->x = 600;
-	//b->y = 534;
-
-	//infoStaticObj.emplace_back(b);
-}
-
 void CookieSelectScene::Init()
 {
+	infoStaticObj.clear();
+
 	bg = new StaticObject();
 	bg->Objtype = eObjectType_BGImage;
 	bg->AssetFileName = TEXT("CookieSelect_bg.png");
@@ -37,7 +27,7 @@ void CookieSelectScene::Init()
 	GameStartBtn->y = 534;
 
 	Btn* RefreshBtn = new Btn();
-	RefreshBtn->ID = eObjectType_None;
+	RefreshBtn->ID = eSuffleBtn;
 	RefreshBtn->AssetFileName = TEXT("Refresh_btn.png");
 	RefreshBtn->ImgRC = Rect(0, 0, 403, 118);
 	RefreshBtn->ViewRC = RefreshBtn->ImgRC;
@@ -48,9 +38,10 @@ void CookieSelectScene::Init()
 	infoStaticObj.emplace_back(GameStartBtn);
 	infoStaticObj.emplace_back(RefreshBtn);
 
-	makeBtn(eScene_Game);
-
-	selectChar("selected_kiwi");
+	for (int i = 0; i < MAX_SELECT_COOKIE_NUM; i++)
+	{
+		selectChar(GameManager::GetInstance().characterSelectedList[i], i);
+	}
 
 	PopUp* popUp = new PopUp(ePopup_close);
 	popUp->ImgRC = Rect(0, 0, 271, 279);
@@ -59,19 +50,19 @@ void CookieSelectScene::Init()
 	infoStaticObj.emplace_back(popUp);
 }
 
-void CookieSelectScene::selectChar(std::string name)
+void CookieSelectScene::selectChar(std::string name, int placeIdx)
 {
-	std::string charFilename = "slot_" + name + ".png";
+	std::string charFilename = "cookieSelect\\" + name + ".png";
 
-	StaticObject* Selected_Kiwi = new StaticObject();
-	Selected_Kiwi->Objtype = eObjectType_None;
-	Selected_Kiwi->AssetFileName.assign(charFilename.begin(), charFilename.end());
-	Selected_Kiwi->ImgRC = Rect(0, 0, 203, 220);
-	Selected_Kiwi->ViewRC = Selected_Kiwi->ImgRC;
-	Selected_Kiwi->x = 40;
-	Selected_Kiwi->y = 40;
+	StaticObject* Selected = new StaticObject();
+	Selected->Objtype = eObjectType_None;
+	Selected->AssetFileName.assign(charFilename.begin(), charFilename.end());
+	Selected->ImgRC = Rect(0, 0, 203, 220);
+	Selected->ViewRC = Selected->ImgRC;
+	Selected->x = 40 + placeIdx * 280;
+	Selected->y = 40;
 
-	infoStaticObj.emplace_back(Selected_Kiwi);
+	infoStaticObj.emplace_back(Selected);
 }
 
 void CookieSelectScene::Update(float Delta)
@@ -82,9 +73,56 @@ void CookieSelectScene::Update(float Delta)
 void CookieSelectScene::Render(Graphics* pGraphics)
 {
 	Scene::Render(pGraphics);
+
+	printCoin(pGraphics);
+	printCharacterText(pGraphics);
 }
 
 void CookieSelectScene::Release()
 {
 
+}
+
+void CookieSelectScene::printCoin(Gdiplus::Graphics* pGraphics)
+{
+	Gdiplus::Font F(L"Arial", 10, FontStyleBold, UnitMillimeter);
+
+	PointF P(600, 500);
+	PointF P2(600, 550);
+
+	SolidBrush B(Color(0, 0, 0));
+
+	int coin = GameManager::GetInstance().coin;
+	int stageNum = GameManager::GetInstance().curStage->stageID;
+
+	if (GameManager::GetInstance().seletedSlotNum != -1)
+	{
+		coin = GameManager::GetInstance().savedCoinList[GameManager::GetInstance().seletedSlotNum];
+		stageNum = XmlManager::GetInstance().getLastStageNum(GameManager::GetInstance().seletedSlotNum);
+	}
+
+	wstring tempStr = L"현재 스테이지는 " + std::to_wstring(stageNum) + L" 입니다.";
+	pGraphics->DrawString(tempStr.c_str(), -1, &F, P, &B);
+
+	wstring tempStr2 = L"현재 소지한 냥코인은 " + std::to_wstring(coin) + L" 입니다.";
+	pGraphics->DrawString(tempStr2.c_str(), -1, &F, P2, &B);
+}
+
+void CookieSelectScene::printCharacterText(Gdiplus::Graphics* pGraphics)
+{
+	Gdiplus::Font F(L"Arial", 10, FontStyleBold, UnitMillimeter);
+
+	SolidBrush B(Color(0, 0, 0));
+
+	for (int i = 0; i < MAX_SELECT_COOKIE_NUM; i++)
+	{
+		std::string name = GameManager::GetInstance().characterSelectedList[i];
+
+		PointF P(40 + i * 280, 340);
+
+		wstring tempStr;
+		tempStr.assign(name.begin(), name.end());
+		pGraphics->DrawString(tempStr.c_str(), -1, &F, P, &B);
+	}
+	
 }

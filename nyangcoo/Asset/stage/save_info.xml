@@ -18,7 +18,7 @@
         <character state="true">whitechoco</character>
         <character state="true">windarcher</character>
     </slot>
-    <slot slotNum="1" state="true" coin="0">
+    <slot slotNum="1" state="true" coin="800">
         <stage state="true" stageId="0" selectedStr="0"/>
         <stage state="true" stageId="1" selectedStr="1"/>
         <stage state="true" stageId="2" selectedStr="1"/>
