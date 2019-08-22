@@ -44,6 +44,22 @@ void Scene::Update(float Delta)
 			PlayerSkillBtn* psb = reinterpret_cast<PlayerSkillBtn*>(it);
 			psb->Update(Delta);
 		}
+		else if (it->Objtype == eObjectType_Btn)
+		{
+			Btn* b = reinterpret_cast<Btn*>(it);
+
+			if (b->ID == ePlayerUpgradeBtn)
+			{
+				GameScene* gs = reinterpret_cast<GameScene*>(SceneManager::GetInstance().GetCurScene());
+
+				it->x = GameManager::GetInstance().CommandPlayer->x;
+				it->y = GameManager::GetInstance().CommandPlayer->y - GameManager::GetInstance().CommandPlayer->AniUnits[GameManager::GetInstance().CommandPlayer->curState][0].Height - 50;
+			}
+		}
+		else
+		{
+			it->Update(Delta);
+		}
 	}
 }
 

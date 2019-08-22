@@ -18,6 +18,7 @@ enum EScene {
 	eSaveLoadBtn_Select2,
 	eSaveLoadBtn_Load,
 	eSaveLoadBtn_Save,
+	ePlayerUpgradeBtn,
 	eScene_Cnt
 };
 

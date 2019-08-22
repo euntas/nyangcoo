@@ -4,6 +4,7 @@ class XmlManager
 public:
 	static XmlManager& GetInstance();
 
+	int GetCharacterCost(std::string name);
 	void ParseCharacterData(Character& character);
 	void ParseCharacterInitData(Character& character);
 	void ParseEffectData(Effect& effect);

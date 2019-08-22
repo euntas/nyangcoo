@@ -139,7 +139,7 @@ void Btn::SendLButtonDown()
 		SceneManager::GetInstance().LoadScene(CString("Scene_SaveGame"));
 		SceneManager::GetInstance().Init();
 		break;
-  }
+	}
 
 	case eScene_DeleteGame:
 	{
@@ -175,7 +175,7 @@ void Btn::SendLButtonDown()
 	}
       
 	case eScene_Help:
-  {
+	{
 		if (SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
 		{
 			for (auto& it : SceneManager::GetInstance().GetCurScene()->infoUIObj)
@@ -191,8 +191,30 @@ void Btn::SendLButtonDown()
 			ExitProcess(0);
 		}
     
-    break;
-  }
+		break;
+	}
+
+	case ePlayerUpgradeBtn:
+	{
+		GameScene* gs = reinterpret_cast<GameScene*>(SceneManager::GetInstance().GetCurScene());
+
+		int gdelta = 50 + (50 * GameManager::GetInstance().playerUpgradeLevel);
+		int gcost = 100 * (GameManager::GetInstance().playerUpgradeLevel + 1);
+
+		if (gs->gsGoldDelta - gdelta > 0 && GameManager::GetInstance().playerUpgradeLevel < 3)
+		{
+			gs->gold -= gcost;
+			gs->gsGoldDelta -= gdelta;
+
+			GameManager::GetInstance().playerUpgradeLevel++;
+			gcost = 100 * (GameManager::GetInstance().playerUpgradeLevel + 1);
+			std::wstring tempStr = L"slot\\up_slot_" + to_wstring(gcost) + L".png";
+
+			this->AssetFileName = tempStr;
+		}
+			
+		break;
+	}
     
 	case eScene_Exit:
 			ExitProcess(0);

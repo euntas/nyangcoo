@@ -18,6 +18,8 @@ void GameManager::Init(int stageID)
 	
 	coin = 0;
 
+	playerUpgradeLevel = 0;
+
 	// TODO. 나중에 DB로 옮겨야 함
 	stageClearList.insert(make_pair(0, true));
 	stageClearList.insert(make_pair(1, false));

@@ -15,7 +15,7 @@ void GameScene::Init()
 
 	gsGoldDeltaA = 0;
 	gold = 1000;
-	gsGoldDelta = 500; // 골드 증가 초기 속도
+	gsGoldDelta = 550; // 골드 증가 초기 속도
 
 	// 게임 매니저 초기화
 	GameManager::GetInstance().Init(GameManager::GetInstance().btnID);
@@ -91,6 +91,17 @@ void GameScene::Init()
 	ps_razer->btnImg->x = ps_blizzard->btnImg->x + 150;
 	ps_razer->btnImg->y = ps_heal->btnImg->y;
 	infoStaticObj.emplace_back(ps_razer);
+
+	// 플레이어 업그레이드 버튼 (골드 획득속도 증가)
+	Btn* UpgradeBtn = new Btn();
+	UpgradeBtn->ID = ePlayerUpgradeBtn;
+	UpgradeBtn->AssetFileName = TEXT("slot\\up_slot_100.png");
+	UpgradeBtn->ImgRC = Rect(0, 0, 85, 34);
+	UpgradeBtn->ViewRC = UpgradeBtn->ImgRC;
+	UpgradeBtn->x = GameManager::GetInstance().CommandPlayer->x;
+	UpgradeBtn->y = GameManager::GetInstance().CommandPlayer->y - GameManager::GetInstance().CommandPlayer->AniUnits[0][0].Height - 50;
+
+	infoStaticObj.emplace_back(UpgradeBtn);
 
 	ResultPopUp = new PopUp(ePopup_result);
 	infoUIObj.emplace_back(ResultPopUp);
