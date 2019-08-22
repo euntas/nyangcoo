@@ -256,6 +256,14 @@ void GameScene::Render(Graphics* pGraphics)
 
 	printTitle(pGraphics);
 
+	if (ResultPopUp->Visible == true)
+	{
+		if (GameManager::GetInstance().IsWin)
+			printCoin(700, pGraphics);
+		else
+			printCoin(0, pGraphics);
+	}
+
 	for (auto& it : infoUIObj)
 	{
 		if (it->Objtype == eObjectType_None && it->AssetFileName == L"help_popup.png")
@@ -337,6 +345,20 @@ void GameScene::printHP(Character* _character, Gdiplus::Graphics* pGraphics)
 	SolidBrush B(Color(0, 0, 0));
 
 	wstring tempStr = std::to_wstring(_character->hp) + L"/" + std::to_wstring(_character->maxHp);
+
+	pGraphics->DrawString(tempStr.c_str(), -1, &F, P, &B);
+}
+
+void GameScene::printCoin(int coin, Gdiplus::Graphics* pGraphics)
+{
+	// 글자 출력
+	Gdiplus::Font F(L"Arial", 10, FontStyleBold, UnitMillimeter);
+
+	PointF P(ResultPopUp->x + 280.0f, ResultPopUp->y + 230.0f);
+
+	SolidBrush B(Color(0, 0, 0));
+
+	wstring tempStr = std::to_wstring(coin);
 
 	pGraphics->DrawString(tempStr.c_str(), -1, &F, P, &B);
 }

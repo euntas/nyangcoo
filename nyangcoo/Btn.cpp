@@ -203,7 +203,7 @@ void Btn::SendLButtonDown()
 		int gdelta = 50 + (50 * GameManager::GetInstance().playerUpgradeLevel);
 		int gcost = 100 * (GameManager::GetInstance().playerUpgradeLevel + 1);
 
-		if (gs->gsGoldDelta - gdelta > 0 && GameManager::GetInstance().playerUpgradeLevel < 3)
+		if (gs->gsGoldDelta - gdelta > 0 && GameManager::GetInstance().playerUpgradeLevel < 3 && gs->gold >= gcost)
 		{
 			gs->gold -= gcost;
 			gs->gsGoldDelta -= gdelta;
