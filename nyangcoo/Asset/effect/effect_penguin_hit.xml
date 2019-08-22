@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:24208924624a6cef6e53a7f9e752c819:bb9240c03252fb04e1980ad9e6431cc7:156036ed0c10e843c540d344d57967fc$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="effect_penguin_hit.png" width="2048" height="1024">
+    <sprite n="effect_penguin_hit1.png" x="0" y="0" w="485" h="397"/>
+    <sprite n="effect_penguin_hit2.png" x="485" y="0" w="485" h="397"/>
+    <sprite n="effect_penguin_hit3.png" x="970" y="0" w="485" h="397"/>
+    <sprite n="effect_penguin_hit4.png" x="1455" y="0" w="485" h="397"/>
+    <sprite n="effect_penguin_hit5.png" x="0" y="397" w="485" h="397"/>
+    <sprite n="effect_penguin_hit6.png" x="485" y="397" w="485" h="397"/>
+    <sprite n="effect_penguin_hit7.png" x="970" y="397" w="485" h="397"/>
+</TextureAtlas>

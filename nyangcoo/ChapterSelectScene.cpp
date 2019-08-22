@@ -70,7 +70,7 @@ void ChapterSelectScene::Init()
 	StageClearedBtn->ID = eScene_Game;
 	if (GameManager::GetInstance().stageClearList[0] == true)
 	{
-		StageClearedBtn->AssetFileName = TEXT("stage_cleared.png");
+		StageClearedBtn->AssetFileName = TEXT("stage_cleared_0.png");
 	}
 	else
 	{
@@ -85,7 +85,7 @@ void ChapterSelectScene::Init()
 	StageNotYetBtn1->ID = eScene_Game;
 	if (GameManager::GetInstance().stageClearList[1] == true)
 	{
-		StageNotYetBtn1->AssetFileName = TEXT("stage_cleared.png");
+		StageNotYetBtn1->AssetFileName = TEXT("stage_cleared_1.png");
 	}
 	else
 	{
@@ -101,7 +101,7 @@ void ChapterSelectScene::Init()
 	StageNotYetBtn2->ID = eScene_Game;
 	if (GameManager::GetInstance().stageClearList[2] == true)
 	{
-		StageNotYetBtn2->AssetFileName = TEXT("stage_cleared.png");
+		StageNotYetBtn2->AssetFileName = TEXT("stage_cleared_2.png");
 	}
 	else
 	{
