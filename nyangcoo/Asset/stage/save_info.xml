@@ -36,22 +36,22 @@
         <character state="true">whitechoco</character>
         <character state="true">windarcher</character>
     </slot>
-    <slot slotNum="2" state="true" coin="0">
-        <stage state="true" stageId="0" selectedStr="-1"/>
+    <slot slotNum="2" state="false" coin="0">
+        <stage state="false" stageId="0" selectedStr="-1"/>
         <stage state="false" stageId="1" selectedStr="-1"/>
         <stage state="false" stageId="2" selectedStr="-1"/>
         <stage state="false" stageId="3" selectedStr="-1"/>
-        <character state="true">brave</character>
-        <character state="true">kiwi</character>
-        <character state="true">lemon</character>
-        <character state="true">macho</character>
-        <character state="true">moonlight</character>
-        <character state="true">moonrabit</character>
-        <character state="true">muscle</character>
-        <character state="true">pistachio</character>
-        <character state="true">plum</character>
-        <character state="true">titan</character>
-        <character state="true">whitechoco</character>
-        <character state="true">windarcher</character>
+        <character state="false">brave</character>
+        <character state="false">kiwi</character>
+        <character state="false">lemon</character>
+        <character state="false">macho</character>
+        <character state="false">moonlight</character>
+        <character state="false">moonrabit</character>
+        <character state="false">muscle</character>
+        <character state="false">pistachio</character>
+        <character state="false">plum</character>
+        <character state="false">titan</character>
+        <character state="false">whitechoco</character>
+        <character state="false">windarcher</character>
     </slot>
 </Root>
