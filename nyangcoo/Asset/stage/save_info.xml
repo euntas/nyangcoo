@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Root>
-	<slot slotNum="0" state="true" coin="1000">
-		<stage state="true" stageId="0" selectedStr="0"></stage>
-		<stage state="true" stageId="1" selectedStr="-1"></stage>
-		<stage state="false" stageId="2" selectedStr="-1"></stage>
-		<stage state="false" stageId="3" selectedStr="-1"></stage>
-		<character state="true">brave</character>
-		<character state="true">kiwi</character>
-		<character state="true">lemon</character>
-		<character state="true">macho</character>
-		<character state="true">moonlight</character>
-		<character state="true">moonrabit</character>
-		<character state="true">muscle</character>
-		<character state="true">pistachio</character>
-		<character state="true">plum</character>
-		<character state="true">titan</character>
-		<character state="true">whitechoco</character>
-		<character state="true">windarcher</character>
-	</slot>
-	<slot slotNum="1" state="true" coin="0">
-		<stage state="true" stageId="0" selectedStr="0"></stage>
-		<stage state="true" stageId="1" selectedStr="-1"></stage>
-		<stage state="true" stageId="2" selectedStr="-1"></stage>
-		<stage state="false" stageId="3" selectedStr="-1"></stage>
-		<character state="true">brave</character>
-		<character state="true">kiwi</character>
-		<character state="true">lemon</character>
-		<character state="true">macho</character>
-		<character state="true">moonlight</character>
-		<character state="true">moonrabit</character>
-		<character state="true">muscle</character>
-		<character state="true">pistachio</character>
-		<character state="true">plum</character>
-		<character state="true">titan</character>
-		<character state="true">whitechoco</character>
-		<character state="true">windarcher</character>
-	</slot>
-	<slot slotNum="2" state="false" coin="0">
-		<stage state="true" stageId="0" selectedStr="0"></stage>
-		<stage state="true" stageId="1" selectedStr="-1"></stage>
-		<stage state="true" stageId="2" selectedStr="-1"></stage>
-		<stage state="true" stageId="3" selectedStr="-1"></stage>
-		<character state="true">brave</character>
-		<character state="true">kiwi</character>
-		<character state="true">lemon</character>
-		<character state="true">macho</character>
-		<character state="true">moonlight</character>
-		<character state="true">moonrabit</character>
-		<character state="true">muscle</character>
-		<character state="true">pistachio</character>
-		<character state="true">plum</character>
-		<character state="true">titan</character>
-		<character state="true">whitechoco</character>
-		<character state="true">windarcher</character>
-	</slot>
+    <slot slotNum="0" state="true" coin="1000">
+        <stage state="true" stageId="0" selectedStr="0"/>
+        <stage state="true" stageId="1" selectedStr="-1"/>
+        <stage state="false" stageId="2" selectedStr="-1"/>
+        <stage state="false" stageId="3" selectedStr="-1"/>
+        <character state="true">brave</character>
+        <character state="true">kiwi</character>
+        <character state="true">lemon</character>
+        <character state="true">macho</character>
+        <character state="true">moonlight</character>
+        <character state="true">moonrabit</character>
+        <character state="true">muscle</character>
+        <character state="true">pistachio</character>
+        <character state="true">plum</character>
+        <character state="true">titan</character>
+        <character state="true">whitechoco</character>
+        <character state="true">windarcher</character>
+    </slot>
+    <slot slotNum="1" state="true" coin="0">
+        <stage state="true" stageId="0" selectedStr="-1"/>
+        <stage state="false" stageId="1" selectedStr="-1"/>
+        <stage state="false" stageId="2" selectedStr="-1"/>
+        <stage state="false" stageId="3" selectedStr="-1"/>
+        <character state="true">brave</character>
+        <character state="true">kiwi</character>
+        <character state="true">lemon</character>
+        <character state="true">macho</character>
+        <character state="true">moonlight</character>
+        <character state="true">moonrabit</character>
+        <character state="true">muscle</character>
+        <character state="true">pistachio</character>
+        <character state="true">plum</character>
+        <character state="true">titan</character>
+        <character state="true">whitechoco</character>
+        <character state="true">windarcher</character>
+    </slot>
+    <slot slotNum="2" state="false" coin="0">
+        <stage state="true" stageId="0" selectedStr="0"/>
+        <stage state="true" stageId="1" selectedStr="-1"/>
+        <stage state="true" stageId="2" selectedStr="-1"/>
+        <stage state="true" stageId="3" selectedStr="-1"/>
+        <character state="true">brave</character>
+        <character state="true">kiwi</character>
+        <character state="true">lemon</character>
+        <character state="true">macho</character>
+        <character state="true">moonlight</character>
+        <character state="true">moonrabit</character>
+        <character state="true">muscle</character>
+        <character state="true">pistachio</character>
+        <character state="true">plum</character>
+        <character state="true">titan</character>
+        <character state="true">whitechoco</character>
+        <character state="true">windarcher</character>
+    </slot>
 </Root>

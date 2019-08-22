@@ -13,10 +13,14 @@ public:
 	bool ChangeWave(); // true면 다음wave로, false면 변경 불가
 	bool IsAllEnemyDead();
 	bool IsGameEnd();
+	void InitAllCharacterList();
+	void InitStageSelectedList();
+
 	bool IsWin; // true : 플레이어 승리 false : 적 승리
 	bool IsGrayScale;
 
 	GameStage* curStage;
+	
 	int curWaveNum;
 	int remainEnemyNum;
 	vector<Character*> curEnemyList;
@@ -34,6 +38,8 @@ public:
 	// TODO. 스테이지 클리어 정보 관련. 나중에 DB로 옮겨야 함
 	map<int, bool> stageClearList; // <stageID, true or false>
 	map<int, int> stageSelectedList; // 선택문 리스트. -1: 선택안함, 0: 첫번째 선택문 선택, 1: 두번째 선택문 선택
+
+	int seletedSlotNum;
 
 private:
 };

@@ -25,6 +25,7 @@ void StartScene::Init()
 	StartBtn->ViewRC = StartBtn->ImgRC;
 	StartBtn->x = 600;
 	StartBtn->y = 200;
+	StartBtn->IsClicked = false;
 
 	Btn* ContinueBtn = new Btn();
 	ContinueBtn->ID = eScene_Continue;

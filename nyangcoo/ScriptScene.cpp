@@ -47,6 +47,7 @@ void ScriptScene::Init()
 	ChoiceBtn1->ViewRC = ChoiceBtn1->ImgRC;
 	ChoiceBtn1->x = 415;
 	ChoiceBtn1->y = 522;
+	ChoiceBtn1->selectOption = 0;
 
 	Btn* ChoiceBtn2 = new Btn();
 	ChoiceBtn2->ID = eScene_ChapterSelect;
@@ -55,6 +56,7 @@ void ScriptScene::Init()
 	ChoiceBtn2->ViewRC = ChoiceBtn2->ImgRC;
 	ChoiceBtn2->x = 415;
 	ChoiceBtn2->y = 602;
+	ChoiceBtn1->selectOption = 1;
 
 	infoStaticObj.emplace_back(bg);
 	infoStaticObj.emplace_back(ChapterName);

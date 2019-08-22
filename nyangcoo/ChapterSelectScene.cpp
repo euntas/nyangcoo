@@ -10,6 +10,8 @@ ChapterSelectScene::ChapterSelectScene() : Scene()
 
 void ChapterSelectScene::Init()
 {
+	infoStaticObj.clear();
+
 	bg = new StaticObject();
 	bg->Objtype = eObjectType_BGImage;
 	bg->AssetFileName = TEXT("ChapterSelect_bg.png");
