@@ -43,7 +43,7 @@ void ChapterSelectScene::Init()
 	CookieSelectBtn->y = 475;
 
 	Btn* NextChapterBtn = new Btn();
-	NextChapterBtn->ID = eScene_Exit;
+	//NextChapterBtn->ID = eScene_Exit;
 	NextChapterBtn->AssetFileName = TEXT("arrow_right.png");
 	NextChapterBtn->ImgRC = Rect(0, 0, 100, 78);
 	NextChapterBtn->ViewRC = NextChapterBtn->ImgRC;
@@ -51,7 +51,7 @@ void ChapterSelectScene::Init()
 	NextChapterBtn->y = 275;
 
 	Btn* PrevChapterBtn = new Btn();
-	PrevChapterBtn->ID = eScene_Exit;
+	//PrevChapterBtn->ID = eScene_Exit;
 	PrevChapterBtn->AssetFileName = TEXT("arrow_left.png");
 	PrevChapterBtn->ImgRC = Rect(0, 0, 100, 78);
 	PrevChapterBtn->ViewRC = PrevChapterBtn->ImgRC;

@@ -54,6 +54,8 @@
 #include "AssetManager.h"
 #include "SceneManager.h"
 #include "GameManager.h"
+#include <mmsystem.h>
+#pragma comment (lib, "winmm.lib")
 
 using namespace tinyxml2;
 using namespace Gdiplus;

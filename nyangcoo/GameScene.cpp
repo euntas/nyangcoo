@@ -308,7 +308,7 @@ void GameScene::printHP(Character* _character, Gdiplus::Graphics* pGraphics)
 	if (_character->Visible == false)
 		return;
 
-	Gdiplus::Font F(L"Arial", 5, FontStyleBold, UnitMillimeter);
+	Gdiplus::Font F(L"Arial", 10, FontStyleBold, UnitMillimeter);
 
 	PointF P(_character->x, _character->y - _character->AniUnits[_character->curState][0].Height);
 

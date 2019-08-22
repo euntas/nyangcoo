@@ -72,7 +72,7 @@ void LoadGameScene::Init()
 
 	Btn* BackTitleBtn = new Btn();
 	BackTitleBtn->ID = eScene_Start;
-	BackTitleBtn->AssetFileName = TEXT("saveload\\back_chapter_btn.png");
+	BackTitleBtn->AssetFileName = TEXT("saveload\\back_main_btn.png");
 	BackTitleBtn->ImgRC = Rect(0, 0, 200, 159);
 	BackTitleBtn->ViewRC = BackTitleBtn->ImgRC;
 	BackTitleBtn->x = 900;

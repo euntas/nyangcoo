@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Root name="moonrabit" hp="500" gold="150" speed="50" atk="10" atkSpeed="250.0" atkDist="10.0">
+<Root name="moonrabit" hp="350" gold="250" speed="50" atk="3" atkSpeed="250.0" atkDist="10.0">
 	<TextureAtlas imagePath="player\\player_moonrabit_run.png" width="2048" height="512" frameNum="5" delta="150" rowNum="1" imgNumPerLine="5" state="0">
 	 <sprite h="290" w="314" y="0" x="0" n="player_moonrabit_run1.png"/>
      <sprite h="290" w="314" y="0" x="314" n="player_moonrabit_run2.png"/>
