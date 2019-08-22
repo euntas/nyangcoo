@@ -16,6 +16,7 @@ public:
 	void InitGoldBar();
 	void printTitle(Gdiplus::Graphics* pGraphics);
 	void printHP(Character* _character, Gdiplus::Graphics* pGraphics);
+	void printCoin(int coin, Gdiplus::Graphics* pGraphics);
 
 	StaticObject* bg;
 
