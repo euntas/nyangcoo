@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Root name="whitechoco" hp="450" gold="100" speed="25" atk="50" atkSpeed="100.0" atkDist="0.0">
+<Root name="whitechoco" hp="250" gold="400" speed="40" atk="15" atkSpeed="150.0" atkDist="0.0">
 	<TextureAtlas imagePath="player\\player_whitechoco_cookie_run.png" width="2048" height="512" frameNum="6" delta="150" rowNum="1" imgNumPerLine="6" state="0">
 	 <sprite h="151" w="152" y="0" x="0" n="player_whitechoco_cookie_run1.jpg.png"/>
      <sprite h="151" w="152" y="0" x="152" n="player_whitechoco_cookie_run2.jpg.png"/>

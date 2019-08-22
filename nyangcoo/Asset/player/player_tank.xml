@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root name="tank" hp="600" gold="0" speed="20" atk="5" atkSpeed="350.0" atkDist="0.0">
+	<TextureAtlas imagePath="player\\player_tank_run.png" width="2048" height="512" frameNum="3" delta="150" rowNum="1" imgNumPerLine="3" state="0">
+	 <sprite h="184" w="110" y="0" x="0" n="player_tank_run1.png"/>
+     <sprite h="184" w="110" y="0" x="110" n="player_tank_run2.png"/>
+     <sprite h="184" w="110" y="0" x="220" n="player_tank_run3.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_tank_hit.png" width="2048" height="512" frameNum="7" delta="150" rowNum="1" imgNumPerLine="7" state="1">
+	 <sprite h="230" w="160" y="0" x="0" n="player_tank_hit1.png"/>
+     <sprite h="230" w="160" y="0" x="160" n="player_tank_hit2.png"/>
+     <sprite h="230" w="160" y="0" x="320" n="player_tank_hit3.png"/>
+     <sprite h="230" w="160" y="0" x="480" n="player_tank_hit4.png"/>
+     <sprite h="230" w="160" y="0" x="640" n="player_tank_hit5.png"/>
+     <sprite h="230" w="160" y="0" x="800" n="player_tank_hit6.png"/>
+     <sprite h="230" w="160" y="0" x="960" n="player_tank_hit7.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_tank_death.png" width="2048" height="512" frameNum="3" delta="150" rowNum="1" imgNumPerLine="3" state="2">
+	 <sprite h="216" w="205" y="0" x="0" n="player_tank_death1.png"/>
+     <sprite h="216" w="205" y="0" x="205" n="player_tank_death2.png"/>
+     <sprite h="216" w="205" y="0" x="410" n="player_tank_death3.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_tank_death.png" width="2048" height="512" frameNum="3" delta="150" rowNum="1" imgNumPerLine="3" state="3">
+	 <sprite h="216" w="205" y="0" x="0" n="player_tank_death1.png"/>
+     <sprite h="216" w="205" y="0" x="205" n="player_tank_death2.png"/>
+     <sprite h="216" w="205" y="0" x="410" n="player_tank_death3.png"/>
+	</TextureAtlas>
+	
+</Root>

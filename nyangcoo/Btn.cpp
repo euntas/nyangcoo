@@ -25,23 +25,28 @@ void Btn::SendLButtonDown()
 	switch (ID)
 	{
 	case eScene_Game: 
+		sndPlaySound(NULL, SND_ASYNC);
+		sndPlaySound(L"Asset\\BattleSound.wav", SND_ASYNC | SND_LOOP);
 		GameManager::GetInstance().btnID = stageID;
 		SceneManager::GetInstance().LoadScene(CString("Scene_Game"));
 		SceneManager::GetInstance().Init();
 		break;
-	
 	case eScene_LoadGame:
 		SceneManager::GetInstance().LoadScene(CString("Scene_LoadGame"));
 		SceneManager::GetInstance().Init();
 		break;
 	
 	case eScene_Start:
+		sndPlaySound(NULL, SND_ASYNC);
+		sndPlaySound(L"Asset\\MainSound.wav", SND_ASYNC | SND_LOOP);
 		SceneManager::GetInstance().LoadScene(CString("Scene_Start"));
 		SceneManager::GetInstance().Init();
 		break;
 	
 	case eScene_ChapterSelect:
 	{
+		sndPlaySound(NULL, SND_ASYNC);
+		sndPlaySound(L"Asset\\MainSound.wav", SND_ASYNC | SND_LOOP);
 		if (SceneManager::GetInstance().GetCurScene()->Name == "Scene_Start")
 		{
 			StartScene* ss = reinterpret_cast<StartScene*>(SceneManager::GetInstance().GetCurScene());

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Root name="plum" hp="200" gold="150" speed="30" atk="20" atkSpeed="150.0" atkDist="10.0">
+<Root name="plum" hp="200" gold="350" speed="30" atk="20" atkSpeed="150.0" atkDist="10.0">
 	<TextureAtlas imagePath="player\\player_plum_run.png" width="2048" height="512" frameNum="4" delta="150" rowNum="1" imgNumPerLine="4" state="0">
 	 <sprite h="186" w="133" y="0" x="0" n="player_plum_run1.png"/>
      <sprite h="186" w="133" y="0" x="133" n="player_plum_run2.png"/>

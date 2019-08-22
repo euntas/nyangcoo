@@ -1,27 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Root>
-	<Stage stageID="0" stageTitle="프롤로그 마녀의 훈련장" maxGold="1500" maxHP="1000" waveNum="1" imagePath="bg_egypt.png">
+	<Stage stageID="0" stageTitle="프롤로그 마녀의 훈련장" maxGold="1500" maxHP="1000" waveNum="2" imagePath="bg_egypt.png">
 		<ImgRC x="0" y="0" width="1920" height="672"></ImgRC>
 		<ViewRC x="0" y="0" width="1420" height="672"></ViewRC>
 		<enemyList wave="0">
       <name>macho</name>
-			<name>muscle</name>
-			<name>titan</name>
-			<name>titan</name>
+	  <name>macho</name>
+	  <name>knight</name>
+			<name>macho</name>
+			<name>macho</name>
+			<name>macho</name>
+			<name>knight</name>
+			<name>knight</name>
+		</enemyList>
+		<enemyList wave="1">
+      <name>macho</name>
+	  <name>macho</name>
+	  <name>knight</name>
+			<name>macho</name>
+			<name>macho</name>
+			<name>macho</name>
+			<name>redknight</name>
+			<name>knight</name>
 		</enemyList>
 	</Stage>
 	<Stage stageID="1" stageTitle="스테이지 두번째 훈련장" maxGold="1500" maxHP="1000" waveNum="2" imagePath="bg_moon.png">
 		<ImgRC x="0" y="0" width="1920" height="672"></ImgRC>
 		<ViewRC x="0" y="0" width="1420" height="672"></ViewRC>
 		<enemyList wave="0">
-			<name>muscle</name>
-			<name>titan</name>
-			<name>titan</name>
+			<name>tank</name>
+			<name>macho</name>
+			<name>macho</name>
+			<name>tank</name>
+			<name>macho</name>
+			<name>knight</name>
+			<name>knight</name>
+			<name>redknight</name>
 		</enemyList>
 		<enemyList wave="1">
       <name>macho</name>
-			<name>muscle</name>
-			<name>titan</name>
+			<name>redtank</name>
+			<name>macho</name>
+			<name>knight</name>
+			<name>redknight</name>
+			<name>redtank</name>
+			<name>knight</name>
 			<name>titan</name>
 		</enemyList>
 	</Stage>

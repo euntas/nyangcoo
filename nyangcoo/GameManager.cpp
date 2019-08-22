@@ -50,7 +50,8 @@ void GameManager::MakeEnemyForWave(int waveNum)
 		XmlManager::GetInstance().ParseCharacterData(*sampleEnemy);
 		sampleEnemy->Init(new InputComponent(), new CharacterGraphicsComponent(sampleEnemy));
 		sampleEnemy->x += (distCnt * 200);
-		if (it == "titan" || it == "macho")
+		if (it == "titan" || it == "macho" || it =="knight" || it == "redknight"
+			|| it == "tank" || it == "redtank")
 			sampleEnemy->bleft = true;
 
 		curEnemyList.emplace_back(sampleEnemy);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Root name="kiwi" hp="100" gold="70" speed="0.5" atk="10" atkSpeed="250.0" atkDist="0.0">
+<Root name="kiwi" hp="200" gold="250" speed="0.5" atk="4" atkSpeed="250.0" atkDist="0.0">
 	<TextureAtlas imagePath="player\\player_kiwi_run.png" width="2048" height="512" frameNum="4" delta="150" rowNum="1" imgNumPerLine="4" state="0">
 	 <sprite h="197" w="245" y="0" x="0" n="player_kiwi_run1.jpg.png"/>
      <sprite h="197" w="245" y="0" x="245" n="player_kiwi_run2.jpg.png"/>
