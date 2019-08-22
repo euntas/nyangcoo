@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root name="penguin" hp="200" gold="150" speed="20" atk="15" atkSpeed="150.0" atkDist="485.0">
+	<TextureAtlas imagePath="player\\player_penguin_run.png" width="2048" height="512" frameNum="2" delta="150" rowNum="1" imgNumPerLine="2" state="0">
+	 <sprite h="169" w="129" y="0" x="0" n="player_penguin_run1.png"/>
+     <sprite h="169" w="129" y="0" x="129" n="player_penguin_run2.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_penguin_hit.png" width="2048" height="512" frameNum="5" delta="150" rowNum="1" imgNumPerLine="5" state="1">
+	 <sprite h="188" w="145" y="0" x="0" n="player_penguin_hit1.png"/>
+     <sprite h="188" w="145" y="0" x="145" n="player_penguin_hit2.png"/>
+     <sprite h="188" w="145" y="0" x="290" n="player_penguin_hit3.png"/>
+     <sprite h="188" w="145" y="0" x="435" n="player_penguin_hit4.png"/>
+     <sprite h="188" w="145" y="0" x="580" n="player_penguin_hit5.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_penguin_death.png" width="2048" height="512" frameNum="4" delta="150" rowNum="1" imgNumPerLine="4" state="2">
+	 <sprite h="122" w="219" y="0" x="0" n="player_penguin_death1.png"/>
+     <sprite h="122" w="219" y="0" x="219" n="player_penguin_death2.png"/>
+     <sprite h="122" w="219" y="0" x="438" n="player_penguin_death3.png"/>
+     <sprite h="122" w="219" y="0" x="657" n="player_penguin_death4.png"/>
+	</TextureAtlas>
+	<TextureAtlas imagePath="player\\player_penguin_death.png" width="2048" height="512" frameNum="4" delta="150" rowNum="1" imgNumPerLine="4" state="3">
+	 <sprite h="122" w="219" y="0" x="0" n="player_penguin_death1.png"/>
+     <sprite h="122" w="219" y="0" x="219" n="player_penguin_death2.png"/>
+     <sprite h="122" w="219" y="0" x="438" n="player_penguin_death3.png"/>
+     <sprite h="122" w="219" y="0" x="657" n="player_penguin_death4.png"/>
+	</TextureAtlas>
+	
+</Root>
