@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:28596c1acc1ed3ca7a313371c4a59fb2:a0c49758a59304106232fbc184d22bf3:4e306d632516c0cbab16febf4cf18ebb$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<Root>
+	<TextureAtlas imagePath="effect\\effect_skill_razer.png" width="4096" height="4096" frameNum="9" delta="150" rowNum="5" imgNumPerLine="2" effectId="0">
+		<sprite n="skill_razer1.png" x="0" y="0" w="1500" h="596"/>
+		<sprite n="skill_razer2.png" x="1500" y="0" w="1500" h="596"/>
+		<sprite n="skill_razer3.png" x="0" y="596" w="1500" h="596"/>
+		<sprite n="skill_razer4.png" x="1500" y="596" w="1500" h="596"/>
+		<sprite n="skill_razer5.png" x="0" y="1192" w="1500" h="596"/>
+		<sprite n="skill_razer6.png" x="1500" y="1192" w="1500" h="596"/>
+		<sprite n="skill_razer7.png" x="0" y="1788" w="1500" h="596"/>
+		<sprite n="skill_razer8.png" x="1500" y="1788" w="1500" h="596"/>
+		<sprite n="skill_razer9.png" x="0" y="2384" w="1500" h="596"/>
+	</TextureAtlas>
+</Root>
