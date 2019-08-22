@@ -44,6 +44,10 @@ void Scene::Update(float Delta)
 			PlayerSkillBtn* psb = reinterpret_cast<PlayerSkillBtn*>(it);
 			psb->Update(Delta);
 		}
+		else
+		{
+			it->Update(Delta);
+		}
 	}
 }
 

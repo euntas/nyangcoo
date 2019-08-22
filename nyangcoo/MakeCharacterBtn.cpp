@@ -10,6 +10,7 @@ MakeCharacterBtn::MakeCharacterBtn()
 MakeCharacterBtn::MakeCharacterBtn(std::string characterName)
 	: StaticObject(EObjectType::eObjectType_MakeCharacterBtn)
 {
+	IsReady = false;
 	CurStageID = 0;
 	NameStr = characterName;
 
@@ -44,6 +45,12 @@ MakeCharacterBtn::MakeCharacterBtn(std::string characterName)
 
 	cost = 150;
 
+	Character* tempChar = new Character();
+	tempChar->CharacterXmlFileName = "Asset\\player\\player_" + NameStr + ".xml";
+	XmlManager::GetInstance().ParseCharacterData(*tempChar);
+
+	cost = tempChar->gold;
+
 	std::string bgFilename = "slot\\bg_slot_" + std::to_string(cost) + ".png";
 
 	makeSlotImg = new StaticObject();
@@ -67,7 +74,16 @@ void MakeCharacterBtn::Init()
 
 void MakeCharacterBtn::Update(float Delta)
 {
+	GameScene* gs = reinterpret_cast<GameScene*>(SceneManager::GetInstance().GetCurScene());
 
+	if (gs->gold >= cost) 
+	{
+		IsReady = true;
+	}
+	else
+	{
+		IsReady = false;
+	}
 }
 
 void MakeCharacterBtn::Render(Gdiplus::Graphics* pGraphics)
@@ -81,8 +97,9 @@ void MakeCharacterBtn::Render(Gdiplus::Graphics* pGraphics)
 
 	auto pImg = (AssetManager::GetInstance().GetImage(makeSlotImg->AssetFileName)).lock();
 
-	
-	if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+	GameScene* gs = reinterpret_cast<GameScene*>(SceneManager::GetInstance().GetCurScene());
+
+	if ((GameManager::GetInstance().IsGrayScale || IsReady == false) && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
 	{
 		//gray scale conversion:
 		Gdiplus::ColorMatrix matrix =
@@ -115,7 +132,7 @@ void MakeCharacterBtn::Render(Gdiplus::Graphics* pGraphics)
 	auto pImg2 = (AssetManager::GetInstance().GetImage(characterImg->AssetFileName)).lock();
 	
 	Rect tempRC2(x + characterImg->x, y + characterImg->y, characterImg->ViewRC.Width, characterImg->ViewRC.Height);
-	if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+	if ((GameManager::GetInstance().IsGrayScale || IsReady == false) && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
 	{
 		//gray scale conversion:
 		Gdiplus::ColorMatrix matrix =

@@ -28,5 +28,7 @@ public:
 
 	int atk;
 	int HP;
+
+	bool IsReady;
 };
 

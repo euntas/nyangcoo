@@ -7,6 +7,21 @@ XmlManager& XmlManager::GetInstance()
 	return mgr;
 }
 
+int XmlManager::GetCharacterCost(std::string name)
+{
+	tinyxml2::XMLDocument* doc = new tinyxml2::XMLDocument();
+
+	std::string filename = "Asset\\player\\player_ " + name + ".xml";
+	doc->LoadFile(filename.c_str());
+
+	XMLElement* Root = doc->RootElement();
+
+	int gold = 0;
+	gold = atoi(Root->Attribute("gold"));
+
+	return gold;
+}
+
 void XmlManager::ParseCharacterData(Character& character)
 {
 	tinyxml2::XMLDocument* doc = new tinyxml2::XMLDocument();
