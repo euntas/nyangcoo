@@ -20,7 +20,7 @@
     </slot>
     <slot slotNum="1" state="true" coin="0">
         <stage state="true" stageId="0" selectedStr="-1"/>
-        <stage state="true" stageId="1" selectedStr="-1"/>
+        <stage state="false" stageId="1" selectedStr="-1"/>
         <stage state="false" stageId="2" selectedStr="-1"/>
         <stage state="false" stageId="3" selectedStr="-1"/>
         <character state="true">brave</character>

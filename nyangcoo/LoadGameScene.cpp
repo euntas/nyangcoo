@@ -72,11 +72,11 @@ void LoadGameScene::Init()
 
 	Btn* BackTitleBtn = new Btn();
 	BackTitleBtn->ID = eScene_Start;
-	BackTitleBtn->AssetFileName = TEXT("back_btn.png");
-	BackTitleBtn->ImgRC = Rect(0, 0, 200, 84);
+	BackTitleBtn->AssetFileName = TEXT("saveload\\back_chapter_btn.png");
+	BackTitleBtn->ImgRC = Rect(0, 0, 200, 159);
 	BackTitleBtn->ViewRC = BackTitleBtn->ImgRC;
 	BackTitleBtn->x = 900;
-	BackTitleBtn->y = 526;
+	BackTitleBtn->y = 484;
 
 	infoStaticObj.emplace_back(BackTitleBtn);
 
