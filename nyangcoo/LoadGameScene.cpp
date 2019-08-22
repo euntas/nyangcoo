@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "LoadGameScene.h"
 
 LoadGameScene::LoadGameScene() : Scene()
@@ -20,10 +20,10 @@ void LoadGameScene::Init()
 
 	infoStaticObj.emplace_back(bg);
 
-	// ½½·Ô Á¤º¸ ·Îµå
+	// ìŠ¬ë¡¯ ì •ë³´ ë¡œë“œ
 	XmlManager::GetInstance().ParseSavedData();
 
-	// ½½·Ô ¹öÆ° »ı¼º
+	// ìŠ¬ë¡¯ ë²„íŠ¼ ìƒì„±
 	for (int idx = 0; idx < 3; idx++)
 	{
 		SlotBtn[idx] = new Btn();
@@ -90,7 +90,7 @@ void LoadGameScene::Init()
 
 	infoStaticObj.emplace_back(DeleteGameBtn);
 
-	// ¹öÆ° Å¬¸¯½Ã ³ªÅ¸³¯ ±×¸² »ı¼º½Ã¿¡´Â ºñÈ°¼ºÈ­
+	// ë²„íŠ¼ í´ë¦­ì‹œ ë‚˜íƒ€ë‚  ê·¸ë¦¼ ìƒì„±ì‹œì—ëŠ” ë¹„í™œì„±í™”
 	selectedImg = new StaticObject();
 	selectedImg->AssetFileName = TEXT("saveload\\Save_Cursor.png");
 	selectedImg->ImgRC = Rect(0, 0, 99, 87);
@@ -105,22 +105,22 @@ void LoadGameScene::Init()
 
 
 
-	// ±ÛÀÚ Ãâ·Â
+	// ê¸€ì ì¶œë ¥
 	for (auto& it : GameManager::GetInstance().slotList)
 	{
 		int lastStageNum;
 
-		// ½½·Ô¿¡ ÀúÀå µ¥ÀÌÅÍ°¡ ÀÖ´Ù¸é
+		// ìŠ¬ë¡¯ì— ì €ì¥ ë°ì´í„°ê°€ ìˆë‹¤ë©´
 		if (it.second == true)
 		{
-			// °¡Àå ¸¶Áö¸· ÇØ±İ ½ºÅ×ÀÌÁö ¹øÈ£ °¡Á®¿À±â
+			// ê°€ì¥ ë§ˆì§€ë§‰ í•´ê¸ˆ ìŠ¤í…Œì´ì§€ ë²ˆí˜¸ ê°€ì ¸ì˜¤ê¸°
 			lastStageNum = XmlManager::GetInstance().getLastStageNum(it.first);
 
 			tempTitleStr[it.first] = GameManager::GetInstance().StageTitle[lastStageNum];
 		}
 		else
 		{
-			tempTitleStr[it.first] = L"ÀúÀåµÈ µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.";
+			tempTitleStr[it.first] = L"ì €ì¥ëœ ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.";
 		}
 	}
 

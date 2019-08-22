@@ -30,6 +30,9 @@ SceneManager::SceneManager()
 
 	ScriptScene* scriptScene = new ScriptScene();
 	mScene.emplace_back(scriptScene);
+
+
+	sndPlaySound(L"Asset\\MainSound.wav", SND_ASYNC | SND_LOOP);
 }
 
 Scene* SceneManager::GetSceneByName(CString& pName)

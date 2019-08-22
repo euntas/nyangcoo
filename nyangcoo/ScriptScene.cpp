@@ -24,13 +24,13 @@ void ScriptScene::Init()
 	ChapterName->x = 470;
 	ChapterName->y = 8;
 
-	ScriptText = new StaticObject();
-	ScriptText->Objtype = eObjectType_None;
-	ScriptText->AssetFileName = TEXT("script_scene_text.png");
-	ScriptText->ImgRC = Rect(0, 0, 1300, 250);
-	ScriptText->ViewRC = ScriptText->ImgRC;
-	ScriptText->x = 58;
-	ScriptText->y = 123;
+	//ScriptText = new StaticObject();
+	//ScriptText->Objtype = eObjectType_None;
+	//ScriptText->AssetFileName = TEXT("script_scene_text.png");
+	//ScriptText->ImgRC = Rect(0, 0, 1300, 250);
+	//ScriptText->ViewRC = ScriptText->ImgRC;
+	//ScriptText->x = 58;
+	//ScriptText->y = 123;
 
 	ScriptPlayer = new StaticObject();
 	ScriptPlayer->Objtype = eObjectType_None;
@@ -124,9 +124,9 @@ void ScriptScene::printChoice(Gdiplus::Graphics* pGraphics)
 		nullptr, 0, nullptr);
 
 	// 글자 출력 390 418
-	Gdiplus::Font F(L"Arial", 5, FontStyleBold, UnitMillimeter);
+	Gdiplus::Font F(L"Arial", 6, FontStyleBold, UnitMillimeter);
 
-	Gdiplus::PointF P1(ScriptChoice->ViewRC.X + 45, ScriptChoice->ViewRC.Y + 25);
+	Gdiplus::PointF P1(ScriptChoice->ViewRC.X + 20, ScriptChoice->ViewRC.Y + 25);
 
 	Gdiplus::SolidBrush B1(Color(13, 48, 119));
 
@@ -138,28 +138,28 @@ void ScriptScene::printChoice(Gdiplus::Graphics* pGraphics)
 	Gdiplus::PointF P2(ScriptChoice->ViewRC.X + 115, ScriptChoice->ViewRC.Y + 110);
 	Gdiplus::SolidBrush B2(Color(76, 40, 113));
 
-	wstring tempCho = L"마법사들의 도시에 알린다.\n\n\n\n마법사들의 도시로 향하는 [냥국] 병사들을 공격한다.";
+	wstring tempCho = L"마법사들의 도시에 알린다.\n\n\n마법사들의 도시로 향하는 [냥국] 병사들을 공격한다.";
 
 	pGraphics->DrawString(tempCho.c_str(), -1, &F, P2, &B2);
 }
 
 void ScriptScene::printGameResult(Gdiplus::Graphics* pGraphics)
 {
-	Gdiplus::Font F(L"Arial", 5, FontStyleBold, UnitMillimeter);
+	//Gdiplus::Font F(L"Arial", 5, FontStyleBold, UnitMillimeter);
 
-	Gdiplus::PointF P1(45, 125);
+	//Gdiplus::PointF P1(45, 125);
 
-	Gdiplus::SolidBrush B1(Color(13, 48, 119));
+	//Gdiplus::SolidBrush B1(Color(13, 48, 119));
 
-	wstring tempTex = L"결과 : ";
-	if (GameManager::GetInstance().IsWin)
-	{
-		tempTex += L"승리";
-	}
-	else
-	{
-		tempTex += L"패배";
-	}
+	//wstring tempTex = L"결과 : ";
+	//if (GameManager::GetInstance().IsWin)
+	//{
+	//	tempTex += L"승리";
+	//}
+	//else
+	//{
+	//	tempTex += L"패배";
+	//}
 
-	pGraphics->DrawString(tempTex.c_str(), -1, &F, P1, &B1);
+	//pGraphics->DrawString(tempTex.c_str(), -1, &F, P1, &B1);
 }
