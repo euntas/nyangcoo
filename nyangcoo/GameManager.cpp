@@ -25,6 +25,11 @@ void GameManager::Init(int stageID)
 	stageClearList.insert(make_pair(1, false));
 	stageClearList.insert(make_pair(2, false));
 	stageClearList.insert(make_pair(3, false));
+	
+	savedCoinList.insert(make_pair(0, 0));
+	savedCoinList.insert(make_pair(1, 0));
+	savedCoinList.insert(make_pair(2, 0));
+	savedCoinList.insert(make_pair(3, 0));
 
 	InitAllCharacterList();
 	InitStageSelectedList();

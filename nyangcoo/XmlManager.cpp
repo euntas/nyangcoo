@@ -206,8 +206,10 @@ void XmlManager::ParseSavedData()
 	{
 		int slotNum = atoi(Node->Attribute("slotNum"));
 		bool state = Node->BoolAttribute("state");
+		int coin = atoi(Node->Attribute("coin"));
 
 		GameManager::GetInstance().slotList[slotNum] = state;
+		GameManager::GetInstance().savedCoinList[slotNum] = coin;
 	}
 }
 

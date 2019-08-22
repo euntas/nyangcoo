@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "Btn.h"
+#include <cstdlib>
+#include <ctime>
 
 Btn::Btn()
 	: StaticObject(EObjectType::eObjectType_Btn)
@@ -213,6 +215,24 @@ void Btn::SendLButtonDown()
 			this->AssetFileName = tempStr;
 		}
 			
+		break;
+	}
+
+	case eSuffleBtn:
+	{
+		CookieSelectScene* css = reinterpret_cast<CookieSelectScene*>(SceneManager::GetInstance().GetCurScene());
+
+		std::string tempList[eCharacter_Cnt] = { "pistachio", "whitechoco", "muscle", "windarcher", "kiwi", "lemon", "moonrabit", "plum" };
+
+		srand((unsigned int)time(NULL));
+		for (int i = 0; i < MAX_SELECT_COOKIE_NUM; i++)
+		{
+			int num = rand() % eCharacter_Cnt;
+			GameManager::GetInstance().characterSelectedList[i] = tempList[num];
+		}
+
+		css->Init();
+
 		break;
 	}
     
