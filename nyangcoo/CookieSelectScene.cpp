@@ -53,7 +53,7 @@ void CookieSelectScene::Init()
 	selectChar("selected_kiwi");
 
 	PopUp* popUp = new PopUp(ePopup_close);
-	popUp->ImgRC = Rect(0, 0, 250, 198);
+	popUp->ImgRC = Rect(0, 0, 271, 279);
 	popUp->ViewRC = popUp->ImgRC;
 	popUp->Visible = false;
 	infoStaticObj.emplace_back(popUp);

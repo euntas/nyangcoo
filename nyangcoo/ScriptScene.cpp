@@ -66,7 +66,7 @@ void ScriptScene::Init()
 	infoStaticObj.emplace_back(ChoiceBtn2);
 
 	PopUp* popUp = new PopUp(ePopup_close);
-	popUp->ImgRC = Rect(0, 0, 250, 198);
+	popUp->ImgRC = Rect(0, 0, 271, 279);
 	popUp->ViewRC = popUp->ImgRC;
 	popUp->Visible = false;
 	infoStaticObj.emplace_back(popUp);
@@ -82,6 +82,21 @@ void ScriptScene::Render(Graphics* pGraphics)
 	Scene::Render(pGraphics);
 	printChoice(pGraphics);
 	printGameResult(pGraphics);
+
+	for (auto& it : infoStaticObj)
+	{
+		if (it == nullptr) continue;
+
+		if (it->Objtype == eObjectType_PopUp)
+		{
+			PopUp* p = reinterpret_cast<PopUp*>(it);
+			if (p->name == ePopup_close)
+			{
+				p->Render(pGraphics);
+			}
+
+		}
+	}
 }
 
 void ScriptScene::Release()

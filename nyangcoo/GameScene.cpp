@@ -59,7 +59,7 @@ void GameScene::Init()
 	// TODO. 나중에 수정필요. 팝업 부분
 	PopUp* popUp = new PopUp(ePopup_close);
 	popUp->Visible = false;
-	popUp->ImgRC = Rect(0, 0, 250, 198);
+	popUp->ImgRC = Rect(0, 0, 271, 279);
 	popUp->ViewRC = popUp->ImgRC;
 
 	infoStaticObj.emplace_back(popUp);
@@ -81,13 +81,18 @@ void GameScene::Init()
 	// 플레이어 스킬
 	PlayerSkillBtn* ps_heal = new PlayerSkillBtn("heal");
 	ps_heal->btnImg->x = 1000;
-	ps_heal->btnImg->y = 530;
+	ps_heal->btnImg->y = 525;
 	infoStaticObj.emplace_back(ps_heal);
 
 	PlayerSkillBtn* ps_blizzard = new PlayerSkillBtn("blizzard");
 	ps_blizzard->btnImg->x = ps_heal->btnImg->x + 150;
 	ps_blizzard->btnImg->y = ps_heal->btnImg->y;
 	infoStaticObj.emplace_back(ps_blizzard);
+
+	PlayerSkillBtn* ps_razer = new PlayerSkillBtn("razer");
+	ps_razer->btnImg->x = ps_blizzard->btnImg->x + 150;
+	ps_razer->btnImg->y = ps_heal->btnImg->y;
+	infoStaticObj.emplace_back(ps_razer);
 
 	ResultPopUp = new PopUp(ePopup_result);
 	infoUIObj.emplace_back(ResultPopUp);
