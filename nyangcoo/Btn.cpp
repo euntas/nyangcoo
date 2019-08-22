@@ -128,12 +128,46 @@ void Btn::SendLButtonDown()
 		if (GameManager::GetInstance().seletedSlotNum != -1)
 		{
 			XmlManager::GetInstance().SaveSlotData(GameManager::GetInstance().seletedSlotNum);
+			XmlManager::GetInstance().ParseSavedData();
 		}
 
 		SceneManager::GetInstance().LoadScene(CString("Scene_SaveGame"));
 		SceneManager::GetInstance().Init();
 		break;
   }
+
+	case eScene_DeleteGame:
+	{
+		SaveGameScene* sgs = reinterpret_cast<SaveGameScene*>(SceneManager::GetInstance().GetCurScene());
+
+		if (GameManager::GetInstance().seletedSlotNum != -1)
+		{
+			XmlManager::GetInstance().DeleteSlotData(GameManager::GetInstance().seletedSlotNum);
+			XmlManager::GetInstance().ParseSavedData();
+
+			for (auto& it : GameManager::GetInstance().slotList)
+			{
+				int lastStageNum;
+
+				// 슬롯에 저장 데이터가 있다면
+				if (it.second == true)
+				{
+					// 가장 마지막 해금 스테이지 번호 가져오기
+					lastStageNum = XmlManager::GetInstance().getLastStageNum(it.first);
+
+					sgs->tempTitleStr[it.first] = GameManager::GetInstance().StageTitle[lastStageNum];
+				}
+				else
+				{
+					sgs->tempTitleStr[it.first] = L"저장된 데이터가 없습니다.";
+				}
+			}
+		}
+
+		SceneManager::GetInstance().LoadScene(CString("Scene_SaveGame"));
+		SceneManager::GetInstance().Init();
+		break;
+	}
       
 	case eScene_Help:
   {

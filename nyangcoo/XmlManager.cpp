@@ -192,7 +192,7 @@ void XmlManager::ParseSavedData()
 		int slotNum = atoi(Node->Attribute("slotNum"));
 		bool state = Node->BoolAttribute("state");
 
-		GameManager::GetInstance().slotList.insert(make_pair(slotNum, state));
+		GameManager::GetInstance().slotList[slotNum] = state;
 	}
 }
 
@@ -249,12 +249,12 @@ void XmlManager::LoadSlotData(int slotId)
 	for (Node = (tinyxml2::XMLElement*)Root->FirstChildElement("slot"); Node != 0; Node = (tinyxml2::XMLElement*)Node->NextSiblingElement("slot"))
 	{
 		int slotNum = atoi(Node->Attribute("slotNum"));
-		bool isEmpty = Node->BoolAttribute("isEmpty");
+		bool slotState = Node->BoolAttribute("state");
 		int coin = atoi(Node->Attribute("coin"));
 
 		GameManager::GetInstance().coin = coin;
 
-		if (slotNum == slotId && isEmpty == false)
+		if (slotNum == slotId && slotState == true)
 		{
 			XMLElement* stageNode;
 			for (stageNode = (tinyxml2::XMLElement*)Node->FirstChildElement("stage"); stageNode != 0; stageNode = (tinyxml2::XMLElement*)stageNode->NextSiblingElement("stage"))
@@ -301,6 +301,8 @@ void XmlManager::SaveSlotData(int slotId)
 
 		if (slotNum == slotId)
 		{
+			Node->SetAttribute("state", true);
+
 			int coin = GameManager::GetInstance().coin;
 			Node->SetAttribute("coin", coin);
 
@@ -321,6 +323,48 @@ void XmlManager::SaveSlotData(int slotId)
 			{
 				bool character = GameManager::GetInstance().AllCharacterList[characterNode->GetText()];
 				characterNode->SetAttribute("state", character);
+			}
+		}
+	}
+
+	doc->SaveFile(filename.c_str());
+}
+
+void XmlManager::DeleteSlotData(int slotId)
+{
+	std::string filename = "Asset\\stage\\save_info.xml";
+
+	tinyxml2::XMLDocument* doc = new tinyxml2::XMLDocument();
+	doc->LoadFile(filename.c_str());
+
+	if (!doc)
+		return;
+
+	XMLElement* Root = doc->RootElement();
+	XMLElement* Node;
+
+	for (Node = (tinyxml2::XMLElement*)Root->FirstChildElement("slot"); Node != 0; Node = (tinyxml2::XMLElement*)Node->NextSiblingElement("slot"))
+	{
+		int slotNum = atoi(Node->Attribute("slotNum"));
+		
+		if (slotNum == slotId)
+		{
+			Node->SetAttribute("state", false);
+			Node->SetAttribute("coin", 0);
+
+			XMLElement* stageNode;
+			for (stageNode = (tinyxml2::XMLElement*)Node->FirstChildElement("stage"); stageNode != 0; stageNode = (tinyxml2::XMLElement*)stageNode->NextSiblingElement("stage"))
+			{
+				int stageId = atoi(stageNode->Attribute("stageId"));
+
+				stageNode->SetAttribute("state", false);
+				stageNode->SetAttribute("selectedStr", -1);
+			}
+
+			XMLElement* characterNode;
+			for (characterNode = (tinyxml2::XMLElement*)Node->FirstChildElement("character"); characterNode != 0; characterNode = (tinyxml2::XMLElement*)characterNode->NextSiblingElement("character"))
+			{
+				characterNode->SetAttribute("state", false);
 			}
 		}
 	}

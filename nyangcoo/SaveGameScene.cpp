@@ -103,6 +103,7 @@ void SaveGameScene::Init()
 	infoStaticObj.emplace_back(selectedImg);
 
 	// 글자 출력
+	//XmlManager::GetInstance().ParseSavedData();
 	for (auto& it : GameManager::GetInstance().slotList)
 	{
 		int lastStageNum;

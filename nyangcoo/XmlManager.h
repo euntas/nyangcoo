@@ -13,6 +13,7 @@ public:
 	void ParseSavedData(); // 데이터를 읽어 GameManager에 저장한다.
 	void LoadSlotData(int slotId);
 	void SaveSlotData(int slotId);
+	void DeleteSlotData(int slotId);
 
 private:
 
