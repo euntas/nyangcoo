@@ -53,10 +53,13 @@ PopUp::PopUp(EPopup _name) : StaticObject(EObjectType::eObjectType_PopUp)
 	}
 	else if (name == ePopup_result)
 	{
+		this->x = 410;
+		this->y = 100;
+
 		bg = new StaticObject();
 		bg->Objtype = eObjectType_BGImage;
 		bg->AssetFileName = TEXT("result_win.png");
-		bg->ImgRC = Rect(0, 0, 271, 219);
+		bg->ImgRC = Rect(0, 0, 600, 400);
 		bg->ViewRC = bg->ImgRC;
 		bg->ViewRC.X = x;
 		bg->ViewRC.Y = y;
@@ -66,10 +69,10 @@ PopUp::PopUp(EPopup _name) : StaticObject(EObjectType::eObjectType_PopUp)
 		Btn* BackTitleBtn = new Btn();
 		BackTitleBtn->ID = eScene_Script;
 		BackTitleBtn->AssetFileName = TEXT("continue_btn.png");
-		BackTitleBtn->ImgRC = Rect(0, 0, 212, 62);
+		BackTitleBtn->ImgRC = Rect(0, 0, 237, 69);
 		BackTitleBtn->ViewRC = BackTitleBtn->ImgRC;
-		BackTitleBtn->x = 30;
-		BackTitleBtn->y = 138;
+		BackTitleBtn->x = 183;
+		BackTitleBtn->y = 304;
 		BackTitleBtn->ViewRC.X = x + BackTitleBtn->x;
 		BackTitleBtn->ViewRC.Y = y + BackTitleBtn->y;
 

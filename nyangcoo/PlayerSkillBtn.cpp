@@ -56,6 +56,10 @@ void PlayerSkillBtn::Update(float Delta)
 		{
 			angle += 0.5;
 		}
+		else if (Name == "razer")
+		{
+			angle += 3;
+		}
 	}
 
 	if (angle == 360)
@@ -160,6 +164,35 @@ void PlayerSkillBtn::SendLButtonDown()
 				skillEffect->Init(new EffectGraphicsComponent(skillEffect));
 
 				SceneManager::GetInstance().GetCurScene()->infoObj.emplace_back(skillEffect);
+			}
+		}
+	}
+	else if (Name == "razer")
+	{
+		//이펙트 실행
+		Effect* skillEffect = new Effect();
+		skillEffect->EffectXmlFileName = "Asset\\effect\\effect_skill_" + Name + ".xml";
+		XmlManager::GetInstance().ParseEffectData(*skillEffect);
+		/*skillEffect->x = GameManager::GetInstance().CommandPlayer->x + (GameManager::GetInstance().CommandPlayer->frameWidth[0] / 2);
+		skillEffect->y = GameManager::GetInstance().CommandPlayer->y + (GameManager::GetInstance().CommandPlayer->frameHeight[0] / 2);*/
+		skillEffect->x = 2 * (GameManager::GetInstance().CommandPlayer->x + GameManager::GetInstance().CommandPlayer->frameWidth[0]);
+		skillEffect->y = GameManager::GetInstance().CommandPlayer->y - 100;
+		skillEffect->Init(new EffectGraphicsComponent(skillEffect));
+
+		SceneManager::GetInstance().GetCurScene()->infoObj.emplace_back(skillEffect);
+
+		for (Character* it : GameManager::GetInstance().curEnemyList)
+		{
+			if (it->Enable == true && it->Visible == true)
+			{
+				if (skillEffect->x < it->x && it->x < skillEffect->x + skillEffect->frameWidth)
+				{
+					// 만약에 레이저의 범위 안에 적이 존재하면
+					//공격한다
+					printf("comm : %d, 적 : %d \n", GameManager::GetInstance().CommandPlayer->x, it->x);
+					printf("%s 이 맞음 HP : %d \n", it->name, it->hp);
+					it->hp -= 400;
+				}
 			}
 		}
 	}
