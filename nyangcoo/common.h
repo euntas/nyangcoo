@@ -43,6 +43,7 @@ enum ESkillType
 {
 	eSkill_Heal,
 	eSkill_Blizzard,
+	eSkill_Razer,
 	eSkill_Cnt
 };
 

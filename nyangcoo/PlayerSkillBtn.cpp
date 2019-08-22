@@ -33,6 +33,10 @@ void PlayerSkillBtn::Init()
 	{
 		skillType = eSkill_Blizzard;
 	}
+	else if (Name == "beam")
+	{
+		skillType = eSkill_Razer;
+	}
 
 	btnImg = new StaticObject();
 	btnImg->AssetFileName.assign(imgFilename.begin(), imgFilename.end());

@@ -121,6 +121,12 @@ void SaveGameScene::Init()
 			tempTitleStr[it.first] = L"저장된 데이터가 없습니다.";
 		}
 	}
+
+	PopUp* popUp = new PopUp(ePopup_close);
+	popUp->ImgRC = Rect(0, 0, 271, 279);
+	popUp->ViewRC = popUp->ImgRC;
+	popUp->Visible = false;
+	infoStaticObj.emplace_back(popUp);
 }
 
 void SaveGameScene::Update(float Delta)
@@ -155,6 +161,20 @@ void SaveGameScene::Render(Graphics* pGraphics)
 		pGraphics->DrawString(tempTitleStr[i].c_str(), -1, &F, P, &B);
 	}
 	
+	for (auto& it : infoStaticObj)
+	{
+		if (it == nullptr) continue;
+
+		if (it->Objtype == eObjectType_PopUp)
+		{
+			PopUp* p = reinterpret_cast<PopUp*>(it);
+			if (p->name == ePopup_close)
+			{
+				p->Render(pGraphics);
+			}
+
+		}
+	}
 }
 
 void SaveGameScene::Release()

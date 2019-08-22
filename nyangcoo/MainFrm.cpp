@@ -36,6 +36,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
+	SetMenu(NULL);
 
 	// 프레임의 클라이언트 영역을 차지하는 뷰를 만듭니다.
 	if (!m_wndView.Create(nullptr, nullptr, AFX_WS_DEFAULT_VIEW, CRect(0, 0, 0, 0), this, AFX_IDW_PANE_FIRST, nullptr))
@@ -44,34 +45,39 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;
 	}
 
-	if (!m_wndToolBar.CreateEx(this, TBSTYLE_FLAT, WS_CHILD | WS_VISIBLE | CBRS_TOP | CBRS_GRIPPER | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC) ||
-		!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))
-	{
-		TRACE0("도구 모음을 만들지 못했습니다.\n");
-		return -1;      // 만들지 못했습니다.
-	}
+	//if (!m_wndToolBar.CreateEx(this, TBSTYLE_FLAT, WS_CHILD | WS_VISIBLE | CBRS_TOP | CBRS_GRIPPER | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC) ||
+	//	!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))
+	//{
+	//	TRACE0("도구 모음을 만들지 못했습니다.\n");
+	//	return -1;      // 만들지 못했습니다.
+	//}
 
 	// TODO: 도구 모음을 도킹할 수 없게 하려면 이 세 줄을 삭제하십시오.
-	m_wndToolBar.EnableDocking(CBRS_ALIGN_ANY);
+	//m_wndToolBar.EnableDocking(CBRS_ALIGN_ANY);
 	EnableDocking(CBRS_ALIGN_ANY);
-	DockControlBar(&m_wndToolBar);
-
+	//DockControlBar(&m_wndToolBar);
 
 	return 0;
 }
 
 BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
+	//cs.hMenu = NULL;
+	//윗줄은 메뉴바 없애기
 	if( !CFrameWnd::PreCreateWindow(cs) )
 		return FALSE;
 	// TODO: CREATESTRUCT cs를 수정하여 여기에서
 	//  Window 클래스 또는 스타일을 수정합니다.
 
-	cs.style = WS_OVERLAPPED | WS_CAPTION | FWS_ADDTOTITLE
+	cs.style = WS_OVERLAPPED  | FWS_ADDTOTITLE
 		 | WS_SYSMENU;
 
 	cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
+	cs.dwExStyle &= ~WS_BORDER;
 	cs.lpszClass = AfxRegisterWndClass(0);
+
+	cs.cx = 1440;
+	cs.cy = 715;
 	return TRUE;
 }
 
