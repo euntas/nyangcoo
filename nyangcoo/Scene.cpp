@@ -52,8 +52,8 @@ void Scene::Update(float Delta)
 			{
 				GameScene* gs = reinterpret_cast<GameScene*>(SceneManager::GetInstance().GetCurScene());
 
-				it->x = GameManager::GetInstance().CommandPlayer->x;
-				it->y = GameManager::GetInstance().CommandPlayer->y - GameManager::GetInstance().CommandPlayer->AniUnits[GameManager::GetInstance().CommandPlayer->curState][0].Height - 50;
+				it->x = GameManager::GetInstance().CommandPlayer->x - 75;
+				it->y = GameManager::GetInstance().CommandPlayer->y - GameManager::GetInstance().CommandPlayer->AniUnits[GameManager::GetInstance().CommandPlayer->curState][0].Height - 100;
 			}
 		}
 		else

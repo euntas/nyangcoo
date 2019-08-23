@@ -106,10 +106,10 @@ void GameScene::Init()
 	Btn* UpgradeBtn = new Btn();
 	UpgradeBtn->ID = ePlayerUpgradeBtn;
 	UpgradeBtn->AssetFileName = TEXT("slot\\up_slot_100.png");
-	UpgradeBtn->ImgRC = Rect(0, 0, 85, 34);
+	UpgradeBtn->ImgRC = Rect(0, 0, 200, 100);
+	UpgradeBtn->x = GameManager::GetInstance().CommandPlayer->x - 75;
+	UpgradeBtn->y = GameManager::GetInstance().CommandPlayer->y - GameManager::GetInstance().CommandPlayer->AniUnits[0][0].Height - 100;
 	UpgradeBtn->ViewRC = UpgradeBtn->ImgRC;
-	UpgradeBtn->x = GameManager::GetInstance().CommandPlayer->x;
-	UpgradeBtn->y = GameManager::GetInstance().CommandPlayer->y - GameManager::GetInstance().CommandPlayer->AniUnits[0][0].Height - 50;
 
 	infoStaticObj.emplace_back(UpgradeBtn);
 
