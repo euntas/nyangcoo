@@ -123,6 +123,7 @@ void Btn::SendLButtonDown()
 		if (GameManager::GetInstance().seletedSlotNum != -1)
 		{
 			XmlManager::GetInstance().LoadSlotData(GameManager::GetInstance().seletedSlotNum);
+			GameManager::GetInstance().InitCharacterSelectedList();
 		}
 
 		SceneManager::GetInstance().LoadScene(CString("Scene_ChapterSelect"));

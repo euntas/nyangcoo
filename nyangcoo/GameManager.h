@@ -15,6 +15,7 @@ public:
 	bool IsGameEnd();
 	void InitAllCharacterList();
 	void InitStageSelectedList();
+	void InitCharacterSelectedList();
 
 	bool IsWin; // true : ÇÃ·¹ÀÌ¾î ½Â¸® false : Àû ½Â¸®
 	bool IsGrayScale;

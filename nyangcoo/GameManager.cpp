@@ -12,6 +12,15 @@ GameManager& GameManager::GetInstance()
 	return gm;
 }
 
+void GameManager::InitCharacterSelectedList()
+{
+	characterSelectedList[0] = "pistachio";
+	characterSelectedList[1] = "whitechoco";
+	characterSelectedList[2] = "muscle";
+	characterSelectedList[3] = "kiwi";
+	characterSelectedList[4] = "windarcher";
+}
+
 void GameManager::Init(int stageID)
 {
 	ClearAll();
