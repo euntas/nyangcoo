@@ -58,11 +58,11 @@ void PlayerSkillBtn::Update(float Delta)
 		}
 		else if (Name == "razer")
 		{
-			angle += 3;
+			angle += 0.25;
 		}
 	}
 
-	if (angle == 360)
+	if (angle >= 360)
 	{
 		angle = 0;
 		Enable = true;
