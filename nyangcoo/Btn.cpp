@@ -71,7 +71,7 @@ void Btn::SendLButtonDown()
 		{
 			if (selectOption == 0 || selectOption == 1)
 			{
-				GameManager::GetInstance().stageSelectedList[GameManager::GetInstance().curStage->stageID] = selectOption;
+				GameManager::GetInstance().stageSelectedList[GameManager::GetInstance().curStage->getStageID()] = selectOption;
 			}
 		}
 

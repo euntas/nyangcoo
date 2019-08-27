@@ -143,7 +143,7 @@ void XmlManager::ParseEffectData(Effect& effect)
 void XmlManager::ParseStageData(GameStage& gameStage, int stageID)
 {
 	tinyxml2::XMLDocument* doc = new tinyxml2::XMLDocument();
-	doc->LoadFile(gameStage.stageXmlFileName.c_str());
+	doc->LoadFile(gameStage.getStageXmlFileName().c_str());
 
 	XMLElement* Root = doc->RootElement();
 	XMLElement* Node;
@@ -155,11 +155,11 @@ void XmlManager::ParseStageData(GameStage& gameStage, int stageID)
 		if (stageID != tempID)
 			continue;
 
-		gameStage.stageID = tempID;
+		gameStage.setStageID(tempID);
 
-		gameStage.maxGold = atoi(Node->Attribute("maxGold"));
-		gameStage.maxHP = atoi(Node->Attribute("maxHP"));
-		gameStage.waveNum = atoi(Node->Attribute("waveNum"));
+		gameStage.setMaxGold(atoi(Node->Attribute("maxGold")));
+		gameStage.setMaxHP(atoi(Node->Attribute("maxHP")));
+		gameStage.setWaveNum(atoi(Node->Attribute("waveNum")));
 
 		std::string imagePathTemp = Node->Attribute("imagePath");
 		std::wstring imagePath;
@@ -186,7 +186,7 @@ void XmlManager::ParseStageData(GameStage& gameStage, int stageID)
 			XMLElement* NameNode;
 			for (NameNode = (tinyxml2::XMLElement*)EnemyNode->FirstChildElement("name"); NameNode != 0; NameNode = (tinyxml2::XMLElement*)NameNode->NextSiblingElement("name"))
 			{
-				gameStage.enemyNameList[tempwavecnt].emplace_back(NameNode->GetText());
+				gameStage.getEnemyNameList()[tempwavecnt].emplace_back(NameNode->GetText());
 			}
 		}
 	}

@@ -93,7 +93,7 @@ void CookieSelectScene::printCoin(Gdiplus::Graphics* pGraphics)
 	SolidBrush B(Color(0, 0, 0));
 
 	int coin = GameManager::GetInstance().coin;
-	int stageNum = GameManager::GetInstance().curStage->stageID;
+	int stageNum = GameManager::GetInstance().curStage->getStageID();
 
 	if (GameManager::GetInstance().seletedSlotNum != -1)
 	{

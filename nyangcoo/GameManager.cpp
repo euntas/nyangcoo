@@ -59,7 +59,7 @@ void GameManager::MakeEnemyForWave(int waveNum)
 	curEnemyList.clear();
 
 	int distCnt = 0;
-	for (auto& it : curStage->enemyNameList[waveNum])
+	for (auto& it : curStage->getEnemyNameList()[waveNum])
 	{
 		Character* sampleEnemy = new Character(eObjectType_Enemy);
 		sampleEnemy->CharacterXmlFileName = "Asset\\player\\player_" + it + ".xml";
@@ -100,7 +100,7 @@ void GameManager::ClearAll()
 
 bool GameManager::ChangeWave()
 {
-	if (curWaveNum + 1 >= curStage->waveNum)
+	if (curWaveNum + 1 >= curStage->getWaveNum())
 	{
 		return false;
 	}
@@ -141,7 +141,7 @@ bool GameManager::IsGameEnd()
 	}
 
 	// 적들 상태 확인
-	if (curWaveNum + 1 < curStage->waveNum)
+	if (curWaveNum + 1 < curStage->getWaveNum())
 		return false;
 
 	for (auto& it : curEnemyList)

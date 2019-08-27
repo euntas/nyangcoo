@@ -20,7 +20,7 @@ void GameScene::Init()
 	// 게임 매니저 초기화
 	GameManager::GetInstance().Init(GameManager::GetInstance().btnID);
 
-	maxGold = GameManager::GetInstance().curStage->maxGold;
+	maxGold = GameManager::GetInstance().curStage->getMaxGold();
 
 	// 배경 그림 깔기
 	bg = GameManager::GetInstance().curStage->bg;
@@ -179,7 +179,7 @@ void GameScene::Update(float Delta)
 		else
 		{
 			GameManager::GetInstance().coin += 700;
-			GameManager::GetInstance().stageClearList[GameManager::GetInstance().curStage->stageID + 1] = true;
+			GameManager::GetInstance().stageClearList[GameManager::GetInstance().curStage->getStageID() + 1] = true;
 		}
 		ResultPopUp->Visible = true;
 	}
@@ -408,7 +408,7 @@ void GameScene::printTitle(Gdiplus::Graphics* pGraphics)
 
 	SolidBrush B(Color(255, 255, 255));
 
-	wstring tempStr = GameManager::GetInstance().curStage->stageTitle;
+	wstring tempStr = GameManager::GetInstance().curStage->getStageTitle();
 	// TODO. 나중에 진짜 수치로 바꿔주기
 	tempStr = tempStr + L"    wave " + std::to_wstring(GameManager::GetInstance().curWaveNum + 1);
 	tempStr = tempStr + L"\t" + std::to_wstring(GameManager::GetInstance().remainEnemyNum) + L"/" + std::to_wstring(GameManager::GetInstance().curEnemyList.size());
