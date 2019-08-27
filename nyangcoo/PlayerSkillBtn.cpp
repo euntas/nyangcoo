@@ -10,7 +10,7 @@ PlayerSkillBtn::PlayerSkillBtn()
 PlayerSkillBtn::PlayerSkillBtn(std::string skillName)
 	: StaticObject(EObjectType::eObjectType_PlayerSkillBtn)
 {
-	Enable = false;
+	enable = false;
 
 	Name = skillName;
 
@@ -39,14 +39,14 @@ void PlayerSkillBtn::Init()
 	}
 
 	btnImg = new StaticObject();
-	btnImg->AssetFileName.assign(imgFilename.begin(), imgFilename.end());
-	btnImg->ImgRC = Gdiplus::Rect(0, 0, 127, 144);
-	btnImg->ViewRC = btnImg->ImgRC;
+	btnImg->getAssetFileName().assign(imgFilename.begin(), imgFilename.end());
+	btnImg->setImgRC(Gdiplus::Rect(0, 0, 127, 144));
+	btnImg->setViewRC(btnImg->getImgRC());
 }
 
 void PlayerSkillBtn::Update(float Delta)
 {
-	if (Enable == false)
+	if (enable == false)
 	{
 		if (Name == "heal")
 		{
@@ -65,7 +65,7 @@ void PlayerSkillBtn::Update(float Delta)
 	if (angle >= 360)
 	{
 		angle = 0;
-		Enable = true;
+		enable = true;
 	}
 }
 
@@ -77,13 +77,13 @@ void PlayerSkillBtn::Render(Gdiplus::Graphics* pGraphics)
 	Gdiplus::SolidBrush gray(Color(128, 0, 0, 0));
 	Gdiplus::SolidBrush empty(Color(0, 0, 0, 0));
 
-	if (Enable == false)
+	if (enable == false)
 	{
-		Rect coverImg(0, 0, btnImg->ImgRC.Width, btnImg->ImgRC.Height);
+		Rect coverImg(0, 0, btnImg->getImgRC().Width, btnImg->getImgRC().Height);
 		Gdiplus::Bitmap bitmap2(coverImg.Width, coverImg.Height, PixelFormat32bppARGB);
 		Gdiplus::Graphics* g = Gdiplus::Graphics::FromImage(&bitmap2);
 
-		auto pImg = (AssetManager::GetInstance().GetImage(btnImg->AssetFileName)).lock();
+		auto pImg = (AssetManager::GetInstance().GetImage(btnImg->getAssetFileName())).lock();
 
 		//gray scale conversion:
 		Gdiplus::ColorMatrix matrix =
@@ -99,13 +99,13 @@ void PlayerSkillBtn::Render(Gdiplus::Graphics* pGraphics)
 		attr.SetColorMatrix(&matrix,
 			Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
 
-		g->DrawImage(pImg.get(), coverImg, btnImg->ImgRC.X, btnImg->ImgRC.Y, btnImg->ImgRC.Width, btnImg->ImgRC.Height, Gdiplus::Unit::UnitPixel,
+		g->DrawImage(pImg.get(), coverImg, btnImg->getImgRC().X, btnImg->getImgRC().Y, btnImg->getImgRC().Width, btnImg->getImgRC().Height, Gdiplus::Unit::UnitPixel,
 			&attr, 0, nullptr);
 
 		g->SetCompositingMode(CompositingMode::CompositingModeSourceCopy);
-		g->FillPie(&empty, int(-btnImg->ImgRC.Width *0.5f), int(-btnImg->ImgRC.Height * 0.5f), btnImg->ImgRC.Width *2, btnImg->ImgRC.Height * 2, -90, angle);
+		g->FillPie(&empty, int(-btnImg->getImgRC().Width *0.5f), int(-btnImg->getImgRC().Height * 0.5f), btnImg->getImgRC().Width *2, btnImg->getImgRC().Height * 2, -90, angle);
 
-		pGraphics->DrawImage(&bitmap2, btnImg->x, btnImg->y);
+		pGraphics->DrawImage(&bitmap2, btnImg->getX(), btnImg->getY());
 	}
 }
 
@@ -116,13 +116,13 @@ void PlayerSkillBtn::Release()
 
 void PlayerSkillBtn::SendLButtonDown()
 {
-	if (Enable == false)
+	if (enable == false)
 	{
 		return;
 	}
 	else
 	{
-		Enable = !Enable;
+		enable = !enable;
 	}
 
 	if (Name == "heal")

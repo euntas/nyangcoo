@@ -39,12 +39,12 @@ void Scene::Update(float Delta)
 	{
 		if (it == nullptr) continue;
 
-		if (it->Objtype == eObjectType_PlayerSkillBtn)
+		if (it->getObjtype() == eObjectType_PlayerSkillBtn)
 		{
 			PlayerSkillBtn* psb = reinterpret_cast<PlayerSkillBtn*>(it);
 			psb->Update(Delta);
 		}
-		else if (it->Objtype == eObjectType_Btn)
+		else if (it->getObjtype() == eObjectType_Btn)
 		{
 			Btn* b = reinterpret_cast<Btn*>(it);
 
@@ -52,8 +52,8 @@ void Scene::Update(float Delta)
 			{
 				GameScene* gs = reinterpret_cast<GameScene*>(SceneManager::GetInstance().GetCurScene());
 
-				it->x = GameManager::GetInstance().CommandPlayer->getX() - 75;
-				it->y = GameManager::GetInstance().CommandPlayer->getY() - GameManager::GetInstance().CommandPlayer->AniUnits[GameManager::GetInstance().CommandPlayer->curState][0].Height - 100;
+				it->setX(GameManager::GetInstance().CommandPlayer->getX() - 75);
+				it->setY(GameManager::GetInstance().CommandPlayer->getY() - GameManager::GetInstance().CommandPlayer->AniUnits[GameManager::GetInstance().CommandPlayer->curState][0].Height - 100);
 			}
 		}
 		else
@@ -72,7 +72,7 @@ void Scene::Render(Gdiplus::Graphics* pGraphics)
 	{
 		if (it == nullptr) continue;
 
-		if ((this->name == "Scene_LoadGame" || this->name == "Scene_SaveGame" || this->name == "Scene_Script") && it->Objtype == eObjectType_PopUp)
+		if ((this->name == "Scene_LoadGame" || this->name == "Scene_SaveGame" || this->name == "Scene_Script") && it->getObjtype() == eObjectType_PopUp)
 		{
 			PopUp* p = reinterpret_cast<PopUp*>(it);
 			if (p->name == ePopup_close)

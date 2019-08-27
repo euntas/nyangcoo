@@ -15,7 +15,7 @@ void GameStage::Init(int _stageID)
 {
 	stageXmlFileName = "Asset\\stage\\stage_info.xml";
 	bg = new StaticObject();
-	bg->Objtype = eObjectType_BGImage;
+	bg->setObjtype(eObjectType_BGImage);
 	XmlManager::GetInstance().ParseStageData(*this, _stageID);
 
 	stageTitle = GameManager::GetInstance().StageTitle[_stageID];

@@ -164,19 +164,21 @@ void XmlManager::ParseStageData(GameStage& gameStage, int stageID)
 		std::string imagePathTemp = Node->Attribute("imagePath");
 		std::wstring imagePath;
 		imagePath.assign(imagePathTemp.begin(), imagePathTemp.end());
-		gameStage.bg->AssetFileName = imagePath;
+		gameStage.bg->setAssetFileName(imagePath);
 
 		XMLElement* ImgRCNode = Node->FirstChildElement("ImgRC");
-		gameStage.bg->ImgRC.X = atoi(ImgRCNode->Attribute("x"));
-		gameStage.bg->ImgRC.Y = atoi(ImgRCNode->Attribute("y"));
-		gameStage.bg->ImgRC.Width = atoi(ImgRCNode->Attribute("width"));
-		gameStage.bg->ImgRC.Height = atoi(ImgRCNode->Attribute("height"));
+		int tempX = atoi(ImgRCNode->Attribute("x"));
+		int tempY = atoi(ImgRCNode->Attribute("y"));
+		int tempWidth = atoi(ImgRCNode->Attribute("width"));
+		int tempHeight = atoi(ImgRCNode->Attribute("height"));
+		gameStage.bg->setImgRC(Rect(tempX, tempY, tempWidth, tempHeight));
 
 		XMLElement* ViewRCNode = Node->FirstChildElement("ViewRC");
-		gameStage.bg->ViewRC.X = atoi(ViewRCNode->Attribute("x"));
-		gameStage.bg->ViewRC.Y = atoi(ViewRCNode->Attribute("y"));
-		gameStage.bg->ViewRC.Width = atoi(ViewRCNode->Attribute("width"));
-		gameStage.bg->ViewRC.Height = atoi(ViewRCNode->Attribute("height"));
+		tempX = atoi(ViewRCNode->Attribute("x"));
+		tempY = atoi(ViewRCNode->Attribute("y"));
+		tempWidth = atoi(ViewRCNode->Attribute("width"));
+		tempHeight = atoi(ViewRCNode->Attribute("height"));
+		gameStage.bg->setViewRC(Rect(tempX, tempY, tempWidth, tempHeight));
 
 		XMLElement* EnemyNode;
 		for (EnemyNode = (tinyxml2::XMLElement*)Node->FirstChildElement("enemyList"); EnemyNode != 0; EnemyNode = (tinyxml2::XMLElement*)EnemyNode->NextSiblingElement("enemyList"))

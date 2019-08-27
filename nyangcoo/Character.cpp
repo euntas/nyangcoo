@@ -30,7 +30,7 @@ void Character::Init()
 	}
 	else if (objtype == eObjectType_Enemy)
 	{
-		setCharacterPos(GameManager::GetInstance().curStage->bg->ImgRC.Width, 520);
+		setCharacterPos(GameManager::GetInstance().curStage->bg->getImgRC().Width, 520);
 	}
 	else
 	{

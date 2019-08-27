@@ -19,9 +19,24 @@ Btn::Btn(int _stageID)
 	selectOption = -1;
 }
 
+Btn::Btn(int _id, std::wstring _assetFileName, Gdiplus::Rect _imgRC, Gdiplus::Rect _viewRC, int _x, int _y, int _stageID)
+	: StaticObject(EObjectType::eObjectType_Btn)
+{	
+	stageID = _stageID;
+	IsClicked = false;
+	selectOption = -1;
+
+	ID = _id;
+	assetFileName = _assetFileName;
+	imgRC = _imgRC;
+	viewRC = _viewRC;
+	x = _x;
+	y = _y;
+}
+
 void Btn::SendLButtonDown()
 {
-	if (Enable == false)
+	if (enable == false)
 		return;
 
 	switch (ID)
@@ -54,7 +69,7 @@ void Btn::SendLButtonDown()
 			StartScene* ss = reinterpret_cast<StartScene*>(SceneManager::GetInstance().GetCurScene());
 			for (auto& it : ss->getInfoStaticObj())
 			{
-				if (it->Objtype == eObjectType_Btn && it->AssetFileName == TEXT("title_btn_00.png"))
+				if (it->getObjtype() == eObjectType_Btn && it->getAssetFileName() == TEXT("title_btn_00.png"))
 				{
 					Btn* sb = reinterpret_cast<Btn*>(it);
 					sb->IsClicked = !sb->IsClicked;
@@ -183,9 +198,9 @@ void Btn::SendLButtonDown()
 		{
 			for (auto& it : SceneManager::GetInstance().GetCurScene()->getInfoUIObj())
 			{
-				if (it->Objtype == eObjectType_None && it->AssetFileName == L"help_popup.png")
+				if (it->getObjtype() == eObjectType_None && it->getAssetFileName() == L"help_popup.png")
 				{
-					it->Visible = !it->Visible;
+					it->setVisible(!it->getVisible());
 				}
 			}
 		}
@@ -213,7 +228,7 @@ void Btn::SendLButtonDown()
 			gcost = 100 * (GameManager::GetInstance().playerUpgradeLevel + 1);
 			std::wstring tempStr = L"slot\\up_slot_" + to_wstring(gcost) + L".png";
 
-			this->AssetFileName = tempStr;
+			this->setAssetFileName(tempStr);
 		}
 			
 		break;

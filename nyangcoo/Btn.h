@@ -6,6 +6,16 @@ public:
 	Btn();
 	Btn(int _stageID);
 
+	Btn(
+		int _id, 
+		std::wstring _assetFileName, 
+		Gdiplus::Rect _imgRC, 
+		Gdiplus::Rect _viewRC, 
+		int _x, 
+		int _y,
+		int _stageID = 0
+	);
+
 	void SendLButtonDown();
 	int ID;
 	int stageID;

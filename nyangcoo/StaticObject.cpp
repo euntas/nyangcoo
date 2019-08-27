@@ -2,17 +2,17 @@
 #include "StaticObject.h"
 
 StaticObject::StaticObject()
-	: Objtype(eObjectType_None)
-	, Visible(true)
-	, Enable(true)
+	: objtype(eObjectType_None)
+	, visible(true)
+	, enable(true)
 {
 
 }
 
 StaticObject::StaticObject(EObjectType InType)
-	: Objtype(InType)
-	, Visible(true)
-	, Enable(true)
+	: objtype(InType)
+	, visible(true)
+	, enable(true)
 {
 
 }
@@ -29,16 +29,16 @@ void StaticObject::Update(float Delta)
 
 void StaticObject::Render(Gdiplus::Graphics* pGraphics)
 {
-	if (Visible == false) return;
+	if (visible == false) return;
 
-	auto pImg = (AssetManager::GetInstance().GetImage(AssetFileName)).lock();
+	auto pImg = (AssetManager::GetInstance().GetImage(assetFileName)).lock();
 
-	if (Objtype == eObjectType_BGImage) // 배경 그림
+	if (objtype == eObjectType_BGImage) // 배경 그림
 	{
 		if (SceneManager::GetInstance().GetCurScene()->getName() == "Scene_Game")
 		{
 			GameScene* gs = reinterpret_cast<GameScene*>(SceneManager::GetInstance().GetCurScene());
-			Gdiplus::Rect tempRC = gs->bg->ViewRC;
+			Gdiplus::Rect tempRC = gs->bg->viewRC;
 
 			if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->getName() == "Scene_Game")
 			{
@@ -56,26 +56,26 @@ void StaticObject::Render(Gdiplus::Graphics* pGraphics)
 				attr.SetColorMatrix(&matrix,
 					Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
 
-				pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X, ImgRC.Y, gs->bg->ViewRC.Width, gs->bg->ViewRC.Height, Gdiplus::Unit::UnitPixel,
+				pGraphics->DrawImage(pImg.get(), tempRC, imgRC.X, imgRC.Y, gs->bg->viewRC.Width, gs->bg->viewRC.Height, Gdiplus::Unit::UnitPixel,
 					&attr, 0, nullptr);
 			}
 			else
 			{
-				pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X, ImgRC.Y, gs->bg->ViewRC.Width, gs->bg->ViewRC.Height, Gdiplus::Unit::UnitPixel,
+				pGraphics->DrawImage(pImg.get(), tempRC, imgRC.X, imgRC.Y, gs->bg->viewRC.Width, gs->bg->viewRC.Height, Gdiplus::Unit::UnitPixel,
 					nullptr, 0, nullptr);
 			}
 		}
 		else
 		{
-			pGraphics->DrawImage(pImg.get(), ViewRC, ImgRC.X, ImgRC.Y, ViewRC.Width, ViewRC.Height, Gdiplus::Unit::UnitPixel,
+			pGraphics->DrawImage(pImg.get(), viewRC, imgRC.X, imgRC.Y, viewRC.Width, viewRC.Height, Gdiplus::Unit::UnitPixel,
 				nullptr, 0, nullptr);
 		}
 	}
 	else // 그 외 그림
 	{
-		Rect tempRC(x, y, ViewRC.Width, ViewRC.Height);
-		int AddX = (tempRC.Width - ImgRC.Width) * 0.5f;
-		int AddY = (tempRC.Height - ImgRC.Height) * 0.5f;
+		Rect tempRC(x, y, viewRC.Width, viewRC.Height);
+		int AddX = (tempRC.Width - imgRC.Width) * 0.5f;
+		int AddY = (tempRC.Height - imgRC.Height) * 0.5f;
 		tempRC.X -= AddX;
 		tempRC.Y -= AddY;
 
@@ -95,12 +95,12 @@ void StaticObject::Render(Gdiplus::Graphics* pGraphics)
 			attr.SetColorMatrix(&matrix,
 				Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
 
-			pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X, ImgRC.Y, ImgRC.Width, ImgRC.Height, Gdiplus::Unit::UnitPixel,
+			pGraphics->DrawImage(pImg.get(), tempRC, imgRC.X, imgRC.Y, imgRC.Width, imgRC.Height, Gdiplus::Unit::UnitPixel,
 				&attr, 0, nullptr);
 		}
 		else
 		{
-			pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X, ImgRC.Y, ImgRC.Width, ImgRC.Height, Gdiplus::Unit::UnitPixel,
+			pGraphics->DrawImage(pImg.get(), tempRC, imgRC.X, imgRC.Y, imgRC.Width, imgRC.Height, Gdiplus::Unit::UnitPixel,
 				nullptr, 0, nullptr);
 		}
 	}
@@ -109,4 +109,84 @@ void StaticObject::Render(Gdiplus::Graphics* pGraphics)
 void StaticObject::Release()
 {
 
+}
+
+std::wstring StaticObject::getAssetFileName()
+{
+	return assetFileName;
+}
+
+void StaticObject::setAssetFileName(std::wstring _assetFileName)
+{
+	assetFileName = _assetFileName;
+}
+
+Gdiplus::Rect StaticObject::getImgRC()
+{
+	return imgRC;
+}
+
+void StaticObject::setImgRC(Gdiplus::Rect _rc)
+{
+	imgRC = _rc;
+}
+
+Gdiplus::Rect StaticObject::getViewRC()
+{
+	return viewRC;
+}
+
+void StaticObject::setViewRC(Gdiplus::Rect _rc)
+{
+	viewRC = _rc;
+}
+
+EObjectType StaticObject::getObjtype()
+{
+	return objtype;
+}
+
+void StaticObject::setObjtype(EObjectType _objtype)
+{
+	objtype = _objtype;
+}
+
+bool StaticObject::getVisible()
+{
+	return visible;
+}
+
+void StaticObject::setVisible(bool _visible)
+{
+	visible = _visible;
+}
+
+bool StaticObject::getEnable()
+{
+	return enable;
+}
+
+void StaticObject::setEnable(bool _enable)
+{
+	enable = _enable;
+}
+
+int StaticObject::getX()
+{
+	return x;
+}
+
+void StaticObject::setX(int _x)
+{
+	x = _x;
+}
+
+int StaticObject::getY()
+{
+	return y;
+}
+
+void StaticObject::setY(int _y)
+{
+	y = _y;
 }

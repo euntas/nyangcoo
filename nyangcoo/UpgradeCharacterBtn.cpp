@@ -6,15 +6,15 @@ UpgradeCharacterBtn::UpgradeCharacterBtn(MakeCharacterBtn* parent)
 {
 	parentMakeBtn = parent;
 
-	this->x = parent->x;
-	this->y = parent->y - 34;
+	this->x = parent->getX();
+	this->y = parent->getY() - 34;
 
-	this->ImgRC = Gdiplus::Rect(0, 0, 85, 34);
-	ViewRC = ImgRC;
+	this->setImgRC(Gdiplus::Rect(0, 0, 85, 34));
+	viewRC = imgRC;
 	upgradeCost = 100;
 
 	std::string fn = "slot\\up_slot.png";
-	this->AssetFileName.assign(fn.begin(), fn.end());
+	this->assetFileName.assign(fn.begin(), fn.end());
 }
 
 void UpgradeCharacterBtn::Init()
@@ -29,12 +29,12 @@ void UpgradeCharacterBtn::Update(float Delta)
 
 void UpgradeCharacterBtn::Render(Gdiplus::Graphics* pGraphics)
 {
-	if (Visible == false)
+	if (visible == false)
 		return;
 
-	auto pImg = (AssetManager::GetInstance().GetImage(AssetFileName)).lock();
+	auto pImg = (AssetManager::GetInstance().GetImage(assetFileName)).lock();
 
-	Rect tempRC(x, y, ViewRC.Width, ViewRC.Height);
+	Rect tempRC(x, y, viewRC.Width, viewRC.Height);
 
 	if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->getName() == "Scene_Game")
 	{
@@ -52,12 +52,12 @@ void UpgradeCharacterBtn::Render(Gdiplus::Graphics* pGraphics)
 		attr.SetColorMatrix(&matrix,
 			Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
 
-		pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X, ImgRC.Y, ImgRC.Width, ImgRC.Height, Gdiplus::Unit::UnitPixel,
+		pGraphics->DrawImage(pImg.get(), tempRC, imgRC.X, imgRC.Y, imgRC.Width, imgRC.Height, Gdiplus::Unit::UnitPixel,
 			&attr, 0, nullptr);
 	}
 	else
 	{
-		pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X, ImgRC.Y, ImgRC.Width, ImgRC.Height, Gdiplus::Unit::UnitPixel,
+		pGraphics->DrawImage(pImg.get(), tempRC, imgRC.X, imgRC.Y, imgRC.Width, imgRC.Height, Gdiplus::Unit::UnitPixel,
 			nullptr, 0, nullptr);
 	}
 

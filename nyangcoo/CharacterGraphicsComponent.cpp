@@ -64,7 +64,7 @@ void CharacterGraphicsComponent::render(Gdiplus::Graphics* pGraphics)
 		int displayY = parentObj->getY() - p->frameHeight[p->curState];
 
 		// 범위 밖 (-300 ~ width + 300) 이면 그리지 않는다
-		if (displayX < -300 || displayX > GameManager::GetInstance().curStage->bg->ViewRC.Width + 300)
+		if (displayX < -300 || displayX > GameManager::GetInstance().curStage->bg->getViewRC().Width + 300)
 			return;
 
 		Rect Dst(displayX, displayY, p->frameWidth[p->curState], p->frameHeight[p->curState]);
