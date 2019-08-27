@@ -99,7 +99,7 @@ void MakeCharacterBtn::Render(Gdiplus::Graphics* pGraphics)
 
 	GameScene* gs = reinterpret_cast<GameScene*>(SceneManager::GetInstance().GetCurScene());
 
-	if ((GameManager::GetInstance().IsGrayScale || IsReady == false) && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+	if ((GameManager::GetInstance().IsGrayScale || IsReady == false) && SceneManager::GetInstance().GetCurScene()->getName() == "Scene_Game")
 	{
 		//gray scale conversion:
 		Gdiplus::ColorMatrix matrix =
@@ -132,7 +132,7 @@ void MakeCharacterBtn::Render(Gdiplus::Graphics* pGraphics)
 	auto pImg2 = (AssetManager::GetInstance().GetImage(characterImg->AssetFileName)).lock();
 	
 	Rect tempRC2(x + characterImg->x, y + characterImg->y, characterImg->ViewRC.Width, characterImg->ViewRC.Height);
-	if ((GameManager::GetInstance().IsGrayScale || IsReady == false) && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+	if ((GameManager::GetInstance().IsGrayScale || IsReady == false) && SceneManager::GetInstance().GetCurScene()->getName() == "Scene_Game")
 	{
 		//gray scale conversion:
 		Gdiplus::ColorMatrix matrix =
@@ -173,7 +173,7 @@ void MakeCharacterBtn::SendLButtonDown()
 		//SceneManager::GetInstance().GetCurScene()->infoObj.emplace_back(MakeCharacter());
 
 		Character* c = MakeCharacter();
-		SceneManager::GetInstance().GetCurScene()->infoObj.emplace_back(c);
+		SceneManager::GetInstance().GetCurScene()->getInfoObj().emplace_back(c);
 		GameManager::GetInstance().curCharacterList.emplace_back(c);
 
 		// TODO. 지워야함 실험용 이펙트
@@ -184,7 +184,7 @@ void MakeCharacterBtn::SendLButtonDown()
 		ef->setY(c->getY() - c->AniUnits[c->curState][0].Height / 2);
 		ef->Init(new EffectGraphicsComponent(ef));
 
-		SceneManager::GetInstance().GetCurScene()->infoObj.emplace_back(ef);
+		SceneManager::GetInstance().GetCurScene()->getInfoObj().emplace_back(ef);
 	}
 }
 

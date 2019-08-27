@@ -36,7 +36,7 @@ void UpgradeCharacterBtn::Render(Gdiplus::Graphics* pGraphics)
 
 	Rect tempRC(x, y, ViewRC.Width, ViewRC.Height);
 
-	if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+	if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->getName() == "Scene_Game")
 	{
 		//gray scale conversion:
 		Gdiplus::ColorMatrix matrix =

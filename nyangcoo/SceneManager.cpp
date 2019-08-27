@@ -39,7 +39,7 @@ Scene* SceneManager::GetSceneByName(CString& pName)
 {
 	for (auto& it : mScene)
 	{
-		if (!it->Name.CompareNoCase(pName))
+		if (!it->getName().CompareNoCase(pName))
 		{
 			return it;
 		}
@@ -52,7 +52,7 @@ void SceneManager::LoadScene(CString& pName)
 {
 	for (auto& it : mScene)
 	{
-		if (!it->Name.CompareNoCase(pName))
+		if (!it->getName().CompareNoCase(pName))
 		{
 			CurScene = it;
 		}
@@ -75,7 +75,7 @@ void SceneManager::SendLButtonDown(UINT nFlags, CPoint point)
 {
 	if (CurScene == nullptr) return;
 
-	for (auto& it : CurScene->infoStaticObj)
+	for (auto& it : CurScene->getInfoStaticObj())
 	{
 		if (it == nullptr) continue;
 
@@ -130,7 +130,7 @@ void SceneManager::SendLButtonDown(UINT nFlags, CPoint point)
 		}
 	}
 
-	for (auto& it : CurScene->infoUIObj)
+	for (auto& it : CurScene->getInfoUIObj())
 	{
 		if (it == nullptr) continue;
 
@@ -153,7 +153,7 @@ void SceneManager::SendMouseMove(UINT nFlags, CPoint point)
 {
 	if (CurScene == nullptr) return;
 
-	for (auto& it : CurScene->infoStaticObj)
+	for (auto& it : CurScene->getInfoStaticObj())
 	{
 		if (it == nullptr) continue;
 
@@ -197,7 +197,7 @@ void SceneManager::Release()
 
 void SceneManager::SendKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	if (CurScene->Name == "Scene_Game")
+	if (CurScene->getName() == "Scene_Game")
 	{
 		GameScene* gs = reinterpret_cast<GameScene*>(GetCurScene());
 
@@ -223,7 +223,7 @@ void SceneManager::SendKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			{
 				Bg->ImgRC.X += moveX;
 
-				for (auto& it : gs->infoObj)
+				for (auto& it : gs->getInfoObj())
 				{
 					it->setX(it->getX() - moveX);
 				}
@@ -233,7 +233,7 @@ void SceneManager::SendKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 	if (GetAsyncKeyState(VK_ESCAPE) & 0x8001)
 	{
-		for (auto& it : GetCurScene()->infoStaticObj)
+		for (auto& it : GetCurScene()->getInfoStaticObj())
 		{
 			PopUp* pu = reinterpret_cast<PopUp*>(it);
 

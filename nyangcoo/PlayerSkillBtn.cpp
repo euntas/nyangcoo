@@ -142,7 +142,7 @@ void PlayerSkillBtn::SendLButtonDown()
 				skillEffect->setY(it->getY() - 80);
 				skillEffect->Init(new EffectGraphicsComponent(skillEffect));
 
-				SceneManager::GetInstance().GetCurScene()->infoObj.emplace_back(skillEffect);
+				SceneManager::GetInstance().GetCurScene()->getInfoObj().emplace_back(skillEffect);
 			}
 		}
 	}
@@ -163,7 +163,7 @@ void PlayerSkillBtn::SendLButtonDown()
 				skillEffect->setY(it->getY() - 80);
 				skillEffect->Init(new EffectGraphicsComponent(skillEffect));
 
-				SceneManager::GetInstance().GetCurScene()->infoObj.emplace_back(skillEffect);
+				SceneManager::GetInstance().GetCurScene()->getInfoObj().emplace_back(skillEffect);
 			}
 		}
 	}
@@ -177,7 +177,7 @@ void PlayerSkillBtn::SendLButtonDown()
 		skillEffect->setY(GameManager::GetInstance().CommandPlayer->getY() - 100);
 		skillEffect->Init(new EffectGraphicsComponent(skillEffect));
 
-		SceneManager::GetInstance().GetCurScene()->infoObj.emplace_back(skillEffect);
+		SceneManager::GetInstance().GetCurScene()->getInfoObj().emplace_back(skillEffect);
 
 		for (Character* it : GameManager::GetInstance().curEnemyList)
 		{

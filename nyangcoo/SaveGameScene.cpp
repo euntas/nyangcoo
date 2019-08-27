@@ -3,7 +3,7 @@
 
 SaveGameScene::SaveGameScene() : Scene()
 {
-	Name = "Scene_SaveGame";
+	name = "Scene_SaveGame";
 
 	Init();
 }

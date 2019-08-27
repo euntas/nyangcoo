@@ -73,7 +73,7 @@ void Character::Update(float Delta)
 	// 적들과 위치 비교
 	vector<Character*> colEnemy; // 충돌한 적들 저장용
 	colEnemy.clear();
-	for (auto& it : SceneManager::GetInstance().GetCurScene()->infoObj)
+	for (auto& it : SceneManager::GetInstance().GetCurScene()->getInfoObj())
 	{
 		if (it == nullptr) continue;
 

@@ -70,7 +70,7 @@ void CharacterGraphicsComponent::render(Gdiplus::Graphics* pGraphics)
 		Rect Dst(displayX, displayY, p->frameWidth[p->curState], p->frameHeight[p->curState]);
 		Rect unitDst(0, 0, p->frameWidth[p->curState], p->frameHeight[p->curState]);
 
-		if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+		if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->getName() == "Scene_Game")
 		{
 			//gray scale conversion:
 			Gdiplus::ColorMatrix matrix =

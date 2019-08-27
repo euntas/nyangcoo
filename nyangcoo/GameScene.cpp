@@ -3,7 +3,7 @@
 
 GameScene::GameScene() : Scene()
 {
-	Name = "Scene_Game";
+	name = "Scene_Game";
 
 	Init();
 }
@@ -296,7 +296,7 @@ void GameScene::printGold(int _gold, Graphics* pGraphics)
 
 	auto pImg = (AssetManager::GetInstance().GetImage(ic->AssetFileName)).lock();
 
-	if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+	if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->getName() == "Scene_Game")
 	{
 		//gray scale conversion:
 		Gdiplus::ColorMatrix matrix =
@@ -376,7 +376,7 @@ void GameScene::printTitle(Gdiplus::Graphics* pGraphics)
 
 	auto pImg = (AssetManager::GetInstance().GetImage(titleBg->AssetFileName)).lock();
 
-	if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+	if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->getName() == "Scene_Game")
 	{
 		//gray scale conversion:
 		Gdiplus::ColorMatrix matrix =

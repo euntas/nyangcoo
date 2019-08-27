@@ -72,7 +72,7 @@ void Scene::Render(Gdiplus::Graphics* pGraphics)
 	{
 		if (it == nullptr) continue;
 
-		if ((this->Name == "Scene_LoadGame" || this->Name == "Scene_SaveGame" || this->Name == "Scene_Script") && it->Objtype == eObjectType_PopUp)
+		if ((this->name == "Scene_LoadGame" || this->name == "Scene_SaveGame" || this->name == "Scene_Script") && it->Objtype == eObjectType_PopUp)
 		{
 			PopUp* p = reinterpret_cast<PopUp*>(it);
 			if (p->name == ePopup_close)
@@ -147,4 +147,54 @@ void Scene::ClearAll()
 	infoObj.clear();
 	infoStaticObj.clear();
 	infoUIObj.clear();
+}
+
+bool Scene::getBLoop()
+{
+	return bLoop;
+}
+
+void Scene::setBLoop(bool _bLoop)
+{
+	bLoop = _bLoop;
+}
+
+CString Scene::getName()
+{
+	return name;
+}
+
+void Scene::setName(CString _name)
+{
+	name = _name;
+}
+
+vector<Object*> Scene::getInfoObj()
+{
+	return infoObj;
+}
+
+void Scene::setInfoObj(vector<Object*> _infoObj)
+{
+	infoObj = _infoObj;
+}
+
+vector<StaticObject*> Scene::getInfoStaticObj()
+{
+	return infoStaticObj;
+}
+
+void Scene::setInfoStaticObj(vector<StaticObject*> _infoStaticObj)
+{
+	infoStaticObj = _infoStaticObj;
+}
+
+vector<StaticObject*> Scene::getInfoUIObj()
+{
+	return infoUIObj;
+}
+
+void Scene::setInfoUIObj(vector<StaticObject*> _infoUIObj)
+{
+	infoUIObj = _infoUIObj;
 }

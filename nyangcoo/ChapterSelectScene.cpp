@@ -3,7 +3,7 @@
 
 ChapterSelectScene::ChapterSelectScene() : Scene()
 {
-	Name = "Scene_ChapterSelect";
+	name = "Scene_ChapterSelect";
 
 	Init();
 }

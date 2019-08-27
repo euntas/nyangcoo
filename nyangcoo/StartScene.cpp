@@ -3,7 +3,7 @@
 
 StartScene::StartScene() : Scene()
 {
-	Name = "Scene_Start";
+	name = "Scene_Start";
 
 	Init();
 }

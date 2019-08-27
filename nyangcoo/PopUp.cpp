@@ -103,7 +103,7 @@ void PopUp::Render(Gdiplus::Graphics* pGraphics)
 
 		auto pImg = (AssetManager::GetInstance().GetImage(it->AssetFileName)).lock();
 
-		if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game" && name != ePopup_result)
+		if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->getName() == "Scene_Game" && name != ePopup_result)
 		{
 			//gray scale conversion:
 			Gdiplus::ColorMatrix matrix =

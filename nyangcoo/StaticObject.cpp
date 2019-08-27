@@ -35,12 +35,12 @@ void StaticObject::Render(Gdiplus::Graphics* pGraphics)
 
 	if (Objtype == eObjectType_BGImage) // 배경 그림
 	{
-		if (SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+		if (SceneManager::GetInstance().GetCurScene()->getName() == "Scene_Game")
 		{
 			GameScene* gs = reinterpret_cast<GameScene*>(SceneManager::GetInstance().GetCurScene());
 			Gdiplus::Rect tempRC = gs->bg->ViewRC;
 
-			if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+			if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->getName() == "Scene_Game")
 			{
 				//gray scale conversion:
 				Gdiplus::ColorMatrix matrix =
@@ -79,7 +79,7 @@ void StaticObject::Render(Gdiplus::Graphics* pGraphics)
 		tempRC.X -= AddX;
 		tempRC.Y -= AddY;
 
-		if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+		if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->getName() == "Scene_Game")
 		{
 			//gray scale conversion:
 			Gdiplus::ColorMatrix matrix =

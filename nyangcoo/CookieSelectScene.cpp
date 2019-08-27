@@ -3,7 +3,7 @@
 
 CookieSelectScene::CookieSelectScene() : Scene()
 {
-	Name = "Scene_CookieSelect";
+	name = "Scene_CookieSelect";
 
 	Init();
 }

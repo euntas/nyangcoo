@@ -3,7 +3,7 @@
 
 LoadGameScene::LoadGameScene() : Scene()
 {
-	Name = "Scene_LoadGame";
+	name = "Scene_LoadGame";
 
 	Init();
 }

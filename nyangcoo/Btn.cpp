@@ -49,10 +49,10 @@ void Btn::SendLButtonDown()
 	{
 		sndPlaySound(NULL, SND_ASYNC);
 		sndPlaySound(L"Asset\\MainSound.wav", SND_ASYNC | SND_LOOP);
-		if (SceneManager::GetInstance().GetCurScene()->Name == "Scene_Start")
+		if (SceneManager::GetInstance().GetCurScene()->getName() == "Scene_Start")
 		{
 			StartScene* ss = reinterpret_cast<StartScene*>(SceneManager::GetInstance().GetCurScene());
-			for (auto& it : ss->infoStaticObj)
+			for (auto& it : ss->getInfoStaticObj())
 			{
 				if (it->Objtype == eObjectType_Btn && it->AssetFileName == TEXT("title_btn_00.png"))
 				{
@@ -67,7 +67,7 @@ void Btn::SendLButtonDown()
 				}
 			}
 		}
-		else if (SceneManager::GetInstance().GetCurScene()->Name == "Scene_Script")
+		else if (SceneManager::GetInstance().GetCurScene()->getName() == "Scene_Script")
 		{
 			if (selectOption == 0 || selectOption == 1)
 			{
@@ -179,9 +179,9 @@ void Btn::SendLButtonDown()
       
 	case eScene_Help:
 	{
-		if (SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+		if (SceneManager::GetInstance().GetCurScene()->getName() == "Scene_Game")
 		{
-			for (auto& it : SceneManager::GetInstance().GetCurScene()->infoUIObj)
+			for (auto& it : SceneManager::GetInstance().GetCurScene()->getInfoUIObj())
 			{
 				if (it->Objtype == eObjectType_None && it->AssetFileName == L"help_popup.png")
 				{

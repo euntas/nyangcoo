@@ -3,7 +3,7 @@
 
 ScriptScene::ScriptScene() : Scene()
 {
-	Name = "Scene_Script";
+	name = "Scene_Script";
 
 	Init();
 }
