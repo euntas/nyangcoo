@@ -65,10 +65,10 @@ void GameManager::MakeEnemyForWave(int waveNum)
 		sampleEnemy->CharacterXmlFileName = "Asset\\player\\player_" + it + ".xml";
 		XmlManager::GetInstance().ParseCharacterData(*sampleEnemy);
 		sampleEnemy->Init(new InputComponent(), new CharacterGraphicsComponent(sampleEnemy));
-		sampleEnemy->x += (distCnt * 200);
+		sampleEnemy->setX(sampleEnemy->getX() + distCnt * 200);
 		if (it == "titan" || it == "macho" || it =="knight" || it == "redknight"
 			|| it == "tank" || it == "redtank")
-			sampleEnemy->bleft = true;
+			sampleEnemy->setBleft(true);
 
 		curEnemyList.emplace_back(sampleEnemy);
 
@@ -119,7 +119,7 @@ bool GameManager::IsAllEnemyDead()
 
 	for (auto& it : curEnemyList)
 	{
-		if (it->Enable == true)
+		if (it->getEnable() == true)
 		{
 			remainCnt++;
 			res = false;
@@ -149,7 +149,7 @@ bool GameManager::IsGameEnd()
 		if (it == nullptr)
 			continue;
 
-		if (it->Enable == true || it->Visible == true)
+		if (it->getEnable() == true || it->getVisible() == true)
 		{
 			return false;
 		}

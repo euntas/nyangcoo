@@ -9,7 +9,7 @@ Character::Character()
 
 Character::Character(EObjectType _objtype)
 {
-	Objtype = _objtype;
+	objtype = _objtype;
 
 	if (_objtype == eObjectType_Enemy)
 	{
@@ -19,16 +19,16 @@ Character::Character(EObjectType _objtype)
 
 void Character::Init()
 {
-	Enable = true;
-	Visible = true;
+	enable = true;
+	visible = true;
 
 	DeltaA = 0;
 
-	if (Objtype == eObjectType_Character)
+	if (objtype == eObjectType_Character)
 	{
 		setCharacterPos(GameManager::GetInstance().CommandPlayer->x + 78, 520);
 	}
-	else if (Objtype == eObjectType_Enemy)
+	else if (objtype == eObjectType_Enemy)
 	{
 		setCharacterPos(GameManager::GetInstance().curStage->bg->ImgRC.Width, 520);
 	}
@@ -42,7 +42,7 @@ void Character::Init()
 
 	curState = eState_Run;
 
-	AssetFileName = CharacterAssetFileName[curState];
+	assetFileName = CharacterAssetFileName[curState];
 
 	characterGraphics_ = reinterpret_cast<CharacterGraphicsComponent*>(graphics_);
 	characterGraphics_->Init();
@@ -65,7 +65,7 @@ void Character::Update(float Delta)
 	}
 
 	// 본진 캐릭터일 경우 체력이 200 이하로 줄어들면 damage 모션으로 바뀐다.
-	if (this->Objtype == eObjectType_Player && hp <= 500)
+	if (this->objtype == eObjectType_Player && hp <= 500)
 	{
 		changeState(eState_Damage);
 	}
@@ -77,11 +77,11 @@ void Character::Update(float Delta)
 	{
 		if (it == nullptr) continue;
 
-		if (((this->Objtype == eObjectType_Character || this->Objtype == eObjectType_Player) && it->Objtype == eObjectType_Enemy && it->Enable)
-			|| (this->Objtype == eObjectType_Enemy && (it->Objtype == eObjectType_Character || it->Objtype == eObjectType_Player) && it->Enable))
+		if (((this->objtype == eObjectType_Character || this->objtype == eObjectType_Player) && it->getObjtype() == eObjectType_Enemy && it->getEnable())
+			|| (this->objtype == eObjectType_Enemy && (it->getObjtype() == eObjectType_Character || it->getObjtype() == eObjectType_Player) && it->getEnable()))
 		{
 			Character* e = reinterpret_cast<Character*>(it);
-			float dist = pow(x + atkDist - it->x - 2, 2) + pow(y - it->y - 2, 2);
+			float dist = pow(x + atkDist - it->getX() - 2, 2) + pow(y - it->getY() - 2, 2);
 			float rad = pow((frameWidth[eState_Run] / 2 + atkDist + e->frameWidth[eState_Run] / 2), 2);
 
 			// 적과 충돌
@@ -112,11 +112,11 @@ void Character::Update(float Delta)
 		{
 			DeltaA = 0;
 
-			if (Objtype == eObjectType_Character)
+			if (objtype == eObjectType_Character)
 			{
 				this->x++;
 			}
-			else if (Objtype == eObjectType_Enemy)
+			else if (objtype == eObjectType_Enemy)
 			{
 				this->x--;
 			}
@@ -132,14 +132,14 @@ void Character::Update(float Delta)
 				if (it == nullptr) continue;
 
 				// 공격
-				if (it->Enable == true)
+				if (it->getEnable() == true)
 				{
 					it->hp -= atk;
 					printf("%s 가 %s 를 %d 공격 [%s HP : %d]\n", name.c_str(), it->name.c_str(), atk, it->name.c_str(), it->hp);
 
 					if (it->hp <= 0)
 					{
-						it->Enable = false;
+						it->setEnable(false);
 					}
 				}
 			}
@@ -154,7 +154,7 @@ void Character::Update(float Delta)
 	}
 	else if (curState == eState_Dead)
 	{
-		Enable = false;
+		enable = false;
 	}
 
 	characterGraphics_ = reinterpret_cast<CharacterGraphicsComponent*>(graphics_);
@@ -178,7 +178,7 @@ void Character::Release()
 
 bool Character::CheckDestroy()
 {
-	if (Enable == false && Visible == false)
+	if (enable == false && visible == false)
 	{
 		return true;
 	}
@@ -203,5 +203,5 @@ void Character::changeState(EState state)
 
 	curState = state;
 	characterGraphics_->ChangeMotion();
-	AssetFileName = CharacterAssetFileName[curState];
+	assetFileName = CharacterAssetFileName[curState];
 }

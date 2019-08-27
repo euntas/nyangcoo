@@ -25,15 +25,15 @@ void EffectGraphicsComponent::update(float Delta)
 
 	EffectDeltaA += Delta;
 
-	if (ef->Enable == true && EffectDeltaA > ef->frameDelta)
+	if (ef->getEnable() == true && EffectDeltaA > ef->frameDelta)
 	{
 		EffectDeltaA = 0;
 		++AniFrameCnt;
 		if (AniFrameCnt >= AniUnits.size() - 1)
 		{
 			AniFrameCnt = 0;
-			ef->Enable = false;
-			ef->Visible = false;
+			ef->setEnable(false);
+			ef->setVisible(false);
 		}
 	}
 }
@@ -42,15 +42,15 @@ void EffectGraphicsComponent::render(Gdiplus::Graphics* pGraphics)
 {
 	Effect* ef = reinterpret_cast<Effect*>(parentObj);
 
-	if (ef->Visible == false)
+	if (ef->getVisible() == false)
 		return;
 
-	if (ef->Enable)
+	if (ef->getEnable())
 	{
-		auto pImg = (AssetManager::GetInstance().GetImage(ef->AssetFileName)).lock();
+		auto pImg = (AssetManager::GetInstance().GetImage(ef->getAssetFileName())).lock();
 
-		int displayX = ef->x - ef->frameWidth / 2;
-		int displayY = ef->y - ef->frameHeight / 2;
+		int displayX = ef->getX() - ef->frameWidth / 2;
+		int displayY = ef->getY() - ef->frameHeight / 2;
 
 		Rect Dst(displayX, displayY, ef->frameWidth, ef->frameHeight);
 

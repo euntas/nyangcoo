@@ -107,8 +107,8 @@ void GameScene::Init()
 	UpgradeBtn->ID = ePlayerUpgradeBtn;
 	UpgradeBtn->AssetFileName = TEXT("slot\\up_slot_100.png");
 	UpgradeBtn->ImgRC = Rect(0, 0, 200, 100);
-	UpgradeBtn->x = GameManager::GetInstance().CommandPlayer->x - 75;
-	UpgradeBtn->y = GameManager::GetInstance().CommandPlayer->y - GameManager::GetInstance().CommandPlayer->AniUnits[0][0].Height - 100;
+	UpgradeBtn->x = GameManager::GetInstance().CommandPlayer->getX() - 75;
+	UpgradeBtn->y = GameManager::GetInstance().CommandPlayer->getY() - GameManager::GetInstance().CommandPlayer->AniUnits[0][0].Height - 100;
 	UpgradeBtn->ViewRC = UpgradeBtn->ImgRC;
 
 	infoStaticObj.emplace_back(UpgradeBtn);
@@ -335,12 +335,12 @@ void GameScene::printGold(int _gold, Graphics* pGraphics)
 
 void GameScene::printHP(Character* _character, Gdiplus::Graphics* pGraphics)
 {
-	if (_character->Visible == false)
+	if (_character->getVisible() == false)
 		return;
 
 	Gdiplus::Font F(L"Arial", 10, FontStyleBold, UnitMillimeter);
 
-	PointF P(_character->x, _character->y - _character->AniUnits[_character->curState][0].Height);
+	PointF P(_character->getX(), _character->getY() - _character->AniUnits[_character->curState][0].Height);
 
 	SolidBrush B(Color(0, 0, 0));
 

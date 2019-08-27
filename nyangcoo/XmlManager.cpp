@@ -130,7 +130,7 @@ void XmlManager::ParseEffectData(Effect& effect)
 		float height = atof(SpriteNode->Attribute("h"));
 
 		effect.EffectId = effectId;
-		effect.AssetFileName = imagePath;
+		effect.setAssetFileName(imagePath);
 		effect.frameNum = frameNum;
 		effect.frameDelta = delta;
 		effect.spriteRowNum = rowNum;

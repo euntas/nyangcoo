@@ -129,7 +129,7 @@ void PlayerSkillBtn::SendLButtonDown()
 	{
 		for (Character* it : GameManager::GetInstance().curCharacterList)
 		{
-			if (it->Enable == true && it->Visible == true)
+			if (it->getEnable() == true && it->getVisible() == true)
 			{
 				// HP를 늘려준다
 				it->hp += 200;
@@ -138,8 +138,8 @@ void PlayerSkillBtn::SendLButtonDown()
 				Effect* skillEffect = new Effect();
 				skillEffect->EffectXmlFileName = "Asset\\effect\\effect_skill_" + Name + ".xml";
 				XmlManager::GetInstance().ParseEffectData(*skillEffect);
-				skillEffect->x = it->x;
-				skillEffect->y = it->y - 80;
+				skillEffect->setX(it->getX());
+				skillEffect->setY(it->getY() - 80);
 				skillEffect->Init(new EffectGraphicsComponent(skillEffect));
 
 				SceneManager::GetInstance().GetCurScene()->infoObj.emplace_back(skillEffect);
@@ -150,7 +150,7 @@ void PlayerSkillBtn::SendLButtonDown()
 	{
 		for (Character* it : GameManager::GetInstance().curEnemyList)
 		{
-			if (it->Enable == true && it->Visible == true)
+			if (it->getEnable() == true && it->getVisible() == true)
 			{
 				// 공격한다
 				it->hp -= 200;
@@ -159,8 +159,8 @@ void PlayerSkillBtn::SendLButtonDown()
 				Effect* skillEffect = new Effect();
 				skillEffect->EffectXmlFileName = "Asset\\effect\\effect_skill_" + Name + ".xml";
 				XmlManager::GetInstance().ParseEffectData(*skillEffect);
-				skillEffect->x = it->x;
-				skillEffect->y = it->y - 80;
+				skillEffect->setX(it->getX());
+				skillEffect->setY(it->getY() - 80);
 				skillEffect->Init(new EffectGraphicsComponent(skillEffect));
 
 				SceneManager::GetInstance().GetCurScene()->infoObj.emplace_back(skillEffect);
@@ -173,23 +173,23 @@ void PlayerSkillBtn::SendLButtonDown()
 		Effect* skillEffect = new Effect();
 		skillEffect->EffectXmlFileName = "Asset\\effect\\effect_skill_" + Name + ".xml";
 		XmlManager::GetInstance().ParseEffectData(*skillEffect);
-		skillEffect->x = GameManager::GetInstance().CommandPlayer->x + skillEffect->x + skillEffect->frameWidth / 2 + 10;
-		skillEffect->y = GameManager::GetInstance().CommandPlayer->y - 100;
+		skillEffect->setX(GameManager::GetInstance().CommandPlayer->getX() + skillEffect->getX() + skillEffect->frameWidth / 2 + 10);
+		skillEffect->setY(GameManager::GetInstance().CommandPlayer->getY() - 100);
 		skillEffect->Init(new EffectGraphicsComponent(skillEffect));
 
 		SceneManager::GetInstance().GetCurScene()->infoObj.emplace_back(skillEffect);
 
 		for (Character* it : GameManager::GetInstance().curEnemyList)
 		{
-			if (it->Enable == true && it->Visible == true)
+			if (it->getEnable() == true && it->getVisible() == true)
 			{
-				int minX = skillEffect->x - (skillEffect->frameWidth / 2);
+				int minX = skillEffect->getX() - (skillEffect->frameWidth / 2);
 				int maxX = minX + skillEffect->frameWidth;
-				if (minX < it->x && it->x < maxX)
+				if (minX < it->getX() && it->getX() < maxX)
 				{
 					// 만약에 레이저의 범위 안에 적이 존재하면
 					//공격한다
-					printf("comm : %d, 적 : %d \n", GameManager::GetInstance().CommandPlayer->x, it->x);
+					printf("comm : %d, 적 : %d \n", GameManager::GetInstance().CommandPlayer->getX(), it->getX());
 					printf("%s 이 맞음 HP : %d \n", it->name, it->hp);
 					it->hp -= 400;
 				}

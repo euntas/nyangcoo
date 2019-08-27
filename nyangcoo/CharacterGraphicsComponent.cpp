@@ -21,7 +21,7 @@ void CharacterGraphicsComponent::update(float Delta)
 {
 	PlayerDeltaA += Delta;
 
-	if (parentObj->Objtype == eObjectType_Player || parentObj->Objtype == eObjectType_Character || parentObj->Objtype == eObjectType_Enemy)
+	if (parentObj->getObjtype() == eObjectType_Player || parentObj->getObjtype() == eObjectType_Character || parentObj->getObjtype() == eObjectType_Enemy)
 	{
 		Character* p = reinterpret_cast<Character*>(parentObj);
 
@@ -29,10 +29,10 @@ void CharacterGraphicsComponent::update(float Delta)
 		{
 			//if (p->AniUnits[p->curState].size() == p->frameNum[p->curState])
 			//{
-				if (p->Enable == false && AniFrameCnt >= p->AniUnits[p->curState].size() - 1)
+				if (p->getEnable() == false && AniFrameCnt >= p->AniUnits[p->curState].size() - 1)
 				{
 					AniFrameCnt = 0;
-					parentObj->Visible = false;
+					parentObj->setVisible(false);
 
 					return;
 				}
@@ -51,17 +51,17 @@ void CharacterGraphicsComponent::render(Gdiplus::Graphics* pGraphics)
 	if (parentObj == nullptr) return;
 	if (pGraphics == nullptr) return;
 
-	if (parentObj->Visible == false)
+	if (parentObj->getVisible() == false)
 		return;
 
-	auto pImg = (AssetManager::GetInstance().GetImage(parentObj->AssetFileName)).lock();
+	auto pImg = (AssetManager::GetInstance().GetImage(parentObj->getAssetFileName())).lock();
 
-	if (parentObj->Objtype == eObjectType_Player || parentObj->Objtype == eObjectType_Character || parentObj->Objtype == eObjectType_Enemy)
+	if (parentObj->getObjtype() == eObjectType_Player || parentObj->getObjtype() == eObjectType_Character || parentObj->getObjtype() == eObjectType_Enemy)
 	{
 		Character* p = reinterpret_cast<Character*>(parentObj);
 
-		int displayX = parentObj->x - p->frameWidth[p->curState] / 2;
-		int displayY = parentObj->y - p->frameHeight[p->curState];
+		int displayX = parentObj->getX() - p->frameWidth[p->curState] / 2;
+		int displayY = parentObj->getY() - p->frameHeight[p->curState];
 
 		// 범위 밖 (-300 ~ width + 300) 이면 그리지 않는다
 		if (displayX < -300 || displayX > GameManager::GetInstance().curStage->bg->ViewRC.Width + 300)
@@ -91,7 +91,7 @@ void CharacterGraphicsComponent::render(Gdiplus::Graphics* pGraphics)
 			test.DrawImage(pImg.get(), unitDst, p->AniUnits[p->curState][AniFrameCnt].X, p->AniUnits[p->curState][AniFrameCnt].Y, p->AniUnits[p->curState][AniFrameCnt].Width, p->AniUnits[p->curState][AniFrameCnt].Height, Gdiplus::Unit::UnitPixel,
 				&attr, 0, nullptr);
 
-			if (parentObj->bleft == false)
+			if (parentObj->getBleft() == false)
 				bm.RotateFlip(Rotate180FlipY);
 
 			pGraphics->DrawImage(&bm, Dst);
@@ -103,7 +103,7 @@ void CharacterGraphicsComponent::render(Gdiplus::Graphics* pGraphics)
 			test.DrawImage(pImg.get(), unitDst, p->AniUnits[p->curState][AniFrameCnt].X, p->AniUnits[p->curState][AniFrameCnt].Y, p->AniUnits[p->curState][AniFrameCnt].Width, p->AniUnits[p->curState][AniFrameCnt].Height, Gdiplus::Unit::UnitPixel,
 				nullptr, 0, nullptr);
 
-			if (parentObj->bleft == false)
+			if (parentObj->getBleft() == false)
 				bm.RotateFlip(Rotate180FlipY);
 
 			pGraphics->DrawImage(&bm, Dst);
@@ -129,7 +129,7 @@ void CharacterGraphicsComponent::InitParams()
 
 void CharacterGraphicsComponent::InitAniUnits()
 {
-	if (parentObj->Objtype == eObjectType_Player || parentObj->Objtype == eObjectType_Character || parentObj->Objtype == eObjectType_Enemy)
+	if (parentObj->getObjtype() == eObjectType_Player || parentObj->getObjtype() == eObjectType_Character || parentObj->getObjtype() == eObjectType_Enemy)
 	{
 		Character* p = reinterpret_cast<Character*>(parentObj);
 

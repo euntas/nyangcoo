@@ -10,7 +10,7 @@ void Scene::Init()
 		it->Init();
 
 		// 이펙트일 경우 애니메이션이 실행되도록 초기화
-		if (it->Objtype == eObjectType_Effect)
+		if (it->getObjtype() == eObjectType_Effect)
 		{
 			it->setEnable(true);
 		}
@@ -24,7 +24,7 @@ void Scene::Update(float Delta)
 		if (it == nullptr) continue;
 
 		// 플레이어일 경우
-		if (it->Objtype == eObjectType_Player || it->Objtype == eObjectType_Character || it->Objtype == eObjectType_Enemy)
+		if (it->getObjtype() == eObjectType_Player || it->getObjtype() == eObjectType_Character || it->getObjtype() == eObjectType_Enemy)
 		{
 			Character* p = reinterpret_cast<Character*>(it);
 			p->Update(Delta);
@@ -52,8 +52,8 @@ void Scene::Update(float Delta)
 			{
 				GameScene* gs = reinterpret_cast<GameScene*>(SceneManager::GetInstance().GetCurScene());
 
-				it->x = GameManager::GetInstance().CommandPlayer->x - 75;
-				it->y = GameManager::GetInstance().CommandPlayer->y - GameManager::GetInstance().CommandPlayer->AniUnits[GameManager::GetInstance().CommandPlayer->curState][0].Height - 100;
+				it->x = GameManager::GetInstance().CommandPlayer->getX() - 75;
+				it->y = GameManager::GetInstance().CommandPlayer->getY() - GameManager::GetInstance().CommandPlayer->AniUnits[GameManager::GetInstance().CommandPlayer->curState][0].Height - 100;
 			}
 		}
 		else
@@ -93,7 +93,7 @@ void Scene::Render(Gdiplus::Graphics* pGraphics)
 	{
 		if (it == nullptr) continue;
 
-		if (it->Objtype == eObjectType_Player || it->Objtype == eObjectType_Character || it->Objtype == eObjectType_Enemy)
+		if (it->getObjtype() == eObjectType_Player || it->getObjtype() == eObjectType_Character || it->getObjtype() == eObjectType_Enemy)
 		{
 			Character* p = reinterpret_cast<Character*>(it);
 			p->Render(pGraphics);

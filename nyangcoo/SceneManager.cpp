@@ -225,7 +225,7 @@ void SceneManager::SendKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 				for (auto& it : gs->infoObj)
 				{
-					it->x -= moveX;
+					it->setX(it->getX() - moveX);
 				}
 			}
 		}
