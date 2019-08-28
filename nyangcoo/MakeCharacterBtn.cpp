@@ -54,12 +54,14 @@ MakeCharacterBtn::MakeCharacterBtn(std::string characterName)
 	std::string bgFilename = "slot\\bg_slot_" + std::to_string(cost) + ".png";
 
 	makeSlotImg = new StaticObject();
-	makeSlotImg->getAssetFileName().assign(bgFilename.begin(), bgFilename.end());
+	std::wstring tempFileName(bgFilename.begin(), bgFilename.end());
+	makeSlotImg->setAssetFileName(tempFileName);
 
 	std::string imgFilename = "slot\\slot_" + characterName + ".png";
 
 	characterImg = new StaticObject();
-	characterImg->getAssetFileName().assign(imgFilename.begin(), imgFilename.end());
+	tempFileName = tempFileName.assign(imgFilename.begin(), imgFilename.end());
+	characterImg->setAssetFileName(tempFileName);
 	characterImg->setImgRC(Gdiplus::Rect(0, 0, 57, 64));
 	characterImg->setViewRC(characterImg->getImgRC());
 	characterImg->setX(12);
@@ -173,7 +175,7 @@ void MakeCharacterBtn::SendLButtonDown()
 		//SceneManager::GetInstance().GetCurScene()->infoObj.emplace_back(MakeCharacter());
 
 		Character* c = MakeCharacter();
-		SceneManager::GetInstance().GetCurScene()->getInfoObj().emplace_back(c);
+		SceneManager::GetInstance().GetCurScene()->addToInfoObj(c);
 		GameManager::GetInstance().curCharacterList.emplace_back(c);
 
 		// TODO. 지워야함 실험용 이펙트
@@ -184,7 +186,7 @@ void MakeCharacterBtn::SendLButtonDown()
 		ef->setY(c->getY() - c->AniUnits[c->curState][0].Height / 2);
 		ef->Init(new EffectGraphicsComponent(ef));
 
-		SceneManager::GetInstance().GetCurScene()->getInfoObj().emplace_back(ef);
+		SceneManager::GetInstance().GetCurScene()->addToInfoObj(ef);
 	}
 }
 

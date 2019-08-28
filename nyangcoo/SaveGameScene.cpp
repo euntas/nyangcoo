@@ -52,7 +52,8 @@ void SaveGameScene::Init()
 			st = "saveload\\Slot_Empty.png";
 		}
 
-		SlotBtn[idx]->getAssetFileName().assign(st.begin(), st.end());
+		std::wstring tempFileName(st.begin(), st.end());
+		SlotBtn[idx]->setAssetFileName(tempFileName);
 		SlotBtn[idx]->setImgRC(Rect(0, 0, 900, 118));
 		SlotBtn[idx]->setViewRC(SlotBtn[idx]->getImgRC());
 		SlotBtn[idx]->setX(260);

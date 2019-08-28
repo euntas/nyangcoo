@@ -179,6 +179,11 @@ void Scene::setInfoObj(vector<Object*> _infoObj)
 	infoObj = _infoObj;
 }
 
+void Scene::addToInfoObj(Object* _object)
+{
+	infoObj.emplace_back(_object);
+}
+
 vector<StaticObject*> Scene::getInfoStaticObj()
 {
 	return infoStaticObj;

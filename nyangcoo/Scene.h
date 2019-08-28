@@ -21,6 +21,7 @@ public:
 
 	vector<Object*> getInfoObj();
 	void setInfoObj(vector<Object*> _infoObj);
+	void addToInfoObj(Object* _object);
 
 	vector<StaticObject*> getInfoStaticObj();
 	void setInfoStaticObj(vector<StaticObject*> _infoStaticObj);

@@ -39,7 +39,7 @@ void PlayerSkillBtn::Init()
 	}
 
 	btnImg = new StaticObject();
-	btnImg->getAssetFileName().assign(imgFilename.begin(), imgFilename.end());
+	btnImg->setAssetFileName(btnImg->getAssetFileName().assign(imgFilename.begin(), imgFilename.end()));
 	btnImg->setImgRC(Gdiplus::Rect(0, 0, 127, 144));
 	btnImg->setViewRC(btnImg->getImgRC());
 }
@@ -142,7 +142,7 @@ void PlayerSkillBtn::SendLButtonDown()
 				skillEffect->setY(it->getY() - 80);
 				skillEffect->Init(new EffectGraphicsComponent(skillEffect));
 
-				SceneManager::GetInstance().GetCurScene()->getInfoObj().emplace_back(skillEffect);
+				SceneManager::GetInstance().GetCurScene()->addToInfoObj(skillEffect);
 			}
 		}
 	}
@@ -163,7 +163,7 @@ void PlayerSkillBtn::SendLButtonDown()
 				skillEffect->setY(it->getY() - 80);
 				skillEffect->Init(new EffectGraphicsComponent(skillEffect));
 
-				SceneManager::GetInstance().GetCurScene()->getInfoObj().emplace_back(skillEffect);
+				SceneManager::GetInstance().GetCurScene()->addToInfoObj(skillEffect);
 			}
 		}
 	}
@@ -177,7 +177,7 @@ void PlayerSkillBtn::SendLButtonDown()
 		skillEffect->setY(GameManager::GetInstance().CommandPlayer->getY() - 100);
 		skillEffect->Init(new EffectGraphicsComponent(skillEffect));
 
-		SceneManager::GetInstance().GetCurScene()->getInfoObj().emplace_back(skillEffect);
+		SceneManager::GetInstance().GetCurScene()->addToInfoObj(skillEffect);
 
 		for (Character* it : GameManager::GetInstance().curEnemyList)
 		{
