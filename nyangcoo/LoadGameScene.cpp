@@ -29,15 +29,15 @@ void LoadGameScene::Init()
 		SlotBtn[idx] = new Btn();
 		if (idx == 0)
 		{
-			SlotBtn[idx]->ID = eSaveLoadBtn_Select0;
+			SlotBtn[idx]->setId(eSaveLoadBtn_Select0);
 		}
 		else if (idx == 1)
 		{
-			SlotBtn[idx]->ID = eSaveLoadBtn_Select1;
+			SlotBtn[idx]->setId(eSaveLoadBtn_Select1);
 		}
 		else if (idx == 2)
 		{
-			SlotBtn[idx]->ID = eSaveLoadBtn_Select2;
+			SlotBtn[idx]->setId(eSaveLoadBtn_Select2);
 		}
 
 		std::string st;

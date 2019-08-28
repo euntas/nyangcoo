@@ -36,11 +36,11 @@ void ScriptScene::Init()
 	infoStaticObj.emplace_back(ScriptPlayer);
 
 	Btn* ChoiceBtn1 = new Btn(eScene_ChapterSelect, TEXT("ChoiceBtn.png"), Rect(0, 0, 935, 50), Rect(0, 0, 935, 50), 415, 522, 0);
-	ChoiceBtn1->selectOption = 0;
+	ChoiceBtn1->setSelectOption(0);
 	infoStaticObj.emplace_back(ChoiceBtn1);
 	
 	Btn* ChoiceBtn2 = new Btn(eScene_ChapterSelect, TEXT("ChoiceBtn.png"), Rect(0, 0, 935, 50), Rect(0, 0, 935, 50), 415, 602, 0);
-	ChoiceBtn1->selectOption = 1;
+	ChoiceBtn1->setSelectOption(1);
 	infoStaticObj.emplace_back(ChoiceBtn2);
 
 	PopUp* popUp = new PopUp(ePopup_close);

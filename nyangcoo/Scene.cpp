@@ -48,7 +48,7 @@ void Scene::Update(float Delta)
 		{
 			Btn* b = reinterpret_cast<Btn*>(it);
 
-			if (b->ID == ePlayerUpgradeBtn)
+			if (b->getId() == ePlayerUpgradeBtn)
 			{
 				GameScene* gs = reinterpret_cast<GameScene*>(SceneManager::GetInstance().GetCurScene());
 

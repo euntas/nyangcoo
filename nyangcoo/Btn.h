@@ -17,9 +17,24 @@ public:
 	);
 
 	void SendLButtonDown();
-	int ID;
-	int stageID;
-	bool IsClicked; // save, load 위함
+
+	// Getter, Setter
+	int getId();
+	void setId(int _id);
+
+	int getStageId();
+	void setStageId(int _stageId);
+
+	bool getIsClicked();
+	void setIsClicked(bool _isClicked);
+
+	int getSelectOption();
+	void setSelectOption(int _selectOption);
+
+private:
+	int id;
+	int stageId;
+	bool isClicked; // save, load 위함
 	int selectOption; // 선택지 선택 0 or 1 (선택없을 경우 -1)
 };
 

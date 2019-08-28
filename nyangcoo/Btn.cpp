@@ -6,27 +6,27 @@
 Btn::Btn()
 	: StaticObject(EObjectType::eObjectType_Btn)
 {
-	stageID = 0;
-	IsClicked = false;
+	stageId = 0;
+	isClicked = false;
 	selectOption = -1;
 }
 
 Btn::Btn(int _stageID)
 	: StaticObject(EObjectType::eObjectType_Btn)
 {
-	stageID = _stageID;
-	IsClicked = false;
+	stageId = _stageID;
+	isClicked = false;
 	selectOption = -1;
 }
 
 Btn::Btn(int _id, std::wstring _assetFileName, Gdiplus::Rect _imgRC, Gdiplus::Rect _viewRC, int _x, int _y, int _stageID)
 	: StaticObject(EObjectType::eObjectType_Btn)
 {	
-	stageID = _stageID;
-	IsClicked = false;
+	stageId = _stageID;
+	isClicked = false;
 	selectOption = -1;
 
-	ID = _id;
+	id = _id;
 	assetFileName = _assetFileName;
 	imgRC = _imgRC;
 	viewRC = _viewRC;
@@ -39,12 +39,12 @@ void Btn::SendLButtonDown()
 	if (enable == false)
 		return;
 
-	switch (ID)
+	switch (id)
 	{
 	case eScene_Game: 
 		sndPlaySound(NULL, SND_ASYNC);
 		sndPlaySound(L"Asset\\BattleSound.wav", SND_ASYNC | SND_LOOP);
-		GameManager::GetInstance().btnID = stageID;
+		GameManager::GetInstance().btnID = stageId;
 		SceneManager::GetInstance().LoadScene(CString("Scene_Game"));
 		SceneManager::GetInstance().Init();
 		break;
@@ -72,9 +72,9 @@ void Btn::SendLButtonDown()
 				if (it->getObjtype() == eObjectType_Btn && it->getAssetFileName() == TEXT("title_btn_00.png"))
 				{
 					Btn* sb = reinterpret_cast<Btn*>(it);
-					sb->IsClicked = !sb->IsClicked;
+					sb->setIsClicked(!sb->getIsClicked());
 
-					if (sb->IsClicked)
+					if (sb->getIsClicked())
 					{
 						GameManager::GetInstance().Init(0);
 						break;
@@ -111,17 +111,17 @@ void Btn::SendLButtonDown()
 	{
 		LoadGameScene* lgs = reinterpret_cast<LoadGameScene*>(SceneManager::GetInstance().GetCurScene());
 		
-		IsClicked = !IsClicked;
+		isClicked = !isClicked;
 
-		if (this->ID == eSaveLoadBtn_Select0 && IsClicked)
+		if (this->id == eSaveLoadBtn_Select0 && isClicked)
 		{
 			GameManager::GetInstance().seletedSlotNum = 0;
 		}
-		else if (this->ID == eSaveLoadBtn_Select1 && IsClicked)
+		else if (this->id == eSaveLoadBtn_Select1 && isClicked)
 		{
 			GameManager::GetInstance().seletedSlotNum = 1;
 		}
-		else if (this->ID == eSaveLoadBtn_Select2 && IsClicked)
+		else if (this->id == eSaveLoadBtn_Select2 && isClicked)
 		{
 			GameManager::GetInstance().seletedSlotNum = 2;
 		}
@@ -257,4 +257,44 @@ void Btn::SendLButtonDown()
 		
 		break;
 	}
+}
+
+int Btn::getId()
+{
+	return id;
+}
+
+void Btn::setId(int _id)
+{
+	id = _id;
+}
+
+int Btn::getStageId()
+{
+	return stageId;
+}
+
+void Btn::setStageId(int _stageId)
+{
+	stageId = _stageId;
+}
+
+bool Btn::getIsClicked()
+{
+	return isClicked;
+}
+
+void Btn::setIsClicked(bool _isClicked)
+{
+	isClicked = _isClicked;
+}
+
+int Btn::getSelectOption()
+{
+	return selectOption;
+}
+
+void Btn::setSelectOption(int _selectOption)
+{
+	selectOption = _selectOption;
 }

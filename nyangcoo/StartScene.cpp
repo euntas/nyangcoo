@@ -20,7 +20,7 @@ void StartScene::Init()
 	infoStaticObj.emplace_back(bg);
 
 	Btn* StartBtn = new Btn(eScene_ChapterSelect, TEXT("title_btn_00.png"), Rect(0, 0, 236, 72), Rect(0, 0, 236, 72), 600, 200, 0);
-	StartBtn->IsClicked = false;
+	StartBtn->setIsClicked(false);
 	infoStaticObj.emplace_back(StartBtn);
 
 	Btn* ContinueBtn = new Btn(eScene_Continue, TEXT("title_btn_01.png"), Rect(0, 0, 236, 72), Rect(0, 0, 236, 72), 600, 290, 0);

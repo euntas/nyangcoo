@@ -54,6 +54,7 @@
 #include "AssetManager.h"
 #include "SceneManager.h"
 #include "GameManager.h"
+#include "EventHandler.h"
 #include <mmsystem.h>
 #pragma comment (lib, "winmm.lib")
 
