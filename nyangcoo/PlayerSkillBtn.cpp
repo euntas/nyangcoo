@@ -58,7 +58,8 @@ void PlayerSkillBtn::Update(float Delta)
 		}
 		else if (Name == "razer")
 		{
-			angle += 0.25;
+			//angle += 0.25;
+			angle += 3;
 		}
 	}
 
@@ -173,7 +174,7 @@ void PlayerSkillBtn::SendLButtonDown()
 		Effect* skillEffect = new Effect();
 		skillEffect->EffectXmlFileName = "Asset\\effect\\effect_skill_" + Name + ".xml";
 		XmlManager::GetInstance().ParseEffectData(*skillEffect);
-		skillEffect->setX(GameManager::GetInstance().CommandPlayer->getX() + skillEffect->getX() + skillEffect->frameWidth / 2 + 10);
+		skillEffect->setX(GameManager::GetInstance().CommandPlayer->getX() + 800);
 		skillEffect->setY(GameManager::GetInstance().CommandPlayer->getY() - 100);
 		skillEffect->Init(new EffectGraphicsComponent(skillEffect));
 
