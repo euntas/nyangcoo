@@ -72,24 +72,10 @@ void CharacterGraphicsComponent::render(Gdiplus::Graphics* pGraphics)
 
 		if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->getName() == "Scene_Game")
 		{
-			//gray scale conversion:
-			Gdiplus::ColorMatrix matrix =
-			{
-				.3f, .3f, .3f,   0,   0,
-				.6f, .6f, .6f,   0,   0,
-				.1f, .1f, .1f,   0,   0,
-				0,   0,   0,   1,   0,
-				0,   0,   0,   0,   1
-			};
-
-			Gdiplus::ImageAttributes attr;
-			attr.SetColorMatrix(&matrix,
-				Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
-
 			Bitmap bm(p->AniUnits[p->curState][AniFrameCnt].Width, p->AniUnits[p->curState][AniFrameCnt].Height, PixelFormat32bppARGB);
 			Graphics test(&bm);
 			test.DrawImage(pImg.get(), unitDst, p->AniUnits[p->curState][AniFrameCnt].X, p->AniUnits[p->curState][AniFrameCnt].Y, p->AniUnits[p->curState][AniFrameCnt].Width, p->AniUnits[p->curState][AniFrameCnt].Height, Gdiplus::Unit::UnitPixel,
-				&attr, 0, nullptr);
+				AssetManager::GetInstance().getGrayScaleAttr(), 0, nullptr);
 
 			if (parentObj->getBleft() == false)
 				bm.RotateFlip(Rotate180FlipY);

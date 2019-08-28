@@ -86,23 +86,9 @@ void PlayerSkillBtn::Render(Gdiplus::Graphics* pGraphics)
 
 		auto pImg = (AssetManager::GetInstance().GetImage(btnImg->getAssetFileName())).lock();
 
-		//gray scale conversion:
-		Gdiplus::ColorMatrix matrix =
-		{
-			.3f, .3f, .3f,   0,   0,
-			.6f, .6f, .6f,   0,   0,
-			.1f, .1f, .1f,   0,   0,
-			0,   0,   0,   1,   0,
-			0,   0,   0,   0,   1
-		};
-
-		Gdiplus::ImageAttributes attr;
-		attr.SetColorMatrix(&matrix,
-			Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
-
 		g->DrawImage(pImg.get(), coverImg, btnImg->getImgRC().X, btnImg->getImgRC().Y, btnImg->getImgRC().Width, btnImg->getImgRC().Height, Gdiplus::Unit::UnitPixel,
-			&attr, 0, nullptr);
-
+			AssetManager::GetInstance().getGrayScaleAttr(), 0, nullptr);
+		
 		g->SetCompositingMode(CompositingMode::CompositingModeSourceCopy);
 		g->FillPie(&empty, int(-btnImg->getImgRC().Width *0.5f), int(-btnImg->getImgRC().Height * 0.5f), btnImg->getImgRC().Width *2, btnImg->getImgRC().Height * 2, -90, angle);
 

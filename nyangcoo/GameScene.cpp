@@ -283,22 +283,8 @@ void GameScene::printGold(int _gold, Graphics* pGraphics)
 
 	if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->getName() == "Scene_Game")
 	{
-		//gray scale conversion:
-		Gdiplus::ColorMatrix matrix =
-		{
-			.3f, .3f, .3f,   0,   0,
-			.6f, .6f, .6f,   0,   0,
-			.1f, .1f, .1f,   0,   0,
-			0,   0,   0,   1,   0,
-			0,   0,   0,   0,   1
-		};
-
-		Gdiplus::ImageAttributes attr;
-		attr.SetColorMatrix(&matrix,
-			Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
-
 		pGraphics->DrawImage(pImg.get(), ic->getViewRC(), ic->getImgRC().X, ic->getImgRC().Y, ic->getImgRC().Width, ic->getImgRC().Height, Gdiplus::Unit::UnitPixel,
-			&attr, 0, nullptr);
+			AssetManager::GetInstance().getGrayScaleAttr(), 0, nullptr);
 	}
 	else
 	{
@@ -361,22 +347,8 @@ void GameScene::printTitle(Gdiplus::Graphics* pGraphics)
 
 	if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->getName() == "Scene_Game")
 	{
-		//gray scale conversion:
-		Gdiplus::ColorMatrix matrix =
-		{
-			.3f, .3f, .3f,   0,   0,
-			.6f, .6f, .6f,   0,   0,
-			.1f, .1f, .1f,   0,   0,
-			0,   0,   0,   1,   0,
-			0,   0,   0,   0,   1
-		};
-
-		Gdiplus::ImageAttributes attr;
-		attr.SetColorMatrix(&matrix,
-			Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
-
 		pGraphics->DrawImage(pImg.get(), titleBg->getViewRC(), titleBg->getImgRC().X, titleBg->getImgRC().Y, titleBg->getImgRC().Width, titleBg->getImgRC().Height, Gdiplus::Unit::UnitPixel,
-			&attr, 0, nullptr);
+			AssetManager::GetInstance().getGrayScaleAttr(), 0, nullptr);
 	}
 	else
 	{

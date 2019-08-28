@@ -7,8 +7,31 @@ AssetManager& AssetManager::GetInstance()
 	return mgr;
 }
 
+AssetManager::AssetManager()
+{
+	// grayscale관련 변수 설정
+	grayScaleMatrix =
+	{
+		.3f, .3f, .3f,   0,   0,
+		.6f, .6f, .6f,   0,   0,
+		.1f, .1f, .1f,   0,   0,
+		0,   0,   0,   1,   0,
+		0,   0,   0,   0,   1
+	};
+
+	grayScaleAttr->SetColorMatrix(&grayScaleMatrix,
+		Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
+}
+
+Gdiplus::ImageAttributes* AssetManager::getGrayScaleAttr()
+{
+	return grayScaleAttr;
+}
+
 AssetManager::~AssetManager()
 {
+	delete grayScaleAttr;
+
 	for (auto& it : imgDic)
 	{
 		it.second.reset();
