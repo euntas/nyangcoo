@@ -68,7 +68,6 @@ void GameScene::Init()
 	Btn* HelpBtn = new Btn(eScene_Help, TEXT("help_btn.png"), Rect(0, 0, 65, 65), Rect(0, 0, 65, 65), 1350, 20, selectedStageId);
 	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, HelpBtn));
 
-	// TODO. 나중에 수정필요. 팝업 부분
 	PopUp* popUp = new PopUp(ePopup_close);
 	popUp->setVisible(false);
 	popUp->setImgRC(Rect(0, 0, 271, 279));

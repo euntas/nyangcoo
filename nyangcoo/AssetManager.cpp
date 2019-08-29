@@ -51,12 +51,6 @@ std::weak_ptr<Gdiplus::Image> AssetManager::GetImage(std::wstring str)
 		ret = it->second;
 	}
 
-	//if (ret.expired())
-	//{
-	//	auto p = ret.lock();
-	//	// 접근은 p-> 이런식으로
-	//}
-
 	return ret;
 }
 

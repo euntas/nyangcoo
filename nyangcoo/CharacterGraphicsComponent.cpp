@@ -27,23 +27,18 @@ void CharacterGraphicsComponent::update(float Delta)
 
 		if (PlayerDeltaA > p->frameDelta[p->curState])
 		{
-			//if (p->AniUnits[p->curState].size() == p->frameNum[p->curState])
-			//{
-				if (p->getEnable() == false && AniFrameCnt >= p->AniUnits[p->curState].size() - 1)
-				{
-					AniFrameCnt = 0;
-					parentObj->setVisible(false);
+			if (p->getEnable() == false && AniFrameCnt >= p->AniUnits[p->curState].size() - 1)
+			{
+				AniFrameCnt = 0;
+				parentObj->setVisible(false);
 
-					return;
-				}
+				return;
+			}
 
-				PlayerDeltaA = 0;
-				AniFrameCnt = AniFrameCnt >= p->AniUnits[p->curState].size() - 1 ? 0 : AniFrameCnt + 1;
-			//}
+			PlayerDeltaA = 0;
+			AniFrameCnt = AniFrameCnt >= p->AniUnits[p->curState].size() - 1 ? 0 : AniFrameCnt + 1;
 		}
 	}
-
-	
 }
 
 void CharacterGraphicsComponent::render(Gdiplus::Graphics* pGraphics)
@@ -121,8 +116,6 @@ void CharacterGraphicsComponent::InitAniUnits()
 
 		for (int state = 0; state < eState_Cnt; state++)
 		{
-			//p->AniUnits[state].clear();
-
 			int rownum = p->spriteRowNum[state];
 			int imgNumPerLine = p->imgNumPerLine[state];
 			p->AniUnits[state].resize(rownum * imgNumPerLine);
@@ -135,7 +128,6 @@ void CharacterGraphicsComponent::InitAniUnits()
 					int x = j * p->frameWidth[state];
 					int y = i * p->frameHeight[state];
 
-					//p->AniUnits[state].emplace_back(Rect(x, y, p->frameWidth[state], p->frameHeight[state]));
 					p->AniUnits[state][cnt] =  Rect(x, y, p->frameWidth[state], p->frameHeight[state]);
 					cnt++;
 				}

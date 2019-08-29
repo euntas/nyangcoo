@@ -33,7 +33,6 @@ void Object::Init(InputComponent* input, GraphicsComponent* graphics)
 
 void Object::Update(float Delta)
 {
-	//input_->update(this);
 	// 플레이어일 경우
 	if (objtype == eObjectType_Player)
 	{

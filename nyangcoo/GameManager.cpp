@@ -29,16 +29,19 @@ void GameManager::Init(int stageID)
 
 	playerUpgradeLevel = 0;
 
-	// TODO. 나중에 DB로 옮겨야 함
-	stageClearList.insert(make_pair(0, true));
-	stageClearList.insert(make_pair(1, false));
-	stageClearList.insert(make_pair(2, false));
-	stageClearList.insert(make_pair(3, false));
-	
-	savedCoinList.insert(make_pair(0, 0));
-	savedCoinList.insert(make_pair(1, 0));
-	savedCoinList.insert(make_pair(2, 0));
-	savedCoinList.insert(make_pair(3, 0));
+	for (int idx = 0; idx < ALL_STAGE_NUM; idx++)
+	{
+		if (idx == 0)
+		{
+			stageClearList.insert(make_pair(idx, true));
+		}
+		else
+		{
+			stageClearList.insert(make_pair(idx, false));
+		}
+		
+		savedCoinList.insert(make_pair(idx, 0));
+	}
 
 	InitAllCharacterList();
 	InitStageSelectedList();
@@ -161,23 +164,17 @@ bool GameManager::IsGameEnd()
 
 void GameManager::InitAllCharacterList()
 {
-	AllCharacterList.insert(make_pair("brave", true));
-	AllCharacterList.insert(make_pair("kiwi", true));
-	AllCharacterList.insert(make_pair("lemon", true));
-	AllCharacterList.insert(make_pair("macho", true));
-	AllCharacterList.insert(make_pair("moonlight", true));
-	AllCharacterList.insert(make_pair("moonrabit", true));
-	AllCharacterList.insert(make_pair("muscle", true));
-	AllCharacterList.insert(make_pair("pistachio", true));
-	AllCharacterList.insert(make_pair("plum", true));
-	AllCharacterList.insert(make_pair("titan", true));
-	AllCharacterList.insert(make_pair("whitechoco", true));
-	AllCharacterList.insert(make_pair("windarcher", true));
+	std::string initNameList[] = { "brave" , "kiwi" , "lemon" , "macho" , "moonlight" , "moonrabit" , "muscle" , "pistachio" , "plum" , "titan" , "whitechoco" , "windarcher" };
+	
+	for (int idx = 0; idx < initNameList->size(); idx++)
+	{
+		AllCharacterList.insert(make_pair(initNameList[idx], true));
+	}
 }
 
 void GameManager::InitStageSelectedList()
 {
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < ALL_STAGE_NUM; i++)
 	{
 		stageSelectedList.insert(make_pair(i, -1));
 	}

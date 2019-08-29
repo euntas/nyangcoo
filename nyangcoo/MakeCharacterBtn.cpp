@@ -146,13 +146,11 @@ void MakeCharacterBtn::SendLButtonDown()
 	if (gs->gold >= cost)
 	{
 		gs->gold -= cost;
-		//SceneManager::GetInstance().GetCurScene()->infoObj.emplace_back(MakeCharacter());
 
 		Character* c = MakeCharacter();
 		SceneManager::GetInstance().GetCurScene()->addToInfoObj(c);
 		GameManager::GetInstance().curCharacterList.emplace_back(c);
 
-		// TODO. 지워야함 실험용 이펙트
 		Effect* ef = new Effect();
 		ef->EffectXmlFileName = "Asset\\effect\\effect_fox_hit.xml";
 		XmlManager::GetInstance().ParseEffectData(*ef);
