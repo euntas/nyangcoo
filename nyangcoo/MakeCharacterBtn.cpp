@@ -154,6 +154,7 @@ void MakeCharacterBtn::SendLButtonDown()
 		Effect* ef = new Effect();
 		ef->EffectXmlFileName = "Asset\\effect\\effect_fox_hit.xml";
 		XmlManager::GetInstance().ParseEffectData(*ef);
+		//Effect* ef = EffectManager::GetInstance().testEffect();
 		ef->setX(c->getX());
 		ef->setY(c->getY() - c->AniUnits[c->curState][0].Height / 2);
 		ef->Init(new EffectGraphicsComponent(ef));

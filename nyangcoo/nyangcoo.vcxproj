@@ -203,6 +203,7 @@
     <ClInclude Include="CriticalSec.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectGraphicsComponent.h" />
+    <ClInclude Include="EffectManager.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameManager.h" />
@@ -240,6 +241,7 @@
     <ClCompile Include="CriticalSec.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectGraphicsComponent.cpp" />
+    <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameScene.cpp" />
