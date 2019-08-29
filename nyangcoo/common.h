@@ -122,3 +122,4 @@ class GraphicsComponent;
 #define MAX_WAVE_NUM 4
 #define ALL_STAGE_NUM 4
 #define MAX_SELECT_COOKIE_NUM 5
+#define MAX_FIELD_CHARACTER_NUM 8

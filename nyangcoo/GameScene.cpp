@@ -28,7 +28,7 @@ void GameScene::Init()
 	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_Background, bg));
 
 	// 캐릭터 생성용 슬롯 버튼 만들기
-	std::string charNameList[8];
+	std::string charNameList[MAX_FIELD_CHARACTER_NUM];
 
 	for (int i = 0; i < MAX_SELECT_COOKIE_NUM; i++)
 	{
@@ -39,10 +39,10 @@ void GameScene::Init()
 	charNameList[6] = "plum";
 	charNameList[7] = "moonrabit";
 
-	MakeCharacterBtn* mcb[8];
-	UpgradeCharacterBtn* ucb[8];
+	MakeCharacterBtn* mcb[MAX_FIELD_CHARACTER_NUM];
+	UpgradeCharacterBtn* ucb[MAX_FIELD_CHARACTER_NUM];
 
-	for (int n = 0; n < 8; n++)
+	for (int n = 0; n < MAX_FIELD_CHARACTER_NUM; n++)
 	{
 		mcb[n] = new MakeCharacterBtn(charNameList[n]);
 		if (n > 0)
