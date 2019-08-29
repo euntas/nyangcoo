@@ -71,53 +71,37 @@ void Scene::Render(Gdiplus::Graphics* pGraphics)
 {
 	if (pGraphics == nullptr) return;
 
-	for (auto& it : infoStaticObj)
+	for (int layerNum = 0; layerNum < eLayer_Cnt; layerNum++)
 	{
-		auto obj = it.second;
-
-		if (obj == nullptr) continue;
-
-		if ((this->name == "Scene_LoadGame" || this->name == "Scene_SaveGame" || this->name == "Scene_Script") && obj->getObjtype() == eObjectType_PopUp)
+		multimap<int, StaticObject*>::iterator iter;
+		for (iter = infoStaticObj.lower_bound(layerNum); iter != infoStaticObj.upper_bound(layerNum); iter++)
 		{
-			PopUp* popUp = reinterpret_cast<PopUp*>(obj);
-			if (popUp->name == ePopup_close)
-			{
-			}
-			else
-			{
-				obj->Render(pGraphics);
-			}
-		}
-		else
-		{
+			auto obj = iter->second;
+
+			if (obj == nullptr) continue;
+
 			obj->Render(pGraphics);
 		}
-	}
 
-	for (auto& it : infoObj)
-	{
-		auto obj = it.second;
-
-		if (obj == nullptr) continue;
-
-		if (obj->getObjtype() == eObjectType_Player || obj->getObjtype() == eObjectType_Character || obj->getObjtype() == eObjectType_Enemy)
+		multimap<int, Object*>::iterator iterForObj;
+		for (iterForObj = infoObj.lower_bound(layerNum); iterForObj != infoObj.upper_bound(layerNum); iterForObj++)
 		{
-			Character* character = reinterpret_cast<Character*>(obj);
-			character->Render(pGraphics);
-		}
-		else
-		{
+			auto obj = iterForObj->second;
+
+			if (obj == nullptr) continue;
+
 			obj->Render(pGraphics);
 		}
-	}
 
-	for (auto& it : infoUIObj)
-	{
-		auto obj = it.second;
 
-		if (obj == nullptr) continue;
+		for (iter = infoUIObj.lower_bound(layerNum); iter != infoUIObj.upper_bound(layerNum); iter++)
+		{
+			auto obj = iter->second;
 
-		obj->Render(pGraphics);
+			if (obj == nullptr) continue;
+
+			obj->Render(pGraphics);
+		}
 	}
 }
 
