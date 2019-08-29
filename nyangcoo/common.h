@@ -84,6 +84,22 @@ enum ECharacter {
 };
 
 enum EEvent {
+	eEvent_GameScene,
+	eEvent_LoadGameScene,
+	eEvent_StartScene,
+	eEvent_ChapterSelectScene,
+	eEvent_CookieSelectScene,
+	eEvent_ScriptScene,
+	eEvent_Select0,
+	eEvent_Select1,
+	eEvent_Select2,
+	eEvent_Load,
+	eEvent_Save,
+	eEvent_Delete,
+	eEvent_Help,
+	eEvente_UpgradePlayer,
+	eEvente_SuffleCookies,
+	eEvent_Exit,
 	eEvent_Cnt
 };
 
