@@ -25,7 +25,7 @@ void GameScene::Init()
 
 	// 배경 그림 깔기
 	bg = GameManager::GetInstance().curStage->bg;
-	infoStaticObj.emplace_back(bg);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_Background, bg));
 
 	// 캐릭터 생성용 슬롯 버튼 만들기
 	std::string charNameList[8];
@@ -47,23 +47,26 @@ void GameScene::Init()
 		mcb[n] = new MakeCharacterBtn(charNameList[n]);
 		if (n > 0)
 			mcb[n]->setX(mcb[n-1]->getX() + 100);
-		infoStaticObj.emplace_back(mcb[n]);
+		infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, mcb[n]));
 
 		ucb[n] = new UpgradeCharacterBtn(mcb[n]);
 		if (n > 0)
 			ucb[n]->setX(ucb[n - 1]->getX() + 100);
-		infoStaticObj.emplace_back(ucb[n]);
+		infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, ucb[n]));
 	}
 	
 	// 플레이어 생성
 	CommandPlayer = GameManager::GetInstance().CommandPlayer;
-	infoObj.emplace_back(GameManager::GetInstance().CommandPlayer);
+	infoObj.insert(pair<int, Object*>(eLayer_Character, GameManager::GetInstance().CommandPlayer));
 
 	// 적 생성
 	for (auto& it : GameManager::GetInstance().curEnemyList)
 	{
-		infoObj.emplace_back(it);
+		infoObj.insert(pair<int, Object*>(eLayer_Character, it));
 	}
+
+	Btn* HelpBtn = new Btn(eScene_Help, TEXT("help_btn.png"), Rect(0, 0, 65, 65), Rect(0, 0, 65, 65), 1350, 20, selectedStageId);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, HelpBtn));
 
 	// TODO. 나중에 수정필요. 팝업 부분
 	PopUp* popUp = new PopUp(ePopup_close);
@@ -71,11 +74,7 @@ void GameScene::Init()
 	popUp->setImgRC(Rect(0, 0, 271, 279));
 	popUp->setViewRC(popUp->getImgRC());
 
-	infoStaticObj.emplace_back(popUp);
-
-	Btn* HelpBtn = new Btn(eScene_Help, TEXT("help_btn.png"), Rect(0, 0, 65, 65), Rect(0, 0, 65, 65), 1350, 20, selectedStageId);
-	infoStaticObj.emplace_back(HelpBtn);
-
+	infoUIObj.insert(pair<int, StaticObject*>(eLayer_Popup, popUp));
 
 	// 골드 바
 	InitGoldBar();
@@ -84,24 +83,24 @@ void GameScene::Init()
 	PlayerSkillBtn* ps_heal = new PlayerSkillBtn("heal");
 	ps_heal->btnImg->setX(910);
 	ps_heal->btnImg->setY(525);
-	infoStaticObj.emplace_back(ps_heal);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, ps_heal));
 
 	PlayerSkillBtn* ps_blizzard = new PlayerSkillBtn("blizzard");
 	ps_blizzard->btnImg->setX(ps_heal->btnImg->getX() + 150);
 	ps_blizzard->btnImg->setY(ps_heal->btnImg->getY());
-	infoStaticObj.emplace_back(ps_blizzard);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, ps_blizzard));
 
 	PlayerSkillBtn* ps_razer = new PlayerSkillBtn("razer");
 	ps_razer->btnImg->setX(ps_blizzard->btnImg->getX() + 150);
 	ps_razer->btnImg->setY(ps_heal->btnImg->getY());
-	infoStaticObj.emplace_back(ps_razer);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, ps_razer));
 
 	// 플레이어 업그레이드 버튼 (골드 획득속도 증가)
 	Btn* UpgradeBtn = new Btn(ePlayerUpgradeBtn, TEXT("slot\\up_slot_100.png"), Rect(0, 0, 200, 100), Rect(0, 0, 200, 100), GameManager::GetInstance().CommandPlayer->getX() - 75, GameManager::GetInstance().CommandPlayer->getY() - GameManager::GetInstance().CommandPlayer->AniUnits[0][0].Height - 100, selectedStageId);
-	infoStaticObj.emplace_back(UpgradeBtn);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, UpgradeBtn));
 
 	ResultPopUp = new PopUp(ePopup_result);
-	infoUIObj.emplace_back(ResultPopUp);
+	infoUIObj.insert(pair<int, StaticObject*>(eLayer_Popup, ResultPopUp));
 
 	// 물음표 눌렀을때 나타나는 그림
 	StaticObject* questionImg = new StaticObject();
@@ -112,7 +111,7 @@ void GameScene::Init()
 	questionImg->setY(50);
 	questionImg->setVisible(false);
 
-	infoUIObj.emplace_back(questionImg);
+	infoUIObj.insert(pair<int, StaticObject*>(eLayer_UI, questionImg));
 
 
 	GameManager::GetInstance().IsGrayScale = false;
@@ -127,7 +126,7 @@ void GameScene::InitGoldBar()
 	goldBg->setX(10);
 	goldBg->setY(10);
 
-	infoStaticObj.emplace_back(goldBg);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_Background, goldBg));
 
 	for (int i = 0; i < 10; i++)
 	{
@@ -146,7 +145,7 @@ void GameScene::InitGoldBar()
 			goldPart[i]->setY(goldPart[i - 1]->getY());
 		}
 
-		infoStaticObj.emplace_back(goldPart[i]);
+		infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, goldPart[i]));
 	}
 }
 
@@ -200,29 +199,6 @@ void GameScene::Update(float Delta)
 			goldPart[i]->setAssetFileName(TEXT("goldbar\\goldbar_unit_brown.png"));
 	}
 
-	// 죽은애들 처리
-/*
-	for (Object* ch : infoObj)
-	{
-		if (ch->Objtype == eObjectType_Effect)
-		{
-			Effect* e = reinterpret_cast<Effect*>(ch);
-			if (e->Enable == false && e->Visible == false)
-			{
-				e = nullptr;
-			}
-		}
-		else if (ch->Objtype == eObjectType_Character)
-		{
-			Character* c = reinterpret_cast<Character*>(ch);
-			if (c->Enable == false && c->Visible == false)
-			{
-				ch = nullptr;
-			}
-		}
-		
-	}*/
-
 	// wave관련 코드
 	if (GameManager::GetInstance().IsAllEnemyDead())
 	{
@@ -230,7 +206,7 @@ void GameScene::Update(float Delta)
 		{
 			for (auto& it : GameManager::GetInstance().curEnemyList)
 			{
-				infoObj.emplace_back(it);
+				infoObj.insert(pair<int, Object*>(eLayer_Character, it));
 			}
 		}
 	}
@@ -239,6 +215,7 @@ void GameScene::Update(float Delta)
 
 void GameScene::Render(Graphics* pGraphics)
 {
+	
 	Scene::Render(pGraphics);
 
 	printTitle(pGraphics);
@@ -253,9 +230,13 @@ void GameScene::Render(Graphics* pGraphics)
 
 	for (auto& it : infoUIObj)
 	{
-		if (it->getObjtype() == eObjectType_None && it->getAssetFileName() == L"help_popup.png")
+		auto obj = it.second;
+
+		if (obj == nullptr) continue;
+
+		if (obj->getObjtype() == eObjectType_None && obj->getAssetFileName() == L"help_popup.png")
 		{
-			if (it->getVisible() == false)
+			if (obj->getVisible() == false)
 			{
 				printGold(gold, pGraphics);
 				printHP(CommandPlayer, pGraphics);

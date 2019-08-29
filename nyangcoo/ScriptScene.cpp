@@ -15,7 +15,7 @@ void ScriptScene::Init()
 	bg->setAssetFileName(TEXT("script_scene_bg.png"));
 	bg->setImgRC(Rect(0, 0, 1420, 672));
 	bg->setViewRC(bg->getImgRC());
-	infoStaticObj.emplace_back(bg);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_Background, bg));
 
 	ChapterName = new StaticObject();
 	ChapterName->setObjtype(eObjectType_None);
@@ -24,7 +24,7 @@ void ScriptScene::Init()
 	ChapterName->setViewRC(ChapterName->getImgRC());
 	ChapterName->setX(470);
 	ChapterName->setY(8);
-	infoStaticObj.emplace_back(ChapterName);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, ChapterName));
 
 	ScriptPlayer = new StaticObject();
 	ScriptPlayer->setObjtype(eObjectType_None);
@@ -33,21 +33,21 @@ void ScriptScene::Init()
 	ScriptPlayer->setViewRC(ScriptPlayer->getImgRC());
 	ScriptPlayer->setX(20);
 	ScriptPlayer->setY(389);
-	infoStaticObj.emplace_back(ScriptPlayer);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, ScriptPlayer));
 
 	Btn* ChoiceBtn1 = new Btn(eScene_ChapterSelect, TEXT("ChoiceBtn.png"), Rect(0, 0, 935, 50), Rect(0, 0, 935, 50), 415, 522, 0);
 	ChoiceBtn1->setSelectOption(0);
-	infoStaticObj.emplace_back(ChoiceBtn1);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, ChoiceBtn1));
 	
 	Btn* ChoiceBtn2 = new Btn(eScene_ChapterSelect, TEXT("ChoiceBtn.png"), Rect(0, 0, 935, 50), Rect(0, 0, 935, 50), 415, 602, 0);
 	ChoiceBtn1->setSelectOption(1);
-	infoStaticObj.emplace_back(ChoiceBtn2);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, ChoiceBtn2));
 
 	PopUp* popUp = new PopUp(ePopup_close);
 	popUp->setImgRC(Rect(0, 0, 271, 279));
 	popUp->setViewRC(popUp->getImgRC());
 	popUp->setVisible(false);
-	infoStaticObj.emplace_back(popUp);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_Popup, popUp));
 }
 
 void ScriptScene::Update(float Delta)
@@ -63,14 +63,16 @@ void ScriptScene::Render(Graphics* pGraphics)
 
 	for (auto& it : infoStaticObj)
 	{
-		if (it == nullptr) continue;
+		auto obj = it.second;
 
-		if (it->getObjtype() == eObjectType_PopUp)
+		if (obj == nullptr) continue;
+
+		if (obj->getObjtype() == eObjectType_PopUp)
 		{
-			PopUp* p = reinterpret_cast<PopUp*>(it);
-			if (p->name == ePopup_close)
+			PopUp* popup = reinterpret_cast<PopUp*>(obj);
+			if (popup->name == ePopup_close)
 			{
-				p->Render(pGraphics);
+				popup->Render(pGraphics);
 			}
 
 		}

@@ -83,6 +83,15 @@ enum ECharacter {
 	eCharacter_Cnt
 };
 
+enum ELayer {
+	eLayer_Background,
+	eLayer_Character,
+	eLayer_Effect,
+	eLayer_UI,
+	eLayer_Popup,
+	eLayer_Cnt
+};
+
 enum EEvent {
 	eEvent_GameScene,
 	eEvent_LoadGameScene,

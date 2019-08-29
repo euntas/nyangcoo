@@ -5,14 +5,16 @@ void Scene::Init()
 {
 	for (auto& it : infoObj)
 	{
-		if (it == nullptr) continue;
+		auto obj = it.second;
 
-		it->Init();
+		if (obj == nullptr) continue;
+
+		obj->Init();
 
 		// 이펙트일 경우 애니메이션이 실행되도록 초기화
-		if (it->getObjtype() == eObjectType_Effect)
+		if (obj->getObjtype() == eObjectType_Effect)
 		{
-			it->setEnable(true);
+			obj->setEnable(true);
 		}
 	}
 }
@@ -21,94 +23,101 @@ void Scene::Update(float Delta)
 {
 	for (auto& it : infoObj)
 	{
-		if (it == nullptr) continue;
+		auto obj = it.second;
+
+		if (obj == nullptr) continue;
 
 		// 플레이어일 경우
-		if (it->getObjtype() == eObjectType_Player || it->getObjtype() == eObjectType_Character || it->getObjtype() == eObjectType_Enemy)
+		if (obj->getObjtype() == eObjectType_Player || obj->getObjtype() == eObjectType_Character || obj->getObjtype() == eObjectType_Enemy)
 		{
-			Character* p = reinterpret_cast<Character*>(it);
-			p->Update(Delta);
+			Character* player = reinterpret_cast<Character*>(obj);
+			player->Update(Delta);
 		}
 		else
 		{
-			it->Update(Delta);
+			obj->Update(Delta);
 		}
 	}
 
 	for (auto& it : infoStaticObj)
 	{
-		if (it == nullptr) continue;
+		auto obj = it.second;
 
-		if (it->getObjtype() == eObjectType_PlayerSkillBtn)
+		if (obj == nullptr) continue;
+
+		if (obj->getObjtype() == eObjectType_PlayerSkillBtn)
 		{
-			PlayerSkillBtn* psb = reinterpret_cast<PlayerSkillBtn*>(it);
-			psb->Update(Delta);
+			PlayerSkillBtn* playerSkillBtn = reinterpret_cast<PlayerSkillBtn*>(obj);
+			playerSkillBtn->Update(Delta);
 		}
-		else if (it->getObjtype() == eObjectType_Btn)
+		else if (obj->getObjtype() == eObjectType_Btn)
 		{
-			Btn* b = reinterpret_cast<Btn*>(it);
+			Btn* btn = reinterpret_cast<Btn*>(obj);
 
-			if (b->getId() == ePlayerUpgradeBtn)
+			if (btn->getId() == ePlayerUpgradeBtn)
 			{
-				GameScene* gs = reinterpret_cast<GameScene*>(SceneManager::GetInstance().GetCurScene());
-
-				it->setX(GameManager::GetInstance().CommandPlayer->getX() - 75);
-				it->setY(GameManager::GetInstance().CommandPlayer->getY() - GameManager::GetInstance().CommandPlayer->AniUnits[GameManager::GetInstance().CommandPlayer->curState][0].Height - 100);
+				obj->setX(GameManager::GetInstance().CommandPlayer->getX() - 75);
+				obj->setY(GameManager::GetInstance().CommandPlayer->getY() - GameManager::GetInstance().CommandPlayer->AniUnits[GameManager::GetInstance().CommandPlayer->curState][0].Height - 100);
 			}
 		}
 		else
 		{
-			it->Update(Delta);
+			obj->Update(Delta);
 		}
 	}
 }
 
 void Scene::Render(Gdiplus::Graphics* pGraphics)
 {
-	if (this == nullptr) return;
 	if (pGraphics == nullptr) return;
 
 	for (auto& it : infoStaticObj)
 	{
-		if (it == nullptr) continue;
+		auto obj = it.second;
 
-		if ((this->name == "Scene_LoadGame" || this->name == "Scene_SaveGame" || this->name == "Scene_Script") && it->getObjtype() == eObjectType_PopUp)
+		if (obj == nullptr) continue;
+
+		if ((this->name == "Scene_LoadGame" || this->name == "Scene_SaveGame" || this->name == "Scene_Script") && obj->getObjtype() == eObjectType_PopUp)
 		{
-			PopUp* p = reinterpret_cast<PopUp*>(it);
-			if (p->name == ePopup_close)
+			PopUp* popUp = reinterpret_cast<PopUp*>(obj);
+			if (popUp->name == ePopup_close)
 			{
 			}
 			else
 			{
-				it->Render(pGraphics);
+				obj->Render(pGraphics);
 			}
 		}
 		else
 		{
-			it->Render(pGraphics);
+			obj->Render(pGraphics);
 		}
 	}
 
 	for (auto& it : infoObj)
 	{
-		if (it == nullptr) continue;
+		auto obj = it.second;
 
-		if (it->getObjtype() == eObjectType_Player || it->getObjtype() == eObjectType_Character || it->getObjtype() == eObjectType_Enemy)
+		if (obj == nullptr) continue;
+
+		if (obj->getObjtype() == eObjectType_Player || obj->getObjtype() == eObjectType_Character || obj->getObjtype() == eObjectType_Enemy)
 		{
-			Character* p = reinterpret_cast<Character*>(it);
-			p->Render(pGraphics);
+			Character* character = reinterpret_cast<Character*>(obj);
+			character->Render(pGraphics);
 		}
 		else
 		{
-			it->Render(pGraphics);
+			obj->Render(pGraphics);
 		}
 	}
 
 	for (auto& it : infoUIObj)
 	{
-		if (it == nullptr) continue;
+		auto obj = it.second;
 
-		it->Render(pGraphics);
+		if (obj == nullptr) continue;
+
+		obj->Render(pGraphics);
 	}
 }
 
@@ -169,37 +178,44 @@ void Scene::setName(CString _name)
 	name = _name;
 }
 
-vector<Object*> Scene::getInfoObj()
+multimap<int, Object*> Scene::getInfoObj()
 {
 	return infoObj;
 }
 
-void Scene::setInfoObj(vector<Object*> _infoObj)
+void Scene::setInfoObj(multimap<int, Object*> _infoObj)
 {
 	infoObj = _infoObj;
 }
 
 void Scene::addToInfoObj(Object* _object)
 {
-	infoObj.emplace_back(_object);
+	int zOrder = eLayer_Character;
+	
+	if (_object->getObjtype() == eObjectType_Effect)
+	{
+		zOrder = eLayer_Effect;
+	}
+
+	infoObj.insert(pair<int, Object*>(zOrder, _object));
 }
 
-vector<StaticObject*> Scene::getInfoStaticObj()
+multimap<int, StaticObject*> Scene::getInfoStaticObj()
 {
 	return infoStaticObj;
 }
 
-void Scene::setInfoStaticObj(vector<StaticObject*> _infoStaticObj)
+void Scene::setInfoStaticObj(multimap<int, StaticObject*> _infoStaticObj)
 {
 	infoStaticObj = _infoStaticObj;
 }
 
-vector<StaticObject*> Scene::getInfoUIObj()
+multimap<int, StaticObject*> Scene::getInfoUIObj()
 {
 	return infoUIObj;
 }
 
-void Scene::setInfoUIObj(vector<StaticObject*> _infoUIObj)
+void Scene::setInfoUIObj(multimap<int, StaticObject*> _infoUIObj)
 {
 	infoUIObj = _infoUIObj;
 }

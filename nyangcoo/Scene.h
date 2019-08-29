@@ -19,22 +19,22 @@ public:
 	CString getName();
 	void setName(CString _name);
 
-	vector<Object*> getInfoObj();
-	void setInfoObj(vector<Object*> _infoObj);
+	multimap<int, Object*> getInfoObj();
+	void setInfoObj(multimap<int, Object*> _infoObj);
 	void addToInfoObj(Object* _object);
 
-	vector<StaticObject*> getInfoStaticObj();
-	void setInfoStaticObj(vector<StaticObject*> _infoStaticObj);
+	multimap<int, StaticObject*> getInfoStaticObj();
+	void setInfoStaticObj(multimap<int, StaticObject*> _infoStaticObj);
 
-	vector<StaticObject*> getInfoUIObj();
-	void setInfoUIObj(vector<StaticObject*> _infoUIObj);
+	multimap<int, StaticObject*> getInfoUIObj();
+	void setInfoUIObj(multimap<int, StaticObject*> _infoUIObj);
 
 protected:
 	bool bLoop;
 	CString name;
-	vector<Object*> infoObj;				// 플레이어 저장용
-	vector<StaticObject*> infoStaticObj;	// 정적 그림 저장용 (배경그림 등)
-	vector<StaticObject*> infoUIObj;		// UI용 그림 저장용 (팝업창 등)
+	multimap<int, Object*> infoObj;				// 플레이어 저장용
+	multimap<int, StaticObject*> infoStaticObj;	// 정적 그림 저장용 (배경그림 등)
+	multimap<int, StaticObject*> infoUIObj;		// UI용 그림 저장용 (팝업창 등)
 
 private:
 

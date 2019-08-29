@@ -75,13 +75,15 @@ void Character::Update(float Delta)
 	colEnemy.clear();
 	for (auto& it : SceneManager::GetInstance().GetCurScene()->getInfoObj())
 	{
-		if (it == nullptr) continue;
+		auto obj = it.second;
 
-		if (((this->objtype == eObjectType_Character || this->objtype == eObjectType_Player) && it->getObjtype() == eObjectType_Enemy && it->getEnable())
-			|| (this->objtype == eObjectType_Enemy && (it->getObjtype() == eObjectType_Character || it->getObjtype() == eObjectType_Player) && it->getEnable()))
+		if (obj == nullptr) continue;
+
+		if (((this->objtype == eObjectType_Character || this->objtype == eObjectType_Player) && obj->getObjtype() == eObjectType_Enemy && obj->getEnable())
+			|| (this->objtype == eObjectType_Enemy && (obj->getObjtype() == eObjectType_Character || obj->getObjtype() == eObjectType_Player) && obj->getEnable()))
 		{
-			Character* e = reinterpret_cast<Character*>(it);
-			float dist = pow(x + atkDist - it->getX() - 2, 2) + pow(y - it->getY() - 2, 2);
+			Character* e = reinterpret_cast<Character*>(obj);
+			float dist = pow(x + atkDist - obj->getX() - 2, 2) + pow(y - obj->getY() - 2, 2);
 			float rad = pow((frameWidth[eState_Run] / 2 + atkDist + e->frameWidth[eState_Run] / 2), 2);
 
 			// 적과 충돌

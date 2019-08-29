@@ -42,16 +42,23 @@ void Btn::SendLButtonDown()
 	switch (id)
 	{
 	case eScene_Game: 
+	{
 		ExecuteGameScene();
 		break;
+	}
+
 	case eScene_LoadGame:
+	{
 		ExecuteLoadGameScene();
 		break;
-	
+	}
+
 	case eScene_Start:
+	{
 		ExecuteStartScene();
 		break;
-	
+	}
+
 	case eScene_ChapterSelect:
 	{
 		ExecuteChapterSelectScene();
@@ -59,13 +66,17 @@ void Btn::SendLButtonDown()
 	}
 	
 	case eScene_CookieSelect:
+	{
 		ExecuteCookieSelectScene();
 		break;
-	
+	}
+
 	case eScene_Script:
+	{
 		ExecuteScriptScene();
 		break;
-	
+	}
+
 	case eSaveLoadBtn_Select0:
 	case eSaveLoadBtn_Select1:
 	case eSaveLoadBtn_Select2:
@@ -189,9 +200,13 @@ void Btn::ExecuteChapterSelectScene()
 		StartScene* ss = reinterpret_cast<StartScene*>(SceneManager::GetInstance().GetCurScene());
 		for (auto& it : ss->getInfoStaticObj())
 		{
-			if (it->getObjtype() == eObjectType_Btn && it->getAssetFileName() == TEXT("title_btn_00.png"))
+			auto obj = it.second;
+
+			if (obj == nullptr) continue;
+
+			if (obj->getObjtype() == eObjectType_Btn && obj->getAssetFileName() == TEXT("title_btn_00.png"))
 			{
-				Btn* sb = reinterpret_cast<Btn*>(it);
+				Btn* sb = reinterpret_cast<Btn*>(obj);
 				sb->setIsClicked(!sb->getIsClicked());
 
 				if (sb->getIsClicked())
@@ -312,9 +327,13 @@ void Btn::ShowHelp()
 	{
 		for (auto& it : SceneManager::GetInstance().GetCurScene()->getInfoUIObj())
 		{
-			if (it->getObjtype() == eObjectType_None && it->getAssetFileName() == L"help_popup.png")
+			auto obj = it.second;
+
+			if (obj == nullptr) continue;
+
+			if (obj->getObjtype() == eObjectType_None && obj->getAssetFileName() == L"help_popup.png")
 			{
-				it->setVisible(!it->getVisible());
+				obj->setVisible(!obj->getVisible());
 			}
 		}
 	}

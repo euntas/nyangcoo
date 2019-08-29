@@ -18,7 +18,7 @@ void LoadGameScene::Init()
 	bg->setImgRC(Rect(0, 0, 1420, 672));
 	bg->setViewRC(bg->getImgRC());
 
-	infoStaticObj.emplace_back(bg);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_Background, bg));
 
 	// 슬롯 정보 로드
 	XmlManager::GetInstance().ParseSavedData();
@@ -58,17 +58,17 @@ void LoadGameScene::Init()
 		SlotBtn[idx]->setX(260);
 		SlotBtn[idx]->setY(48 + idx*140);
 
-		infoStaticObj.emplace_back(SlotBtn[idx]);
+		infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, SlotBtn[idx]));
 	}
 
 	Btn* LoadGameBtn = new Btn(eSaveLoadBtn_Load, TEXT("saveload\\LoadGame_btn.png"), Rect(0, 0, 200, 163), Rect(0, 0, 200, 163), 1190, 484, 0);
-	infoStaticObj.emplace_back(LoadGameBtn);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, LoadGameBtn));
 
 	Btn* BackTitleBtn = new Btn(eScene_Start, TEXT("saveload\\start_scene_btn.png"), Rect(0, 0, 200, 159), Rect(0, 0, 200, 159), 900, 484, 0);
-	infoStaticObj.emplace_back(BackTitleBtn);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, BackTitleBtn));
 
 	Btn* DeleteGameBtn = new Btn(eScene_DeleteGame, TEXT("saveload\\DeleteGame_btn.png"), Rect(0, 0, 200, 163), Rect(0, 0, 200, 163), 30, 479, 0);
-	infoStaticObj.emplace_back(DeleteGameBtn);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, DeleteGameBtn));
 
 	// 버튼 클릭시 나타날 그림 생성시에는 비활성화
 	selectedImg = new StaticObject();
@@ -79,7 +79,7 @@ void LoadGameScene::Init()
 	selectedImg->setY(64);
 	selectedImg->setVisible(false);
 
-	infoStaticObj.emplace_back(selectedImg);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, selectedImg));
 
 	GameManager::GetInstance().seletedSlotNum = -1;
 
@@ -108,7 +108,7 @@ void LoadGameScene::Init()
 	popUp->setImgRC(Rect(0, 0, 271, 279));
 	popUp->setViewRC(popUp->getImgRC());
 	popUp->setVisible(false);
-	infoStaticObj.emplace_back(popUp);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_Popup, popUp));
 }
 
 void LoadGameScene::Update(float Delta)
@@ -145,14 +145,16 @@ void LoadGameScene::Render(Graphics* pGraphics)
 
 	for (auto& it : infoStaticObj)
 	{
-		if (it == nullptr) continue;
+		auto obj = it.second;
 
-		if (it->getObjtype() == eObjectType_PopUp)
+		if (obj == nullptr) continue;
+
+		if (obj->getObjtype() == eObjectType_PopUp)
 		{
-			PopUp* p = reinterpret_cast<PopUp*>(it);
-			if (p->name == ePopup_close)
+			PopUp* popup = reinterpret_cast<PopUp*>(obj);
+			if (popup->name == ePopup_close)
 			{
-				p->Render(pGraphics);
+				popup->Render(pGraphics);
 			}
 			
 		}
