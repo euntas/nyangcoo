@@ -31,6 +31,22 @@ public:
 	int getSelectOption();
 	void setSelectOption(int _selectOption);
 
+	// 버튼 기능별 분류
+	void ExecuteGameScene();
+	void ExecuteLoadGameScene();
+	void ExecuteStartScene();
+	void ExecuteChapterSelectScene();
+	void ExecuteCookieSelectScene();
+	void ExecuteScriptScene();
+	void SelectMemorySlot();
+	void ExecuteLoad();
+	void ExecuteSave();
+	void ExecuteDelete();
+	void ShowHelp();
+	void UpgradePlayer();
+	void SuffleCookies();
+	void ExecuteExit();
+
 private:
 	int id;
 	int stageId;
