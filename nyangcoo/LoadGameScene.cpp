@@ -51,7 +51,8 @@ void LoadGameScene::Init()
 			SlotBtn[idx]->setEnable(false);
 		}
 		
-		SlotBtn[idx]->getAssetFileName().assign(st.begin(), st.end());
+		std::wstring tempStr;
+		SlotBtn[idx]->setAssetFileName(tempStr.assign(st.begin(), st.end()));
 		SlotBtn[idx]->setImgRC(Rect(0, 0, 900, 118));
 		SlotBtn[idx]->setViewRC(SlotBtn[idx]->getImgRC());
 		SlotBtn[idx]->setX(260);
