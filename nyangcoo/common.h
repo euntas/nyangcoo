@@ -83,6 +83,10 @@ enum ECharacter {
 	eCharacter_Cnt
 };
 
+enum EEvent {
+	eEvent_Cnt
+};
+
 class GameStage;
 class InputComponent;
 class Object;

@@ -6,36 +6,27 @@ EventHandler::EventHandler()
 
 }
 
+EventHandler::~EventHandler()
+{
+
+}
+
 EventHandler& EventHandler::GetInstance()
 {
 	static EventHandler eh;
 	return eh;
 }
 
-void EventHandler::OnLButtonDown(UINT nFlags, CPoint point, StaticObject* obj)
+void EventHandler::AddEvent(std::function<void(void)> func, EEvent _event)
 {
-	if (obj == nullptr) return;
-
-	// Btn 오브젝트 클릭
-	if (obj->getObjtype() == eObjectType_Btn && obj->getViewRC().Contains(point.x, point.y))
-	{
-		Btn* btn = reinterpret_cast<Btn*>(obj);
-		OnBtnDown(btn);
-	}
+	dicEvent[_event].emplace_back(func);
 }
 
-void EventHandler::OnBtnDown(Btn* btn)
+void EventHandler::OnEvent(EEvent _event)
 {
-	if (btn == nullptr) return;
-
-	if (btn->getEnable() == false) return;
-
-	switch (btn->getId())
+	for (auto& it : dicEvent[_event])
 	{
-	default:
-		break;
+		it();
 	}
-
-
 }
 
