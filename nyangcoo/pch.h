@@ -61,7 +61,9 @@ using namespace tinyxml2;
 using namespace Gdiplus;
 #pragma comment (lib, "gdiplus.lib")
 
+#ifdef _DEBUG
 #pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")
+#endif
 
 #define FRAME_DEBUG // 프레임 확인용 디파인 . 출력 필요없으면 주석처리하기.
 

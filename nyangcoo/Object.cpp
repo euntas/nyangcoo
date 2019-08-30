@@ -51,7 +51,7 @@ void Object::Render(Gdiplus::Graphics* pGraphics)
 
 void Object::Release() 
 {
-
+	
 }
 
 std::wstring Object::getAssetFileName()

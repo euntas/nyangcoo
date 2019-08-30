@@ -74,7 +74,7 @@ void Scene::Render(Gdiplus::Graphics* pGraphics)
 	for (int layerNum = 0; layerNum < eLayer_Cnt; layerNum++)
 	{
 		multimap<int, StaticObject*>::iterator iter;
-		for (iter = infoStaticObj.lower_bound(layerNum); iter != infoStaticObj.upper_bound(layerNum); iter++)
+		for (iter = infoStaticObj.lower_bound(layerNum); iter != infoStaticObj.upper_bound(layerNum); ++iter)
 		{
 			auto obj = iter->second;
 
@@ -84,7 +84,7 @@ void Scene::Render(Gdiplus::Graphics* pGraphics)
 		}
 
 		multimap<int, Object*>::iterator iterForObj;
-		for (iterForObj = infoObj.lower_bound(layerNum); iterForObj != infoObj.upper_bound(layerNum); iterForObj++)
+		for (iterForObj = infoObj.lower_bound(layerNum); iterForObj != infoObj.upper_bound(layerNum); ++iterForObj)
 		{
 			auto obj = iterForObj->second;
 
@@ -94,7 +94,7 @@ void Scene::Render(Gdiplus::Graphics* pGraphics)
 		}
 
 
-		for (iter = infoUIObj.lower_bound(layerNum); iter != infoUIObj.upper_bound(layerNum); iter++)
+		for (iter = infoUIObj.lower_bound(layerNum); iter != infoUIObj.upper_bound(layerNum); ++iter)
 		{
 			auto obj = iter->second;
 
@@ -107,7 +107,19 @@ void Scene::Render(Gdiplus::Graphics* pGraphics)
 
 void Scene::Release()
 {
-
+	/*vector<Object*>::iterator iter;
+	for (iter = trashObjList.begin(); iter != trashObjList.end();)
+	{
+		if ((*iter)->getEnable() == false && (*iter)->getVisible() == false)
+		{
+			delete* iter;
+			iter = trashObjList.erase(iter);
+		}
+		else
+		{
+			iter++;
+		}
+	}*/
 }
 
 void Scene::ClearAll()

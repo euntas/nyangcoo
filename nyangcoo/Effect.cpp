@@ -34,7 +34,7 @@ void Effect::Render(Gdiplus::Graphics* pGraphics)
 
 void Effect::Release()
 {
-
+	
 }
 
 void Effect::setEffectPos(int x, int y)

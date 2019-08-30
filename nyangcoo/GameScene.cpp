@@ -150,7 +150,6 @@ void GameScene::InitGoldBar()
 
 void GameScene::Update(float Delta)
 {
-	infoObj;
 	// 게임이 종료되면 씬 전환
 	if (GameManager::GetInstance().IsGameEnd())
 	{
@@ -248,6 +247,24 @@ void GameScene::Render(Graphics* pGraphics)
 void GameScene::Release()
 {
 	Scene::Release();
+
+	// 죽은애들 처리
+	/*typedef std::multimap<int, Object*> Multimap;
+	for (Multimap::iterator iter = infoObj.begin(); iter != infoObj.end();)
+	{
+		auto obj = iter->second;
+
+		if (obj->getEnable() == false && obj->getVisible() == false)
+		{
+			trashObjList.emplace_back(obj);
+			iter = infoObj.erase(iter);
+		}
+		else
+		{
+			++iter;
+		}
+
+	}*/
 }
 
 void GameScene::printGold(int _gold, Graphics* pGraphics)

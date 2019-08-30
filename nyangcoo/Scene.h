@@ -36,6 +36,8 @@ protected:
 	multimap<int, StaticObject*> infoStaticObj;	// 정적 그림 저장용 (배경그림 등)
 	multimap<int, StaticObject*> infoUIObj;		// UI용 그림 저장용 (팝업창 등)
 
+	vector<Object*> trashObjList;			// release에서 비워줄 예정인 사용 끝난 Object 타입 저장소.
+	vector<StaticObject*> trashStaticObjList;// release에서 비워줄 예정인 사용 끝난 StaticObject 타입 저장소.
 private:
 
 };
