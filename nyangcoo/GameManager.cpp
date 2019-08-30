@@ -14,11 +14,12 @@ GameManager& GameManager::GetInstance()
 
 void GameManager::InitCharacterSelectedList()
 {
-	characterSelectedList[0] = "pistachio";
-	characterSelectedList[1] = "whitechoco";
-	characterSelectedList[2] = "muscle";
-	characterSelectedList[3] = "kiwi";
-	characterSelectedList[4] = "windarcher";
+	std::string defaultNameList[MAX_SELECT_COOKIE_NUM] = { "pistachio", "whitechoco", "muscle", "kiwi", "windarcher" };
+
+	for (int i = 0; i < MAX_SELECT_COOKIE_NUM; i++)
+	{
+		characterSelectedList[i] = defaultNameList[i];
+	}
 }
 
 void GameManager::Init(int stageID)
@@ -136,6 +137,8 @@ bool GameManager::IsAllEnemyDead()
 
 bool GameManager::IsGameEnd()
 {
+	if (CommandPlayer == nullptr) return false;
+
 	// 플레이어 상태 확인
 	if (CommandPlayer->hp <= 0)
 	{
