@@ -130,7 +130,7 @@ void XmlManager::ParseEffectData(Effect& effect)
 		float height = atof(SpriteNode->Attribute("h"));
 
 		effect.EffectId = effectId;
-		effect.AssetFileName = imagePath;
+		effect.setAssetFileName(imagePath);
 		effect.frameNum = frameNum;
 		effect.frameDelta = delta;
 		effect.spriteRowNum = rowNum;
@@ -143,7 +143,7 @@ void XmlManager::ParseEffectData(Effect& effect)
 void XmlManager::ParseStageData(GameStage& gameStage, int stageID)
 {
 	tinyxml2::XMLDocument* doc = new tinyxml2::XMLDocument();
-	doc->LoadFile(gameStage.stageXmlFileName.c_str());
+	doc->LoadFile(gameStage.getStageXmlFileName().c_str());
 
 	XMLElement* Root = doc->RootElement();
 	XMLElement* Node;
@@ -155,28 +155,30 @@ void XmlManager::ParseStageData(GameStage& gameStage, int stageID)
 		if (stageID != tempID)
 			continue;
 
-		gameStage.stageID = tempID;
+		gameStage.setStageID(tempID);
 
-		gameStage.maxGold = atoi(Node->Attribute("maxGold"));
-		gameStage.maxHP = atoi(Node->Attribute("maxHP"));
-		gameStage.waveNum = atoi(Node->Attribute("waveNum"));
+		gameStage.setMaxGold(atoi(Node->Attribute("maxGold")));
+		gameStage.setMaxHP(atoi(Node->Attribute("maxHP")));
+		gameStage.setWaveNum(atoi(Node->Attribute("waveNum")));
 
 		std::string imagePathTemp = Node->Attribute("imagePath");
 		std::wstring imagePath;
 		imagePath.assign(imagePathTemp.begin(), imagePathTemp.end());
-		gameStage.bg->AssetFileName = imagePath;
+		gameStage.bg->setAssetFileName(imagePath);
 
 		XMLElement* ImgRCNode = Node->FirstChildElement("ImgRC");
-		gameStage.bg->ImgRC.X = atoi(ImgRCNode->Attribute("x"));
-		gameStage.bg->ImgRC.Y = atoi(ImgRCNode->Attribute("y"));
-		gameStage.bg->ImgRC.Width = atoi(ImgRCNode->Attribute("width"));
-		gameStage.bg->ImgRC.Height = atoi(ImgRCNode->Attribute("height"));
+		int tempX = atoi(ImgRCNode->Attribute("x"));
+		int tempY = atoi(ImgRCNode->Attribute("y"));
+		int tempWidth = atoi(ImgRCNode->Attribute("width"));
+		int tempHeight = atoi(ImgRCNode->Attribute("height"));
+		gameStage.bg->setImgRC(Rect(tempX, tempY, tempWidth, tempHeight));
 
 		XMLElement* ViewRCNode = Node->FirstChildElement("ViewRC");
-		gameStage.bg->ViewRC.X = atoi(ViewRCNode->Attribute("x"));
-		gameStage.bg->ViewRC.Y = atoi(ViewRCNode->Attribute("y"));
-		gameStage.bg->ViewRC.Width = atoi(ViewRCNode->Attribute("width"));
-		gameStage.bg->ViewRC.Height = atoi(ViewRCNode->Attribute("height"));
+		tempX = atoi(ViewRCNode->Attribute("x"));
+		tempY = atoi(ViewRCNode->Attribute("y"));
+		tempWidth = atoi(ViewRCNode->Attribute("width"));
+		tempHeight = atoi(ViewRCNode->Attribute("height"));
+		gameStage.bg->setViewRC(Rect(tempX, tempY, tempWidth, tempHeight));
 
 		XMLElement* EnemyNode;
 		for (EnemyNode = (tinyxml2::XMLElement*)Node->FirstChildElement("enemyList"); EnemyNode != 0; EnemyNode = (tinyxml2::XMLElement*)EnemyNode->NextSiblingElement("enemyList"))
@@ -186,7 +188,7 @@ void XmlManager::ParseStageData(GameStage& gameStage, int stageID)
 			XMLElement* NameNode;
 			for (NameNode = (tinyxml2::XMLElement*)EnemyNode->FirstChildElement("name"); NameNode != 0; NameNode = (tinyxml2::XMLElement*)NameNode->NextSiblingElement("name"))
 			{
-				gameStage.enemyNameList[tempwavecnt].emplace_back(NameNode->GetText());
+				gameStage.getEnemyNameList()[tempwavecnt].emplace_back(NameNode->GetText());
 			}
 		}
 	}

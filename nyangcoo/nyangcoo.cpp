@@ -16,14 +16,12 @@
 
 
 // CnyangcooApp
-
 BEGIN_MESSAGE_MAP(CnyangcooApp, CWinApp)
 	ON_COMMAND(ID_APP_ABOUT, &CnyangcooApp::OnAppAbout)
 END_MESSAGE_MAP()
 
 
 // CnyangcooApp 생성
-
 CnyangcooApp::CnyangcooApp() noexcept
 {
 	// TODO: 아래 애플리케이션 ID 문자열을 고유 ID 문자열로 바꾸십시오(권장).
@@ -35,7 +33,6 @@ CnyangcooApp::CnyangcooApp() noexcept
 }
 
 // 유일한 CnyangcooApp 개체입니다.
-
 CnyangcooApp theApp;
 DWORD CnyangcooApp::PrevTick = 0;
 DWORD CnyangcooApp::StaticTick = 0;
@@ -64,7 +61,6 @@ BOOL CnyangcooApp::InitInstance()
 	// 적절한 내용으로 수정해야 합니다.
 	SetRegistryKey(_T("로컬 애플리케이션 마법사에서 생성된 애플리케이션"));
 
-
 	// 주 창을 만들기 위해 이 코드에서는 새 프레임 창 개체를
 	// 만든 다음 이를 애플리케이션의 주 창 개체로 설정합니다.
 	CFrameWnd* pFrame = new CMainFrame;
@@ -75,10 +71,6 @@ BOOL CnyangcooApp::InitInstance()
 	pFrame->LoadFrame(IDR_MAINFRAME,
 		WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, nullptr,
 		nullptr);
-
-
-
-
 
 	// 창 하나만 초기화되었으므로 이를 표시하고 업데이트합니다.
 	pFrame->ShowWindow(SW_SHOW);
@@ -95,9 +87,7 @@ int CnyangcooApp::ExitInstance()
 
 // CnyangcooApp 메시지 처리기
 
-
 // 응용 프로그램 정보에 사용되는 CAboutDlg 대화 상자입니다.
-
 class CAboutDlg : public CDialogEx
 {
 public:
@@ -136,7 +126,6 @@ void CnyangcooApp::OnAppAbout()
 }
 
 // CnyangcooApp 메시지 처리기
-
 UINT CnyangcooApp::funcThread(LPVOID pParam)
 {
 	while (1)
@@ -154,7 +143,6 @@ UINT CnyangcooApp::funcThread(LPVOID pParam)
 			if (AddDelta < minDelta)
 			{
 				continue;
-			//	Sleep(minDelta - AddDelta);
 			}
 			else
 			{

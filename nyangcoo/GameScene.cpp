@@ -3,7 +3,7 @@
 
 GameScene::GameScene() : Scene()
 {
-	Name = "Scene_Game";
+	name = "Scene_Game";
 
 	Init();
 }
@@ -18,16 +18,17 @@ void GameScene::Init()
 	gsGoldDelta = 550; // 골드 증가 초기 속도
 
 	// 게임 매니저 초기화
-	GameManager::GetInstance().Init(GameManager::GetInstance().btnID);
+	int selectedStageId = GameManager::GetInstance().btnID;
+	GameManager::GetInstance().Init(selectedStageId);
 
-	maxGold = GameManager::GetInstance().curStage->maxGold;
+	maxGold = GameManager::GetInstance().curStage->getMaxGold();
 
 	// 배경 그림 깔기
 	bg = GameManager::GetInstance().curStage->bg;
-	infoStaticObj.emplace_back(bg);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_Background, bg));
 
 	// 캐릭터 생성용 슬롯 버튼 만들기
-	std::string charNameList[8];
+	std::string charNameList[MAX_FIELD_CHARACTER_NUM];
 
 	for (int i = 0; i < MAX_SELECT_COOKIE_NUM; i++)
 	{
@@ -38,94 +39,78 @@ void GameScene::Init()
 	charNameList[6] = "plum";
 	charNameList[7] = "moonrabit";
 
-	MakeCharacterBtn* mcb[8];
-	UpgradeCharacterBtn* ucb[8];
+	MakeCharacterBtn* mcb[MAX_FIELD_CHARACTER_NUM];
+	UpgradeCharacterBtn* ucb[MAX_FIELD_CHARACTER_NUM];
 
-	for (int n = 0; n < 8; n++)
+	for (int n = 0; n < MAX_FIELD_CHARACTER_NUM; n++)
 	{
 		mcb[n] = new MakeCharacterBtn(charNameList[n]);
 		if (n > 0)
-			mcb[n]->x = mcb[n-1]->x + 100;
-		infoStaticObj.emplace_back(mcb[n]);
+			mcb[n]->setX(mcb[n-1]->getX() + 100);
+		infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, mcb[n]));
 
 		ucb[n] = new UpgradeCharacterBtn(mcb[n]);
 		if (n > 0)
-			ucb[n]->x = ucb[n - 1]->x + 100;
-		infoStaticObj.emplace_back(ucb[n]);
+			ucb[n]->setX(ucb[n - 1]->getX() + 100);
+		infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, ucb[n]));
 	}
 	
 	// 플레이어 생성
 	CommandPlayer = GameManager::GetInstance().CommandPlayer;
-	infoObj.emplace_back(GameManager::GetInstance().CommandPlayer);
+	infoObj.insert(pair<int, Object*>(eLayer_Character, GameManager::GetInstance().CommandPlayer));
 
 	// 적 생성
 	for (auto& it : GameManager::GetInstance().curEnemyList)
 	{
-		infoObj.emplace_back(it);
+		infoObj.insert(pair<int, Object*>(eLayer_Character, it));
 	}
 
-	// TODO. 나중에 수정필요. 팝업 부분
+	Btn* HelpBtn = new Btn(eScene_Help, TEXT("help_btn.png"), Rect(0, 0, 65, 65), Rect(0, 0, 65, 65), 1350, 20, selectedStageId);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, HelpBtn));
+
 	PopUp* popUp = new PopUp(ePopup_close);
-	popUp->Visible = false;
-	popUp->ImgRC = Rect(0, 0, 271, 279);
-	popUp->ViewRC = popUp->ImgRC;
+	popUp->setVisible(false);
+	popUp->setImgRC(Rect(0, 0, 271, 279));
+	popUp->setViewRC(popUp->getImgRC());
 
-	infoStaticObj.emplace_back(popUp);
-
-	Btn* HelpBtn = new Btn();
-	HelpBtn->ID = eScene_Help;
-	HelpBtn->AssetFileName = TEXT("help_btn.png");
-	HelpBtn->ImgRC = Rect(0, 0, 65, 65);
-	HelpBtn->ViewRC = HelpBtn->ImgRC;
-	HelpBtn->x = 1350;
-	HelpBtn->y = 20;
-
-	infoStaticObj.emplace_back(HelpBtn);
-
+	infoUIObj.insert(pair<int, StaticObject*>(eLayer_Popup, popUp));
 
 	// 골드 바
 	InitGoldBar();
 
 	// 플레이어 스킬
 	PlayerSkillBtn* ps_heal = new PlayerSkillBtn("heal");
-	ps_heal->btnImg->x = 910;
-	ps_heal->btnImg->y = 525;
-	infoStaticObj.emplace_back(ps_heal);
+	ps_heal->btnImg->setX(910);
+	ps_heal->btnImg->setY(525);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, ps_heal));
 
 	PlayerSkillBtn* ps_blizzard = new PlayerSkillBtn("blizzard");
-	ps_blizzard->btnImg->x = ps_heal->btnImg->x + 150;
-	ps_blizzard->btnImg->y = ps_heal->btnImg->y;
-	infoStaticObj.emplace_back(ps_blizzard);
+	ps_blizzard->btnImg->setX(ps_heal->btnImg->getX() + 150);
+	ps_blizzard->btnImg->setY(ps_heal->btnImg->getY());
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, ps_blizzard));
 
 	PlayerSkillBtn* ps_razer = new PlayerSkillBtn("razer");
-	ps_razer->btnImg->x = ps_blizzard->btnImg->x + 150;
-	ps_razer->btnImg->y = ps_heal->btnImg->y;
-	infoStaticObj.emplace_back(ps_razer);
+	ps_razer->btnImg->setX(ps_blizzard->btnImg->getX() + 150);
+	ps_razer->btnImg->setY(ps_heal->btnImg->getY());
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, ps_razer));
 
 	// 플레이어 업그레이드 버튼 (골드 획득속도 증가)
-	Btn* UpgradeBtn = new Btn();
-	UpgradeBtn->ID = ePlayerUpgradeBtn;
-	UpgradeBtn->AssetFileName = TEXT("slot\\up_slot_100.png");
-	UpgradeBtn->ImgRC = Rect(0, 0, 200, 100);
-	UpgradeBtn->x = GameManager::GetInstance().CommandPlayer->x - 75;
-	UpgradeBtn->y = GameManager::GetInstance().CommandPlayer->y - GameManager::GetInstance().CommandPlayer->AniUnits[0][0].Height - 100;
-	UpgradeBtn->ViewRC = UpgradeBtn->ImgRC;
-
-	infoStaticObj.emplace_back(UpgradeBtn);
+	Btn* UpgradeBtn = new Btn(ePlayerUpgradeBtn, TEXT("slot\\up_slot_100.png"), Rect(0, 0, 200, 100), Rect(0, 0, 200, 100), GameManager::GetInstance().CommandPlayer->getX() - 75, GameManager::GetInstance().CommandPlayer->getY() - GameManager::GetInstance().CommandPlayer->AniUnits[0][0].Height - 100, selectedStageId);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, UpgradeBtn));
 
 	ResultPopUp = new PopUp(ePopup_result);
-	infoUIObj.emplace_back(ResultPopUp);
+	infoUIObj.insert(pair<int, StaticObject*>(eLayer_Popup, ResultPopUp));
 
 	// 물음표 눌렀을때 나타나는 그림
 	StaticObject* questionImg = new StaticObject();
-	questionImg->AssetFileName = L"help_popup.png";
-	questionImg->ImgRC = Rect(0, 0, 1300, 600);
-	questionImg->ViewRC = questionImg->ImgRC;
-	questionImg->x = 60;
-	questionImg->y = 50;
-	questionImg->Visible = false;
+	questionImg->setAssetFileName(L"help_popup.png");
+	questionImg->setImgRC(Rect(0, 0, 1300, 600));
+	questionImg->setViewRC(questionImg->getImgRC());
+	questionImg->setX(60);
+	questionImg->setY(50);
+	questionImg->setVisible(false);
 
-	infoUIObj.emplace_back(questionImg);
+	infoUIObj.insert(pair<int, StaticObject*>(eLayer_UI, questionImg));
 
 
 	GameManager::GetInstance().IsGrayScale = false;
@@ -134,38 +119,37 @@ void GameScene::Init()
 void GameScene::InitGoldBar()
 {
 	goldBg = new StaticObject();
-	goldBg->AssetFileName = TEXT("goldbar\\goldbar_bg.png");
-	goldBg->ImgRC = Rect(0, 0, 414, 102);
-	goldBg->ViewRC = goldBg->ImgRC;
-	goldBg->x = 10;
-	goldBg->y = 10;
+	goldBg->setAssetFileName(TEXT("goldbar\\goldbar_bg.png"));
+	goldBg->setImgRC(Rect(0, 0, 414, 102));
+	goldBg->setViewRC(goldBg->getImgRC());
+	goldBg->setX(10);
+	goldBg->setY(10);
 
-	infoStaticObj.emplace_back(goldBg);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_Background, goldBg));
 
 	for (int i = 0; i < 10; i++)
 	{
 		goldPart[i] = new StaticObject();
-		goldPart[i]->AssetFileName = TEXT("goldbar\\goldbar_unit_brown.png");
-		goldPart[i]->ImgRC = Rect(0, 0, 36, 64);
-		goldPart[i]->ViewRC = goldPart[i]->ImgRC;
+		goldPart[i]->setAssetFileName(TEXT("goldbar\\goldbar_unit_brown.png"));
+		goldPart[i]->setImgRC(Rect(0, 0, 36, 64));
+		goldPart[i]->setViewRC(goldPart[i]->getImgRC());
 		if (i == 0)
 		{
-			goldPart[i]->x = goldBg->x + 25;
-			goldPart[i]->y = goldBg->y + 19;
+			goldPart[i]->setX(goldBg->getX() + 25);
+			goldPart[i]->setY(goldBg->getY() + 19);
 		}
 		else
 		{
-			goldPart[i]->x = goldPart[i - 1]->x + 36;
-			goldPart[i]->y = goldPart[i - 1]->y;
+			goldPart[i]->setX(goldPart[i - 1]->getX() + 36);
+			goldPart[i]->setY(goldPart[i - 1]->getY());
 		}
 
-		infoStaticObj.emplace_back(goldPart[i]);
+		infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, goldPart[i]));
 	}
 }
 
 void GameScene::Update(float Delta)
 {
-	infoObj;
 	// 게임이 종료되면 씬 전환
 	if (GameManager::GetInstance().IsGameEnd())
 	{
@@ -174,14 +158,14 @@ void GameScene::Update(float Delta)
 		
 		if (GameManager::GetInstance().IsWin == false)
 		{
-			ResultPopUp->bg->AssetFileName = TEXT("result_lose.png");
+			ResultPopUp->bg->setAssetFileName(TEXT("result_lose.png"));
 		}
 		else
 		{
 			GameManager::GetInstance().coin += 700;
-			GameManager::GetInstance().stageClearList[GameManager::GetInstance().curStage->stageID + 1] = true;
+			GameManager::GetInstance().stageClearList[GameManager::GetInstance().curStage->getStageID() + 1] = true;
 		}
-		ResultPopUp->Visible = true;
+		ResultPopUp->setVisible(true);
 	}
 
 	Scene::Update(Delta);
@@ -208,33 +192,10 @@ void GameScene::Update(float Delta)
 	for (int i = 0; i < 10; i++)
 	{
 		if (i < lastUnitNum)
-			goldPart[i]->AssetFileName = TEXT("goldbar\\goldbar_unit_yellow.png");
+			goldPart[i]->setAssetFileName(TEXT("goldbar\\goldbar_unit_yellow.png"));
 		else
-			goldPart[i]->AssetFileName = TEXT("goldbar\\goldbar_unit_brown.png");
+			goldPart[i]->setAssetFileName(TEXT("goldbar\\goldbar_unit_brown.png"));
 	}
-
-	// 죽은애들 처리
-/*
-	for (Object* ch : infoObj)
-	{
-		if (ch->Objtype == eObjectType_Effect)
-		{
-			Effect* e = reinterpret_cast<Effect*>(ch);
-			if (e->Enable == false && e->Visible == false)
-			{
-				e = nullptr;
-			}
-		}
-		else if (ch->Objtype == eObjectType_Character)
-		{
-			Character* c = reinterpret_cast<Character*>(ch);
-			if (c->Enable == false && c->Visible == false)
-			{
-				ch = nullptr;
-			}
-		}
-		
-	}*/
 
 	// wave관련 코드
 	if (GameManager::GetInstance().IsAllEnemyDead())
@@ -243,7 +204,7 @@ void GameScene::Update(float Delta)
 		{
 			for (auto& it : GameManager::GetInstance().curEnemyList)
 			{
-				infoObj.emplace_back(it);
+				infoObj.insert(pair<int, Object*>(eLayer_Character, it));
 			}
 		}
 	}
@@ -252,11 +213,12 @@ void GameScene::Update(float Delta)
 
 void GameScene::Render(Graphics* pGraphics)
 {
+	
 	Scene::Render(pGraphics);
 
 	printTitle(pGraphics);
 
-	if (ResultPopUp->Visible == true)
+	if (ResultPopUp->getVisible() == true)
 	{
 		if (GameManager::GetInstance().IsWin)
 			printCoin(700, pGraphics);
@@ -266,9 +228,13 @@ void GameScene::Render(Graphics* pGraphics)
 
 	for (auto& it : infoUIObj)
 	{
-		if (it->Objtype == eObjectType_None && it->AssetFileName == L"help_popup.png")
+		auto obj = it.second;
+
+		if (obj == nullptr) continue;
+
+		if (obj->getObjtype() == eObjectType_None && obj->getAssetFileName() == L"help_popup.png")
 		{
-			if (it->Visible == false)
+			if (obj->getVisible() == false)
 			{
 				printGold(gold, pGraphics);
 				printHP(CommandPlayer, pGraphics);
@@ -281,50 +247,52 @@ void GameScene::Render(Graphics* pGraphics)
 void GameScene::Release()
 {
 	Scene::Release();
+
+	// 죽은애들 처리
+	/*typedef std::multimap<int, Object*> Multimap;
+	for (Multimap::iterator iter = infoObj.begin(); iter != infoObj.end();)
+	{
+		auto obj = iter->second;
+
+		if (obj->getEnable() == false && obj->getVisible() == false)
+		{
+			trashObjList.emplace_back(obj);
+			iter = infoObj.erase(iter);
+		}
+		else
+		{
+			++iter;
+		}
+
+	}*/
 }
 
 void GameScene::printGold(int _gold, Graphics* pGraphics)
 {
 	// 아이콘이미지 출력
 	StaticObject* ic = new StaticObject();
-	ic->Objtype = eObjectType_None;
-	ic->AssetFileName = TEXT("goldbar\\gold_icon.png");
-	ic->ImgRC = Rect(0, 0, 40, 39);
-	ic->ViewRC = Rect(0, 0, 40, 39);
-	ic->ViewRC.X = goldBg->x + 100;
-	ic->ViewRC.Y = goldBg->y + 34;
+	ic->setObjtype(eObjectType_None);
+	ic->setAssetFileName(TEXT("goldbar\\gold_icon.png"));
+	ic->setImgRC(Rect(0, 0, 40, 39));
+	ic->setViewRC(Rect(goldBg->getX() + 100, goldBg->getY() + 34, 40, 39));
 
-	auto pImg = (AssetManager::GetInstance().GetImage(ic->AssetFileName)).lock();
+	auto pImg = (AssetManager::GetInstance().GetImage(ic->getAssetFileName())).lock();
 
-	if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+	if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->getName() == "Scene_Game")
 	{
-		//gray scale conversion:
-		Gdiplus::ColorMatrix matrix =
-		{
-			.3f, .3f, .3f,   0,   0,
-			.6f, .6f, .6f,   0,   0,
-			.1f, .1f, .1f,   0,   0,
-			0,   0,   0,   1,   0,
-			0,   0,   0,   0,   1
-		};
-
-		Gdiplus::ImageAttributes attr;
-		attr.SetColorMatrix(&matrix,
-			Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
-
-		pGraphics->DrawImage(pImg.get(), ic->ViewRC, ic->ImgRC.X, ic->ImgRC.Y, ic->ImgRC.Width, ic->ImgRC.Height, Gdiplus::Unit::UnitPixel,
-			&attr, 0, nullptr);
+		pGraphics->DrawImage(pImg.get(), ic->getViewRC(), ic->getImgRC().X, ic->getImgRC().Y, ic->getImgRC().Width, ic->getImgRC().Height, Gdiplus::Unit::UnitPixel,
+			AssetManager::GetInstance().getGrayScaleAttr(), 0, nullptr);
 	}
 	else
 	{
-		pGraphics->DrawImage(pImg.get(), ic->ViewRC, ic->ImgRC.X, ic->ImgRC.Y, ic->ImgRC.Width, ic->ImgRC.Height, Gdiplus::Unit::UnitPixel,
+		pGraphics->DrawImage(pImg.get(), ic->getViewRC(), ic->getImgRC().X, ic->getImgRC().Y, ic->getImgRC().Width, ic->getImgRC().Height, Gdiplus::Unit::UnitPixel,
 			nullptr, 0, nullptr);
 	}
 
 	// 글자 출력
 	Gdiplus::Font F(L"Arial", 10, FontStyleBold, UnitMillimeter);
 
-	PointF P(goldBg->x + 130.0f, goldBg->y + 29.0f);
+	PointF P(goldBg->getX() + 130.0f, goldBg->getY() + 29.0f);
 
 	SolidBrush B(Color(0, 0, 0));
 
@@ -335,12 +303,12 @@ void GameScene::printGold(int _gold, Graphics* pGraphics)
 
 void GameScene::printHP(Character* _character, Gdiplus::Graphics* pGraphics)
 {
-	if (_character->Visible == false)
+	if (_character->getVisible() == false)
 		return;
 
 	Gdiplus::Font F(L"Arial", 10, FontStyleBold, UnitMillimeter);
 
-	PointF P(_character->x, _character->y - _character->AniUnits[_character->curState][0].Height);
+	PointF P(_character->getX(), _character->getY() - _character->AniUnits[_character->curState][0].Height);
 
 	SolidBrush B(Color(0, 0, 0));
 
@@ -354,7 +322,7 @@ void GameScene::printCoin(int coin, Gdiplus::Graphics* pGraphics)
 	// 글자 출력
 	Gdiplus::Font F(L"Arial", 10, FontStyleBold, UnitMillimeter);
 
-	PointF P(ResultPopUp->x + 280.0f, ResultPopUp->y + 230.0f);
+	PointF P(ResultPopUp->getX() + 280.0f, ResultPopUp->getY() + 230.0f);
 
 	SolidBrush B(Color(0, 0, 0));
 
@@ -367,48 +335,32 @@ void GameScene::printTitle(Gdiplus::Graphics* pGraphics)
 {
 	// 바탕 그림 깔기
 	StaticObject* titleBg = new StaticObject();
-	titleBg->Objtype = eObjectType_None;
-	titleBg->AssetFileName = TEXT("title_stage_bg.png");
-	titleBg->ImgRC = Rect(0, 0, 350, 86);
-	titleBg->ViewRC = titleBg->ImgRC;
-	titleBg->ViewRC.X = 550;
-	titleBg->ViewRC.Y = 10;
+	titleBg->setObjtype(eObjectType_None);
+	titleBg->setAssetFileName(TEXT("title_stage_bg.png"));
+	titleBg->setImgRC(Rect(0, 0, 350, 86));
+	titleBg->setViewRC(Rect(550, 10, 350, 86));
 
-	auto pImg = (AssetManager::GetInstance().GetImage(titleBg->AssetFileName)).lock();
+	auto pImg = (AssetManager::GetInstance().GetImage(titleBg->getAssetFileName())).lock();
 
-	if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+	if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->getName() == "Scene_Game")
 	{
-		//gray scale conversion:
-		Gdiplus::ColorMatrix matrix =
-		{
-			.3f, .3f, .3f,   0,   0,
-			.6f, .6f, .6f,   0,   0,
-			.1f, .1f, .1f,   0,   0,
-			0,   0,   0,   1,   0,
-			0,   0,   0,   0,   1
-		};
-
-		Gdiplus::ImageAttributes attr;
-		attr.SetColorMatrix(&matrix,
-			Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
-
-		pGraphics->DrawImage(pImg.get(), titleBg->ViewRC, titleBg->ImgRC.X, titleBg->ImgRC.Y, titleBg->ImgRC.Width, titleBg->ImgRC.Height, Gdiplus::Unit::UnitPixel,
-			&attr, 0, nullptr);
+		pGraphics->DrawImage(pImg.get(), titleBg->getViewRC(), titleBg->getImgRC().X, titleBg->getImgRC().Y, titleBg->getImgRC().Width, titleBg->getImgRC().Height, Gdiplus::Unit::UnitPixel,
+			AssetManager::GetInstance().getGrayScaleAttr(), 0, nullptr);
 	}
 	else
 	{
-		pGraphics->DrawImage(pImg.get(), titleBg->ViewRC, titleBg->ImgRC.X, titleBg->ImgRC.Y, titleBg->ImgRC.Width, titleBg->ImgRC.Height, Gdiplus::Unit::UnitPixel,
+		pGraphics->DrawImage(pImg.get(), titleBg->getViewRC(), titleBg->getImgRC().X, titleBg->getImgRC().Y, titleBg->getImgRC().Width, titleBg->getImgRC().Height, Gdiplus::Unit::UnitPixel,
 			nullptr, 0, nullptr);
 	}
 
 	// 글자 출력
 	Gdiplus::Font F(L"Arial", 6, FontStyleBold, UnitMillimeter);
 
-	PointF P(titleBg->ViewRC.X + 35, titleBg->ViewRC.Y + 15);
+	PointF P(titleBg->getViewRC().X + 35, titleBg->getViewRC().Y + 15);
 
 	SolidBrush B(Color(255, 255, 255));
 
-	wstring tempStr = GameManager::GetInstance().curStage->stageTitle;
+	wstring tempStr = GameManager::GetInstance().curStage->getStageTitle();
 	// TODO. 나중에 진짜 수치로 바꿔주기
 	tempStr = tempStr + L"    wave " + std::to_wstring(GameManager::GetInstance().curWaveNum + 1);
 	tempStr = tempStr + L"\t" + std::to_wstring(GameManager::GetInstance().remainEnemyNum) + L"/" + std::to_wstring(GameManager::GetInstance().curEnemyList.size());

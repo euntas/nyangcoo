@@ -3,7 +3,7 @@
 
 CookieSelectScene::CookieSelectScene() : Scene()
 {
-	Name = "Scene_CookieSelect";
+	name = "Scene_CookieSelect";
 
 	Init();
 }
@@ -13,30 +13,17 @@ void CookieSelectScene::Init()
 	infoStaticObj.clear();
 
 	bg = new StaticObject();
-	bg->Objtype = eObjectType_BGImage;
-	bg->AssetFileName = TEXT("CookieSelect_bg.png");
-	bg->ImgRC = Rect(0, 0, 1420, 672);
-	bg->ViewRC = bg->ImgRC;
+	bg->setObjtype(eObjectType_BGImage);
+	bg->setAssetFileName(TEXT("CookieSelect_bg.png"));
+	bg->setImgRC(Rect(0, 0, 1420, 672));
+	bg->setViewRC(bg->getImgRC());
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_Background, bg));
 
-	Btn* GameStartBtn = new Btn();
-	GameStartBtn->ID = eScene_Game;
-	GameStartBtn->AssetFileName = TEXT("SelectStart_btn.png");
-	GameStartBtn->ImgRC = Rect(0, 0, 403, 118);
-	GameStartBtn->ViewRC = GameStartBtn->ImgRC;
-	GameStartBtn->x = 59;
-	GameStartBtn->y = 534;
+	Btn* GameStartBtn = new Btn(eScene_Game, TEXT("SelectStart_btn.png"), Rect(0, 0, 403, 118), Rect(0, 0, 403, 118), 59, 534);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, GameStartBtn));
 
-	Btn* RefreshBtn = new Btn();
-	RefreshBtn->ID = eSuffleBtn;
-	RefreshBtn->AssetFileName = TEXT("Refresh_btn.png");
-	RefreshBtn->ImgRC = Rect(0, 0, 403, 118);
-	RefreshBtn->ViewRC = RefreshBtn->ImgRC;
-	RefreshBtn->x = 59;
-	RefreshBtn->y = 408;
-
-	infoStaticObj.emplace_back(bg);
-	infoStaticObj.emplace_back(GameStartBtn);
-	infoStaticObj.emplace_back(RefreshBtn);
+	Btn* RefreshBtn = new Btn(eSuffleBtn, TEXT("Refresh_btn.png"), Rect(0, 0, 403, 118), Rect(0, 0, 403, 118), 59, 408);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, RefreshBtn));
 
 	for (int i = 0; i < MAX_SELECT_COOKIE_NUM; i++)
 	{
@@ -44,10 +31,10 @@ void CookieSelectScene::Init()
 	}
 
 	PopUp* popUp = new PopUp(ePopup_close);
-	popUp->ImgRC = Rect(0, 0, 271, 279);
-	popUp->ViewRC = popUp->ImgRC;
-	popUp->Visible = false;
-	infoStaticObj.emplace_back(popUp);
+	popUp->setImgRC(Rect(0, 0, 271, 279));
+	popUp->setViewRC(popUp->getImgRC());
+	popUp->setVisible(false);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_Popup, popUp));
 }
 
 void CookieSelectScene::selectChar(std::string name, int placeIdx)
@@ -55,14 +42,14 @@ void CookieSelectScene::selectChar(std::string name, int placeIdx)
 	std::string charFilename = "cookieSelect\\" + name + ".png";
 
 	StaticObject* Selected = new StaticObject();
-	Selected->Objtype = eObjectType_None;
-	Selected->AssetFileName.assign(charFilename.begin(), charFilename.end());
-	Selected->ImgRC = Rect(0, 0, 203, 220);
-	Selected->ViewRC = Selected->ImgRC;
-	Selected->x = 40 + placeIdx * 280;
-	Selected->y = 40;
+	Selected->setObjtype(eObjectType_None);
+	Selected->setAssetFileName(Selected->getAssetFileName().assign(charFilename.begin(), charFilename.end()));
+	Selected->setImgRC(Rect(0, 0, 203, 220));
+	Selected->setViewRC(Selected->getImgRC());
+	Selected->setX(40 + placeIdx * 280);
+	Selected->setY(40);
 
-	infoStaticObj.emplace_back(Selected);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, Selected));
 }
 
 void CookieSelectScene::Update(float Delta)
@@ -93,7 +80,7 @@ void CookieSelectScene::printCoin(Gdiplus::Graphics* pGraphics)
 	SolidBrush B(Color(0, 0, 0));
 
 	int coin = GameManager::GetInstance().coin;
-	int stageNum = GameManager::GetInstance().curStage->stageID;
+	int stageNum = GameManager::GetInstance().curStage->getStageID();
 
 	if (GameManager::GetInstance().seletedSlotNum != -1)
 	{

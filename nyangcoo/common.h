@@ -83,6 +83,35 @@ enum ECharacter {
 	eCharacter_Cnt
 };
 
+enum ELayer {
+	eLayer_Background,
+	eLayer_Character,
+	eLayer_Effect,
+	eLayer_UI,
+	eLayer_Popup,
+	eLayer_Cnt
+};
+
+enum EEvent {
+	eEvent_GameScene,
+	eEvent_LoadGameScene,
+	eEvent_StartScene,
+	eEvent_ChapterSelectScene,
+	eEvent_CookieSelectScene,
+	eEvent_ScriptScene,
+	eEvent_Select0,
+	eEvent_Select1,
+	eEvent_Select2,
+	eEvent_Load,
+	eEvent_Save,
+	eEvent_Delete,
+	eEvent_Help,
+	eEvente_UpgradePlayer,
+	eEvente_SuffleCookies,
+	eEvent_Exit,
+	eEvent_Cnt
+};
+
 class GameStage;
 class InputComponent;
 class Object;
@@ -93,3 +122,4 @@ class GraphicsComponent;
 #define MAX_WAVE_NUM 4
 #define ALL_STAGE_NUM 4
 #define MAX_SELECT_COOKIE_NUM 5
+#define MAX_FIELD_CHARACTER_NUM 8

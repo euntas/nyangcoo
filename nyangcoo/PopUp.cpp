@@ -16,40 +16,24 @@ PopUp::PopUp(EPopup _name) : StaticObject(EObjectType::eObjectType_PopUp)
 	if (name == ePopup_close)
 	{
 		bg = new StaticObject();
-		bg->Objtype = eObjectType_BGImage;
-		bg->AssetFileName = TEXT("popup_background.png");
-		bg->ImgRC = Rect(0, 0, 271, 279);
-		bg->ViewRC = bg->ImgRC;
-		bg->ViewRC.X = x;
-		bg->ViewRC.Y = y;
+		bg->setObjtype(eObjectType_BGImage);
+		bg->setAssetFileName(TEXT("popup_background.png"));
+		bg->setImgRC(Rect(0, 0, 271, 279));
+		bg->setViewRC(Rect(x, y, 271, 279));
 
 		infoStaticObj.emplace_back(bg);
 
-		Btn* BackTitleBtn = new Btn();
-		BackTitleBtn->ID = eScene_Start;
-		BackTitleBtn->AssetFileName = TEXT("popup_backtomain.png");
-		BackTitleBtn->ImgRC = Rect(0, 0, 212, 62);
-		BackTitleBtn->ViewRC = BackTitleBtn->ImgRC;
-		BackTitleBtn->x = 30;
-		BackTitleBtn->y = 126;
-		BackTitleBtn->ViewRC.X = x + BackTitleBtn->x;
-		BackTitleBtn->ViewRC.Y = y + BackTitleBtn->y;
+		Btn* BackTitleBtn = new Btn(eScene_Start, TEXT("popup_backtomain.png"), Rect(0, 0, 212, 62), Rect(0, 0, 212, 62), 30, 126, 0);
+		BackTitleBtn->setViewRC(Rect(x + BackTitleBtn->getX(), y + BackTitleBtn->getY(), BackTitleBtn->getViewRC().Width, BackTitleBtn->getViewRC().Height));
 
 		infoStaticObj.emplace_back(BackTitleBtn);
 
-		Btn* GameOverBtn = new Btn();
-		GameOverBtn->ID = eScene_Exit;
-		GameOverBtn->AssetFileName = TEXT("popup_gameover.png");
-		GameOverBtn->ImgRC = Rect(0, 0, 212, 62);
-		GameOverBtn->ViewRC = GameOverBtn->ImgRC;
-		GameOverBtn->x = 30;
-		GameOverBtn->y = 194;
-		GameOverBtn->ViewRC.X = x + GameOverBtn->x;
-		GameOverBtn->ViewRC.Y = y + GameOverBtn->y;
+		Btn* GameOverBtn = new Btn(eScene_Exit, TEXT("popup_gameover.png"), Rect(0, 0, 212, 62), Rect(0, 0, 212, 62), 30, 194, 0);
+		GameOverBtn->setViewRC(Rect(x + GameOverBtn->getX(), y + GameOverBtn->getY(), GameOverBtn->getViewRC().Width, GameOverBtn->getViewRC().Height));
 
 		infoStaticObj.emplace_back(GameOverBtn);
 
-		Visible = false;
+		visible = false;
 	}
 	else if (name == ePopup_result)
 	{
@@ -57,28 +41,18 @@ PopUp::PopUp(EPopup _name) : StaticObject(EObjectType::eObjectType_PopUp)
 		this->y = 100;
 
 		bg = new StaticObject();
-		bg->Objtype = eObjectType_BGImage;
-		bg->AssetFileName = TEXT("result_win.png");
-		bg->ImgRC = Rect(0, 0, 600, 400);
-		bg->ViewRC = bg->ImgRC;
-		bg->ViewRC.X = x;
-		bg->ViewRC.Y = y;
+		bg->setObjtype(eObjectType_BGImage);
+		bg->setAssetFileName(TEXT("result_win.png"));
+		bg->setImgRC(Rect(0, 0, 600, 400));
+		bg->setViewRC(Rect(x, y, 600, 400));
 
 		infoStaticObj.emplace_back(bg);
 
-		Btn* BackTitleBtn = new Btn();
-		BackTitleBtn->ID = eScene_Script;
-		BackTitleBtn->AssetFileName = TEXT("continue_btn.png");
-		BackTitleBtn->ImgRC = Rect(0, 0, 237, 69);
-		BackTitleBtn->ViewRC = BackTitleBtn->ImgRC;
-		BackTitleBtn->x = 183;
-		BackTitleBtn->y = 304;
-		BackTitleBtn->ViewRC.X = x + BackTitleBtn->x;
-		BackTitleBtn->ViewRC.Y = y + BackTitleBtn->y;
+		Btn* BackTitleBtn = new Btn(eScene_Script, TEXT("continue_btn.png"), Rect(0, 0, 237, 69), Rect(x + 183, y + 304, 237, 69), 183, 304, 0);
 
 		infoStaticObj.emplace_back(BackTitleBtn);
 
-		Visible = false;
+		visible = false;
 	}
 }
 
@@ -94,37 +68,23 @@ void PopUp::Update(float Delta)
 
 void PopUp::Render(Gdiplus::Graphics* pGraphics)
 {
-	if (Visible == false)
+	if (visible == false)
 		return;
 
 	for (auto& it : infoStaticObj)
 	{
-		if (it->Visible == false) return;
+		if (it->getVisible() == false) return;
 
-		auto pImg = (AssetManager::GetInstance().GetImage(it->AssetFileName)).lock();
+		auto pImg = (AssetManager::GetInstance().GetImage(it->getAssetFileName())).lock();
 
-		if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game" && name != ePopup_result)
+		if (GameManager::GetInstance().IsGrayScale && SceneManager::GetInstance().GetCurScene()->getName() == "Scene_Game" && name != ePopup_result)
 		{
-			//gray scale conversion:
-			Gdiplus::ColorMatrix matrix =
-			{
-				.3f, .3f, .3f,   0,   0,
-				.6f, .6f, .6f,   0,   0,
-				.1f, .1f, .1f,   0,   0,
-				0,   0,   0,   1,   0,
-				0,   0,   0,   0,   1
-			};
-
-			Gdiplus::ImageAttributes attr;
-			attr.SetColorMatrix(&matrix,
-				Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
-
-			pGraphics->DrawImage(pImg.get(), it->ViewRC, it->ImgRC.X, it->ImgRC.Y, it->ImgRC.Width, it->ImgRC.Height, Gdiplus::Unit::UnitPixel,
-				&attr, 0, nullptr);
+			pGraphics->DrawImage(pImg.get(), it->getViewRC(), it->getImgRC().X, it->getImgRC().Y, it->getImgRC().Width, it->getImgRC().Height, Gdiplus::Unit::UnitPixel,
+				AssetManager::GetInstance().getGrayScaleAttr(), 0, nullptr);
 		}
 		else
 		{
-			pGraphics->DrawImage(pImg.get(), it->ViewRC, it->ImgRC.X, it->ImgRC.Y, it->ImgRC.Width, it->ImgRC.Height, Gdiplus::Unit::UnitPixel,
+			pGraphics->DrawImage(pImg.get(), it->getViewRC(), it->getImgRC().X, it->getImgRC().Y, it->getImgRC().Width, it->getImgRC().Height, Gdiplus::Unit::UnitPixel,
 				nullptr, 0, nullptr);
 		}
 	}

@@ -16,8 +16,8 @@ void Effect::Init(EffectGraphicsComponent* graphics)
 	effectGraphics_ = reinterpret_cast<EffectGraphicsComponent*>(graphics_);
 	effectGraphics_->Init();
 
-	Enable = true;
-	Visible = true;
+	enable = true;
+	visible = true;
 }
 
 void Effect::Update(float Delta)
@@ -34,7 +34,7 @@ void Effect::Render(Gdiplus::Graphics* pGraphics)
 
 void Effect::Release()
 {
-
+	
 }
 
 void Effect::setEffectPos(int x, int y)

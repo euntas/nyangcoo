@@ -39,7 +39,7 @@ Scene* SceneManager::GetSceneByName(CString& pName)
 {
 	for (auto& it : mScene)
 	{
-		if (!it->Name.CompareNoCase(pName))
+		if (!it->getName().CompareNoCase(pName))
 		{
 			return it;
 		}
@@ -52,7 +52,7 @@ void SceneManager::LoadScene(CString& pName)
 {
 	for (auto& it : mScene)
 	{
-		if (!it->Name.CompareNoCase(pName))
+		if (!it->getName().CompareNoCase(pName))
 		{
 			CurScene = it;
 		}
@@ -75,54 +75,56 @@ void SceneManager::SendLButtonDown(UINT nFlags, CPoint point)
 {
 	if (CurScene == nullptr) return;
 
-	for (auto& it : CurScene->infoStaticObj)
+	for (auto& it : CurScene->getInfoStaticObj())
 	{
-		if (it == nullptr) continue;
+		auto obj = it.second;
 
-		Rect tempRC(it->x, it->y, it->ImgRC.Width, it->ImgRC.Height);
-		if (it->Objtype == eObjectType_Btn && tempRC.Contains(point.x, point.y))
+		if (obj == nullptr) continue;
+
+		Rect tempRC(obj->getX(), obj->getY(), obj->getImgRC().Width, obj->getImgRC().Height);
+		if (obj->getObjtype() == eObjectType_Btn && tempRC.Contains(point.x, point.y))
 		{
-			Btn* o = reinterpret_cast<Btn*>(it);
+			Btn* o = reinterpret_cast<Btn*>(obj);
 			o->SendLButtonDown();
 			
 		}
-		else if (it->Objtype == eObjectType_PopUp)
+		else if (obj->getObjtype() == eObjectType_PopUp)
 		{
-			PopUp* pb = reinterpret_cast<PopUp*>(it);
+			PopUp* pb = reinterpret_cast<PopUp*>(obj);
 			for (auto& pbit : pb->infoStaticObj)
 			{
-				if (pbit->Objtype == eObjectType_Btn && pbit->ViewRC.Contains(point.x, point.y) && pb->Visible)
+				if (pbit->getObjtype() == eObjectType_Btn && pbit->getViewRC().Contains(point.x, point.y) && pb->getVisible())
 				{
 					Btn* o = reinterpret_cast<Btn*>(pbit);
 					o->SendLButtonDown();
 				}
 			}
 		}
-		else if (it->Objtype == eObjectType_MakeCharacterBtn)
+		else if (obj->getObjtype() == eObjectType_MakeCharacterBtn)
 		{
-			MakeCharacterBtn* mcb = reinterpret_cast<MakeCharacterBtn*>(it);
+			MakeCharacterBtn* mcb = reinterpret_cast<MakeCharacterBtn*>(obj);
 
-			Rect tempRC(mcb->x, mcb->y, mcb->ImgRC.Width, mcb->ImgRC.Height);
+			Rect tempRC(mcb->getX(), mcb->getY(), mcb->getImgRC().Width, mcb->getImgRC().Height);
 			if (tempRC.Contains(point.x, point.y))
 			{
 				mcb->SendLButtonDown();
 			}
 		}
-		else if (it->Objtype == eObjectType_UpgradeCharacterBtn)
+		else if (obj->getObjtype() == eObjectType_UpgradeCharacterBtn)
 		{
-			UpgradeCharacterBtn* ucb = reinterpret_cast<UpgradeCharacterBtn*>(it);
+			UpgradeCharacterBtn* ucb = reinterpret_cast<UpgradeCharacterBtn*>(obj);
 
-			Rect tempRC(ucb->x, ucb->y, ucb->ImgRC.Width, ucb->ImgRC.Height);
+			Rect tempRC(ucb->getX(), ucb->getY(), ucb->getImgRC().Width, ucb->getImgRC().Height);
 			if (tempRC.Contains(point.x, point.y))
 			{
 				ucb->SendLButtonDown();
 			}
 		}
-		else if (it->Objtype == eObjectType_PlayerSkillBtn)
+		else if (obj->getObjtype() == eObjectType_PlayerSkillBtn)
 		{
-			PlayerSkillBtn* psb = reinterpret_cast<PlayerSkillBtn*>(it);
+			PlayerSkillBtn* psb = reinterpret_cast<PlayerSkillBtn*>(obj);
 
-			Rect tempRC(psb->btnImg->x, psb->btnImg->y, psb->btnImg->ImgRC.Width, psb->btnImg->ImgRC.Height);
+			Rect tempRC(psb->btnImg->getX(), psb->btnImg->getY(), psb->btnImg->getImgRC().Width, psb->btnImg->getImgRC().Height);
 			if (tempRC.Contains(point.x, point.y))
 			{
 				psb->SendLButtonDown();
@@ -130,16 +132,18 @@ void SceneManager::SendLButtonDown(UINT nFlags, CPoint point)
 		}
 	}
 
-	for (auto& it : CurScene->infoUIObj)
+	for (auto& it : CurScene->getInfoUIObj())
 	{
-		if (it == nullptr) continue;
+		auto obj = it.second;
 
-		if (it->Objtype == eObjectType_PopUp)
+		if (obj == nullptr) continue;
+
+		if (obj->getObjtype() == eObjectType_PopUp)
 		{
-			PopUp* pb = reinterpret_cast<PopUp*>(it);
+			PopUp* pb = reinterpret_cast<PopUp*>(obj);
 			for (auto& pbit : pb->infoStaticObj)
 			{
-				if (pbit->Objtype == eObjectType_Btn && pbit->ViewRC.Contains(point.x, point.y) && pb->Visible)
+				if (pbit->getObjtype() == eObjectType_Btn && pbit->getViewRC().Contains(point.x, point.y) && pb->getVisible())
 				{
 					Btn* o = reinterpret_cast<Btn*>(pbit);
 					o->SendLButtonDown();
@@ -153,23 +157,23 @@ void SceneManager::SendMouseMove(UINT nFlags, CPoint point)
 {
 	if (CurScene == nullptr) return;
 
-	for (auto& it : CurScene->infoStaticObj)
+	for (auto& it : CurScene->getInfoStaticObj())
 	{
-		if (it == nullptr) continue;
+		auto obj = it.second;
 
-		Rect tempRC(it->x, it->y, it->ViewRC.Width, it->ViewRC.Height);
-		if (it->Objtype == eObjectType_Btn && tempRC.Contains(point.x, point.y))
+		if (obj == nullptr) continue;
+
+		Rect tempRC(obj->getX(), obj->getY(), obj->getViewRC().Width, obj->getViewRC().Height);
+		if (obj->getObjtype() == eObjectType_Btn && tempRC.Contains(point.x, point.y))
 		{
-			Btn* o = reinterpret_cast<Btn*>(it);
-			o->ViewRC.Width = o->ImgRC.Width + 50;
-			o->ViewRC.Height = o->ImgRC.Height + 50;
+			Btn* o = reinterpret_cast<Btn*>(obj);
+			o->setViewRC(Rect(o->getViewRC().X, o->getViewRC().Y, o->getImgRC().Width + 50, o->getImgRC().Height + 50));
 			printf("point : %d, %d\n", point.x, point.y);
 		}
-		else if (it->Objtype == eObjectType_Btn)
+		else if (obj->getObjtype() == eObjectType_Btn)
 		{
-			Btn* o = reinterpret_cast<Btn*>(it);
-			o->ViewRC.Width = o->ImgRC.Width;
-			o->ViewRC.Height = o->ImgRC.Height;
+			Btn* o = reinterpret_cast<Btn*>(obj);
+			o->setViewRC(Rect(o->getViewRC().X, o->getViewRC().Y, o->getImgRC().Width, o->getImgRC().Height));
 		}
 	}
 }
@@ -197,7 +201,7 @@ void SceneManager::Release()
 
 void SceneManager::SendKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	if (CurScene->Name == "Scene_Game")
+	if (CurScene->getName() == "Scene_Game")
 	{
 		GameScene* gs = reinterpret_cast<GameScene*>(GetCurScene());
 
@@ -218,14 +222,20 @@ void SceneManager::SendKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		if (flag)
 		{
 			StaticObject* Bg = GameManager::GetInstance().curStage->bg;
-			int tempx = Bg->ImgRC.X + moveX;
-			if (tempx >= 0 && tempx <= Bg->ImgRC.Width - Bg->ViewRC.Width)
+			int tempx = Bg->getImgRC().X + moveX;
+			if (tempx >= 0 && tempx <= Bg->getImgRC().Width - Bg->getViewRC().Width)
 			{
-				Bg->ImgRC.X += moveX;
+				Rect tempRC = Bg->getImgRC();
+				tempRC.X += moveX;
+				Bg->setImgRC(tempRC);
 
-				for (auto& it : gs->infoObj)
+				for (auto& it : gs->getInfoObj())
 				{
-					it->x -= moveX;
+					auto obj = it.second;
+
+					if (obj == nullptr) continue;
+
+					obj->setX(obj->getX() - moveX);
 				}
 			}
 		}
@@ -233,13 +243,31 @@ void SceneManager::SendKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 	if (GetAsyncKeyState(VK_ESCAPE) & 0x8001)
 	{
-		for (auto& it : GetCurScene()->infoStaticObj)
+		for (auto& it : GetCurScene()->getInfoStaticObj())
 		{
-			PopUp* pu = reinterpret_cast<PopUp*>(it);
+			auto obj = it.second;
 
-			if (it->Objtype == eObjectType_PopUp && pu->name != ePopup_result)
+			if (obj == nullptr) continue;
+
+			PopUp* popup = reinterpret_cast<PopUp*>(obj);
+
+			if (obj->getObjtype() == eObjectType_PopUp && popup->name != ePopup_result)
 			{
-				it->Visible = !it->Visible;
+				obj->setVisible(!obj->getVisible());
+			}
+		}
+
+		for (auto& it : GetCurScene()->getInfoUIObj())
+		{
+			auto obj = it.second;
+
+			if (obj == nullptr) continue;
+
+			PopUp* popup = reinterpret_cast<PopUp*>(obj);
+
+			if (obj->getObjtype() == eObjectType_PopUp && popup->name != ePopup_result)
+			{
+				obj->setVisible(!obj->getVisible());
 			}
 		}
 	}

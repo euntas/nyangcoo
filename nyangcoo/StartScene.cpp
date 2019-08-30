@@ -3,7 +3,7 @@
 
 StartScene::StartScene() : Scene()
 {
-	Name = "Scene_Start";
+	name = "Scene_Start";
 
 	Init();
 }
@@ -13,64 +13,33 @@ void StartScene::Init()
 	infoStaticObj.clear();
 
 	bg = new StaticObject();
-	bg->Objtype = eObjectType_BGImage;
-	bg->AssetFileName = TEXT("bg.png");
-	bg->ImgRC = Rect(0, 0, 1420, 672);
-	bg->ViewRC = bg->ImgRC;
+	bg->setObjtype(eObjectType_BGImage);
+	bg->setAssetFileName(TEXT("bg.png"));
+	bg->setImgRC(Rect(0, 0, 1420, 672));
+	bg->setViewRC(bg->getImgRC());
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_Background, bg));
 
-	Btn* StartBtn = new Btn();
-	StartBtn->ID = eScene_ChapterSelect;
-	StartBtn->AssetFileName = TEXT("title_btn_00.png");
-	StartBtn->ImgRC = Rect(0, 0, 236, 72);
-	StartBtn->ViewRC = StartBtn->ImgRC;
-	StartBtn->x = 600;
-	StartBtn->y = 200;
-	StartBtn->IsClicked = false;
+	Btn* StartBtn = new Btn(eScene_ChapterSelect, TEXT("title_btn_00.png"), Rect(0, 0, 236, 72), Rect(0, 0, 236, 72), 600, 200, 0);
+	StartBtn->setIsClicked(false);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, StartBtn));
 
-	Btn* ContinueBtn = new Btn();
-	ContinueBtn->ID = eScene_Continue;
-	ContinueBtn->AssetFileName = TEXT("title_btn_01.png");
-	ContinueBtn->ImgRC = Rect(0, 0, 236, 72);
-	ContinueBtn->ViewRC = ContinueBtn->ImgRC;
-	ContinueBtn->x = 600;
-	ContinueBtn->y = 290;
+	Btn* ContinueBtn = new Btn(eScene_Continue, TEXT("title_btn_01.png"), Rect(0, 0, 236, 72), Rect(0, 0, 236, 72), 600, 290, 0);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, ContinueBtn));
 
-	Btn* LoadGameBtn = new Btn();
-	LoadGameBtn->ID = eScene_LoadGame;
-	LoadGameBtn->AssetFileName = TEXT("title_btn_02.png");
-	LoadGameBtn->ImgRC = Rect(0, 0, 236, 72);
-	LoadGameBtn->ViewRC = LoadGameBtn->ImgRC;
-	LoadGameBtn->x = 600;
-	LoadGameBtn->y = 380;
+	Btn* LoadGameBtn = new Btn(eScene_LoadGame, TEXT("title_btn_02.png"), Rect(0, 0, 236, 72), Rect(0, 0, 236, 72), 600, 380, 0);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, LoadGameBtn));
 
-	Btn* ChallengeBtn = new Btn();
-	ChallengeBtn->ID = eScene_SaveGame;
-	ChallengeBtn->AssetFileName = TEXT("title_btn_03.png");
-	ChallengeBtn->ImgRC = Rect(0, 0, 236, 72);
-	ChallengeBtn->ViewRC = ChallengeBtn->ImgRC;
-	ChallengeBtn->x = 600;
-	ChallengeBtn->y = 470;
+	Btn* ChallengeBtn = new Btn(eScene_SaveGame, TEXT("title_btn_03.png"), Rect(0, 0, 236, 72), Rect(0, 0, 236, 72), 600, 470, 0);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, ChallengeBtn));
 
-	Btn* ExitBtn = new Btn();
-	ExitBtn->ID = eScene_Exit;
-	ExitBtn->AssetFileName = TEXT("title_btn_04.png");
-	ExitBtn->ImgRC = Rect(0, 0, 236, 72);
-	ExitBtn->ViewRC = ExitBtn->ImgRC;
-	ExitBtn->x = 600;
-	ExitBtn->y = 560;
-
-	infoStaticObj.emplace_back(bg);
-	infoStaticObj.emplace_back(StartBtn);
-	infoStaticObj.emplace_back(ContinueBtn);
-	infoStaticObj.emplace_back(LoadGameBtn);
-	infoStaticObj.emplace_back(ChallengeBtn);
-	infoStaticObj.emplace_back(ExitBtn);
+	Btn* ExitBtn = new Btn(eScene_Exit, TEXT("title_btn_04.png"), Rect(0, 0, 236, 72), Rect(0, 0, 236, 72), 600, 560, 0);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_UI, ExitBtn));
 
 	PopUp* popUp = new PopUp(ePopup_close);
-	popUp->ImgRC = Rect(0, 0, 271, 279);
-	popUp->ViewRC = popUp->ImgRC;
-	popUp->Visible = false;
-	infoStaticObj.emplace_back(popUp);
+	popUp->setImgRC(Rect(0, 0, 271, 279));
+	popUp->setViewRC(popUp->getImgRC());
+	popUp->setVisible(false);
+	infoStaticObj.insert(pair<int, StaticObject*>(eLayer_Popup, popUp));
 }
 
 void StartScene::Update(float Delta)

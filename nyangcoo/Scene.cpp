@@ -5,14 +5,16 @@ void Scene::Init()
 {
 	for (auto& it : infoObj)
 	{
-		if (it == nullptr) continue;
+		auto obj = it.second;
 
-		it->Init();
+		if (obj == nullptr) continue;
+
+		obj->Init();
 
 		// 이펙트일 경우 애니메이션이 실행되도록 초기화
-		if (it->Objtype == eObjectType_Effect)
+		if (obj->getObjtype() == eObjectType_Effect)
 		{
-			it->setEnable(true);
+			obj->setEnable(true);
 		}
 	}
 }
@@ -21,125 +23,103 @@ void Scene::Update(float Delta)
 {
 	for (auto& it : infoObj)
 	{
-		if (it == nullptr) continue;
+		auto obj = it.second;
+
+		if (obj == nullptr) continue;
 
 		// 플레이어일 경우
-		if (it->Objtype == eObjectType_Player || it->Objtype == eObjectType_Character || it->Objtype == eObjectType_Enemy)
+		if (obj->getObjtype() == eObjectType_Player || obj->getObjtype() == eObjectType_Character || obj->getObjtype() == eObjectType_Enemy)
 		{
-			Character* p = reinterpret_cast<Character*>(it);
-			p->Update(Delta);
+			Character* player = reinterpret_cast<Character*>(obj);
+			player->Update(Delta);
 		}
 		else
 		{
-			it->Update(Delta);
+			obj->Update(Delta);
 		}
 	}
 
 	for (auto& it : infoStaticObj)
 	{
-		if (it == nullptr) continue;
+		auto obj = it.second;
 
-		if (it->Objtype == eObjectType_PlayerSkillBtn)
+		if (obj == nullptr) continue;
+
+		if (obj->getObjtype() == eObjectType_PlayerSkillBtn)
 		{
-			PlayerSkillBtn* psb = reinterpret_cast<PlayerSkillBtn*>(it);
-			psb->Update(Delta);
+			PlayerSkillBtn* playerSkillBtn = reinterpret_cast<PlayerSkillBtn*>(obj);
+			playerSkillBtn->Update(Delta);
 		}
-		else if (it->Objtype == eObjectType_Btn)
+		else if (obj->getObjtype() == eObjectType_Btn)
 		{
-			Btn* b = reinterpret_cast<Btn*>(it);
+			Btn* btn = reinterpret_cast<Btn*>(obj);
 
-			if (b->ID == ePlayerUpgradeBtn)
+			if (btn->getId() == ePlayerUpgradeBtn)
 			{
-				GameScene* gs = reinterpret_cast<GameScene*>(SceneManager::GetInstance().GetCurScene());
-
-				it->x = GameManager::GetInstance().CommandPlayer->x - 75;
-				it->y = GameManager::GetInstance().CommandPlayer->y - GameManager::GetInstance().CommandPlayer->AniUnits[GameManager::GetInstance().CommandPlayer->curState][0].Height - 100;
+				obj->setX(GameManager::GetInstance().CommandPlayer->getX() - 75);
+				obj->setY(GameManager::GetInstance().CommandPlayer->getY() - GameManager::GetInstance().CommandPlayer->AniUnits[GameManager::GetInstance().CommandPlayer->curState][0].Height - 100);
 			}
 		}
 		else
 		{
-			it->Update(Delta);
+			obj->Update(Delta);
 		}
 	}
 }
 
 void Scene::Render(Gdiplus::Graphics* pGraphics)
 {
-	if (this == nullptr) return;
 	if (pGraphics == nullptr) return;
 
-	for (auto& it : infoStaticObj)
+	for (int layerNum = 0; layerNum < eLayer_Cnt; layerNum++)
 	{
-		if (it == nullptr) continue;
-
-		if ((this->Name == "Scene_LoadGame" || this->Name == "Scene_SaveGame" || this->Name == "Scene_Script") && it->Objtype == eObjectType_PopUp)
+		multimap<int, StaticObject*>::iterator iter;
+		for (iter = infoStaticObj.lower_bound(layerNum); iter != infoStaticObj.upper_bound(layerNum); ++iter)
 		{
-			PopUp* p = reinterpret_cast<PopUp*>(it);
-			if (p->name == ePopup_close)
-			{
-			}
-			else
-			{
-				it->Render(pGraphics);
-			}
+			auto obj = iter->second;
+
+			if (obj == nullptr) continue;
+
+			obj->Render(pGraphics);
 		}
-		else
+
+		multimap<int, Object*>::iterator iterForObj;
+		for (iterForObj = infoObj.lower_bound(layerNum); iterForObj != infoObj.upper_bound(layerNum); ++iterForObj)
 		{
-			it->Render(pGraphics);
+			auto obj = iterForObj->second;
+
+			if (obj == nullptr) continue;
+
+			obj->Render(pGraphics);
 		}
-	}
 
-	for (auto& it : infoObj)
-	{
-		if (it == nullptr) continue;
 
-		if (it->Objtype == eObjectType_Player || it->Objtype == eObjectType_Character || it->Objtype == eObjectType_Enemy)
+		for (iter = infoUIObj.lower_bound(layerNum); iter != infoUIObj.upper_bound(layerNum); ++iter)
 		{
-			Character* p = reinterpret_cast<Character*>(it);
-			p->Render(pGraphics);
-		}
-		else
-		{
-			it->Render(pGraphics);
-		}
-	}
+			auto obj = iter->second;
 
-	for (auto& it : infoUIObj)
-	{
-		if (it == nullptr) continue;
+			if (obj == nullptr) continue;
 
-		it->Render(pGraphics);
+			obj->Render(pGraphics);
+		}
 	}
 }
 
 void Scene::Release()
 {
-	//for (auto it = infoObj.begin(); it != infoObj.end(); ++it)
-	//{
-	//	if ((*it) == nullptr) continue;
-
-	//	// 플레이어일 경우
-	//	if ((*it)->Objtype == eObjectType_Player)
-	//	{
-	//		Player* p = reinterpret_cast<Player*>(*it);
-	//		if (p->CheckDestroy())
-	//		{
-	//			it = infoObj.erase(it);
-	//		}
-	//	}
-	//	else if ((*it)->Objtype == eObjectType_Enemy)
-	//	{
-	//		Enemy* e = reinterpret_cast<Enemy*>(*it);
-	//		if (e->CheckDestroy())
-	//		{
-	//			it = infoObj.erase(it);
-	//		}
-	//	}
-	//	else
-	//	{
-	//		//it->Release();
-	//	}
-	//}
+	/*vector<Object*>::iterator iter;
+	for (iter = trashObjList.begin(); iter != trashObjList.end();)
+	{
+		if ((*iter)->getEnable() == false && (*iter)->getVisible() == false)
+		{
+			delete* iter;
+			iter = trashObjList.erase(iter);
+		}
+		else
+		{
+			iter++;
+		}
+	}*/
 }
 
 void Scene::ClearAll()
@@ -147,4 +127,66 @@ void Scene::ClearAll()
 	infoObj.clear();
 	infoStaticObj.clear();
 	infoUIObj.clear();
+}
+
+bool Scene::getBLoop()
+{
+	return bLoop;
+}
+
+void Scene::setBLoop(bool _bLoop)
+{
+	bLoop = _bLoop;
+}
+
+CString Scene::getName()
+{
+	return name;
+}
+
+void Scene::setName(CString _name)
+{
+	name = _name;
+}
+
+multimap<int, Object*> Scene::getInfoObj()
+{
+	return infoObj;
+}
+
+void Scene::setInfoObj(multimap<int, Object*> _infoObj)
+{
+	infoObj = _infoObj;
+}
+
+void Scene::addToInfoObj(Object* _object)
+{
+	int zOrder = eLayer_Character;
+	
+	if (_object->getObjtype() == eObjectType_Effect)
+	{
+		zOrder = eLayer_Effect;
+	}
+
+	infoObj.insert(pair<int, Object*>(zOrder, _object));
+}
+
+multimap<int, StaticObject*> Scene::getInfoStaticObj()
+{
+	return infoStaticObj;
+}
+
+void Scene::setInfoStaticObj(multimap<int, StaticObject*> _infoStaticObj)
+{
+	infoStaticObj = _infoStaticObj;
+}
+
+multimap<int, StaticObject*> Scene::getInfoUIObj()
+{
+	return infoUIObj;
+}
+
+void Scene::setInfoUIObj(multimap<int, StaticObject*> _infoUIObj)
+{
+	infoUIObj = _infoUIObj;
 }

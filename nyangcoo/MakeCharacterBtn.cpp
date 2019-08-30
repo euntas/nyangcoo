@@ -41,7 +41,7 @@ MakeCharacterBtn::MakeCharacterBtn(std::string characterName)
 	this->x = 50;
 	this->y = 570;
 
-	this->ImgRC = Gdiplus::Rect(0, 0, 85, 99);
+	this->setImgRC(Gdiplus::Rect(0, 0, 85, 99));
 
 	cost = 150;
 
@@ -54,16 +54,18 @@ MakeCharacterBtn::MakeCharacterBtn(std::string characterName)
 	std::string bgFilename = "slot\\bg_slot_" + std::to_string(cost) + ".png";
 
 	makeSlotImg = new StaticObject();
-	makeSlotImg->AssetFileName.assign(bgFilename.begin(), bgFilename.end());
+	std::wstring tempFileName(bgFilename.begin(), bgFilename.end());
+	makeSlotImg->setAssetFileName(tempFileName);
 
 	std::string imgFilename = "slot\\slot_" + characterName + ".png";
 
 	characterImg = new StaticObject();
-	characterImg->AssetFileName.assign(imgFilename.begin(), imgFilename.end());
-	characterImg->ImgRC = Gdiplus::Rect(0, 0, 57, 64);
-	characterImg->ViewRC = characterImg->ImgRC;
-	characterImg->x = 12;
-	characterImg->y = 13;
+	tempFileName = tempFileName.assign(imgFilename.begin(), imgFilename.end());
+	characterImg->setAssetFileName(tempFileName);
+	characterImg->setImgRC(Gdiplus::Rect(0, 0, 57, 64));
+	characterImg->setViewRC(characterImg->getImgRC());
+	characterImg->setX(12);
+	characterImg->setY(13);
 		
 }
 
@@ -88,71 +90,45 @@ void MakeCharacterBtn::Update(float Delta)
 
 void MakeCharacterBtn::Render(Gdiplus::Graphics* pGraphics)
 {
-	if (Visible == false)
+	if (visible == false)
 		return;
 
 	// 배경
-	if (makeSlotImg->Visible == false)
+	if (makeSlotImg->getVisible() == false)
 		return;
 
-	auto pImg = (AssetManager::GetInstance().GetImage(makeSlotImg->AssetFileName)).lock();
+	auto pImg = (AssetManager::GetInstance().GetImage(makeSlotImg->getAssetFileName())).lock();
 
 	GameScene* gs = reinterpret_cast<GameScene*>(SceneManager::GetInstance().GetCurScene());
 
-	if ((GameManager::GetInstance().IsGrayScale || IsReady == false) && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+	if ((GameManager::GetInstance().IsGrayScale || IsReady == false) && SceneManager::GetInstance().GetCurScene()->getName() == "Scene_Game")
 	{
-		//gray scale conversion:
-		Gdiplus::ColorMatrix matrix =
-		{
-			.3f, .3f, .3f,   0,   0,
-			.6f, .6f, .6f,   0,   0,
-			.1f, .1f, .1f,   0,   0,
-			0,   0,   0,   1,   0,
-			0,   0,   0,   0,   1
-		};
-		Gdiplus::ImageAttributes attr;
-		attr.SetColorMatrix(&matrix,
-			Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
-
-		Rect tempRC(x, y, ImgRC.Width, ImgRC.Height);
-		pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X, ImgRC.Y, ImgRC.Width, ImgRC.Height, Gdiplus::Unit::UnitPixel,
-			&attr, 0, nullptr);
+		Rect tempRC(x, y, imgRC.Width, imgRC.Height);
+		pGraphics->DrawImage(pImg.get(), tempRC, imgRC.X, imgRC.Y, imgRC.Width, imgRC.Height, Gdiplus::Unit::UnitPixel,
+			AssetManager::GetInstance().getGrayScaleAttr(), 0, nullptr);
 	}
 	else
 	{
-		Rect tempRC(x, y, ImgRC.Width, ImgRC.Height);
-		pGraphics->DrawImage(pImg.get(), tempRC, ImgRC.X, ImgRC.Y, ImgRC.Width, ImgRC.Height, Gdiplus::Unit::UnitPixel,
+		Rect tempRC(x, y, imgRC.Width, imgRC.Height);
+		pGraphics->DrawImage(pImg.get(), tempRC, imgRC.X, imgRC.Y, imgRC.Width, imgRC.Height, Gdiplus::Unit::UnitPixel,
 			nullptr, 0, nullptr);
 	}
 
 	// 캐릭터 그림
-	if (characterImg->Visible == false)
+	if (characterImg->getVisible() == false)
 		return;
 
-	auto pImg2 = (AssetManager::GetInstance().GetImage(characterImg->AssetFileName)).lock();
+	auto pImg2 = (AssetManager::GetInstance().GetImage(characterImg->getAssetFileName())).lock();
 	
-	Rect tempRC2(x + characterImg->x, y + characterImg->y, characterImg->ViewRC.Width, characterImg->ViewRC.Height);
-	if ((GameManager::GetInstance().IsGrayScale || IsReady == false) && SceneManager::GetInstance().GetCurScene()->Name == "Scene_Game")
+	Rect tempRC2(x + characterImg->getX(), y + characterImg->getY(), characterImg->getViewRC().Width, characterImg->getViewRC().Height);
+	if ((GameManager::GetInstance().IsGrayScale || IsReady == false) && SceneManager::GetInstance().GetCurScene()->getName() == "Scene_Game")
 	{
-		//gray scale conversion:
-		Gdiplus::ColorMatrix matrix =
-		{
-			.3f, .3f, .3f,   0,   0,
-			.6f, .6f, .6f,   0,   0,
-			.1f, .1f, .1f,   0,   0,
-			0,   0,   0,   1,   0,
-			0,   0,   0,   0,   1
-		};
-		Gdiplus::ImageAttributes attr;
-		attr.SetColorMatrix(&matrix,
-			Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
-
-		pGraphics->DrawImage(pImg2.get(), tempRC2, characterImg->ImgRC.X, characterImg->ImgRC.Y, characterImg->ImgRC.Width, characterImg->ImgRC.Height, Gdiplus::Unit::UnitPixel,
-			&attr, 0, nullptr);
+		pGraphics->DrawImage(pImg2.get(), tempRC2, characterImg->getImgRC().X, characterImg->getImgRC().Y, characterImg->getImgRC().Width, characterImg->getImgRC().Height, Gdiplus::Unit::UnitPixel,
+			AssetManager::GetInstance().getGrayScaleAttr(), 0, nullptr);
 	}
 	else
 	{
-		pGraphics->DrawImage(pImg2.get(), tempRC2, characterImg->ImgRC.X, characterImg->ImgRC.Y, characterImg->ImgRC.Width, characterImg->ImgRC.Height, Gdiplus::Unit::UnitPixel,
+		pGraphics->DrawImage(pImg2.get(), tempRC2, characterImg->getImgRC().X, characterImg->getImgRC().Y, characterImg->getImgRC().Width, characterImg->getImgRC().Height, Gdiplus::Unit::UnitPixel,
 			nullptr, 0, nullptr);
 	}
 }
@@ -170,21 +146,19 @@ void MakeCharacterBtn::SendLButtonDown()
 	if (gs->gold >= cost)
 	{
 		gs->gold -= cost;
-		//SceneManager::GetInstance().GetCurScene()->infoObj.emplace_back(MakeCharacter());
 
 		Character* c = MakeCharacter();
-		SceneManager::GetInstance().GetCurScene()->infoObj.emplace_back(c);
+		SceneManager::GetInstance().GetCurScene()->addToInfoObj(c);
 		GameManager::GetInstance().curCharacterList.emplace_back(c);
 
-		// TODO. 지워야함 실험용 이펙트
 		Effect* ef = new Effect();
 		ef->EffectXmlFileName = "Asset\\effect\\effect_fox_hit.xml";
 		XmlManager::GetInstance().ParseEffectData(*ef);
-		ef->x = c->x;
-		ef->y = c->y - c->AniUnits[c->curState][0].Height / 2;
+		ef->setX(c->getX());
+		ef->setY(c->getY() - c->AniUnits[c->curState][0].Height / 2);
 		ef->Init(new EffectGraphicsComponent(ef));
 
-		SceneManager::GetInstance().GetCurScene()->infoObj.emplace_back(ef);
+		SceneManager::GetInstance().GetCurScene()->addToInfoObj(ef);
 	}
 }
 
