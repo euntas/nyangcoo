@@ -168,12 +168,6 @@
     <ClInclude Include="SaveGameScene.h">
       <Filter>헤더 파일\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="EventHandler.h">
-      <Filter>헤더 파일\Util</Filter>
-    </ClInclude>
-    <ClInclude Include="EffectManager.h">
-      <Filter>헤더 파일\Manager</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainFrm.cpp">
@@ -268,12 +262,6 @@
     </ClCompile>
     <ClCompile Include="SaveGameScene.cpp">
       <Filter>소스 파일\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="EventHandler.cpp">
-      <Filter>소스 파일\Util</Filter>
-    </ClCompile>
-    <ClCompile Include="EffectManager.cpp">
-      <Filter>소스 파일\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -50,13 +50,10 @@
 
 #include "GameStage.h"
 
-
 #include "XmlManager.h"
 #include "AssetManager.h"
 #include "SceneManager.h"
 #include "GameManager.h"
-#include "EventHandler.h"
-#include "EffectManager.h"
 #include <mmsystem.h>
 #pragma comment (lib, "winmm.lib")
 
